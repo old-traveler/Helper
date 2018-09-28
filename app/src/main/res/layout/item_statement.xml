@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  app:cardBackgroundColor="@color/white"
+  android:layout_marginBottom="10dp"
+  app:cardElevation="4dp"
+  android:layout_marginStart="10dp"
+  android:layout_marginEnd="10dp"
+  app:cardCornerRadius="0dp"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content">
+
+  <ImageView
+    android:id="@+id/iv_publisher_head"
+    android:layout_marginStart="10dp"
+    android:layout_marginTop="10dp"
+    android:layout_width="50dp"
+    android:layout_height="50dp" />
+
+  <TextView
+    android:id="@+id/tv_publish_name"
+    android:layout_marginTop="16dp"
+    android:textColor="@color/colorPrimary"
+    android:textSize="15sp"
+    android:layout_marginStart="70dp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" />
+
+  <TextView
+    android:textColor="#676767"
+    android:id="@+id/tv_user_desc"
+    android:textSize="12sp"
+    android:layout_marginStart="70dp"
+    android:layout_marginTop="40dp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" />
+
+  <TextView
+    android:id="@+id/tv_publish_date"
+    android:textColor="#676767"
+    android:layout_marginEnd="10dp"
+    android:layout_marginTop="16dp"
+    android:layout_gravity="end"
+    android:textSize="11sp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    tools:ignore="SmallSp" />
+
+  <LinearLayout
+    android:layout_marginTop="70dp"
+    android:layout_marginBottom="10dp"
+    android:layout_marginStart="10dp"
+    android:layout_marginEnd="10dp"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+      android:lineSpacingExtra="2dp"
+      android:elegantTextHeight="true"
+      android:id="@+id/tv_content"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content" />
+
+    <com.hyc.helper.view.ImageLayout
+      android:background="@color/bg_no"
+      android:id="@+id/imageLayout"
+      android:layout_marginTop="8dp"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"/>
+
+    <FrameLayout
+      android:layout_gravity="center_vertical"
+      android:layout_marginTop="8dp"
+      android:layout_width="match_parent"
+      android:layout_height="30dp">
+      <TextView
+        android:id="@+id/tv_from"
+        android:layout_gravity="center_vertical"
+        android:textColor="#676767"
+        android:textSize="11sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:ignore="SmallSp" />
+      <com.sackcentury.shinebuttonlib.ShineButton
+        android:layout_marginEnd="20dp"
+        android:id="@+id/sb_like"
+        android:layout_gravity="end|center_vertical"
+        android:src="@android:color/darker_gray"
+        app:btn_color="@android:color/darker_gray"
+        app:btn_fill_color="@color/colorPrimary"
+        app:allow_random_color="true"
+        app:siShape="@raw/heart"
+        android:layout_width="20dp"
+        android:layout_height="20dp" />
+      <View
+        android:id="@+id/v_comment"
+        android:layout_marginEnd="60dp"
+        android:layout_gravity="end|center_vertical"
+        android:background="@drawable/ic_comment"
+        android:layout_width="20dp"
+        android:layout_height="20dp"/>
+
+      <TextView
+        android:id="@+id/tv_like_count"
+        android:textColor="@color/colorPrimary"
+        android:layout_gravity="end|center_vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    </FrameLayout>
+
+    <TextView
+      android:textSize="13sp"
+      android:lineSpacingExtra="5dp"
+      android:elegantTextHeight="true"
+      android:id="@+id/tv_comment_info"
+      android:layout_marginTop="5dp"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content" />
+
+  </LinearLayout>
+
+</android.support.v7.widget.CardView>

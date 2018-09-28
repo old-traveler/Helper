@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  xmlns:app="http://schemas.android.com/apk/res-auto">
+  <com.scwang.smartrefresh.layout.SmartRefreshLayout
+    android:id="@+id/srl_timetable"
+    android:layout_marginBottom="30dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <com.scwang.smartrefresh.header.PhoenixHeader
+      android:layout_width="match_parent"
+      app:phPrimaryColor="@color/colorPrimary"
+      android:layout_height="wrap_content"/>
+    <ScrollView
+      android:layout_width="match_parent"
+      android:layout_height="match_parent">
+      <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+          android:divider="@drawable/bg_divider"
+          android:showDividers="middle"
+          android:layout_gravity="right"
+          android:background="@color/white"
+          android:elevation="2dp"
+          android:orientation="vertical"
+          android:id="@+id/ll_left_tip"
+          android:layout_width="30dp"
+          android:layout_height="wrap_content">
+        </LinearLayout>
+
+        <com.hyc.helper.view.CourseTableLayout
+          android:id="@+id/ctl_course"
+          android:layout_marginEnd="30dp"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content">
+
+        </com.hyc.helper.view.CourseTableLayout>
+      </FrameLayout>
+
+    </ScrollView>
+  </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+  <LinearLayout
+    android:layout_gravity="bottom"
+    android:background="@color/white"
+    android:elevation="4dp"
+    android:id="@+id/ll_top_title"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="30dp">
+
+    <TextView
+      android:textSize="11sp"
+      android:text="9月"
+      android:gravity="center"
+      android:layout_width="30dp"
+      android:layout_height="match_parent" />
+  </LinearLayout>
+</FrameLayout>
+
+

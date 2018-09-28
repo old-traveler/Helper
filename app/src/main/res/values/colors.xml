@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <color name="colorPrimary">#e4837f</color>
+  <color name="colorPrimaryDark">#e4837f</color>
+  <color name="colorAccent">#5b97a4</color>
+  <color name="white">#f2f0f0</color>
+  <color name="white_light">#f7f7f7</color>
+  <color name="black">#000</color>
+  <color name="front_black">#2e3032</color>
+  <color name="font_cancel">#777575</color>
+  <color name="font_blue">#c95cc7fc</color>
+  <color name="font_blue_selected">#7a5cc7fc</color>
+  <color name="bg_common_select">#d5e7e7e7</color>
+  <color name="bg_common_selected">#c1c8c8c8</color>
+  <color name="cut_ofd_rule">#b9b9b9</color>
+  <color name="bg_toolbar">#fff</color>
+  <color name="bg_background">#ededed</color>
+  <color name="colorMessage">#e4837f</color>
+  <color name="colorFriend">#4a9898</color>
+  <color name="colorMore">#c59d79</color>
+  <color name="transparent">#00ffffff</color>
+  <color name="toolbar_title">#2e3032</color>
+  <color name="colorPrimaryPress">#ba716f</color>
+  <color name="white_pressed">#e6e6e6</color>
+  
+  <color name="bg_12">#8DAAE1</color>
+  <color name="bg_13">#75B7A0</color>
+  <color name="bg_14">#64C6B9</color>
+  <color name="bg_15">#E38F77</color>
+  <color name="bg_16">#81B5CA</color>
+  <color name="bg_17">#E395B4</color>
+  <color name="bg_no">#a9a9a9</color>
+
+  <color name="select_setion_color">#9be9e3</color>
+
+</resources>

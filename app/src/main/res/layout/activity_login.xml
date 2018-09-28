@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  tools:context=".activity.LoginActivity">
+  <include layout="@layout/lib_layout_toolbar"/>
+  <LinearLayout
+    android:layout_marginTop="70dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <android.support.design.widget.TextInputLayout
+      style="@style/TextInputLayout"
+      android:layout_width="match_parent"
+      app:errorEnabled="true"
+      app:counterMaxLength="11"
+      app:counterEnabled="true"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="10dp">
+
+      <EditText
+        android:inputType="text"
+        style="@style/MyEditText"
+        android:id="@+id/et_username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/account"
+        android:maxLines="1"
+        android:singleLine="true"/>
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+      android:layout_width="match_parent"
+      style="@style/TextInputLayout"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="20dp">
+
+      <EditText
+        style="@style/MyEditText"
+        android:id="@+id/et_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/password"
+        android:inputType="textPassword"
+        android:maxLines="1"
+        android:singleLine="true"/>
+
+    </android.support.design.widget.TextInputLayout>
+
+  </LinearLayout>
+
+  <android.support.design.button.MaterialButton
+    android:layout_marginTop="20dp"
+    android:layout_width="250dp"
+    app:cornerRadius="1dp"
+    android:onClick="onClick"
+    android:id="@+id/btn_login"
+    app:backgroundTint="@color/colorPrimary"
+    android:text="@string/login"
+    android:layout_gravity="center"
+    android:layout_height="wrap_content" />
+
+</FrameLayout>
