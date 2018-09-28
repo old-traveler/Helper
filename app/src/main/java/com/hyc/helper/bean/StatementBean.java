@@ -4,12 +4,6 @@ import java.util.List;
 
 public class StatementBean extends BaseRequestBean{
 
-  /**
-   * code : 200
-   * current_page : 1
-   * pageination : 589
-   * statement
-   */
 
   private String current_page;
   private int pageination;
@@ -41,23 +35,7 @@ public class StatementBean extends BaseRequestBean{
   }
 
   public static class StatementInfoBean {
-    /**
-     * id : 24851
-     * user_id : 10119750
-     * content : 五食堂的校园网是炸了么，一直连不上去🙃
-     * pics : []
-     * created_on : 2018-09-27
-     * is_top : 0
-     * likes : 0
-     * view_cnt : 32
-     * username : Huskie
-     * bio :
-     * dep_name : 理学院
-     * head_pic :
-     * head_pic_thumb : /uploads/headpics/201711/1510704481.529567092_thumb.jpg
-     * is_like : false
-     * comments : []
-     */
+
 
     private String id;
     private String user_id;

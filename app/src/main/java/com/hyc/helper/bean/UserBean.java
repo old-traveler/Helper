@@ -2,11 +2,6 @@ package com.hyc.helper.bean;
 
 public class UserBean extends BaseRequestBean{
 
-  /**
-   * code : 200
-   * data : {"user_id":24838,"studentKH":"15408300210","school":"衡南一中","TrueName":"贺宇成","username":"尼古拉斯·赵磊","dep_name":"计算机学院","class_name":"软件工程1502","address":"湖南省","active":"1","last_use":"2018-09-21 18:14:42","bio":"","head_pic":"","head_pic_thumb":"/uploads/headpics/201709/1506212345.711471082_thumb.png","remember_code_app":"MCcwO8jE9.ZgSfqAQFHRiO"}
-   * remember_code_app : MCcwO8jE9.ZgSfqAQFHRiO
-   */
 
   private DataBean data;
   private String remember_code_app;
@@ -28,22 +23,7 @@ public class UserBean extends BaseRequestBean{
   }
 
   public static class DataBean {
-    /**
-     * user_id : 24838
-     * studentKH : 15408300210
-     * school : 衡南一中
-     * TrueName : 贺宇成
-     * username : 尼古拉斯·赵磊
-     * dep_name : 计算机学院
-     * class_name : 软件工程1502
-     * address : 湖南省
-     * active : 1
-     * last_use : 2018-09-21 18:14:42
-     * bio :
-     * head_pic :
-     * head_pic_thumb : /uploads/headpics/201709/1506212345.711471082_thumb.png
-     * remember_code_app : MCcwO8jE9.ZgSfqAQFHRiO
-     */
+
 
     private int user_id;
     private String studentKH;

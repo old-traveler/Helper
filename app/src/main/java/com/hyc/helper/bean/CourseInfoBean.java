@@ -8,18 +8,6 @@ import org.greenrobot.greendao.annotation.Generated;
 
 @Entity
 public class CourseInfoBean {
-  /**
-   * xh : 15408300210
-   * xqj : 1
-   * djj : 3
-   * dsz : 1
-   * qsz : 1
-   * jsz : 13
-   * name : 软件项目管理
-   * teacher : 唐承亮
-   * room : 公共120
-   * zs : [1,3,5,7,9,11,13]
-   */
 
   private String xh;
   private String xqj;
