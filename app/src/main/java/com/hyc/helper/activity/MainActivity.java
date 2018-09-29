@@ -22,6 +22,7 @@ import com.hyc.helper.activity.fragment.TimetableFragment;
 import com.hyc.helper.adapter.TechFragmentPageAdapter;
 import com.hyc.helper.base.activity.BaseActivity;
 import com.hyc.helper.base.fragment.BaseFragment;
+import com.hyc.helper.base.fragment.BaseListFragment;
 import com.hyc.helper.base.util.UiHelper;
 import com.hyc.helper.helper.DensityHelper;
 import java.util.ArrayList;

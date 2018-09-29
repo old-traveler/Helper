@@ -2,19 +2,39 @@ package com.hyc.helper.activity;
 
 import android.os.Handler;
 import android.os.Bundle;
+import android.os.Message;
 import com.hyc.helper.R;
 import com.hyc.helper.base.activity.BaseRequestActivity;
 import com.hyc.helper.bean.ConfigureBean;
 import com.hyc.helper.helper.ConfigureHelper;
 import com.hyc.helper.helper.RequestHelper;
+import com.hyc.helper.model.UserModel;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
+import java.lang.ref.WeakReference;
 
 public class SplashActivity extends BaseRequestActivity<ConfigureBean> {
 
-  private Handler handler = new Handler();
-  private Runnable callback;
+  private Handler handler = new SplashHandler(new WeakReference<>(this));
 
+  public static class SplashHandler extends Handler{
+    private WeakReference<SplashActivity> weakReference;
+
+    SplashHandler(WeakReference<SplashActivity> weakReference){
+      this.weakReference = weakReference;
+    }
+
+    @Override
+    public void handleMessage(Message msg) {
+      super.handleMessage(msg);
+      if (weakReference.get()!=null){
+        weakReference.get().goToNextActivity();
+      }
+    }
+  }
+
+
+  private Message message = new Message();
 
   @Override
   protected int getContentViewId() {
@@ -27,32 +47,31 @@ public class SplashActivity extends BaseRequestActivity<ConfigureBean> {
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(this);
-    callback = this::finish;
-    handler.postDelayed(callback, 5000);
+    handler.sendMessageDelayed(message,5000);
   }
 
   @Override
   protected void onDestroy() {
     super.onDestroy();
-    handler.removeCallbacks(callback);
+    handler.removeMessages(1);
   }
 
   @Override
   protected void onSuccessGetData(ConfigureBean configureBean) {
     ConfigureHelper.init(configureBean);
-    finish();
+    goToNextActivity();
   }
 
   @Override
   protected void onFailGetData(Throwable e) {
     super.onFailGetData(e);
     ConfigureHelper.init(null);
-    finish();
+    goToNextActivity();
   }
 
   @Override
   public void initViewWithIntentData(Bundle bundle) {
-
+    message.what = 1;
   }
 
   @Override
@@ -64,4 +83,15 @@ public class SplashActivity extends BaseRequestActivity<ConfigureBean> {
   public void closeLoadingView() {
 
   }
+
+  public void goToNextActivity(){
+    dispose();
+    handler.removeMessages(1);
+    if (new UserModel().getCurUserInfo()!=null){
+      goToOtherActivity(MainActivity.class,true);
+    }else {
+      goToOtherActivity(LoginActivity.class,true);
+    }
+  }
+
 }

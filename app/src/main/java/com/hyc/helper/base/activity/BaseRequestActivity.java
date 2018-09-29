@@ -57,6 +57,10 @@ public abstract class BaseRequestActivity<T extends BaseRequestBean> extends Bas
   @Override
   protected void onDestroy() {
     super.onDestroy();
+    dispose();
+  }
+
+  public void dispose(){
     if (disposable!=null && !disposable.isDisposed()){
       disposable.dispose();
     }

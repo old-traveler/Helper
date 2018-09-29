@@ -75,9 +75,9 @@ public abstract class BaseListFragment<T,B extends BaseRequestBean,VH extends Ba
   }
 
   @Override
-  public void onStart() {
-    super.onStart();
-    if (isNeedLoad){
+  public void setUserVisibleHint(boolean isVisibleToUser) {
+    super.setUserVisibleHint(isVisibleToUser);
+    if (getUserVisibleHint()&&isNeedLoad){
       isNeedLoad = false;
       mRefreshLayout.autoRefresh();
     }
