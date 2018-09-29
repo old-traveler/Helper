@@ -2,6 +2,9 @@ package com.hyc.helper.net;
 
 import com.hyc.helper.bean.BaseRequestBean;
 import com.hyc.helper.bean.CourseBean;
+import com.hyc.helper.bean.GoodsDetailBean;
+import com.hyc.helper.bean.LostBean;
+import com.hyc.helper.bean.SecondHandBean;
 import com.hyc.helper.bean.StatementBean;
 import com.hyc.helper.bean.UserBean;
 import io.reactivex.Observable;
@@ -22,14 +25,18 @@ public interface NetApiService {
   Observable<StatementBean> getStatement(@Path("number") String number,@Path("page") int page);
 
   @GET("statement/like/{number}/{code}/{statement_id}")
-  Observable<BaseRequestBean> likeStatement(@Path("number") String number
-      ,@Path("code") String code,@Path("statement_id") String statementId);
+  Observable<BaseRequestBean> likeStatement(
+      @Path("number") String number,@Path("code") String code,@Path("statement_id") String statementId);
 
-  //登陆 get/loginWx/学号/密码/0
+  @GET("trade/goods/{page}/0")
+  Observable<SecondHandBean> getSecondHandMaket(@Path("page") int page);
 
-  //课表 get/schedule/学号/code
+  @GET("trade/details/{number}/{code}/{goodsId}")
+  Observable<GoodsDetailBean> getGoodsDetailInfo(
+      @Path("number")String number,@Path("code")String code,@Path("goodsId") String goodsId);
 
-  //校园说说 statement/statement/学号/页数
+  @GET("loses/goods/{page}/0")
+  Observable<LostBean> getLostAndFind(@Path("page")String page);
 
   // post 评论 statement/comment/学号/code   参数：comment、moment_id帖子id
 

@@ -129,7 +129,6 @@ public abstract class BaseListFragment<T,B extends BaseRequestBean,VH extends Ba
 
   @Override
   public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
-    this.page = this.page + 1;
     requestListData(page);
   }
 
@@ -147,6 +146,7 @@ public abstract class BaseListFragment<T,B extends BaseRequestBean,VH extends Ba
       }
       mRefreshLayout.finishLoadMore();
     }
+    page++;
   }
 
   public void refreshFailure(String msg){
