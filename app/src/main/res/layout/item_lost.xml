@@ -25,10 +25,11 @@
     <TextView
       android:id="@+id/tv_content"
       android:textSize="13sp"
-      android:textColor="#454545"
+      android:textColor="#555555"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content" />
     <com.hyc.helper.view.ImageLayout
+      app:maxWidth="150dp"
       android:id="@+id/iv_lost_image"
       android:layout_marginTop="5dp"
       android:layout_marginBottom="5dp"
