@@ -45,20 +45,10 @@ public abstract class BaseListFragment<T,B extends BaseRequestBean,VH extends Ba
   @Override
   protected void initLayoutView(View view) {
     initRecyclerView(view);
+    startRequest();
   }
 
-  public RecyclerView getRecyclerView() {
-    return recyclerView;
-  }
-
-  private void initRecyclerView(View view) {
-    recyclerView = view.findViewById(getRecycleViewId());
-    mRefreshLayout = view.findViewById(getRefreshLayoutId());
-    adapter = getRecycleAdapter();
-    adapter.setOnItemClickListener(this);
-    recyclerView.setItemAnimator(new DefaultItemAnimator());
-    recyclerView.setLayoutManager(getLayoutManager());
-    recyclerView.setAdapter(adapter);
+  private void startRequest() {
     if (mRefreshLayout!=null){
       mRefreshLayout.setOnRefreshListener(this);
       mRefreshLayout.setOnLoadMoreListener(this);
@@ -68,6 +58,20 @@ public abstract class BaseListFragment<T,B extends BaseRequestBean,VH extends Ba
         isNeedLoad = true;
       }
     }
+  }
+
+  public RecyclerView getRecyclerView() {
+    return recyclerView;
+  }
+
+  protected void initRecyclerView(View view) {
+    recyclerView = view.findViewById(getRecycleViewId());
+    mRefreshLayout = view.findViewById(getRefreshLayoutId());
+    adapter = getRecycleAdapter();
+    adapter.setOnItemClickListener(this);
+    recyclerView.setItemAnimator(new DefaultItemAnimator());
+    recyclerView.setLayoutManager(getLayoutManager());
+    recyclerView.setAdapter(adapter);
   }
 
   @Override

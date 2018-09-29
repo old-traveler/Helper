@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent"
+  android:layout_height="230dp"
+  app:cardElevation="5dp"
+  app:cardCornerRadius="0dp"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  app:cardBackgroundColor="@color/white">
+
+  <ImageView
+    android:id="@+id/iv_second_goods"
+    android:scaleType="centerCrop"
+    android:layout_width="match_parent"
+    android:layout_height="170dp" />
+
+  <TextView
+    android:id="@+id/tv_second_title"
+    android:textSize="15sp"
+    android:textColor="@color/front_black"
+    android:layout_marginStart="5dp"
+    android:layout_marginTop="175dp"
+    android:maxLines="1"
+    android:ellipsize="end"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" />
+
+  <TextView
+    android:id="@+id/tv_second_price"
+    android:textColor="#dd3032"
+    android:textSize="15sp"
+    android:layout_marginTop="200dp"
+    android:layout_marginStart="5dp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" />
+
+  <TextView
+    android:id="@+id/tv_date"
+    android:layout_marginEnd="5dp"
+    android:textColor="#676767"
+    android:layout_gravity="end"
+    android:textSize="12sp"
+    android:layout_marginTop="202dp"
+    android:layout_marginStart="5dp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" />
+
+</android.support.v7.widget.CardView>
