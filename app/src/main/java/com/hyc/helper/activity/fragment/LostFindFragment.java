@@ -1,17 +1,13 @@
 package com.hyc.helper.activity.fragment;
 
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
 import com.hyc.helper.R;
 import com.hyc.helper.adapter.viewholder.LostFindViewHolder;
 import com.hyc.helper.base.adapter.BaseRecycleAdapter;
-import com.hyc.helper.base.fragment.BaseFragment;
 import com.hyc.helper.base.fragment.BaseListFragment;
 import com.hyc.helper.bean.LostBean;
-import com.hyc.helper.helper.DensityHelper;
 import com.hyc.helper.model.LostGoodsModel;
-import com.hyc.helper.view.SpacesItemDecoration;
 import java.util.List;
 
 public class LostFindFragment extends BaseListFragment<LostBean.GoodsBean,LostBean,LostFindViewHolder> {
