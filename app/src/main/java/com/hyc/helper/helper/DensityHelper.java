@@ -26,4 +26,7 @@ public class DensityHelper {
     DisplayMetrics dm = HelperApplication.getContext().getResources().getDisplayMetrics();
     return dm.heightPixels;
   }
+
+
+
 }

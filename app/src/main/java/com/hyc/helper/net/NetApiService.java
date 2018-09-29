@@ -36,7 +36,7 @@ public interface NetApiService {
       @Path("number")String number,@Path("code")String code,@Path("goodsId") String goodsId);
 
   @GET("loses/goods/{page}/0")
-  Observable<LostBean> getLostAndFind(@Path("page")String page);
+  Observable<LostBean> getLostAndFind(@Path("page")int page);
 
   // post 评论 statement/comment/学号/code   参数：comment、moment_id帖子id
 

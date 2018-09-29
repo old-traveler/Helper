@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  app:cardElevation="5dp"
+  app:cardCornerRadius="0dp"
+  android:id="@+id/cv_lost"
+  app:cardBackgroundColor="@color/white"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content">
+
+  <LinearLayout
+    android:layout_marginBottom="8dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginEnd="6dp"
+    android:layout_marginStart="6dp"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <TextView
+      android:id="@+id/tv_title"
+      android:textSize="14sp"
+      android:textColor="@color/front_black"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content" />
+    <TextView
+      android:id="@+id/tv_content"
+      android:textSize="13sp"
+      android:textColor="#454545"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content" />
+    <com.hyc.helper.view.ImageLayout
+      android:id="@+id/iv_lost_image"
+      android:layout_marginTop="5dp"
+      android:layout_marginBottom="5dp"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content">
+
+    </com.hyc.helper.view.ImageLayout>
+
+    <TextView
+      android:maxLines="1"
+      android:ellipsize="end"
+      android:layout_marginTop="3dp"
+      android:id="@+id/tv_username"
+      android:textColor="@color/colorPrimary"
+      android:textSize="13sp"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content" />
+
+    <TextView
+      android:maxLines="1"
+      android:ellipsize="end"
+      android:textSize="12sp"
+      android:textColor="#676767"
+      android:drawableStart="@drawable/ic_location"
+      android:id="@+id/tv_location"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content" />
+
+    <TextView
+      android:id="@+id/tv_date"
+      android:layout_marginTop="2dp"
+      android:textColor="#676767"
+      android:textSize="13sp"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content" />
+  </LinearLayout>
+
+</android.support.v7.widget.CardView>
