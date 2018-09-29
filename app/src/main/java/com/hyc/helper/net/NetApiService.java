@@ -1,6 +1,7 @@
 package com.hyc.helper.net;
 
 import com.hyc.helper.bean.BaseRequestBean;
+import com.hyc.helper.bean.ConfigureBean;
 import com.hyc.helper.bean.CourseBean;
 import com.hyc.helper.bean.GoodsDetailBean;
 import com.hyc.helper.bean.LostBean;
@@ -37,6 +38,9 @@ public interface NetApiService {
 
   @GET("loses/goods/{page}/0")
   Observable<LostBean> getLostAndFind(@Path("page")int page);
+
+  @GET("https://raw.githubusercontent.com/old-traveler/Helper/master/img/love.json")
+  Observable<ConfigureBean> getConfigure();
 
   // post 评论 statement/comment/学号/code   参数：comment、moment_id帖子id
 

@@ -1,5 +1,5 @@
 <resources>
-  <string name="app_name">Helper</string>
+  <string name="app_name">helper</string>
   <string name="loading_tip">Loading</string>
   <string name="cancel">取消</string>
   <string name="confirm">确定</string>
@@ -23,7 +23,7 @@
     <item>周六</item>
     <item>周日</item>
   </string-array>
-  
+
   <string-array name="section">
     <item>一\n二\n节</item>
     <item>三\n四\n节</item>
@@ -42,5 +42,5 @@
     <item>@color/bg_17</item>
     <item>@color/colorMore</item>
   </integer-array>
-  
+
 </resources>

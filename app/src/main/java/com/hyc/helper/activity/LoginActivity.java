@@ -34,9 +34,6 @@ public class LoginActivity extends BaseRequestActivity<UserBean> {
   public void initViewWithIntentData(Bundle bundle) {
     unbinder = ButterKnife.bind(this);
     setToolBarTitle(R.string.login);
-    if (new UserModel().getCurUserInfo()!=null){
-      goToOtherActivity(MainActivity.class,true);
-    }
   }
 
   @Override

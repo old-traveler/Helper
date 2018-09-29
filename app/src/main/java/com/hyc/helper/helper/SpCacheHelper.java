@@ -9,14 +9,12 @@ import io.reactivex.schedulers.Schedulers;
 
 public class SpCacheHelper {
 
-  public static String SP_NANME = "helper";
-
-  public static SharedPreferences.Editor getEditor(){
+  private static SharedPreferences.Editor getEditor(){
     return getSharedPreferences().edit();
   }
 
-  public static SharedPreferences getSharedPreferences(){
-    return HelperApplication.getContext().getSharedPreferences(SP_NANME,Context.MODE_PRIVATE);
+  private static SharedPreferences getSharedPreferences(){
+    return HelperApplication.getContext().getSharedPreferences("helper",Context.MODE_PRIVATE);
   }
 
   public static void putClassIntoSp(String key,Object object){

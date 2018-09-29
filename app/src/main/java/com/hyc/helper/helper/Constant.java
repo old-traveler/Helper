@@ -12,4 +12,6 @@ public class Constant {
 
   public static final String BASE_IMAGE_URL = "http://223.111.182.121:8888/";
 
+  public static final String SP_CONFIG = "configure";
+
 }
