@@ -144,11 +144,11 @@ public class MainActivity extends BaseActivity  {
         break;
       case "3":
         showConfirmDialog(UiHelper.getString(R.string.music_tip));
-        UpdateAppHelper.download(configureBean.getSong(),"love.mp3");
+        UpdateAppHelper.download(configureBean.getSong(),"love.mp3",this);
         break;
       case "4":
         showConfirmDialog(UiHelper.getString(R.string.video_tip));
-        UpdateAppHelper.download(configureBean.getVideo(),"video.mp4");
+        UpdateAppHelper.download(configureBean.getVideo(),"video.mp4",this);
         break;
       default:
         checkUpdate(configureBean);
@@ -162,12 +162,12 @@ public class MainActivity extends BaseActivity  {
           isPosition -> {
             if (isPosition){
               RxPermissions rxPermissions = new RxPermissions(this);
-              rxPermissions.request(Manifest.permission.CAMERA,Manifest.permission.WRITE_EXTERNAL_STORAGE)
+              rxPermissions.request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
                   .subscribe(granted -> {
                     if (granted){
+                      UpdateAppHelper.download(configureBean.getUpdate(),"helper.apk",this);
                       configureBean.setUpdate("");
                       configModel.setConfigInfo(configureBean);
-                      UpdateAppHelper.download(configureBean.getUpdate(),"helper.apk");
                     }
                   });
             }

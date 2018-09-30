@@ -21,9 +21,9 @@ public class UpdateAppHelper {
     return null;
   }
 
-  public static void download(String url,String fileName) {
-    DownloadManager downloadManager = (DownloadManager)HelperApplication.getContext().getSystemService(DOWNLOAD_SERVICE);
-    String path = Environment.getExternalStorageDirectory().getPath()+ "helper/"+fileName;
+  public static void download(String url,String fileName,Context context) {
+    DownloadManager downloadManager = (DownloadManager)context.getSystemService(DOWNLOAD_SERVICE);
+    String path = Environment.getExternalStorageDirectory().getPath()+ "/helper/"+fileName;
     File file = new File(path);
     if (file.exists()) {
       file.delete();
@@ -34,6 +34,7 @@ public class UpdateAppHelper {
         e.printStackTrace();
       }
     }
+    LogHelper.log(url+"   ");
     long downloadId = downloadManager
         .enqueue(new DownloadManager.Request(Uri.parse(url))
             .setDestinationInExternalPublicDir("/helper/", fileName)
