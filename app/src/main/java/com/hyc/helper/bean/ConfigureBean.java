@@ -1,8 +1,9 @@
 package com.hyc.helper.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class ConfigureBean extends BaseRequestBean{
+public class ConfigureBean extends BaseRequestBean implements Serializable {
 
   /**
    * code : 200
@@ -14,6 +15,8 @@ public class ConfigureBean extends BaseRequestBean{
    * video : http://bmob-cdn-12662.b0.upaiyun.com/2018/09/29/3986da31409fb40180949736f5782207.mp4
    */
 
+  private boolean isDeal;
+  private String update_time;
   private String number;
   private String date;
   private String type;
@@ -86,5 +89,21 @@ public class ConfigureBean extends BaseRequestBean{
 
   public void setUpdate(String update) {
     this.update = update;
+  }
+
+  public String getUpdate_time() {
+    return update_time;
+  }
+
+  public void setUpdate_time(String update_time) {
+    this.update_time = update_time;
+  }
+
+  public boolean isDeal() {
+    return isDeal;
+  }
+
+  public void setDeal(boolean deal) {
+    isDeal = deal;
   }
 }

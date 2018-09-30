@@ -28,7 +28,7 @@ public class SplashActivity extends BaseRequestActivity<ConfigureBean> {
     public void handleMessage(Message msg) {
       super.handleMessage(msg);
       if (weakReference.get()!=null){
-        weakReference.get().goToNextActivity();
+        weakReference.get().goToNextActivity(null);
       }
     }
   }
@@ -58,15 +58,13 @@ public class SplashActivity extends BaseRequestActivity<ConfigureBean> {
 
   @Override
   protected void onSuccessGetData(ConfigureBean configureBean) {
-    ConfigureHelper.init(configureBean);
-    goToNextActivity();
+    goToNextActivity(configureBean);
   }
 
   @Override
   protected void onFailGetData(Throwable e) {
     super.onFailGetData(e);
-    ConfigureHelper.init(null);
-    goToNextActivity();
+    goToNextActivity(null);
   }
 
   @Override
@@ -84,7 +82,8 @@ public class SplashActivity extends BaseRequestActivity<ConfigureBean> {
 
   }
 
-  public void goToNextActivity(){
+  public void goToNextActivity(ConfigureBean configureBean){
+    ConfigureHelper.init(configureBean);
     dispose();
     handler.removeMessages(1);
     if (new UserModel().getCurUserInfo()!=null){

@@ -13,6 +13,9 @@
   <string name="password_not_empty">密码不能为空</string>
   <string name="password_error">账号密码错误</string>
   <string name="default_bio">暂无签名</string>
+  <string name="video_tip">"胖胖,我给你看一个视频，等它下载好了，你点开看一下"</string>
+  <string name="music_tip">"胖胖,我给你听一首歌，等它下载好了，你点开看一下"</string>
+  <string name="update_tip">版本更新</string>
 
   <string-array name="weeks">
     <item>周一</item>

@@ -1,21 +1,32 @@
 package com.hyc.helper.helper;
 
-import com.hyc.helper.base.util.ToastHelper;
 import com.hyc.helper.bean.ConfigureBean;
+import com.hyc.helper.model.ConfigModel;
 
 public class ConfigureHelper {
 
   public static void init(ConfigureBean configureBean){
-    if (configureBean == null){
-      configureBean = SpCacheHelper.getClassFromSp(Constant.SP_CONFIG,ConfigureBean.class);
-      if (configureBean == null){
-        ToastHelper.toast("初始化失败，请打开网络后，重启应用");
-        return;
+    ConfigModel configModel = new ConfigModel();
+    ConfigureBean preConfigure = configModel.getConfigInfo();
+    if (preConfigure == null){
+      if (configureBean != null){
+        DateHelper.DATE_OF_SCHOOL = configureBean.getDate();
+        configModel.setConfigInfo(configureBean);
       }
     }else {
-      SpCacheHelper.putClassIntoSp(Constant.SP_CONFIG,configureBean);
+      if (configureBean == null){
+        DateHelper.DATE_OF_SCHOOL = preConfigure.getDate();
+      }else {
+        long preUpdateTime = Long.parseLong(preConfigure.getUpdate_time());
+        long curUpdateTime = Long.parseLong(configureBean.getUpdate_time());
+        if (curUpdateTime>preUpdateTime){
+          configModel.setConfigInfo(configureBean);
+          DateHelper.DATE_OF_SCHOOL = configureBean.getDate();
+        }else{
+          DateHelper.DATE_OF_SCHOOL = preConfigure.getDate();
+        }
+      }
     }
-    DateHelper.DATE_OF_SCHOOL = configureBean.getDate();
   }
 
 }

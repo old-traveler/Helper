@@ -209,6 +209,16 @@ public abstract class BaseActivity extends AppCompatActivity
         .createAndShow();
   }
 
+  public void showTipDialog(String title, String content,OnDialogClickListener onDialogClickListener) {
+    new CommonDialog.Builder(this)
+        .setTitle(title)
+        .setContent(content)
+        .setPositiveName(getString(R.string.confirm))
+        .setNegativeName(getString(R.string.cancel))
+        .setDialogClickListener(onDialogClickListener)
+        .createAndShow();
+  }
+
   @Override
   public void showConfirmDialog(String content) {
     new CommonDialog.Builder(this)

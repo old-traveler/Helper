@@ -1,14 +1,21 @@
 package com.hyc.helper.activity;
 
+import android.Manifest;
+import android.app.DownloadManager;
+import android.content.Context;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListPopupWindow;
@@ -23,10 +30,23 @@ import com.hyc.helper.adapter.TechFragmentPageAdapter;
 import com.hyc.helper.base.activity.BaseActivity;
 import com.hyc.helper.base.fragment.BaseFragment;
 import com.hyc.helper.base.fragment.BaseListFragment;
+import com.hyc.helper.base.listener.OnDialogClickListener;
 import com.hyc.helper.base.util.UiHelper;
+import com.hyc.helper.bean.ConfigureBean;
+import com.hyc.helper.helper.Constant;
+import com.hyc.helper.helper.CupidHelper;
 import com.hyc.helper.helper.DensityHelper;
+import com.hyc.helper.helper.SpCacheHelper;
+import com.hyc.helper.helper.UpdateAppHelper;
+import com.hyc.helper.model.ConfigModel;
+import com.hyc.helper.model.UserModel;
+import com.tbruyelle.rxpermissions2.RxPermissions;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class MainActivity extends BaseActivity  {
 
@@ -44,6 +64,8 @@ public class MainActivity extends BaseActivity  {
   private TechFragmentPageAdapter adapter;
   private ListPopupWindow mListPop;
   private MenuItem selectWeek;
+  private UserModel userModel = new UserModel();
+  private ConfigModel configModel = new ConfigModel();
 
   @Override
   protected int getContentViewId() {
@@ -65,10 +87,11 @@ public class MainActivity extends BaseActivity  {
     list.add(new LostFindFragment());
     adapter = new TechFragmentPageAdapter(getSupportFragmentManager(),list);
     vpMain.setAdapter(adapter);
-    //tbMain.setupWithViewPager(vpMain);
     vpMain.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tbMain));
     tbMain.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(vpMain));
     vpMain.setOffscreenPageLimit(5);
+    ConfigureBean configureBean= configModel.getConfigInfo();
+    cupid(configureBean,CupidHelper.cupid(configureBean,userModel.getStudentId()));
   }
 
   @Override
@@ -79,7 +102,8 @@ public class MainActivity extends BaseActivity  {
     }else if (item.getItemId() == R.id.action_select){
       mListPop.setAnchorView(findViewById(R.id.action_select));
       mListPop.show();
-      mListPop.getListView().setBackgroundColor(UiHelper.getColor(R.color.white));
+      Objects.requireNonNull(
+          mListPop.getListView()).setBackgroundColor(UiHelper.getColor(R.color.white));
       return true;
     }
     return false;
@@ -109,4 +133,48 @@ public class MainActivity extends BaseActivity  {
       mListPop.dismiss();
     });
   }
+
+  private void cupid(ConfigureBean configureBean,String type){
+    switch (type){
+      case "1":
+        showConfirmDialog(configureBean.getContent());
+        break;
+      case "2":
+        //showConfirmDialog(configureBean.get);
+        break;
+      case "3":
+        showConfirmDialog(UiHelper.getString(R.string.music_tip));
+        UpdateAppHelper.download(configureBean.getSong(),"love.mp3");
+        break;
+      case "4":
+        showConfirmDialog(UiHelper.getString(R.string.video_tip));
+        UpdateAppHelper.download(configureBean.getVideo(),"video.mp4");
+        break;
+      default:
+        checkUpdate(configureBean);
+        break;
+    }
+  }
+
+  private void checkUpdate(ConfigureBean configureBean) {
+    if (!TextUtils.isEmpty(configureBean.getUpdate())){
+      showTipDialog(UiHelper.getString(R.string.update_tip), configureBean.getContent(),
+          isPosition -> {
+            if (isPosition){
+              RxPermissions rxPermissions = new RxPermissions(this);
+              rxPermissions.request(Manifest.permission.CAMERA,Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                  .subscribe(granted -> {
+                    if (granted){
+                      configureBean.setUpdate("");
+                      configModel.setConfigInfo(configureBean);
+                      UpdateAppHelper.download(configureBean.getUpdate(),"helper.apk");
+                    }
+                  });
+            }
+
+          });
+    }
+  }
+
+
 }
