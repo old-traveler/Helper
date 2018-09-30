@@ -24,6 +24,7 @@ public class ConfigureBean extends BaseRequestBean implements Serializable {
   private String song;
   private String video;
   private String update;
+  private int update_version_code;
   private List<String> image;
 
   public String getDate() {
@@ -105,5 +106,13 @@ public class ConfigureBean extends BaseRequestBean implements Serializable {
 
   public void setDeal(boolean deal) {
     isDeal = deal;
+  }
+
+  public int getUpdate_version_code() {
+    return update_version_code;
+  }
+
+  public void setUpdate_version_code(int update_version_code) {
+    this.update_version_code = update_version_code;
   }
 }

@@ -33,6 +33,7 @@ import com.hyc.helper.base.fragment.BaseListFragment;
 import com.hyc.helper.base.listener.OnDialogClickListener;
 import com.hyc.helper.base.util.UiHelper;
 import com.hyc.helper.bean.ConfigureBean;
+import com.hyc.helper.helper.ConfigureHelper;
 import com.hyc.helper.helper.Constant;
 import com.hyc.helper.helper.CupidHelper;
 import com.hyc.helper.helper.DensityHelper;
@@ -157,7 +158,8 @@ public class MainActivity extends BaseActivity  {
   }
 
   private void checkUpdate(ConfigureBean configureBean) {
-    if (!TextUtils.isEmpty(configureBean.getUpdate())){
+    if (ConfigureHelper.getVersionCode(this)<configureBean.getUpdate_version_code()
+        &&!TextUtils.isEmpty(configureBean.getUpdate())){
       showTipDialog(UiHelper.getString(R.string.update_tip), configureBean.getContent(),
           isPosition -> {
             if (isPosition){

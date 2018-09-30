@@ -1,5 +1,8 @@
 package com.hyc.helper.helper;
 
+import android.content.Context;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import com.hyc.helper.bean.ConfigureBean;
 import com.hyc.helper.model.ConfigModel;
 
@@ -27,6 +30,24 @@ public class ConfigureHelper {
         }
       }
     }
+  }
+
+  /**
+   * get App versionCode
+   * @param context
+   * @return
+   */
+  public static int getVersionCode(Context context){
+    PackageManager packageManager=context.getPackageManager();
+    PackageInfo packageInfo;
+    int versionCode=1;
+    try {
+      packageInfo=packageManager.getPackageInfo(context.getPackageName(),0);
+      versionCode=packageInfo.versionCode;
+    } catch (PackageManager.NameNotFoundException e) {
+      e.printStackTrace();
+    }
+    return versionCode;
   }
 
 }
