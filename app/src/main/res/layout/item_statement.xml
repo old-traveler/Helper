@@ -64,7 +64,6 @@
       android:layout_height="wrap_content" />
 
     <com.hyc.helper.view.ImageLayout
-      android:background="@color/bg_no"
       android:id="@+id/imageLayout"
       android:layout_marginTop="8dp"
       android:layout_width="wrap_content"

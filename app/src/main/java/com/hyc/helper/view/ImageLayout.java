@@ -105,7 +105,9 @@ public class ImageLayout extends ViewGroup{
     }else if (getChildCount()==1){
       return getChildAt(0).getMeasuredHeight();
     }else {
-      return maxWidth/2+(getChildCount()-1)/2*DEFAULR_LINE;
+      int imageLength = maxWidth/2;
+      int childCount = getChildCount()-1;
+      return imageLength*(childCount/2+1)+childCount/2*DEFAULR_LINE;
     }
   }
 

@@ -45,9 +45,9 @@ public class LostFindViewHolder extends BaseViewHolder<LostBean.GoodsBean> {
     StaggeredGridLayoutManager.LayoutParams layoutParams = (
         StaggeredGridLayoutManager.LayoutParams)itemView.getLayoutParams();
     if ((position+1) % 2 == 0){
-      UiHelper.setViewMargin(cvLost,true,5,5,0 ,10);
+      UiHelper.setViewMargin(cvLost,true,5,5,10 ,0);
     }else{
-      UiHelper.setViewMargin(cvLost,true,5,5,0 ,10);
+      UiHelper.setViewMargin(cvLost,true,5,5,10 ,0);
     }
     itemView.setLayoutParams(layoutParams);
     tvTitle.setText(data.getTit());
