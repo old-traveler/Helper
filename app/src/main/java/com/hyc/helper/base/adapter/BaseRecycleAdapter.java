@@ -56,8 +56,8 @@ public class BaseRecycleAdapter<T,V extends BaseViewHolder<T>> extends RecyclerV
     baseViewHolder.setData(dataList.get(i));
     baseViewHolder.loadItemData(mContext,dataList.get(i),i);
     if (onItemClickListener!=null){
-      baseViewHolder.itemView.setOnClickListener(v
-          ->onItemClickListener.onItemClick(dataList.get(i),i));
+      baseViewHolder.setOnClickListener(v
+          ->onItemClickListener.onItemClick(dataList.get(i),v,i));
     }
     if (onItemLongClickListener!=null){
       baseViewHolder.itemView.setOnLongClickListener(v->
@@ -88,6 +88,13 @@ public class BaseRecycleAdapter<T,V extends BaseViewHolder<T>> extends RecyclerV
     for (int i = firstPosition; i < lastPosition; i++) {
       notifyItemInserted(i);
     }
+  }
+
+  public T getItemData(int position){
+    if (0<=position&&position<getItemCount()){
+      return dataList.get(position);
+    }
+    return null;
   }
 
   /**

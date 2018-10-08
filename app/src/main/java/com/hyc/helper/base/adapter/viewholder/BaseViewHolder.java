@@ -5,8 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-public abstract class BaseViewHolder<T> extends RecyclerView.ViewHolder implements
-    View.OnClickListener{
+public abstract class BaseViewHolder<T> extends RecyclerView.ViewHolder {
 
   public int currentPosition;
 
@@ -26,16 +25,16 @@ public abstract class BaseViewHolder<T> extends RecyclerView.ViewHolder implemen
 
   }
 
-  @Override
-  public void onClick(View view) {
-
-  }
-
   public T getData() {
     return data;
   }
 
   public void setData(T data) {
     this.data = data;
+  }
+
+
+  public void setOnClickListener(View.OnClickListener onClickListener){
+    itemView.setOnClickListener(onClickListener);
   }
 }

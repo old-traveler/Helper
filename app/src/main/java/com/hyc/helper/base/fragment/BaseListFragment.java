@@ -1,15 +1,11 @@
 package com.hyc.helper.base.fragment;
 
-import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import com.hyc.helper.base.adapter.BaseRecycleAdapter;
 import com.hyc.helper.base.adapter.viewholder.BaseViewHolder;
 import com.hyc.helper.base.listener.OnItemClickListener;
@@ -21,11 +17,8 @@ import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.constant.RefreshState;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
-import io.reactivex.Observable;
 import io.reactivex.Observer;
-import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.schedulers.Schedulers;
 import java.util.List;
 
 public abstract class BaseListFragment<T,B extends BaseRequestBean,VH extends BaseViewHolder<T>>
@@ -64,10 +57,14 @@ public abstract class BaseListFragment<T,B extends BaseRequestBean,VH extends Ba
     return recyclerView;
   }
 
+  public BaseRecycleAdapter<T,VH> getRecycleAdapter(){
+    return (BaseRecycleAdapter<T, VH>) recyclerView.getAdapter();
+  }
+
   protected void initRecyclerView(View view) {
     recyclerView = view.findViewById(getRecycleViewId());
     mRefreshLayout = view.findViewById(getRefreshLayoutId());
-    adapter = getRecycleAdapter();
+    adapter = setRecycleAdapter();
     adapter.setOnItemClickListener(this);
     recyclerView.setItemAnimator(new DefaultItemAnimator());
     recyclerView.setLayoutManager(getLayoutManager());
@@ -83,7 +80,7 @@ public abstract class BaseListFragment<T,B extends BaseRequestBean,VH extends Ba
     }
   }
 
-  protected abstract BaseRecycleAdapter<T,VH> getRecycleAdapter();
+  protected abstract BaseRecycleAdapter<T,VH> setRecycleAdapter();
 
   protected abstract int getRefreshLayoutId();
 
@@ -203,9 +200,8 @@ public abstract class BaseListFragment<T,B extends BaseRequestBean,VH extends Ba
     stopRefreshing();
   }
 
-
   @Override
-  public void onItemClick(T itemData, int position) {
+  public void onItemClick(T itemData, View view, int position) {
 
   }
 }

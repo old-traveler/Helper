@@ -26,6 +26,12 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
     return view;
   }
 
+  @Override
+  public void onDestroy() {
+    super.onDestroy();
+    mBaseActivity = null;
+  }
+
   protected abstract void initLayoutView(View view);
 
   protected abstract int getLayoutId();

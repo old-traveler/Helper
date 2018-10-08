@@ -15,7 +15,7 @@ public class LostFindFragment extends BaseListFragment<LostBean.GoodsBean,LostBe
   private LostGoodsModel lostGoodsModel= new LostGoodsModel();
 
   @Override
-  protected BaseRecycleAdapter<LostBean.GoodsBean, LostFindViewHolder> getRecycleAdapter() {
+  protected BaseRecycleAdapter<LostBean.GoodsBean, LostFindViewHolder> setRecycleAdapter() {
     return new BaseRecycleAdapter<>(null,R.layout.item_lost,LostFindViewHolder.class);
   }
 

@@ -16,6 +16,8 @@
   <string name="video_tip">"胖胖,我给你看一个视频，等它下载好了，你点开看一下"</string>
   <string name="music_tip">"胖胖,我给你听一首歌，等它下载好了，你点开看一下"</string>
   <string name="update_tip">版本更新</string>
+  <string name="comment_hint_tip">说点什么吧...</string>
+  <string name="send">发送</string>
 
   <string-array name="weeks">
     <item>周一</item>

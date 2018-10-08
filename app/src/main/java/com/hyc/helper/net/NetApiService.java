@@ -9,7 +9,10 @@ import com.hyc.helper.bean.SecondHandBean;
 import com.hyc.helper.bean.StatementBean;
 import com.hyc.helper.bean.UserBean;
 import io.reactivex.Observable;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.Path;
 
 public interface NetApiService {
@@ -30,7 +33,7 @@ public interface NetApiService {
       @Path("number") String number,@Path("code") String code,@Path("statement_id") String statementId);
 
   @GET("trade/goods/{page}/0")
-  Observable<SecondHandBean> getSecondHandMaket(@Path("page") int page);
+  Observable<SecondHandBean> getSecondHandMaker(@Path("page") int page);
 
   @GET("trade/details/{number}/{code}/{goodsId}")
   Observable<GoodsDetailBean> getGoodsDetailInfo(
@@ -41,6 +44,10 @@ public interface NetApiService {
 
   @GET("https://raw.githubusercontent.com/old-traveler/Helper/master/img/love.json")
   Observable<ConfigureBean> getConfigure();
+
+  @FormUrlEncoded
+  @POST("statement/comment/{number}/{code}")
+  Observable<BaseRequestBean> commentStatement(@Path("number")String number,@Path("code")String code,@Field("comment")String comment,@Field("moment_id")String moment_id);
 
   // post 评论 statement/comment/学号/code   参数：comment、moment_id帖子id
 

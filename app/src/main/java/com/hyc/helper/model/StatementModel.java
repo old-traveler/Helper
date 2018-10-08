@@ -26,4 +26,11 @@ public class StatementModel {
         .subscribe();
   }
 
+  public Disposable commentStatement(String number,String code,String comment,String monment_id,Consumer<BaseRequestBean> consumer){
+    return RequestHelper.getRequestApi().commentStatement(number,code,comment,monment_id)
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(consumer);
+  }
+
 }

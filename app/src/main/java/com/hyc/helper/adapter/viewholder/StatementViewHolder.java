@@ -113,4 +113,10 @@ public class StatementViewHolder extends BaseViewHolder<StatementBean.StatementI
         break;
     }
   }
+
+  @Override
+  public void setOnClickListener(View.OnClickListener onClickListener) {
+    super.setOnClickListener(onClickListener);
+    vComment.setOnClickListener(onClickListener);
+  }
 }

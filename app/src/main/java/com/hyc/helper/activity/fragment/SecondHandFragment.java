@@ -17,7 +17,7 @@ public class SecondHandFragment extends BaseListFragment<SecondHandBean.GoodsBea
   private SecondGoodsModel model = new SecondGoodsModel();
 
   @Override
-  protected BaseRecycleAdapter<SecondHandBean.GoodsBean, SecondGoodsViewHolder> getRecycleAdapter() {
+  protected BaseRecycleAdapter<SecondHandBean.GoodsBean, SecondGoodsViewHolder> setRecycleAdapter() {
     return new BaseRecycleAdapter<>(null,R.layout.item_second,SecondGoodsViewHolder.class);
   }
 
