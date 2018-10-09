@@ -15,7 +15,7 @@ import com.hyc.helper.base.util.UiHelper;
 import com.hyc.helper.bean.CourseBean;
 import com.hyc.helper.bean.CourseInfoBean;
 import com.hyc.helper.helper.DateHelper;
-import com.hyc.helper.helper.DensityHelper;
+import com.hyc.helper.util.DensityUtil;
 import com.hyc.helper.model.CourseModel;
 import com.hyc.helper.model.UserModel;
 import com.hyc.helper.view.CourseTableLayout;
@@ -55,7 +55,7 @@ public class TimetableFragment extends BaseRequestFragment<CourseBean> implement
 
   private void initLeftTip() {
     String[] section = UiHelper.getStringArrays(R.array.section);
-    int itemHeight = DensityHelper.dip2px(120f);
+    int itemHeight = DensityUtil.dip2px(120f);
     for (String s : section) {
       TextView textView = new TextView(getContext());
       textView.setText(s);

@@ -1,5 +1,7 @@
 package com.hyc.helper.activity;
 
+import android.app.ActivityOptions;
+import android.content.Intent;
 import android.os.Handler;
 import android.os.Bundle;
 import android.os.Message;
@@ -86,11 +88,14 @@ public class SplashActivity extends BaseRequestActivity<ConfigureBean> {
     ConfigureHelper.init(configureBean);
     dispose();
     handler.removeMessages(1);
+    Intent intent;
     if (new UserModel().getCurUserInfo()!=null){
-      goToOtherActivity(MainActivity.class,true);
+      intent = new Intent(this,MainActivity.class);
     }else {
-      goToOtherActivity(LoginActivity.class,true);
+      intent = new Intent(this,LoginActivity.class);
     }
+    startActivity(intent);
+    finish();
   }
 
 }

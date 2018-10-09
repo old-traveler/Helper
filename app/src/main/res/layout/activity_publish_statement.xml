@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  tools:context=".activity.PublishStatementActivity">
+
+  <include layout="@layout/lib_layout_toolbar"/>
+
+  <EditText
+    android:textColor="@color/front_black"
+    android:id="@+id/et_publish_statement"
+    android:padding="5dp"
+    android:textSize="15sp"
+    android:textColorHint="@color/bg_no"
+    android:hint="@string/comment_hint_tip"
+    android:gravity="left"
+    android:background="@color/white"
+    android:layout_marginTop="?attr/actionBarSize"
+    android:layout_width="match_parent"
+    android:layout_height="150dp" />
+
+  <TextView
+    android:layout_marginStart="5dp"
+    android:textColor="@color/bg_no"
+    android:layout_marginTop="220dp"
+    android:text="@string/add_image_tip"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" />
+
+  <android.support.v7.widget.RecyclerView
+    android:layout_marginStart="5dp"
+    android:layout_marginTop="250dp"
+    android:id="@+id/rv_publish_statement"
+    android:layout_width="match_parent"
+    android:layout_height="120dp"/>
+
+</FrameLayout>

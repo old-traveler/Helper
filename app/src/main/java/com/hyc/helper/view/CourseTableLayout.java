@@ -12,7 +12,7 @@ import com.hyc.helper.R;
 import com.hyc.helper.base.util.UiHelper;
 import com.hyc.helper.bean.CourseInfoBean;
 import com.hyc.helper.bean.CourseTableItemBean;
-import com.hyc.helper.helper.DensityHelper;
+import com.hyc.helper.util.DensityUtil;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
@@ -62,7 +62,7 @@ public class CourseTableLayout extends ViewGroup implements View.OnClickListener
     }
     this.list = courseInfoBeans;
     itemWidth = getMeasuredWidth()/7;
-    itemHeight = DensityHelper.dip2px(120f);
+    itemHeight = DensityUtil.dip2px(120f);
     int[] colorId = UiHelper.getIntegerArrays(R.array.course_color);
     Random random =new Random();
     Set<Point> pointSet = new HashSet<>();
@@ -116,7 +116,7 @@ public class CourseTableLayout extends ViewGroup implements View.OnClickListener
   }
 
   private int measureHeight() {
-    return 5* DensityHelper.dip2px(120f);
+    return 5* DensityUtil.dip2px(120f);
   }
 
   private int measureWidth(int widthMeasureSpec) {

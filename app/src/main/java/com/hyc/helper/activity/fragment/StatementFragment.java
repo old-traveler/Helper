@@ -11,6 +11,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 import com.hyc.helper.R;
+import com.hyc.helper.activity.PublishStatementActivity;
 import com.hyc.helper.adapter.viewholder.StatementViewHolder;
 import com.hyc.helper.base.adapter.BaseRecycleAdapter;
 import com.hyc.helper.base.fragment.BaseListFragment;
@@ -70,7 +71,7 @@ public class StatementFragment extends
       @Override
       public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
         super.onScrolled(recyclerView, dx, dy);
-        if (dy!=0&&cvComment.getVisibility()==View.VISIBLE){
+        if (dy != 0 && cvComment.getVisibility() == View.VISIBLE) {
           closeCommentInput();
         }
       }
@@ -82,7 +83,7 @@ public class StatementFragment extends
     hideInputWindow();
   }
 
-  private void showCommentInput(){
+  private void showCommentInput() {
     cvComment.setVisibility(View.VISIBLE);
     showInputWindow(etComment);
   }
@@ -93,13 +94,8 @@ public class StatementFragment extends
     unbinder.unbind();
   }
 
-  @OnClick(R.id.btn_send_comment)
-  public void onViewClicked() {
-    sendComment();
-  }
-
   private void sendComment() {
-    if (TextUtils.isEmpty(etComment.getText().toString())){
+    if (TextUtils.isEmpty(etComment.getText().toString())) {
       closeCommentInput();
       return;
     }
@@ -108,24 +104,36 @@ public class StatementFragment extends
     statementModel.commentStatement(userBean.getData().getStudentKH(),
         userBean.getRemember_code_app(), etComment.getText().toString(), itemData.getId(),
         baseRequestBean -> {
-      if (baseRequestBean.getCode() == 200){
-        closeCommentInput();
-        CommentInfoBean commentInfoBean = new CommentInfoBean();
-        commentInfoBean.setComment(etComment.getText().toString());
-        commentInfoBean.setUsername(userBean.getData().getUsername());
-        itemData.getComments().add(commentInfoBean);
-        getRecycleAdapter().refreshItemData(itemData,position);
-        etComment.setText("");
-      }
-    });
+          if (baseRequestBean.getCode() == 200) {
+            closeCommentInput();
+            CommentInfoBean commentInfoBean = new CommentInfoBean();
+            commentInfoBean.setComment(etComment.getText().toString());
+            commentInfoBean.setUsername(userBean.getData().getUsername());
+            itemData.getComments().add(commentInfoBean);
+            getRecycleAdapter().refreshItemData(itemData, position);
+            etComment.setText("");
+          }
+        });
   }
 
   @Override
   public void onItemClick(StatementBean.StatementInfoBean itemData, View view, int position) {
     super.onItemClick(itemData, view, position);
-    if (view.getId() == R.id.v_comment){
+    if (view.getId() == R.id.v_comment) {
       showCommentInput();
       this.position = position;
+    }
+  }
+
+  @OnClick({ R.id.btn_send_comment, R.id.fb_publish_statement })
+  public void onViewClicked(View view) {
+    switch (view.getId()) {
+      case R.id.btn_send_comment:
+        sendComment();
+        break;
+      case R.id.fb_publish_statement:
+        goToOtherActivity(PublishStatementActivity.class,false);
+        break;
     }
   }
 }

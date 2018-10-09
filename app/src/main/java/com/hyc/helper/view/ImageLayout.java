@@ -6,11 +6,8 @@ import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
 import com.hyc.helper.R;
-import com.hyc.helper.base.util.UiHelper;
-import com.hyc.helper.helper.DensityHelper;
+import com.hyc.helper.util.DensityUtil;
 import com.hyc.helper.helper.ImageRequestHelper;
 import java.util.List;
 
@@ -36,9 +33,9 @@ public class ImageLayout extends ViewGroup{
     TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.imageLayout);
     try {
       maxWidth = typedArray.getDimensionPixelSize(
-          R.styleable.imageLayout_maxWidth,DensityHelper.dip2px(200f));
+          R.styleable.imageLayout_maxWidth,DensityUtil.dip2px(200f));
       maxHeight = typedArray.getDimensionPixelSize(
-          R.styleable.imageLayout_maxHeight,DensityHelper.dip2px(200f));
+          R.styleable.imageLayout_maxHeight,DensityUtil.dip2px(200f));
       maxCount = typedArray.getDimensionPixelSize(
           R.styleable.imageLayout_maxCount,DEFAULT_MAX_COUNT);
     }finally {

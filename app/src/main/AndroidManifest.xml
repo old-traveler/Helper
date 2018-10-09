@@ -4,8 +4,9 @@
   package="com.hyc.helper">
 
   <uses-permission android:name="android.permission.INTERNET" />
-  <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-  <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+  <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+  <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+  <uses-permission android:name="android.permission.CAMERA"/>
 
   <application
     android:name=".HelperApplication"
@@ -28,7 +29,9 @@
     <activity
       android:name=".activity.MainActivity"
       android:windowSoftInputMode="adjustPan" />
-    <activity android:name=".activity.LoginActivity"/>
+    <activity android:name=".activity.LoginActivity" />
+    <activity android:name=".activity.PictureBrowsingActivity" />
+    <activity android:name=".activity.PublishStatementActivity"/>
   </application>
 
 </manifest>

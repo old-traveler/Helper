@@ -1,10 +1,10 @@
-package com.hyc.helper.helper;
+package com.hyc.helper.util;
 
 import android.util.DisplayMetrics;
 import com.hyc.helper.HelperApplication;
 import com.hyc.helper.base.util.UiHelper;
 
-public class DensityHelper {
+public class DensityUtil {
 
   public static int dip2px(float dpValue) {
     final float scale = UiHelper.getDisplayMetrics().density;

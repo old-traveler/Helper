@@ -34,6 +34,10 @@ public class BaseRecycleAdapter<T,V extends BaseViewHolder<T>> extends RecyclerV
     this.vClass = vClass;
   }
 
+  public BaseRecycleAdapter(int layoutId,Class<V> vClass){
+    this(null,layoutId,vClass);
+  }
+
   @NonNull @Override public V onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
     if (mContext == null)mContext = viewGroup.getContext();
     try {
@@ -110,7 +114,14 @@ public class BaseRecycleAdapter<T,V extends BaseViewHolder<T>> extends RecyclerV
     if (position<getItemCount()){
       dataList.remove(position);
       notifyItemRemoved(position);
+      for (int i= position;i<dataList.size();i++){
+        notifyItemChanged(i);
+      }
     }
+  }
+
+  public List<T> getData(){
+    return dataList == null? new ArrayList<>(0):dataList;
   }
 
   public void refreshItemData(T data,int position){

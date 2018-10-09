@@ -7,7 +7,7 @@ import com.hyc.helper.adapter.viewholder.SecondGoodsViewHolder;
 import com.hyc.helper.base.adapter.BaseRecycleAdapter;
 import com.hyc.helper.base.fragment.BaseListFragment;
 import com.hyc.helper.bean.SecondHandBean;
-import com.hyc.helper.helper.DensityHelper;
+import com.hyc.helper.util.DensityUtil;
 import com.hyc.helper.model.SecondGoodsModel;
 import com.hyc.helper.view.SpacesItemDecoration;
 import java.util.List;
@@ -35,7 +35,7 @@ public class SecondHandFragment extends BaseListFragment<SecondHandBean.GoodsBea
   protected void initRecyclerView(View view) {
     super.initRecyclerView(view);
     getRecyclerView().setLayoutManager(new GridLayoutManager(getContext(),2));
-    getRecyclerView().addItemDecoration(new SpacesItemDecoration(DensityHelper.dip2px(8f)));
+    getRecyclerView().addItemDecoration(new SpacesItemDecoration(DensityUtil.dip2px(8f)));
   }
 
   @Override

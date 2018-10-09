@@ -17,6 +17,7 @@ import com.hyc.helper.bean.BaseRequestBean;
 import com.hyc.helper.bean.CommentInfoBean;
 import com.hyc.helper.bean.StatementBean;
 import com.hyc.helper.helper.ImageRequestHelper;
+import com.hyc.helper.helper.LogHelper;
 import com.hyc.helper.model.StatementModel;
 import com.hyc.helper.model.UserModel;
 import com.hyc.helper.view.ImageLayout;
@@ -66,6 +67,9 @@ public class StatementViewHolder extends BaseViewHolder<StatementBean.StatementI
   public void loadItemData(Context context, StatementBean.StatementInfoBean data, int position) {
     ImageRequestHelper.loadHeadImage(context,data.getHead_pic_thumb(),ivPublisherHead);
     tvPublishName.setText(data.getUsername());
+    if (data.getUsername().startsWith("ETO")){
+      LogHelper.log(data.getHead_pic_thumb());
+    }
     tvUserDesc.setText(TextUtils.isEmpty(data.getBio())
         ? UiHelper.getString(R.string.default_bio) : data.getBio());
     tvContent.setText(data.getContent());

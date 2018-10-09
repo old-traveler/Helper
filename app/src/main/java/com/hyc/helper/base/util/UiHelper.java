@@ -1,9 +1,6 @@
 package com.hyc.helper.base.util;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
@@ -12,8 +9,8 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import com.hyc.helper.HelperApplication;
 import com.hyc.helper.R;
-import com.hyc.helper.helper.DensityHelper;
-import java.lang.ref.WeakReference;
+import com.hyc.helper.bean.ImageSizeBean;
+import com.hyc.helper.util.DensityUtil;
 
 public class UiHelper {
 
@@ -93,10 +90,10 @@ public class UiHelper {
 
     //根据DP与PX转换计算值
     if (isDp) {
-      leftPx = DensityHelper.dip2px(left);
-      rightPx = DensityHelper.dip2px(right);
-      topPx = DensityHelper.dip2px(top);
-      bottomPx = DensityHelper.dip2px(bottom);
+      leftPx = DensityUtil.dip2px(left);
+      rightPx = DensityUtil.dip2px(right);
+      topPx = DensityUtil.dip2px(top);
+      bottomPx = DensityUtil.dip2px(bottom);
     }
     //设置margin
     marginParams.setMargins(leftPx, topPx, rightPx, bottomPx);
@@ -106,21 +103,21 @@ public class UiHelper {
   }
 
 
-  //public static void setViewSize(View view,ImageSizeBean viewSize) {
-  //  ViewGroup.LayoutParams params = view.getLayoutParams();
-  //  if (params == null){
-  //    params = new ViewGroup.LayoutParams(viewSize.getWidth(),viewSize.getHeight());
-  //  }
-  //  params.width = viewSize.getWidth();
-  //  params.height = viewSize.getHeight();
-  //  view.setLayoutParams(params);
-  //  view.requestLayout();
-  //}
-  //
-  //public static boolean isLongImage(ImageSizeBean bean){
-  //  float screenScale = DensityUtil.getScreenHeight()*1.0f/DensityUtil.getScreenWidth();
-  //  float imageScale = bean.getHeight()*1.0f/bean.getWidth();
-  //  return imageScale > screenScale;
-  //}
+  public static void setViewSize(View view,ImageSizeBean viewSize) {
+    ViewGroup.LayoutParams params = view.getLayoutParams();
+    if (params == null){
+      params = new ViewGroup.LayoutParams(viewSize.getWidth(),viewSize.getHeight());
+    }
+    params.width = viewSize.getWidth();
+    params.height = viewSize.getHeight();
+    view.setLayoutParams(params);
+    view.requestLayout();
+  }
+
+  public static boolean isLongImage(ImageSizeBean bean){
+    float screenScale = DensityUtil.getScreenHeight()*1.0f/DensityUtil.getScreenWidth();
+    float imageScale = bean.getHeight()*1.0f/bean.getWidth();
+    return imageScale > screenScale;
+  }
 
 }
