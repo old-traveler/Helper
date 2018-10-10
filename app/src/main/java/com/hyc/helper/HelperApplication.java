@@ -17,7 +17,7 @@ public class HelperApplication extends Application {
     DaoHelper.getDefault();
   }
 
-  public static Context getContext(){
+  public static Context getContext() {
     return mContext;
   }
 }

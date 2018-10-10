@@ -66,7 +66,7 @@ public class StatementModel {
     }
     List<File> imageFile = new ArrayList<>(images.size());
     for (String image : images) {
-        imageFile.add(new File(FileHelper.getFilePath((Context) observer,Uri.parse(image))));
+      imageFile.add(new File(FileHelper.getFilePath((Context) observer, Uri.parse(image))));
     }
     UploadImageObserver uploadBeanObserver = new UploadImageObserver(images.size(),
         new UploadImageObserver.OnUploadImageListener() {
@@ -108,13 +108,11 @@ public class StatementModel {
         .subscribe(observer);
   }
 
-
-  public Observable<BaseRequestBean> deleteStatement(UserBean userBean,String momend_id){
+  public Observable<BaseRequestBean> deleteStatement(UserBean userBean, String momend_id) {
     return RequestHelper.getRequestApi()
-        .deleteStatement(userBean.getData().getStudentKH(),userBean.getRemember_code_app(),momend_id)
+        .deleteStatement(userBean.getData().getStudentKH(), userBean.getRemember_code_app(),
+            momend_id)
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread());
-
   }
-
 }

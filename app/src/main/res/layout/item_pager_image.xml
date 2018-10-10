@@ -4,17 +4,16 @@
   android:layout_width="match_parent"
   android:layout_height="match_parent">
 
-  <ImageView
-    android:visibility="gone"
-    android:id="@+id/iv_browsing"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content" />
-
   <com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
     android:visibility="gone"
     android:id="@+id/sv_image_browsing"
     android:layout_width="match_parent"
     android:layout_height="match_parent"/>
+
+  <ImageView
+    android:id="@+id/iv_browsing"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" />
 
   <ProgressBar
     android:visibility="gone"
@@ -22,5 +21,16 @@
     android:layout_gravity="center"
     android:layout_width="40dp"
     android:layout_height="40dp" />
+
+  <TextView
+    android:id="@+id/tv_show_big_image"
+    android:gravity="center"
+    android:textColor="@color/white"
+    android:layout_marginBottom="30dp"
+    android:layout_gravity="center_horizontal|bottom"
+    android:background="@drawable/bg_show_oral_tip"
+    android:text="@string/show_oral_image"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" />
 
 </FrameLayout>

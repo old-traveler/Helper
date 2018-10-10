@@ -15,7 +15,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BaseRecycleAdapter<T,V extends BaseViewHolder<T>> extends RecyclerView.Adapter<V> {
+public class BaseRecycleAdapter<T, V extends BaseViewHolder<T>> extends RecyclerView.Adapter<V> {
 
   protected List<T> dataList;
 
@@ -28,21 +28,23 @@ public class BaseRecycleAdapter<T,V extends BaseViewHolder<T>> extends RecyclerV
   private Context mContext;
   private Class<V> vClass;
 
-  public BaseRecycleAdapter(List<T> dataList,int layoutId,Class<V> vClass){
+  public BaseRecycleAdapter(List<T> dataList, int layoutId, Class<V> vClass) {
     this.dataList = dataList;
     this.layoutId = layoutId;
     this.vClass = vClass;
   }
 
-  public BaseRecycleAdapter(int layoutId,Class<V> vClass){
-    this(null,layoutId,vClass);
+  public BaseRecycleAdapter(int layoutId, Class<V> vClass) {
+    this(null, layoutId, vClass);
   }
 
-  @NonNull @Override public V onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-    if (mContext == null)mContext = viewGroup.getContext();
+  @NonNull
+  @Override
+  public V onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+    if (mContext == null) mContext = viewGroup.getContext();
     try {
       Constructor<V> constructor = vClass.getConstructor(View.class);
-      return constructor.newInstance(newItemView(viewGroup,layoutId));
+      return constructor.newInstance(newItemView(viewGroup, layoutId));
     } catch (NoSuchMethodException | IllegalAccessException
         | InstantiationException | InvocationTargetException e) {
       e.printStackTrace();
@@ -51,41 +53,41 @@ public class BaseRecycleAdapter<T,V extends BaseViewHolder<T>> extends RecyclerV
     return null;
   }
 
-  private View newItemView(ViewGroup viewGroup,int resId){
-    return LayoutInflater.from(viewGroup.getContext()).inflate(resId,viewGroup,false);
+  private View newItemView(ViewGroup viewGroup, int resId) {
+    return LayoutInflater.from(viewGroup.getContext()).inflate(resId, viewGroup, false);
   }
 
-
-  @Override public void onBindViewHolder(@NonNull V baseViewHolder, int i) {
+  @Override
+  public void onBindViewHolder(@NonNull V baseViewHolder, int i) {
     baseViewHolder.setData(dataList.get(i));
-    baseViewHolder.loadItemData(mContext,dataList.get(i),i);
-    if (onItemClickListener!=null){
+    baseViewHolder.loadItemData(mContext, dataList.get(i), i);
+    if (onItemClickListener != null) {
       baseViewHolder.setOnClickListener(v
-          ->onItemClickListener.onItemClick(dataList.get(i),v,i));
+          -> onItemClickListener.onItemClick(dataList.get(i), v, i));
     }
-    if (onItemLongClickListener!=null){
-      baseViewHolder.itemView.setOnLongClickListener(v->
-          onItemLongClickListener.onItemLongClick(dataList.get(i),i));
+    if (onItemLongClickListener != null) {
+      baseViewHolder.itemView.setOnLongClickListener(v ->
+          onItemLongClickListener.onItemLongClick(dataList.get(i), i));
     }
   }
 
-  @Override public int getItemCount() {
-    return dataList==null ? 0:dataList.size();
+  @Override
+  public int getItemCount() {
+    return dataList == null ? 0 : dataList.size();
   }
 
-  public void appendDataToList(T data){
-    if (dataList == null){
+  public void appendDataToList(T data) {
+    if (dataList == null) {
       dataList = new ArrayList<>();
     }
     dataList.add(data);
-    notifyItemInserted(getItemCount()-1);
+    notifyItemInserted(getItemCount() - 1);
   }
 
   /**
    * 用于上拉加载更多更新界面
-   * @param datas
    */
-  public void appendDataToList(List<T> datas){
+  public void appendDataToList(List<T> datas) {
     int firstPosition = getItemCount();
     dataList.addAll(datas);
     int lastPosition = getItemCount();
@@ -94,8 +96,8 @@ public class BaseRecycleAdapter<T,V extends BaseViewHolder<T>> extends RecyclerV
     }
   }
 
-  public T getItemData(int position){
-    if (0<=position&&position<getItemCount()){
+  public T getItemData(int position) {
+    if (0 <= position && position < getItemCount()) {
       return dataList.get(position);
     }
     return null;
@@ -103,42 +105,40 @@ public class BaseRecycleAdapter<T,V extends BaseViewHolder<T>> extends RecyclerV
 
   /**
    * 用于下啦
-   * @param dataList
    */
   public void setDataList(List<T> dataList) {
     this.dataList = dataList;
     notifyDataSetChanged();
   }
 
-  public void removeItemFormList(int position){
-    if (position<getItemCount()){
+  public void removeItemFormList(int position) {
+    if (position < getItemCount()) {
       dataList.remove(position);
       notifyItemRemoved(position);
-      for (int i= position;i<dataList.size();i++){
+      for (int i = position; i < dataList.size(); i++) {
         notifyItemChanged(i);
       }
     }
   }
 
-  public List<T> getData(){
-    return dataList == null? new ArrayList<>(0):dataList;
+  public List<T> getData() {
+    return dataList == null ? new ArrayList<>(0) : dataList;
   }
 
-  public void refreshItemData(T data,int position){
-    dataList.set(position,data);
+  public void refreshItemData(T data, int position) {
+    dataList.set(position, data);
     notifyItemChanged(position);
-
   }
 
-  public void refreshRangeData(int start,List<T> datas){
+  public void refreshRangeData(int start, List<T> datas) {
     int end = start + datas.size();
-    if (start<0 || end>getItemCount()){
+    if (start < 0 || end > getItemCount()) {
       return;
     }
     for (int i = start; i < end; i++) {
-      dataList.set(i,datas.get(i-start));
+      dataList.set(i, datas.get(i - start));
     }
-    notifyItemRangeChanged(start,datas.size());
+    notifyItemRangeChanged(start, datas.size());
   }
 
   public void setOnItemClickListener(OnItemClickListener<T> onItemClickListener) {

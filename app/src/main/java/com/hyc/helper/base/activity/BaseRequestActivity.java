@@ -9,40 +9,41 @@ import com.hyc.helper.helper.LogHelper;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 
-public abstract class BaseRequestActivity<T extends BaseRequestBean> extends BaseActivity implements Observer<T> {
+public abstract class BaseRequestActivity<T extends BaseRequestBean> extends BaseActivity
+    implements Observer<T> {
 
   private Disposable disposable;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    if (isOnCreateRequest()){
+    if (isOnCreateRequest()) {
       startRequest();
     }
   }
 
-  public void startRequest(){
-    if (!validationInput()){
+  public void startRequest() {
+    if (!validationInput()) {
       return;
     }
     showLoadingView();
-    if (!requestDataFromDb()){
+    if (!requestDataFromDb()) {
       requestDataFromApi();
     }
   }
 
-  public void startRequestApi(){
-    if (validationInput()){
+  public void startRequestApi() {
+    if (validationInput()) {
       showLoadingView();
       requestDataFromApi();
     }
   }
 
-  protected boolean requestDataFromDb(){
+  protected boolean requestDataFromDb() {
     return false;
   }
 
-  protected boolean validationInput(){
+  protected boolean validationInput() {
     return true;
   }
 
@@ -50,7 +51,7 @@ public abstract class BaseRequestActivity<T extends BaseRequestBean> extends Bas
 
   protected abstract void onSuccessGetData(T t);
 
-  protected void onFailGetData(Throwable e){
+  protected void onFailGetData(Throwable e) {
     ToastHelper.toast(e.getMessage());
   }
 
@@ -60,8 +61,8 @@ public abstract class BaseRequestActivity<T extends BaseRequestBean> extends Bas
     dispose();
   }
 
-  public void dispose(){
-    if (disposable!=null && !disposable.isDisposed()){
+  public void dispose() {
+    if (disposable != null && !disposable.isDisposed()) {
       disposable.dispose();
     }
   }
@@ -73,9 +74,9 @@ public abstract class BaseRequestActivity<T extends BaseRequestBean> extends Bas
 
   @Override
   public void onNext(T t) {
-    if(t == null){
+    if (t == null) {
       LogHelper.log("数据为空");
-    } else if (t.getCode() == Constant.REQUEST_SUCCESS ){
+    } else if (t.getCode() == Constant.REQUEST_SUCCESS) {
       onSuccessGetData(t);
     } else if (t.getCode() == Constant.NEED_API_DATA) {
       disposable.dispose();

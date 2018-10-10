@@ -12,13 +12,14 @@ import com.hyc.helper.model.SecondGoodsModel;
 import com.hyc.helper.view.SpacesItemDecoration;
 import java.util.List;
 
-public class SecondHandFragment extends BaseListFragment<SecondHandBean.GoodsBean,SecondHandBean,SecondGoodsViewHolder> {
+public class SecondHandFragment
+    extends BaseListFragment<SecondHandBean.GoodsBean, SecondHandBean, SecondGoodsViewHolder> {
 
   private SecondGoodsModel model = new SecondGoodsModel();
 
   @Override
   protected BaseRecycleAdapter<SecondHandBean.GoodsBean, SecondGoodsViewHolder> setRecycleAdapter() {
-    return new BaseRecycleAdapter<>(null,R.layout.item_second,SecondGoodsViewHolder.class);
+    return new BaseRecycleAdapter<>(null, R.layout.item_second, SecondGoodsViewHolder.class);
   }
 
   @Override
@@ -34,13 +35,13 @@ public class SecondHandFragment extends BaseListFragment<SecondHandBean.GoodsBea
   @Override
   protected void initRecyclerView(View view) {
     super.initRecyclerView(view);
-    getRecyclerView().setLayoutManager(new GridLayoutManager(getContext(),2));
+    getRecyclerView().setLayoutManager(new GridLayoutManager(getContext(), 2));
     getRecyclerView().addItemDecoration(new SpacesItemDecoration(DensityUtil.dip2px(8f)));
   }
 
   @Override
   protected void requestListData(int page) {
-    model.getSecondMarketGoods(page,this);
+    model.getSecondMarketGoods(page, this);
   }
 
   @Override

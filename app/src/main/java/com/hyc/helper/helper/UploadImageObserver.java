@@ -50,7 +50,7 @@ public class UploadImageObserver implements Observer<ImageUploadBean> {
   @Override
   public void onError(Throwable e) {
     listener.onFailure(e);
-    if (disposable!=null){
+    if (disposable != null) {
       disposable.dispose();
     }
   }

@@ -1,6 +1,7 @@
 package com.hyc.helper.adapter.viewholder;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.view.View;
@@ -11,6 +12,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import com.bumptech.glide.Glide;
 import com.hyc.helper.R;
+import com.hyc.helper.activity.PictureBrowsingActivity;
 import com.hyc.helper.base.adapter.viewholder.BaseViewHolder;
 import com.hyc.helper.base.util.UiHelper;
 import com.hyc.helper.bean.BaseRequestBean;
@@ -23,8 +25,10 @@ import com.hyc.helper.model.UserModel;
 import com.hyc.helper.view.ImageLayout;
 import com.sackcentury.shinebuttonlib.ShineButton;
 import io.reactivex.functions.Consumer;
+import java.util.ArrayList;
 
-public class StatementViewHolder extends BaseViewHolder<StatementBean.StatementInfoBean> {
+public class StatementViewHolder extends BaseViewHolder<StatementBean.StatementInfoBean>
+    implements ImageLayout.OnItemClickListener {
 
   @BindView(R.id.iv_publisher_head)
   ImageView ivPublisherHead;
@@ -101,6 +105,7 @@ public class StatementViewHolder extends BaseViewHolder<StatementBean.StatementI
     }else {
       tvDeleteStatement.setVisibility(View.GONE);
     }
+    imageLayout.setOnItemClickListener(this);
   }
 
   @OnClick({ R.id.iv_publisher_head, R.id.tv_publish_name, R.id.sb_like,R.id.tv_delete_statement })
@@ -130,5 +135,13 @@ public class StatementViewHolder extends BaseViewHolder<StatementBean.StatementI
     super.setOnClickListener(onClickListener);
     vComment.setOnClickListener(onClickListener);
     tvDeleteStatement.setOnClickListener(onClickListener);
+  }
+
+  @Override
+  public void onItemImageClick(int position) {
+    if (itemView.getContext()!= null){
+      PictureBrowsingActivity.goToPictureBrowsingActivity(imageLayout.getContext(),position,
+          (ArrayList<String>) getData().getPics());
+    }
   }
 }

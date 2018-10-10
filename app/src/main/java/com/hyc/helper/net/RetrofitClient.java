@@ -17,10 +17,10 @@ public class RetrofitClient {
 
   private static RetrofitClient mInstance;
 
-  private HashMap<String,WeakReference<Retrofit>> retrofitPool;
+  private HashMap<String, WeakReference<Retrofit>> retrofitPool;
 
   public static RetrofitClient getInstance() {
-    if (mInstance==null){
+    if (mInstance == null) {
       mInstance = new RetrofitClient();
     }
     return mInstance;
@@ -30,14 +30,14 @@ public class RetrofitClient {
     retrofitPool = new HashMap<>();
   }
 
-  public Retrofit getRetrofit(String baseUrl){
+  public Retrofit getRetrofit(String baseUrl) {
     WeakReference<Retrofit> weakReference = retrofitPool.get(baseUrl);
-    boolean isExist = weakReference != null && weakReference.get()!=null;
-    return isExist ? weakReference.get():getNewRetrofit(baseUrl);
+    boolean isExist = weakReference != null && weakReference.get() != null;
+    return isExist ? weakReference.get() : getNewRetrofit(baseUrl);
   }
 
-  public Retrofit getNewRetrofit(String baseUrl){
-    if (okHttpClient == null){
+  public Retrofit getNewRetrofit(String baseUrl) {
+    if (okHttpClient == null) {
       initOkHttpClient();
     }
     Retrofit retrofit = new Retrofit.Builder()
@@ -46,7 +46,7 @@ public class RetrofitClient {
         .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
         .baseUrl(baseUrl)
         .build();
-    retrofitPool.put(baseUrl,new WeakReference<>(retrofit));
+    retrofitPool.put(baseUrl, new WeakReference<>(retrofit));
     return retrofit;
   }
 
@@ -59,5 +59,4 @@ public class RetrofitClient {
         .connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
         .build();
   }
-
 }

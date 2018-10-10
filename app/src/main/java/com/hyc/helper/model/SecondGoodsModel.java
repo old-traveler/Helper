@@ -8,11 +8,10 @@ import io.reactivex.schedulers.Schedulers;
 
 public class SecondGoodsModel {
 
-  public void getSecondMarketGoods(int page,Observer<SecondHandBean> observable){
+  public void getSecondMarketGoods(int page, Observer<SecondHandBean> observable) {
     RequestHelper.getRequestApi().getSecondHandMaker(page)
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(observable);
   }
-
 }

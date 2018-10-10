@@ -7,7 +7,7 @@ public class Sha1Utils {
 
   /**
    * SHA加密
-   * @param strSrc  明文
+   * @param strSrc 明文
    * @return 加密之后的密文
    */
   public static String shaEncrypt(String strSrc) {
@@ -26,7 +26,7 @@ public class Sha1Utils {
 
   /**
    * byte数组转换为16进制字符串
-   * @param bts  数据源
+   * @param bts 数据源
    * @return 16进制字符串
    */
   public static String bytes2Hex(byte[] bts) {
@@ -41,5 +41,4 @@ public class Sha1Utils {
     }
     return des;
   }
-
 }

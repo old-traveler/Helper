@@ -8,7 +8,7 @@ import java.util.List;
 
 public class DbSearchHelper {
 
-  public static Observable<CourseBean> searchCourseInfo(String studentId){
+  public static Observable<CourseBean> searchCourseInfo(String studentId) {
     return Observable.create(emitter -> {
       List<CourseInfoBean> courseInfoBeans = DaoHelper.getDefault()
           .getDaoSession()
@@ -17,9 +17,9 @@ public class DbSearchHelper {
           .where(CourseInfoBeanDao.Properties.Xh.eq(studentId))
           .build().list();
       CourseBean courseBean = new CourseBean();
-      if (courseInfoBeans!=null&&courseInfoBeans.size()>0){
+      if (courseInfoBeans != null && courseInfoBeans.size() > 0) {
         courseBean.setCode(Constant.REQUEST_SUCCESS);
-      }else {
+      } else {
         courseBean.setCode(Constant.NEED_API_DATA);
       }
       courseBean.setData(courseInfoBeans);
@@ -27,5 +27,4 @@ public class DbSearchHelper {
       emitter.onComplete();
     });
   }
-
 }

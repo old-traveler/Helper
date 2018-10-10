@@ -14,7 +14,7 @@ public class DaoHelper {
   private DaoMaster mDaoMaster;
   private DaoSession mDaoSession;
 
-  private DaoHelper(Context context){
+  private DaoHelper(Context context) {
     mHelper = new DaoMaster.DevOpenHelper(context, Constant.DB_NAME, null);
     db = mHelper.getWritableDatabase();
     // 注意：该数据库连接属于 DaoMaster，所以多个 Session 指的是相同的数据库连接。
@@ -22,8 +22,8 @@ public class DaoHelper {
     mDaoSession = mDaoMaster.newSession();
   }
 
-  public static synchronized DaoHelper getDefault(){
-    if (instance == null){
+  public static synchronized DaoHelper getDefault() {
+    if (instance == null) {
       instance = new DaoHelper(HelperApplication.getContext());
     }
     return instance;

@@ -11,7 +11,6 @@ public abstract class BaseViewHolder<T> extends RecyclerView.ViewHolder {
 
   private T data;
 
-
   public BaseViewHolder(@NonNull View itemView) {
     super(itemView);
     initItemView(itemView);
@@ -19,9 +18,9 @@ public abstract class BaseViewHolder<T> extends RecyclerView.ViewHolder {
 
   protected abstract void initItemView(View view);
 
-  public abstract void loadItemData(Context context,T data,int position);
+  public abstract void loadItemData(Context context, T data, int position);
 
-  public void onViewRecycled(){
+  public void onViewRecycled() {
 
   }
 
@@ -33,8 +32,7 @@ public abstract class BaseViewHolder<T> extends RecyclerView.ViewHolder {
     this.data = data;
   }
 
-
-  public void setOnClickListener(View.OnClickListener onClickListener){
+  public void setOnClickListener(View.OnClickListener onClickListener) {
     itemView.setOnClickListener(onClickListener);
   }
 }

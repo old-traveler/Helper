@@ -12,28 +12,27 @@ public class UserModel {
 
   private static WeakReference<UserBean> curUserBean;
 
-  public void login(String account,String password,Observer<UserBean> observer){
-    RequestHelper.getRequestApi().login(account,password)
+  public void login(String account, String password, Observer<UserBean> observer) {
+    RequestHelper.getRequestApi().login(account, password)
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(observer);
   }
 
-  public void cacheUserInfo(UserBean userBean){
-    SpCacheHelper.putClassIntoSp("user",userBean);
+  public void cacheUserInfo(UserBean userBean) {
+    SpCacheHelper.putClassIntoSp("user", userBean);
     curUserBean = new WeakReference<>(userBean);
   }
 
-  public UserBean getCurUserInfo(){
-    if (curUserBean == null || curUserBean.get() == null){
-      UserBean userBean = SpCacheHelper.getClassFromSp("user",UserBean.class);
+  public UserBean getCurUserInfo() {
+    if (curUserBean == null || curUserBean.get() == null) {
+      UserBean userBean = SpCacheHelper.getClassFromSp("user", UserBean.class);
       curUserBean = new WeakReference<>(userBean);
     }
     return curUserBean.get();
   }
 
-  public String getStudentId(){
+  public String getStudentId() {
     return getCurUserInfo().getData().getStudentKH();
   }
-
 }

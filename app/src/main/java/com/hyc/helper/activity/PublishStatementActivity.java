@@ -40,7 +40,7 @@ public class PublishStatementActivity extends BaseRequestActivity<BaseRequestBea
   @BindView(R.id.rv_publish_statement)
   RecyclerView rvPublishStatement;
   private Unbinder unbinder;
-  private BaseRecycleAdapter<String,PublishImageViewHolder> baseRecycleAdapter;
+  private BaseRecycleAdapter<String, PublishImageViewHolder> baseRecycleAdapter;
   private int REQUEST_CODE_CHOOSE = 2009;
   private UserModel userModel = new UserModel();
   private StatementModel statementModel = new StatementModel();
@@ -48,7 +48,7 @@ public class PublishStatementActivity extends BaseRequestActivity<BaseRequestBea
   @Override
   protected boolean validationInput() {
     String content = etPublishStatement.getText().toString();
-    if (TextUtils.isEmpty(content) && baseRecycleAdapter.getItemCount()==1){
+    if (TextUtils.isEmpty(content) && baseRecycleAdapter.getItemCount() == 1) {
       ToastHelper.toast("先写点东西吧");
       return false;
     }
@@ -59,21 +59,21 @@ public class PublishStatementActivity extends BaseRequestActivity<BaseRequestBea
   protected void requestDataFromApi() {
     String content = etPublishStatement.getText().toString();
     UserBean userBean = userModel.getCurUserInfo();
-    if (baseRecycleAdapter.getItemCount()>1){
+    if (baseRecycleAdapter.getItemCount() > 1) {
       List<String> list = new ArrayList<>();
       for (int i = 1; i < baseRecycleAdapter.getItemCount(); i++) {
         list.add(baseRecycleAdapter.getItemData(i));
       }
-      statementModel.publishStatement(userBean,content,list,this);
-    }else {
-      statementModel.publishStatement(userBean,content,this);
+      statementModel.publishStatement(userBean, content, list, this);
+    } else {
+      statementModel.publishStatement(userBean, content, this);
     }
   }
 
   @Override
   protected void onSuccessGetData(BaseRequestBean baseRequestBean) {
     ToastHelper.toast("发布成功");
-    backForResult(StatementFragment.class,RESULT_OK);
+    backForResult(StatementFragment.class, RESULT_OK);
   }
 
   @Override
@@ -95,12 +95,13 @@ public class PublishStatementActivity extends BaseRequestActivity<BaseRequestBea
     rvPublishStatement.setItemAnimator(new DefaultItemAnimator());
     List<String> imageUrl = new ArrayList<>();
     imageUrl.add("add");
-    baseRecycleAdapter = new BaseRecycleAdapter<>(imageUrl,R.layout.item_publish_image,PublishImageViewHolder.class);
+    baseRecycleAdapter = new BaseRecycleAdapter<>(imageUrl, R.layout.item_publish_image,
+        PublishImageViewHolder.class);
     rvPublishStatement.setAdapter(baseRecycleAdapter);
     baseRecycleAdapter.setOnItemClickListener((itemData, view, position) -> {
-      if (view.getId()==R.id.iv_delete){
+      if (view.getId() == R.id.iv_delete) {
         baseRecycleAdapter.removeItemFormList(position);
-      }else {
+      } else {
         goToSelectImage();
       }
     });
@@ -109,11 +110,11 @@ public class PublishStatementActivity extends BaseRequestActivity<BaseRequestBea
   @SuppressLint("CheckResult")
   private void goToSelectImage() {
     new RxPermissions(this)
-        .request(Manifest.permission.CAMERA,Manifest.permission.WRITE_EXTERNAL_STORAGE)
+        .request(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE)
         .subscribe(granted -> {
-          if(granted){
+          if (granted) {
             startSelectImage();
-          }else {
+          } else {
             ToastHelper.toast(R.string.camera_premission_tip);
           }
         });
@@ -121,7 +122,7 @@ public class PublishStatementActivity extends BaseRequestActivity<BaseRequestBea
 
   @Override
   public boolean onOptionsItemSelected(MenuItem item) {
-    if (item.getItemId() == R.id.action_publish){
+    if (item.getItemId() == R.id.action_publish) {
       startRequest();
       return true;
     }
@@ -129,13 +130,13 @@ public class PublishStatementActivity extends BaseRequestActivity<BaseRequestBea
   }
 
   private void startSelectImage() {
-    int size = 5-baseRecycleAdapter.getItemCount();
-    if (size<=0){
+    int size = 5 - baseRecycleAdapter.getItemCount();
+    if (size <= 0) {
       ToastHelper.toast(R.string.max_count_image_tip);
       return;
     }
     Matisse.from(PublishStatementActivity.this)
-        .choose(MimeType.ofAll(),false)
+        .choose(MimeType.ofAll(), false)
         .countable(true)
         .maxSelectable(size)
         .restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED)
@@ -158,7 +159,7 @@ public class PublishStatementActivity extends BaseRequestActivity<BaseRequestBea
   @Override
   protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
     super.onActivityResult(requestCode, resultCode, data);
-    if (requestCode == REQUEST_CODE_CHOOSE && resultCode == RESULT_OK&&data!=null) {
+    if (requestCode == REQUEST_CODE_CHOOSE && resultCode == RESULT_OK && data != null) {
       List<Uri> result = Matisse.obtainResult(data);
       List<String> imageResult = new ArrayList<>();
       for (Uri uri : result) {
@@ -166,6 +167,5 @@ public class PublishStatementActivity extends BaseRequestActivity<BaseRequestBea
       }
       baseRecycleAdapter.appendDataToList(imageResult);
     }
-
   }
 }

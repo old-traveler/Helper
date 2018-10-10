@@ -8,24 +8,24 @@ import com.hyc.helper.model.ConfigModel;
 
 public class ConfigureHelper {
 
-  public static void init(ConfigureBean configureBean){
+  public static void init(ConfigureBean configureBean) {
     ConfigModel configModel = new ConfigModel();
     ConfigureBean preConfigure = configModel.getConfigInfo();
-    if (preConfigure == null){
-      if (configureBean != null){
+    if (preConfigure == null) {
+      if (configureBean != null) {
         DateHelper.DATE_OF_SCHOOL = configureBean.getDate();
         configModel.setConfigInfo(configureBean);
       }
-    }else {
-      if (configureBean == null){
+    } else {
+      if (configureBean == null) {
         DateHelper.DATE_OF_SCHOOL = preConfigure.getDate();
-      }else {
+      } else {
         long preUpdateTime = Long.parseLong(preConfigure.getUpdate_time());
         long curUpdateTime = Long.parseLong(configureBean.getUpdate_time());
-        if (curUpdateTime>preUpdateTime){
+        if (curUpdateTime > preUpdateTime) {
           configModel.setConfigInfo(configureBean);
           DateHelper.DATE_OF_SCHOOL = configureBean.getDate();
-        }else{
+        } else {
           DateHelper.DATE_OF_SCHOOL = preConfigure.getDate();
         }
       }
@@ -34,20 +34,17 @@ public class ConfigureHelper {
 
   /**
    * get App versionCode
-   * @param context
-   * @return
    */
-  public static int getVersionCode(Context context){
-    PackageManager packageManager=context.getPackageManager();
+  public static int getVersionCode(Context context) {
+    PackageManager packageManager = context.getPackageManager();
     PackageInfo packageInfo;
-    int versionCode=1;
+    int versionCode = 1;
     try {
-      packageInfo=packageManager.getPackageInfo(context.getPackageName(),0);
-      versionCode=packageInfo.versionCode;
+      packageInfo = packageManager.getPackageInfo(context.getPackageName(), 0);
+      versionCode = packageInfo.versionCode;
     } catch (PackageManager.NameNotFoundException e) {
       e.printStackTrace();
     }
     return versionCode;
   }
-
 }

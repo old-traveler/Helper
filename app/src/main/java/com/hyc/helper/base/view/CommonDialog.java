@@ -9,20 +9,19 @@ import com.hyc.helper.R;
 import com.hyc.helper.base.listener.OnDialogClickListener;
 import com.hyc.helper.base.util.UiHelper;
 
-public class CommonDialog extends Dialog implements View.OnClickListener{
+public class CommonDialog extends Dialog implements View.OnClickListener {
 
   private OnDialogClickListener dialogClickListener;
 
   private CommonDialog(Builder builder, int themeResId) {
     super(builder.getContext(), themeResId);
     View view = UiHelper.inflater(builder.getContext()
-        , R.layout.lib_dialog_common,null);
+        , R.layout.lib_dialog_common, null);
     setContentView(view);
     initView(builder);
   }
 
-
-  private void initView(Builder builder){
+  private void initView(Builder builder) {
     String content = builder.getContent();
     String title = builder.getTitle();
     String positiveName = builder.getPositiveName();
@@ -36,38 +35,36 @@ public class CommonDialog extends Dialog implements View.OnClickListener{
     View cutView = findViewById(R.id.v_cut);
     tvContent.setText(content);
 
-    if(!TextUtils.isEmpty(positiveName)){
+    if (!TextUtils.isEmpty(positiveName)) {
       tvPositive.setText(positiveName);
       tvPositive.setOnClickListener(this);
-    }else {
+    } else {
       tvPositive.setVisibility(View.GONE);
       cutView.setVisibility(View.GONE);
     }
-    if(!TextUtils.isEmpty(negativeName)){
+    if (!TextUtils.isEmpty(negativeName)) {
       tvNegative.setOnClickListener(this);
       tvNegative.setText(negativeName);
-    }else {
+    } else {
       tvNegative.setVisibility(View.GONE);
       cutView.setVisibility(View.GONE);
     }
-    if(!TextUtils.isEmpty(title)){
+    if (!TextUtils.isEmpty(title)) {
       tvTitle.setText(title);
-    }else {
+    } else {
       tvTitle.setVisibility(View.GONE);
     }
-
-
   }
 
   @Override
   public void onClick(View view) {
-    if (dialogClickListener!=null){
-      dialogClickListener.onDialogItemClick(view.getId()==R.id.submit);
+    if (dialogClickListener != null) {
+      dialogClickListener.onDialogItemClick(view.getId() == R.id.submit);
     }
     dismiss();
   }
 
-  public static class Builder{
+  public static class Builder {
     private Context mContext;
     private String content;
     private String positiveName;
@@ -95,7 +92,7 @@ public class CommonDialog extends Dialog implements View.OnClickListener{
       return dialogClickListener;
     }
 
-    public Builder(Context mContext){
+    public Builder(Context mContext) {
       this.mContext = mContext;
     }
 
@@ -128,16 +125,12 @@ public class CommonDialog extends Dialog implements View.OnClickListener{
       return mContext;
     }
 
-    public CommonDialog create(){
-      return new CommonDialog(this,R.style.common_dialog);
+    public CommonDialog create() {
+      return new CommonDialog(this, R.style.common_dialog);
     }
 
-    public void createAndShow(){
-      new CommonDialog(this,R.style.common_dialog).show();
+    public void createAndShow() {
+      new CommonDialog(this, R.style.common_dialog).show();
     }
-
   }
-
-
-
 }

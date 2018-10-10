@@ -126,9 +126,9 @@ public class StatementFragment extends
     if (view.getId() == R.id.v_comment) {
       showCommentInput();
       this.position = position;
-    }else if (view.getId()==R.id.tv_delete_statement){
+    } else if (view.getId() == R.id.tv_delete_statement) {
       showLoadingView();
-      statementModel.deleteStatement(userModel.getCurUserInfo(),itemData.getId())
+      statementModel.deleteStatement(userModel.getCurUserInfo(), itemData.getId())
           .subscribe(baseRequestBean -> {
             getRecycleAdapter().removeItemFormList(position);
             closeLoadingView();
@@ -146,7 +146,7 @@ public class StatementFragment extends
         sendComment();
         break;
       case R.id.fb_publish_statement:
-        startActivityForResult(new Intent(getActivity(),PublishStatementActivity.class),2010);
+        startActivityForResult(new Intent(getActivity(), PublishStatementActivity.class), 2010);
         break;
     }
   }

@@ -14,13 +14,13 @@ import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import java.util.List;
 
-public abstract class BaseListActivity<T,VH extends BaseViewHolder<T>>
-    extends BaseActivity implements OnRefreshListener,OnLoadMoreListener {
+public abstract class BaseListActivity<T, VH extends BaseViewHolder<T>>
+    extends BaseActivity implements OnRefreshListener, OnLoadMoreListener {
 
   private SmartRefreshLayout mRefreshLayout;
   private int pageStart = 1;
   private int page = pageStart;
-  private BaseRecycleAdapter<T,VH> adapter;
+  private BaseRecycleAdapter<T, VH> adapter;
   //用于区分没有更多内容时停止加载更多和单纯的禁止加载更多
   private boolean enableLoadMore = true;
 
@@ -37,7 +37,7 @@ public abstract class BaseListActivity<T,VH extends BaseViewHolder<T>>
     recyclerView.setItemAnimator(new DefaultItemAnimator());
     recyclerView.setLayoutManager(getLayoutManager());
     recyclerView.setAdapter(adapter);
-    if (mRefreshLayout!=null){
+    if (mRefreshLayout != null) {
       initRecyclerView();
       mRefreshLayout.setOnRefreshListener(this);
       mRefreshLayout.setOnLoadMoreListener(this);
@@ -47,15 +47,15 @@ public abstract class BaseListActivity<T,VH extends BaseViewHolder<T>>
 
   protected abstract RecyclerView getRecycleView();
 
-  public void setEnableLoadMore(boolean enableLoadMore){
-    if (mRefreshLayout != null){
+  public void setEnableLoadMore(boolean enableLoadMore) {
+    if (mRefreshLayout != null) {
       mRefreshLayout.setEnableLoadMore(enableLoadMore);
     }
     this.enableLoadMore = enableLoadMore;
   }
 
-  public void setEnableRefresh(boolean enableRefresh){
-    if (mRefreshLayout != null){
+  public void setEnableRefresh(boolean enableRefresh) {
+    if (mRefreshLayout != null) {
       mRefreshLayout.setEnableRefresh(enableRefresh);
     }
   }
@@ -70,7 +70,7 @@ public abstract class BaseListActivity<T,VH extends BaseViewHolder<T>>
 
   protected abstract void requestListData(int page);
 
-  public void setPageStart(int pageStart){
+  public void setPageStart(int pageStart) {
     this.pageStart = pageStart;
   }
 
@@ -85,30 +85,29 @@ public abstract class BaseListActivity<T,VH extends BaseViewHolder<T>>
     requestListData(page);
   }
 
-  public abstract BaseRecycleAdapter<T,VH> getRecycleAdapter();
+  public abstract BaseRecycleAdapter<T, VH> getRecycleAdapter();
 
   public RecyclerView.LayoutManager getLayoutManager() {
     return new LinearLayoutManager(this);
   }
 
-  public void loadMoreFinish(List<T> data){
-    if (page == pageStart){
-      if (null != data){
+  public void loadMoreFinish(List<T> data) {
+    if (page == pageStart) {
+      if (null != data) {
         adapter.setDataList(data);
       }
       mRefreshLayout.finishRefresh();
-    }else {
-      if (null != data && data.size()>0){
+    } else {
+      if (null != data && data.size() > 0) {
         adapter.appendDataToList(data);
-      }else if (null != data){
+      } else if (null != data) {
         mRefreshLayout.setEnableLoadMore(false);
       }
       mRefreshLayout.finishLoadMore();
     }
   }
 
-  public void loadFail(String msg){
+  public void loadFail(String msg) {
     ToastHelper.toast(msg);
   }
-
 }

@@ -19,22 +19,21 @@ public class SplashActivity extends BaseRequestActivity<ConfigureBean> {
 
   private Handler handler = new SplashHandler(new WeakReference<>(this));
 
-  public static class SplashHandler extends Handler{
+  public static class SplashHandler extends Handler {
     private WeakReference<SplashActivity> weakReference;
 
-    SplashHandler(WeakReference<SplashActivity> weakReference){
+    SplashHandler(WeakReference<SplashActivity> weakReference) {
       this.weakReference = weakReference;
     }
 
     @Override
     public void handleMessage(Message msg) {
       super.handleMessage(msg);
-      if (weakReference.get()!=null){
+      if (weakReference.get() != null) {
         weakReference.get().goToNextActivity(null);
       }
     }
   }
-
 
   private Message message = new Message();
 
@@ -49,7 +48,7 @@ public class SplashActivity extends BaseRequestActivity<ConfigureBean> {
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(this);
-    handler.sendMessageDelayed(message,5000);
+    handler.sendMessageDelayed(message, 5000);
   }
 
   @Override
@@ -84,18 +83,17 @@ public class SplashActivity extends BaseRequestActivity<ConfigureBean> {
 
   }
 
-  public void goToNextActivity(ConfigureBean configureBean){
+  public void goToNextActivity(ConfigureBean configureBean) {
     ConfigureHelper.init(configureBean);
     dispose();
     handler.removeMessages(1);
     Intent intent;
-    if (new UserModel().getCurUserInfo()!=null){
-      intent = new Intent(this,MainActivity.class);
-    }else {
-      intent = new Intent(this,LoginActivity.class);
+    if (new UserModel().getCurUserInfo() != null) {
+      intent = new Intent(this, MainActivity.class);
+    } else {
+      intent = new Intent(this, LoginActivity.class);
     }
     startActivity(intent);
     finish();
   }
-
 }

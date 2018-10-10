@@ -15,26 +15,26 @@ import static android.content.Context.DOWNLOAD_SERVICE;
 public class UpdateAppHelper {
 
   private static String checkUpdate(ConfigureBean configureBean) {
-    if (configureBean != null && !TextUtils.isEmpty(configureBean.getUpdate())){
+    if (configureBean != null && !TextUtils.isEmpty(configureBean.getUpdate())) {
       return configureBean.getUpdate();
     }
     return null;
   }
 
-  public static void download(String url,String fileName,Context context) {
-    DownloadManager downloadManager = (DownloadManager)context.getSystemService(DOWNLOAD_SERVICE);
-    String path = Environment.getExternalStorageDirectory().getPath()+ "/helper/"+fileName;
+  public static void download(String url, String fileName, Context context) {
+    DownloadManager downloadManager = (DownloadManager) context.getSystemService(DOWNLOAD_SERVICE);
+    String path = Environment.getExternalStorageDirectory().getPath() + "/helper/" + fileName;
     File file = new File(path);
     if (file.exists()) {
       file.delete();
-    }else {
+    } else {
       try {
         file.createNewFile();
       } catch (IOException e) {
         e.printStackTrace();
       }
     }
-    LogHelper.log(url+"   ");
+    LogHelper.log(url + "   ");
     long downloadId = downloadManager
         .enqueue(new DownloadManager.Request(Uri.parse(url))
             .setDestinationInExternalPublicDir("/helper/", fileName)
@@ -42,5 +42,4 @@ public class UpdateAppHelper {
             .setNotificationVisibility(
                 DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED));
   }
-
 }

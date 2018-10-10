@@ -1,6 +1,5 @@
 package com.hyc.helper.util;
 
-
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -18,7 +17,8 @@ import com.zhihu.matisse.engine.ImageEngine;
 public class Glide4Engine implements ImageEngine {
 
   @Override
-  public void loadThumbnail(Context context, int resize, Drawable placeholder, ImageView imageView, Uri uri) {
+  public void loadThumbnail(Context context, int resize, Drawable placeholder, ImageView imageView,
+      Uri uri) {
     Glide.with(context)
         .asBitmap() // some .jpeg files are actually gif
         .load(uri)
@@ -30,7 +30,8 @@ public class Glide4Engine implements ImageEngine {
   }
 
   @Override
-  public void loadGifThumbnail(Context context, int resize, Drawable placeholder, ImageView imageView,
+  public void loadGifThumbnail(Context context, int resize, Drawable placeholder,
+      ImageView imageView,
       Uri uri) {
     Glide.with(context)
         .asBitmap() // some .jpeg files are actually gif
@@ -54,7 +55,8 @@ public class Glide4Engine implements ImageEngine {
   }
 
   @Override
-  public void loadGifImage(Context context, int resizeX, int resizeY, ImageView imageView, Uri uri) {
+  public void loadGifImage(Context context, int resizeX, int resizeY, ImageView imageView,
+      Uri uri) {
     Glide.with(context)
         .asGif()
         .load(uri)
@@ -69,5 +71,4 @@ public class Glide4Engine implements ImageEngine {
   public boolean supportAnimatedGif() {
     return true;
   }
-
 }

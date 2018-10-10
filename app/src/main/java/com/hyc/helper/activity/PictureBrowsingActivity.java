@@ -1,5 +1,7 @@
 package com.hyc.helper.activity;
 
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.PointF;
 import android.net.Uri;
 import android.os.Bundle;
@@ -14,7 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import com.bumptech.glide.Glide;
+import android.widget.TextView;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.davemorrissey.labs.subscaleview.ImageSource;
@@ -24,7 +26,9 @@ import com.hyc.helper.R;
 import com.hyc.helper.base.util.UiHelper;
 import com.hyc.helper.bean.ImageSizeBean;
 import com.hyc.helper.helper.FileHelper;
+import com.hyc.helper.helper.ImageRequestHelper;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView.ZOOM_FOCUS_CENTER_IMMEDIATE;
@@ -42,8 +46,18 @@ public class PictureBrowsingActivity extends AppCompatActivity {
     setContentView(R.layout.activity_picture_browsing);
     viewPager = findViewById(R.id.vp_picture);
     initViewWithData(getIntent().getExtras());
-    viewPager.setOffscreenPageLimit(3);
+    viewPager.setOffscreenPageLimit(imagesUrl.size());
     getWindow().setEnterTransition(new Fade().setDuration(500));
+  }
+
+  public static void goToPictureBrowsingActivity(Context context, int curImagePosition,
+      ArrayList<String> imagesUrl) {
+    Intent intent = new Intent(context, PictureBrowsingActivity.class);
+    Bundle bundle = new Bundle();
+    bundle.putInt("curImagePosition", curImagePosition);
+    bundle.putStringArrayList("images", imagesUrl);
+    intent.putExtras(bundle);
+    context.startActivity(intent);
   }
 
   private void initViewWithData(Bundle bundle) {
@@ -73,29 +87,49 @@ public class PictureBrowsingActivity extends AppCompatActivity {
           = itemView.findViewById(R.id.sv_image_browsing);
       final ImageView imageView = itemView.findViewById(R.id.iv_browsing);
       final ProgressBar progressBar = itemView.findViewById(R.id.pb_image_browsing);
-
-      if (!imagesUrl.get(position).startsWith("http")) {
-        loadImage(scaleImageView, new File(imagesUrl.get(position)));
+      TextView textView = itemView.findViewById(R.id.tv_show_big_image);
+      imageView.setOnClickListener(view -> onBackPressed());
+      if (!imagesUrl.get(position).startsWith("http") && !imagesUrl.get(position)
+          .startsWith("/uploads")) {
+        loadImage(imageView, scaleImageView, new File(imagesUrl.get(position)));
+        textView.setVisibility(View.GONE);
       } else {
-        progressBar.setVisibility(View.VISIBLE);
-        Glide.with(PictureBrowsingActivity.this)
-            .asFile()
-            .load(imagesUrl.get(position))
-            .into(new SimpleTarget<File>() {
-              @Override
-              public void onResourceReady(@NonNull File resource,
-                  @Nullable Transition<? super File> transition) {
-                loadImage(scaleImageView, resource);
-                progressBar.setVisibility(View.GONE);
-              }
-            });
+        textView.setVisibility(View.VISIBLE);
+        ImageRequestHelper.loadImage(PictureBrowsingActivity.this, imagesUrl.get(position),
+            imageView);
+        textView.setOnClickListener(
+            view -> showBigImage(view, progressBar, imageView, scaleImageView, position));
       }
 
       container.addView(itemView);
       return itemView;
     }
 
-    private void loadImage(SubsamplingScaleImageView scaleImageView, File file) {
+    private void showBigImage(View textView, ProgressBar progressBar, ImageView imageView,
+        SubsamplingScaleImageView subsamplingScaleImageView, int position) {
+      progressBar.setVisibility(View.VISIBLE);
+      textView.setVisibility(View.GONE);
+      ImageRequestHelper.loadOralImageAsFile(PictureBrowsingActivity.this, imagesUrl.get(position),
+          new SimpleTarget<File>() {
+            @Override
+            public void onResourceReady(@NonNull File resource,
+                @Nullable Transition<? super File> transition) {
+              loadImage(imageView, subsamplingScaleImageView, resource);
+              progressBar.setVisibility(View.GONE);
+            }
+          });
+    }
+
+    private void loadImage(ImageView imageView, SubsamplingScaleImageView scaleImageView,
+        File file) {
+      if (FileHelper.isGifImage(file.getAbsolutePath())) {
+        imageView.setVisibility(View.VISIBLE);
+        ImageRequestHelper.loadGifFromFile(PictureBrowsingActivity.this, file, imageView);
+        scaleImageView.setVisibility(View.GONE);
+        return;
+      }
+      imageView.setVisibility(View.GONE);
+      scaleImageView.setVisibility(View.VISIBLE);
       ImageSizeBean sizeBean = FileHelper.getImageSize(file.getAbsolutePath());
       if (UiHelper.isLongImage(sizeBean)) {
         scaleImageView.setMinScale(1.0F);
@@ -111,6 +145,11 @@ public class PictureBrowsingActivity extends AppCompatActivity {
 
     @Override
     public void destroyItem(@NonNull ViewGroup container, int position, Object object) {
+      SubsamplingScaleImageView scaleImageView
+          = container.findViewById(R.id.sv_image_browsing);
+      if (scaleImageView != null) {
+        scaleImageView.recycle();
+      }
       container.removeView((View) object);
     }
   }

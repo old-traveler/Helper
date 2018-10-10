@@ -29,11 +29,11 @@ public class PublishImageViewHolder extends BaseViewHolder<String> {
 
   @Override
   public void loadItemData(Context context, String data, int position) {
-    if (data.equals("add")){
-      ImageRequestHelper.loadImage(context,R.drawable.ic_add_image,ivImage);
+    if (data.equals("add")) {
+      ImageRequestHelper.loadImage(context, R.drawable.ic_add_image, ivImage);
       ivDelete.setVisibility(View.GONE);
-    }else {
-      ImageRequestHelper.loadImage(context,Uri.parse(data),ivImage);
+    } else {
+      ImageRequestHelper.loadImage(context, Uri.parse(data), ivImage);
       ivDelete.setVisibility(View.VISIBLE);
     }
   }
@@ -42,6 +42,6 @@ public class PublishImageViewHolder extends BaseViewHolder<String> {
   public void setOnClickListener(View.OnClickListener onClickListener) {
     super.setOnClickListener(onClickListener);
     ivDelete.setOnClickListener(onClickListener);
-    ivImage.setOnClickListener(getData().equals("add")?onClickListener:null);
+    ivImage.setOnClickListener(getData().equals("add") ? onClickListener : null);
   }
 }

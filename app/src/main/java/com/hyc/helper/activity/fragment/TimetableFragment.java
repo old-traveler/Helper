@@ -63,7 +63,7 @@ public class TimetableFragment extends BaseRequestFragment<CourseBean> implement
       textView.setTextSize(11);
       textView.setTextColor(UiHelper.getColor(R.color.front_black));
       LinearLayout.LayoutParams params =
-          new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,itemHeight,0);
+          new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, itemHeight, 0);
       textView.setLayoutParams(params);
       llLeftTip.addView(textView);
     }
@@ -72,25 +72,25 @@ public class TimetableFragment extends BaseRequestFragment<CourseBean> implement
   private void initTopTitle() {
     String[] weeks = UiHelper.getStringArrays(R.array.weeks);
     int index = 0;
-    int curDay = DateHelper.getCurDay()-1;
+    int curDay = DateHelper.getCurDay() - 1;
     for (String week : weeks) {
       TextView textView = new TextView(getContext());
       textView.setText(week);
       textView.setGravity(Gravity.CENTER);
       LinearLayout.LayoutParams params =
-          new LinearLayout.LayoutParams(0,ViewGroup.LayoutParams.MATCH_PARENT,1);
+          new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1);
       textView.setLayoutParams(params);
       textView.setTextSize(11);
       textView.setTextColor(UiHelper.getColor(R.color.front_black));
-      if (index == curDay){
+      if (index == curDay) {
         initCurWeekText(textView);
         this.tvCurWeek = textView;
       }
-      llTopTitle.addView(textView,index++);
+      llTopTitle.addView(textView, index++);
     }
   }
 
-  private void initCurWeekText(TextView textView){
+  private void initCurWeekText(TextView textView) {
     textView.setTextSize(15);
     textView.setTextColor(UiHelper.getColor(R.color.white));
     textView.setBackgroundColor(UiHelper.getColor(R.color.colorPrimary));
@@ -139,10 +139,10 @@ public class TimetableFragment extends BaseRequestFragment<CourseBean> implement
     unbinder.unbind();
   }
 
-  public void switchWeek(int week){
-    if (week == DateHelper.getCurWeek()){
+  public void switchWeek(int week) {
+    if (week == DateHelper.getCurWeek()) {
       initCurWeekText(tvCurWeek);
-    }else {
+    } else {
       tvCurWeek.setTextSize(11);
       tvCurWeek.setTextColor(UiHelper.getColor(R.color.front_black));
       tvCurWeek.setBackgroundColor(UiHelper.getColor(R.color.white));
@@ -154,5 +154,4 @@ public class TimetableFragment extends BaseRequestFragment<CourseBean> implement
   public void onRefresh(@NonNull RefreshLayout refreshLayout) {
     requestDataFromApi();
   }
-
 }

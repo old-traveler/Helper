@@ -9,36 +9,35 @@ import io.reactivex.schedulers.Schedulers;
 
 public class SpCacheHelper {
 
-  private static SharedPreferences.Editor getEditor(){
+  private static SharedPreferences.Editor getEditor() {
     return getSharedPreferences().edit();
   }
 
-  private static SharedPreferences getSharedPreferences(){
-    return HelperApplication.getContext().getSharedPreferences("helper",Context.MODE_PRIVATE);
+  private static SharedPreferences getSharedPreferences() {
+    return HelperApplication.getContext().getSharedPreferences("helper", Context.MODE_PRIVATE);
   }
 
-  public static void putClassIntoSp(String key,Object object){
+  public static void putClassIntoSp(String key, Object object) {
     Observable.create(emitter -> {
       String json = new Gson().toJson(object);
-      getEditor().putString(key,json).commit();
+      getEditor().putString(key, json).commit();
     }).subscribeOn(Schedulers.io()).subscribe();
   }
 
-  public static <T> T getClassFromSp(String key,Class<T> cls){
+  public static <T> T getClassFromSp(String key, Class<T> cls) {
     try {
-      String json = getSharedPreferences().getString(key,"");
+      String json = getSharedPreferences().getString(key, "");
       return new Gson().fromJson(json, cls);
     } catch (Exception e) {
       return null;
     }
   }
 
-  public static void putBoolean(String key,boolean data){
-    getEditor().putBoolean(key,data).commit();
+  public static void putBoolean(String key, boolean data) {
+    getEditor().putBoolean(key, data).commit();
   }
 
-  public static boolean getBoolean(String key){
-    return getSharedPreferences().getBoolean(key,false);
+  public static boolean getBoolean(String key) {
+    return getSharedPreferences().getBoolean(key, false);
   }
-
 }

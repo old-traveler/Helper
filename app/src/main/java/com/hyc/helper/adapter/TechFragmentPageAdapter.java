@@ -23,7 +23,7 @@ public class TechFragmentPageAdapter extends FragmentPagerAdapter {
     return fragmentList.size();
   }
 
-  public <T extends BaseFragment> T getFragmentList(Class<T> cls,int index) {
-    return (T)fragmentList.get(index);
+  public <T extends BaseFragment> T getFragmentList(Class<T> cls, int index) {
+    return (T) fragmentList.get(index);
   }
 }

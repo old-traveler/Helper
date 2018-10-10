@@ -21,87 +21,90 @@ import com.hyc.helper.base.view.CommonDialog;
 import com.hyc.helper.base.view.LoadingDialog;
 
 public abstract class BaseActivity extends AppCompatActivity
-    implements View.OnClickListener,IBaseActivity,OnDialogClickListener {
+    implements View.OnClickListener, IBaseActivity, OnDialogClickListener {
 
   private LoadingDialog loadingDialog;
 
   public Toolbar mToolbar;
 
-  @Override protected void onStart() {
+  @Override
+  protected void onStart() {
     super.onStart();
   }
 
-  @Override protected void onCreate(Bundle savedInstanceState) {
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(getContentViewId());
     initViewWithIntentData(getIntent().getExtras());
   }
 
-
   protected abstract int getContentViewId();
 
-  @Override protected void onDestroy() {
+  @Override
+  protected void onDestroy() {
     super.onDestroy();
-
   }
 
-  @Override public void onClick(View view) {
-    if (view.getId()==android.R.id.home){
+  @Override
+  public void onClick(View view) {
+    if (view.getId() == android.R.id.home) {
       super.onBackPressed();
     }
   }
 
-
-
-  @Override public void goToOtherActivity(Class<?> cls,boolean isFinish) {
-    Intent intent = new Intent(this,cls);
+  @Override
+  public void goToOtherActivity(Class<?> cls, boolean isFinish) {
+    Intent intent = new Intent(this, cls);
     startActivity(intent);
-    if (isFinish){
+    if (isFinish) {
       finish();
     }
   }
 
-  @Override public void goToOtherActivity(Class<?> cls, Bundle bundle,boolean isFinish) {
-    Intent intent = new Intent(this,cls);
+  @Override
+  public void goToOtherActivity(Class<?> cls, Bundle bundle, boolean isFinish) {
+    Intent intent = new Intent(this, cls);
     intent.putExtras(bundle);
     startActivity(intent);
-    if (isFinish)finish();
+    if (isFinish) finish();
   }
 
-
-  @Override public void goToOtherActivityForResult(Class<?> cls, Bundle bundle, int requestCode) {
-    Intent intent = new Intent(this,cls);
+  @Override
+  public void goToOtherActivityForResult(Class<?> cls, Bundle bundle, int requestCode) {
+    Intent intent = new Intent(this, cls);
     intent.putExtras(bundle);
-    startActivityForResult(intent,requestCode);
+    startActivityForResult(intent, requestCode);
   }
 
   public void goToOtherActivityForResult(Class<?> cls, int requestCode) {
-    Intent intent = new Intent(this,cls);
-    startActivityForResult(intent,requestCode);
+    Intent intent = new Intent(this, cls);
+    startActivityForResult(intent, requestCode);
   }
 
-  @Override public void backForResult(Class<?> cls, Bundle bundle, int resultCode) {
-    Intent intent = new Intent(this,cls);
+  @Override
+  public void backForResult(Class<?> cls, Bundle bundle, int resultCode) {
+    Intent intent = new Intent(this, cls);
     intent.putExtras(bundle);
-    setResult(resultCode,intent);
+    setResult(resultCode, intent);
     finish();
   }
 
   public void backForResult(Class<?> cls, int resultCode) {
-    Intent intent = new Intent(this,cls);
-    setResult(resultCode,intent);
+    Intent intent = new Intent(this, cls);
+    setResult(resultCode, intent);
     finish();
   }
 
-  public void setToolBar(){
+  public void setToolBar() {
     this.setToolBar(R.id.toolbar);
   }
 
-  public void setToolBar(int toolBarId){
+  public void setToolBar(int toolBarId) {
     Toolbar toolbar = findViewById(toolBarId);
     if (toolbar != null) {
       setSupportActionBar(toolbar);
-      this.mToolbar=toolbar;
+      this.mToolbar = toolbar;
     }
     ActionBar actionBar = getSupportActionBar();
     if (actionBar != null) {
@@ -110,15 +113,15 @@ public abstract class BaseActivity extends AppCompatActivity
     }
   }
 
-  public void setNoBackToolBar(){
+  public void setNoBackToolBar() {
     this.setNoBackToolBar(R.id.toolbar);
   }
 
-  public void setNoBackToolBar(int toolBarId){
+  public void setNoBackToolBar(int toolBarId) {
     Toolbar toolbar = findViewById(toolBarId);
     if (toolbar != null) {
       setSupportActionBar(toolbar);
-      this.mToolbar=toolbar;
+      this.mToolbar = toolbar;
     }
     ActionBar actionBar = getSupportActionBar();
     if (actionBar != null) {
@@ -127,22 +130,22 @@ public abstract class BaseActivity extends AppCompatActivity
     }
   }
 
-  public void setHomeResId(int resId){
+  public void setHomeResId(int resId) {
     ActionBar actionBar = getSupportActionBar();
-    if (mToolbar!=null && actionBar!=null){
+    if (mToolbar != null && actionBar != null) {
       actionBar.setDisplayHomeAsUpEnabled(true);
       actionBar.setHomeAsUpIndicator(resId);
     }
   }
 
-  public void setToolBarTitle(String title){
-    if (mToolbar==null){
+  public void setToolBarTitle(String title) {
+    if (mToolbar == null) {
       setToolBar();
     }
     mToolbar.setTitle(title);
   }
 
-  public void setToolBar(int toolBarId,String title,int homeResId){
+  public void setToolBar(int toolBarId, String title, int homeResId) {
     Toolbar toolbar = findViewById(toolBarId);
     if (toolbar != null) {
       setSupportActionBar(toolbar);
@@ -158,55 +161,59 @@ public abstract class BaseActivity extends AppCompatActivity
     mToolbar.setTitle(title);
   }
 
-  public void setToolBarTitle(int titleId){
-    if (mToolbar==null){
+  public void setToolBarTitle(int titleId) {
+    if (mToolbar == null) {
       setToolBar();
     }
     mToolbar.setTitle(titleId);
   }
 
-  @Override public void showLoadingView() {
+  @Override
+  public void showLoadingView() {
     if (null != loadingDialog
-        && loadingDialog.isShowing()){
+        && loadingDialog.isShowing()) {
       return;
-    }else if (null == loadingDialog){
+    } else if (null == loadingDialog) {
       LoadingDialog.Builder loadBuilder
           = new LoadingDialog.Builder(this)
           .setCancelable(true)
           .setCancelOutside(true);
-      loadingDialog =loadBuilder.create();
+      loadingDialog = loadBuilder.create();
     }
     loadingDialog.show();
   }
 
-  @Override public void closeLoadingView() {
-    if (loadingDialog!=null && loadingDialog.isShowing()){
+  @Override
+  public void closeLoadingView() {
+    if (loadingDialog != null && loadingDialog.isShowing()) {
       loadingDialog.dismiss();
     }
   }
 
-  @Override public void hideInputWindow() {
+  @Override
+  public void hideInputWindow() {
     View focus = getCurrentFocus();
     if (focus != null) {
       IBinder focusBinder = focus.getWindowToken();
-      InputMethodManager manager = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
-      if (focusBinder != null && manager!=null) {
+      InputMethodManager manager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+      if (focusBinder != null && manager != null) {
         manager.hideSoftInputFromWindow(focusBinder, InputMethodManager.HIDE_NOT_ALWAYS);
       }
     }
   }
 
-  @Override public void showInputWindow(EditText mEditText) {
+  @Override
+  public void showInputWindow(EditText mEditText) {
     mEditText.requestFocus();
     InputMethodManager manager = ((InputMethodManager) getSystemService(INPUT_METHOD_SERVICE));
-    if (manager != null){
+    if (manager != null) {
       manager.showSoftInput(mEditText, 0);
     }
   }
 
   @Override
   public void showTipDialog(String content) {
-    showTipDialog(getString(R.string.tip),content);
+    showTipDialog(getString(R.string.tip), content);
   }
 
   @Override
@@ -220,7 +227,8 @@ public abstract class BaseActivity extends AppCompatActivity
         .createAndShow();
   }
 
-  public void showTipDialog(String title, String content,OnDialogClickListener onDialogClickListener) {
+  public void showTipDialog(String title, String content,
+      OnDialogClickListener onDialogClickListener) {
     new CommonDialog.Builder(this)
         .setTitle(title)
         .setContent(content)
@@ -268,8 +276,8 @@ public abstract class BaseActivity extends AppCompatActivity
 
   @Override
   public boolean onCreateOptionsMenu(Menu menu) {
-    if (getMenuId()!=-1){
-      getMenuInflater().inflate(getMenuId(),menu);
+    if (getMenuId() != -1) {
+      getMenuInflater().inflate(getMenuId(), menu);
       return true;
     }
     return super.onCreateOptionsMenu(menu);
@@ -290,5 +298,4 @@ public abstract class BaseActivity extends AppCompatActivity
     getWindow().getDecorView().getWindowVisibleDisplayFrame(rect);
     return screenHeight - rect.bottom != 0;
   }
-
 }

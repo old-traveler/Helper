@@ -8,11 +8,10 @@ import io.reactivex.schedulers.Schedulers;
 
 public class LostGoodsModel {
 
-  public void getAllLostGoods(int page,Observer<LostBean> observer){
+  public void getAllLostGoods(int page, Observer<LostBean> observer) {
     RequestHelper.getRequestApi().getLostAndFind(page)
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(observer);
   }
-
 }

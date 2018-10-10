@@ -4,14 +4,14 @@ import com.hyc.helper.bean.ConfigureBean;
 
 public class CupidHelper {
 
-  public static String cupid(ConfigureBean configureBean,String number){
-    if (configureBean!=null
+  public static String cupid(ConfigureBean configureBean, String number) {
+    if (configureBean != null
         && !configureBean.isDeal()
-        && configureBean.getNumber().equals(number)){
+        && configureBean.getNumber().equals(number)) {
       configureBean.setDeal(true);
-      SpCacheHelper.putClassIntoSp(Constant.SP_CONFIG,configureBean);
+      SpCacheHelper.putClassIntoSp(Constant.SP_CONFIG, configureBean);
       return configureBean.getType();
-    }else{
+    } else {
       return "0";
     }
   }

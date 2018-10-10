@@ -71,10 +71,10 @@ public class LoginActivity extends BaseRequestActivity<UserBean> {
 
   @Override
   protected void onSuccessGetData(UserBean userBean) {
-    if (userBean.getCode() == 200 && userBean.getData()!=null) {
+    if (userBean.getCode() == 200 && userBean.getData() != null) {
       userModel.cacheUserInfo(userBean);
       goToOtherActivity(MainActivity.class, true);
-    } else if (userBean.getMsg()!=null){
+    } else if (userBean.getMsg() != null) {
       ToastHelper.toast(userBean.getMsg());
     }
   }
@@ -83,6 +83,4 @@ public class LoginActivity extends BaseRequestActivity<UserBean> {
   public boolean isOnCreateRequest() {
     return false;
   }
-
-
 }

@@ -13,18 +13,20 @@ import com.hyc.helper.helper.LogHelper;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 
-public abstract class BaseRequestFragment<T extends BaseRequestBean> extends BaseFragment implements Observer<T> {
+public abstract class BaseRequestFragment<T extends BaseRequestBean> extends BaseFragment
+    implements Observer<T> {
 
   private Disposable disposable;
   private boolean isNeedLoad = false;
 
-  @Override public View onCreateView(@NonNull LayoutInflater inflater
+  @Override
+  public View onCreateView(@NonNull LayoutInflater inflater
       , ViewGroup container, Bundle savedInstanceState) {
-    View view = super.onCreateView(inflater,container,savedInstanceState);
-    if (isOnCreateRequest()){
-      if (getUserVisibleHint()){
+    View view = super.onCreateView(inflater, container, savedInstanceState);
+    if (isOnCreateRequest()) {
+      if (getUserVisibleHint()) {
         startRequest();
-      }else {
+      } else {
         isNeedLoad = true;
       }
     }
@@ -34,34 +36,34 @@ public abstract class BaseRequestFragment<T extends BaseRequestBean> extends Bas
   @Override
   public void onStart() {
     super.onStart();
-    if (isNeedLoad){
+    if (isNeedLoad) {
       isNeedLoad = false;
       startRequest();
     }
   }
 
-  public void startRequest(){
-    if (!validationInput()){
+  public void startRequest() {
+    if (!validationInput()) {
       return;
     }
     showLoadingView();
-    if (!requestDataFromDb()){
+    if (!requestDataFromDb()) {
       requestDataFromApi();
     }
   }
 
-  public void startRequestApi(){
-    if (validationInput()){
+  public void startRequestApi() {
+    if (validationInput()) {
       showLoadingView();
       requestDataFromApi();
     }
   }
-  protected boolean requestDataFromDb(){
+
+  protected boolean requestDataFromDb() {
     return false;
   }
 
-
-  protected boolean validationInput(){
+  protected boolean validationInput() {
     return true;
   }
 
@@ -69,14 +71,14 @@ public abstract class BaseRequestFragment<T extends BaseRequestBean> extends Bas
 
   protected abstract void onSuccessGetData(T t);
 
-  protected void onFailGetData(Throwable e){
+  protected void onFailGetData(Throwable e) {
     ToastHelper.toast(e.getMessage());
   }
 
   @Override
   public void onDestroyView() {
     super.onDestroyView();
-    if (disposable!=null && !disposable.isDisposed()){
+    if (disposable != null && !disposable.isDisposed()) {
       disposable.dispose();
     }
   }
@@ -88,9 +90,9 @@ public abstract class BaseRequestFragment<T extends BaseRequestBean> extends Bas
 
   @Override
   public void onNext(T t) {
-    if(t == null){
+    if (t == null) {
       LogHelper.log("数据为空");
-    } else if (t.getCode() == Constant.REQUEST_SUCCESS ){
+    } else if (t.getCode() == Constant.REQUEST_SUCCESS) {
       onSuccessGetData(t);
     } else if (t.getCode() == Constant.NEED_API_DATA) {
       disposable.dispose();
@@ -116,5 +118,4 @@ public abstract class BaseRequestFragment<T extends BaseRequestBean> extends Bas
   public boolean isOnCreateRequest() {
     return true;
   }
-
 }

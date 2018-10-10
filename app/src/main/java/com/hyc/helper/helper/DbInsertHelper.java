@@ -8,12 +8,11 @@ import java.util.List;
 
 public class DbInsertHelper {
 
-  public static Observable<Boolean> insertCourseInfo(List<CourseInfoBean> courseInfoBeans){
+  public static Observable<Boolean> insertCourseInfo(List<CourseInfoBean> courseInfoBeans) {
     return Observable.create(emitter -> {
       DaoHelper.getDefault().getDaoSession().getCourseInfoBeanDao().insertInTx(courseInfoBeans);
       emitter.onNext(true);
       emitter.onComplete();
     });
   }
-
 }

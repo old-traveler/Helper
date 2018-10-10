@@ -102,7 +102,7 @@ public class MainActivity extends BaseActivity {
   public boolean onCreateOptionsMenu(Menu menu) {
     getMenuInflater().inflate(R.menu.menu_main, menu);
     selectWeek = menu.findItem(R.id.action_select);
-    selectWeek.setTitle("第"+DateHelper.getCurWeek() +"周");
+    selectWeek.setTitle("第" + DateHelper.getCurWeek() + "周");
     initListPopView();
     return true;
   }

@@ -21,8 +21,9 @@ import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 import java.util.List;
 
-public abstract class BaseListFragment<T,B extends BaseRequestBean,VH extends BaseViewHolder<T>>
-    extends BaseFragment implements OnRefreshListener,OnLoadMoreListener,Observer<B> ,OnItemClickListener<T> {
+public abstract class BaseListFragment<T, B extends BaseRequestBean, VH extends BaseViewHolder<T>>
+    extends BaseFragment
+    implements OnRefreshListener, OnLoadMoreListener, Observer<B>, OnItemClickListener<T> {
 
   private Disposable disposable;
   private RecyclerView recyclerView;
@@ -30,7 +31,7 @@ public abstract class BaseListFragment<T,B extends BaseRequestBean,VH extends Ba
   private SmartRefreshLayout mRefreshLayout;
   private int pageStart = 1;
   private int page = pageStart;
-  private BaseRecycleAdapter<T,VH> adapter;
+  private BaseRecycleAdapter<T, VH> adapter;
   //用于区分没有更多内容时停止加载更多和单纯的禁止加载更多
   private boolean enableLoadMore = true;
   private boolean isNeedLoad = false;
@@ -42,20 +43,19 @@ public abstract class BaseListFragment<T,B extends BaseRequestBean,VH extends Ba
   }
 
   private void startRequest() {
-    if (mRefreshLayout!=null){
+    if (mRefreshLayout != null) {
       mRefreshLayout.setOnRefreshListener(this);
       mRefreshLayout.setOnLoadMoreListener(this);
-      if (getUserVisibleHint()){
+      if (getUserVisibleHint()) {
         mRefreshLayout.autoRefresh();
-      }else {
+      } else {
         isNeedLoad = true;
       }
     }
   }
 
-
-  public void refresh(){
-    if (mRefreshLayout!=null){
+  public void refresh() {
+    if (mRefreshLayout != null) {
       mRefreshLayout.autoRefresh();
     }
   }
@@ -64,7 +64,7 @@ public abstract class BaseListFragment<T,B extends BaseRequestBean,VH extends Ba
     return recyclerView;
   }
 
-  public BaseRecycleAdapter<T,VH> getRecycleAdapter(){
+  public BaseRecycleAdapter<T, VH> getRecycleAdapter() {
     return (BaseRecycleAdapter<T, VH>) recyclerView.getAdapter();
   }
 
@@ -81,13 +81,13 @@ public abstract class BaseListFragment<T,B extends BaseRequestBean,VH extends Ba
   @Override
   public void setUserVisibleHint(boolean isVisibleToUser) {
     super.setUserVisibleHint(isVisibleToUser);
-    if (getUserVisibleHint()&&isNeedLoad){
+    if (getUserVisibleHint() && isNeedLoad) {
       isNeedLoad = false;
       mRefreshLayout.autoRefresh();
     }
   }
 
-  protected abstract BaseRecycleAdapter<T,VH> setRecycleAdapter();
+  protected abstract BaseRecycleAdapter<T, VH> setRecycleAdapter();
 
   protected abstract int getRefreshLayoutId();
 
@@ -96,7 +96,7 @@ public abstract class BaseListFragment<T,B extends BaseRequestBean,VH extends Ba
   @Override
   public void onDestroy() {
     super.onDestroy();
-    if (disposable != null && !disposable.isDisposed()){
+    if (disposable != null && !disposable.isDisposed()) {
       disposable.dispose();
     }
   }
@@ -105,15 +105,15 @@ public abstract class BaseListFragment<T,B extends BaseRequestBean,VH extends Ba
     return new LinearLayoutManager(mBaseActivity);
   }
 
-  public void setEnableLoadMore(boolean enableLoadMore){
-    if (mRefreshLayout != null){
+  public void setEnableLoadMore(boolean enableLoadMore) {
+    if (mRefreshLayout != null) {
       mRefreshLayout.setEnableLoadMore(enableLoadMore);
     }
     this.enableLoadMore = enableLoadMore;
   }
 
-  public void setEnableRefresh(boolean enableRefresh){
-    if (mRefreshLayout != null){
+  public void setEnableRefresh(boolean enableRefresh) {
+    if (mRefreshLayout != null) {
       mRefreshLayout.setEnableRefresh(enableRefresh);
     }
   }
@@ -126,7 +126,7 @@ public abstract class BaseListFragment<T,B extends BaseRequestBean,VH extends Ba
 
   protected abstract void requestListData(int page);
 
-  public void setPageStart(int pageStart){
+  public void setPageStart(int pageStart) {
     this.pageStart = pageStart;
   }
 
@@ -140,16 +140,16 @@ public abstract class BaseListFragment<T,B extends BaseRequestBean,VH extends Ba
     requestListData(page);
   }
 
-  public void loadMoreFinish(List<T> data){
-    if (page == pageStart){
-      if (null != data){
+  public void loadMoreFinish(List<T> data) {
+    if (page == pageStart) {
+      if (null != data) {
         adapter.setDataList(data);
       }
       mRefreshLayout.finishRefresh();
-    }else {
-      if (null != data && data.size()>0){
+    } else {
+      if (null != data && data.size() > 0) {
         adapter.appendDataToList(data);
-      }else if (null != data){
+      } else if (null != data) {
         mRefreshLayout.setEnableLoadMore(false);
       }
       mRefreshLayout.finishLoadMore();
@@ -157,23 +157,23 @@ public abstract class BaseListFragment<T,B extends BaseRequestBean,VH extends Ba
     page++;
   }
 
-  public void refreshFailure(String msg){
+  public void refreshFailure(String msg) {
     mRefreshLayout.finishRefresh(delay);
     ToastHelper.toast(msg);
   }
 
-  public void loadMoreFailure(String msg){
+  public void loadMoreFailure(String msg) {
     mRefreshLayout.finishLoadMore(delay);
     ToastHelper.toast(msg);
   }
 
-  public void showRefreshing(){
-    if (!mRefreshLayout.getState().equals(RefreshState.Refreshing)){
+  public void showRefreshing() {
+    if (!mRefreshLayout.getState().equals(RefreshState.Refreshing)) {
       mRefreshLayout.autoRefresh();
     }
   }
 
-  public void stopRefreshing(){
+  public void stopRefreshing() {
     mRefreshLayout.finishRefresh();
     mRefreshLayout.finishLoadMore(0);
   }
@@ -185,11 +185,11 @@ public abstract class BaseListFragment<T,B extends BaseRequestBean,VH extends Ba
 
   @Override
   public void onNext(B ts) {
-    if (ts.getCode() == Constant.REQUEST_SUCCESS){
+    if (ts.getCode() == Constant.REQUEST_SUCCESS) {
       loadMoreFinish(getData(ts));
-    }else if (!TextUtils.isEmpty(ts.getMsg())){
+    } else if (!TextUtils.isEmpty(ts.getMsg())) {
       ToastHelper.toast(ts.getMsg());
-    }else {
+    } else {
       ToastHelper.toast(String.valueOf(ts.getCode()));
     }
   }

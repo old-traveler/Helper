@@ -11,7 +11,6 @@ public class DensityUtil {
     return (int) (dpValue * scale + 0.5f);
   }
 
-
   public static int px2dip(float pxValue) {
     final float scale = UiHelper.getDisplayMetrics().density;
     return (int) (pxValue / scale + 0.5f);
@@ -26,7 +25,4 @@ public class DensityUtil {
     DisplayMetrics dm = HelperApplication.getContext().getResources().getDisplayMetrics();
     return dm.heightPixels;
   }
-
-
-
 }

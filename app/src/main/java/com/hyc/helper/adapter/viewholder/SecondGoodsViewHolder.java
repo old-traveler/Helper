@@ -35,9 +35,9 @@ public class SecondGoodsViewHolder extends BaseViewHolder<SecondHandBean.GoodsBe
 
   @Override
   public void loadItemData(Context context, SecondHandBean.GoodsBean data, int position) {
-    ImageRequestHelper.loadImage(context,data.getImage(),ivSecondGoods);
+    ImageRequestHelper.loadImage(context, data.getImage(), ivSecondGoods);
     tvSecondTitle.setText(data.getTit());
-    String price = "¥"+data.getPrize();
+    String price = "¥" + data.getPrize();
     tvSecondPrice.setText(price);
     tvDate.setText(data.getCreated_on());
   }

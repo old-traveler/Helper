@@ -10,19 +10,21 @@ import com.hyc.helper.bean.LostBean;
 import com.hyc.helper.model.LostGoodsModel;
 import java.util.List;
 
-public class LostFindFragment extends BaseListFragment<LostBean.GoodsBean,LostBean,LostFindViewHolder> {
+public class LostFindFragment
+    extends BaseListFragment<LostBean.GoodsBean, LostBean, LostFindViewHolder> {
 
-  private LostGoodsModel lostGoodsModel= new LostGoodsModel();
+  private LostGoodsModel lostGoodsModel = new LostGoodsModel();
 
   @Override
   protected BaseRecycleAdapter<LostBean.GoodsBean, LostFindViewHolder> setRecycleAdapter() {
-    return new BaseRecycleAdapter<>(null,R.layout.item_lost,LostFindViewHolder.class);
+    return new BaseRecycleAdapter<>(null, R.layout.item_lost, LostFindViewHolder.class);
   }
 
   @Override
   protected void initRecyclerView(View view) {
     super.initRecyclerView(view);
-    getRecyclerView().setLayoutManager(new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL));
+    getRecyclerView().setLayoutManager(
+        new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
   }
 
   @Override
@@ -37,7 +39,7 @@ public class LostFindFragment extends BaseListFragment<LostBean.GoodsBean,LostBe
 
   @Override
   protected void requestListData(int page) {
-    lostGoodsModel.getAllLostGoods(page,this);
+    lostGoodsModel.getAllLostGoods(page, this);
   }
 
   @Override

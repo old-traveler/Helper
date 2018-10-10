@@ -14,32 +14,31 @@ import com.hyc.helper.util.DensityUtil;
 
 public class UiHelper {
 
-
-  public static View inflater(int resId,ViewGroup parent){
-    return LayoutInflater.from(parent.getContext()).inflate(resId,parent,false);
+  public static View inflater(int resId, ViewGroup parent) {
+    return LayoutInflater.from(parent.getContext()).inflate(resId, parent, false);
   }
 
-  public static int[] getIntegerArrays(int resId){
+  public static int[] getIntegerArrays(int resId) {
     return HelperApplication.getContext().getResources().getIntArray(resId);
   }
 
-  public static float getTextSize(int resId){
+  public static float getTextSize(int resId) {
     return HelperApplication.getContext().getResources().getDimension(resId);
   }
 
-  public static View inflater(Context context,int resId,ViewGroup parent){
-    return LayoutInflater.from(context).inflate(resId,parent);
+  public static View inflater(Context context, int resId, ViewGroup parent) {
+    return LayoutInflater.from(context).inflate(resId, parent);
   }
 
-  public static String getString(int resId){
+  public static String getString(int resId) {
     return HelperApplication.getContext().getResources().getString(resId);
   }
 
-  public static int getColor(int resId){
+  public static int getColor(int resId) {
     return HelperApplication.getContext().getResources().getColor(resId);
   }
 
-  public static LinearLayout getLinearLayout(Context context){
+  public static LinearLayout getLinearLayout(Context context) {
     LinearLayout linearLayout = new LinearLayout(context);
     linearLayout.setOrientation(LinearLayout.VERTICAL);
     return linearLayout;
@@ -49,24 +48,23 @@ public class UiHelper {
     return HelperApplication.getContext().getResources().getDisplayMetrics();
   }
 
-  public static String[] getStringArrays(int resId){
+  public static String[] getStringArrays(int resId) {
     return HelperApplication.getContext().getResources().getStringArray(resId);
   }
 
-  public static Drawable getDefaultPlaceholder(){
+  public static Drawable getDefaultPlaceholder() {
     return HelperApplication.getContext().getResources().getDrawable(R.drawable.bg_placeholder);
   }
 
   /**
    * 设置某个View的margin
    *
-   * @param view   需要设置的view
-   * @param isDp   需要设置的数值是否为DP
-   * @param left   左边距
-   * @param right  右边距
-   * @param top    上边距
+   * @param view 需要设置的view
+   * @param isDp 需要设置的数值是否为DP
+   * @param left 左边距
+   * @param right 右边距
+   * @param top 上边距
    * @param bottom 下边距
-   * @return
    */
   public static ViewGroup.LayoutParams setViewMargin(View view
       , boolean isDp, int left, int right, int top, int bottom) {
@@ -102,11 +100,10 @@ public class UiHelper {
     return marginParams;
   }
 
-
-  public static void setViewSize(View view,ImageSizeBean viewSize) {
+  public static void setViewSize(View view, ImageSizeBean viewSize) {
     ViewGroup.LayoutParams params = view.getLayoutParams();
-    if (params == null){
-      params = new ViewGroup.LayoutParams(viewSize.getWidth(),viewSize.getHeight());
+    if (params == null) {
+      params = new ViewGroup.LayoutParams(viewSize.getWidth(), viewSize.getHeight());
     }
     params.width = viewSize.getWidth();
     params.height = viewSize.getHeight();
@@ -114,10 +111,9 @@ public class UiHelper {
     view.requestLayout();
   }
 
-  public static boolean isLongImage(ImageSizeBean bean){
-    float screenScale = DensityUtil.getScreenHeight()*1.0f/DensityUtil.getScreenWidth();
-    float imageScale = bean.getHeight()*1.0f/bean.getWidth();
+  public static boolean isLongImage(ImageSizeBean bean) {
+    float screenScale = DensityUtil.getScreenHeight() * 1.0f / DensityUtil.getScreenWidth();
+    float imageScale = bean.getHeight() * 1.0f / bean.getWidth();
     return imageScale > screenScale;
   }
-
 }

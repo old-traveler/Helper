@@ -6,8 +6,7 @@ public class LogHelper {
 
   public static final String TAG = "helper";
 
-  public static void log(String msg){
-    Log.e(TAG,msg);
+  public static void log(String msg) {
+    Log.e(TAG, msg);
   }
-
 }

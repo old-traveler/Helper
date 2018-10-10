@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import org.greenrobot.greendao.converter.PropertyConverter;
 
-public class IntegerConverter implements PropertyConverter<List<Integer>,String>{
+public class IntegerConverter implements PropertyConverter<List<Integer>, String> {
   @Override
   public List<Integer> convertToEntityProperty(String databaseValue) {
-    if (databaseValue == null){
+    if (databaseValue == null) {
       return null;
     }
     String[] numbers = databaseValue.split(",");
@@ -15,7 +15,7 @@ public class IntegerConverter implements PropertyConverter<List<Integer>,String>
     for (String number : numbers) {
       try {
         integers.add(Integer.valueOf(number));
-      }catch (Exception e){
+      } catch (Exception e) {
         e.printStackTrace();
       }
     }
@@ -24,7 +24,7 @@ public class IntegerConverter implements PropertyConverter<List<Integer>,String>
 
   @Override
   public String convertToDatabaseValue(List<Integer> entityProperty) {
-    if (entityProperty == null){
+    if (entityProperty == null) {
       return null;
     }
     StringBuilder str = new StringBuilder();
@@ -32,8 +32,8 @@ public class IntegerConverter implements PropertyConverter<List<Integer>,String>
       str.append(integer);
       str.append(",");
     }
-    if (str.length()>0){
-      str.deleteCharAt(str.length()-1);
+    if (str.length() > 0) {
+      str.deleteCharAt(str.length() - 1);
     }
     return str.toString();
   }

@@ -8,6 +8,7 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.provider.MediaStore.Images.Thumbnails;
+import android.text.TextUtils;
 import com.hyc.helper.HelperApplication;
 import com.hyc.helper.bean.ImageSizeBean;
 import com.hyc.helper.bean.ImageUploadBean;
@@ -92,8 +93,12 @@ public class FileHelper {
     return new ImageSizeBean(options.outWidth, options.outHeight);
   }
 
-  public static boolean isGifImage(String url) {
-    return false;
+  public static boolean isGifImage(String path) {
+    BitmapFactory.Options options = new BitmapFactory.Options();
+    options.inJustDecodeBounds = true;
+    BitmapFactory.decodeFile(path, options);
+    String type = options.outMimeType;
+    return !TextUtils.isEmpty(type)&&type.equals("image/gif");
   }
 
   @SuppressLint("CheckResult")
