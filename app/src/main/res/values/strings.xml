@@ -22,6 +22,7 @@
   <string name="add_image_tip">添加图片（最多四张）</string>
   <string name="camera_premission_tip">请先给予相机和本地内存权限</string>
   <string name="max_count_image_tip">最多选择四张图片</string>
+  <string name="delete">删除</string>
 
   <string-array name="weeks">
     <item>周一</item>

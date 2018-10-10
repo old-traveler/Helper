@@ -1,8 +1,11 @@
 package com.hyc.helper.helper;
 
+import android.annotation.SuppressLint;
 import android.content.ContentResolver;
+import android.content.Context;
 import android.database.Cursor;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.provider.MediaStore;
 import android.provider.MediaStore.Images.Thumbnails;
 import com.hyc.helper.HelperApplication;
@@ -14,6 +17,8 @@ import com.hyc.helper.util.Sha1Utils;
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.Consumer;
+import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -91,6 +96,7 @@ public class FileHelper {
     return false;
   }
 
+  @SuppressLint("CheckResult")
   public static void uploadImage(UserBean userBean, List<File> files,
       io.reactivex.Observer<ImageUploadBean> observer) {
     SimpleDateFormat format = new SimpleDateFormat("YYYY-MM");
@@ -101,13 +107,38 @@ public class FileHelper {
       RequestBody requestFile =
           RequestBody.create(MediaType.parse("multipart/form-data"), file);
       MultipartBody.Part body =
-          MultipartBody.Part.createFormData(file.getName(), file.getName(), requestFile);
+          MultipartBody.Part.createFormData("file", file.getName(), requestFile);
       RequestHelper.getRequestApi()
-          .uploadImage(userBean.getData().getStudentKH(), userBean.getRemember_code_app(), env,
-              body)
+          .uploadImage(userBean.getData().getStudentKH(), userBean.getRemember_code_app(), env,body)
           .subscribeOn(Schedulers.io())
           .observeOn(AndroidSchedulers.mainThread())
           .subscribe(observer);
     }
+  }
+
+  public static String getFilePath(Context context, Uri uri) {
+    if (null == uri) return null;
+
+    final String scheme = uri.getScheme();
+    String data = null;
+
+    if (scheme == null) {
+      data = uri.getPath();
+    } else if (ContentResolver.SCHEME_FILE.equals(scheme)) {
+      data = uri.getPath();
+    } else if (ContentResolver.SCHEME_CONTENT.equals(scheme)) {
+      Cursor cursor = context.getContentResolver()
+          .query(uri, new String[] { MediaStore.Images.ImageColumns.DATA }, null, null, null);
+      if (null != cursor) {
+        if (cursor.moveToFirst()) {
+          int index = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
+          if (index > -1) {
+            data = cursor.getString(index);
+          }
+        }
+        cursor.close();
+      }
+    }
+    return data;
   }
 }

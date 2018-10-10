@@ -48,6 +48,8 @@ public class StatementViewHolder extends BaseViewHolder<StatementBean.StatementI
   TextView tvLikeCount;
   @BindView(R.id.tv_comment_info)
   TextView tvCommentInfo;
+  @BindView(R.id.tv_delete_statement)
+  TextView tvDeleteStatement;
 
   private UserModel userModel;
   private StatementModel statementModel;
@@ -94,9 +96,14 @@ public class StatementViewHolder extends BaseViewHolder<StatementBean.StatementI
     }
     imageLayout.setImageListUrl(data.getPics());
     sbLike.setChecked(data.isIs_like());
+    if (data.getUser_id().equals(String.valueOf(userModel.getCurUserInfo().getData().getUser_id()))){
+      tvDeleteStatement.setVisibility(View.VISIBLE);
+    }else {
+      tvDeleteStatement.setVisibility(View.GONE);
+    }
   }
 
-  @OnClick({ R.id.iv_publisher_head, R.id.tv_publish_name, R.id.sb_like })
+  @OnClick({ R.id.iv_publisher_head, R.id.tv_publish_name, R.id.sb_like,R.id.tv_delete_statement })
   public void onViewClicked(View view) {
     switch (view.getId()) {
       case R.id.iv_publisher_head:
@@ -122,5 +129,6 @@ public class StatementViewHolder extends BaseViewHolder<StatementBean.StatementI
   public void setOnClickListener(View.OnClickListener onClickListener) {
     super.setOnClickListener(onClickListener);
     vComment.setOnClickListener(onClickListener);
+    tvDeleteStatement.setOnClickListener(onClickListener);
   }
 }

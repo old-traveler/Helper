@@ -71,5 +71,9 @@ public interface NetApiService {
       @Path("env") String env, @Part
       MultipartBody.Part file);
 
+  @GET("statement/deleteWechat/{number}/{code}/{momend_id}")
+  Observable<BaseRequestBean> deleteStatement(@Path("number")String number,@Path("code")String code,@Path("momend_id")String momend_id);
+
+
   //考试计划 home/examination_wechat/学号/code
 }

@@ -93,6 +93,16 @@
         app:siShape="@raw/heart"
         android:layout_width="20dp"
         android:layout_height="20dp" />
+
+      <TextView
+        android:id="@+id/tv_delete_statement"
+        android:textColor="#fe3131"
+        android:text="@string/delete"
+        android:layout_gravity="end|center_vertical"
+        android:layout_marginEnd="100dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
       <View
         android:id="@+id/v_comment"
         android:layout_marginEnd="60dp"

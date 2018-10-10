@@ -15,6 +15,7 @@ import com.hyc.helper.activity.PublishStatementActivity;
 import com.hyc.helper.adapter.viewholder.StatementViewHolder;
 import com.hyc.helper.base.adapter.BaseRecycleAdapter;
 import com.hyc.helper.base.fragment.BaseListFragment;
+import com.hyc.helper.base.util.ToastHelper;
 import com.hyc.helper.bean.CommentInfoBean;
 import com.hyc.helper.bean.StatementBean;
 import com.hyc.helper.bean.UserBean;
@@ -122,6 +123,16 @@ public class StatementFragment extends
     if (view.getId() == R.id.v_comment) {
       showCommentInput();
       this.position = position;
+    }else if (view.getId()==R.id.tv_delete_statement){
+      showLoadingView();
+      statementModel.deleteStatement(userModel.getCurUserInfo(),itemData.getId())
+          .subscribe(baseRequestBean -> {
+            getRecycleAdapter().removeItemFormList(position);
+            closeLoadingView();
+          }, throwable -> {
+            ToastHelper.toast(throwable.getMessage());
+            closeLoadingView();
+          });
     }
   }
 

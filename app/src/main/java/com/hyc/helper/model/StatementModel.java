@@ -1,19 +1,23 @@
 package com.hyc.helper.model;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import com.hyc.helper.HelperApplication;
 import com.hyc.helper.activity.MainActivity;
+import com.hyc.helper.base.activity.BaseActivity;
 import com.hyc.helper.bean.BaseRequestBean;
 import com.hyc.helper.bean.ImageUploadBean;
 import com.hyc.helper.bean.StatementBean;
 import com.hyc.helper.bean.UserBean;
 import com.hyc.helper.helper.FileHelper;
+import com.hyc.helper.helper.LogHelper;
 import com.hyc.helper.helper.RequestHelper;
 import com.hyc.helper.helper.UploadImageObserver;
 import io.reactivex.Flowable;
+import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
@@ -21,6 +25,8 @@ import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 import java.io.File;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 import top.zibin.luban.CompressionPredicate;
@@ -58,9 +64,9 @@ public class StatementModel {
       publishStatement(userBean, content, observer);
       return;
     }
-    List<Uri> imageUri = new ArrayList<>(images.size());
+    List<File> imageFile = new ArrayList<>(images.size());
     for (String image : images) {
-      imageUri.add(Uri.parse(image));
+        imageFile.add(new File(FileHelper.getFilePath((Context) observer,Uri.parse(image))));
     }
     UploadImageObserver uploadBeanObserver = new UploadImageObserver(images.size(),
         new UploadImageObserver.OnUploadImageListener() {
@@ -74,10 +80,10 @@ public class StatementModel {
             observer.onError(e);
           }
         });
-    Flowable.just(imageUri)
+    Flowable.just(imageFile)
         .observeOn(Schedulers.io())
-        .map(list -> Luban.with(HelperApplication.getContext())
-            .load(imageUri)
+        .map(uris -> Luban.with((BaseActivity) observer)
+            .load(uris)
             .ignoreBy(100)
             .filter(path -> !(TextUtils.isEmpty(path) || path.toLowerCase().endsWith(".gif")))
             .get())
@@ -101,4 +107,14 @@ public class StatementModel {
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(observer);
   }
+
+
+  public Observable<BaseRequestBean> deleteStatement(UserBean userBean,String momend_id){
+    return RequestHelper.getRequestApi()
+        .deleteStatement(userBean.getData().getStudentKH(),userBean.getRemember_code_app(),momend_id)
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread());
+
+  }
+
 }
