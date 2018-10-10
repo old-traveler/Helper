@@ -53,6 +53,13 @@ public abstract class BaseListFragment<T,B extends BaseRequestBean,VH extends Ba
     }
   }
 
+
+  public void refresh(){
+    if (mRefreshLayout!=null){
+      mRefreshLayout.autoRefresh();
+    }
+  }
+
   public RecyclerView getRecyclerView() {
     return recyclerView;
   }

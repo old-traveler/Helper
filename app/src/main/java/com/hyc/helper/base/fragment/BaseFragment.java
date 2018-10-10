@@ -52,6 +52,10 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
     mBaseActivity.goToOtherActivityForResult(cls,bundle,requestCode);
   }
 
+  public void goToOtherActivityForResult(Class<?> cls, int requestCode) {
+    mBaseActivity.goToOtherActivityForResult(cls,requestCode);
+  }
+
   @Override public void backForResult(Class<?> cls, Bundle bundle, int resultCode) {
     mBaseActivity.backForResult(cls,bundle,resultCode);
   }

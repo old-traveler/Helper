@@ -17,6 +17,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import com.hyc.helper.R;
+import com.hyc.helper.activity.fragment.StatementFragment;
 import com.hyc.helper.adapter.viewholder.PublishImageViewHolder;
 import com.hyc.helper.base.activity.BaseRequestActivity;
 import com.hyc.helper.base.adapter.BaseRecycleAdapter;
@@ -72,6 +73,7 @@ public class PublishStatementActivity extends BaseRequestActivity<BaseRequestBea
   @Override
   protected void onSuccessGetData(BaseRequestBean baseRequestBean) {
     ToastHelper.toast("发布成功");
+    backForResult(StatementFragment.class,RESULT_OK);
   }
 
   @Override

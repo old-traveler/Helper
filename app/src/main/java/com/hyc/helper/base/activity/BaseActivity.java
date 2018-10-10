@@ -75,9 +75,20 @@ public abstract class BaseActivity extends AppCompatActivity
     startActivityForResult(intent,requestCode);
   }
 
+  public void goToOtherActivityForResult(Class<?> cls, int requestCode) {
+    Intent intent = new Intent(this,cls);
+    startActivityForResult(intent,requestCode);
+  }
+
   @Override public void backForResult(Class<?> cls, Bundle bundle, int resultCode) {
     Intent intent = new Intent(this,cls);
     intent.putExtras(bundle);
+    setResult(resultCode,intent);
+    finish();
+  }
+
+  public void backForResult(Class<?> cls, int resultCode) {
+    Intent intent = new Intent(this,cls);
     setResult(resultCode,intent);
     finish();
   }

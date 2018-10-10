@@ -1,5 +1,6 @@
 package com.hyc.helper.activity.fragment;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -22,6 +23,8 @@ import com.hyc.helper.bean.UserBean;
 import com.hyc.helper.model.StatementModel;
 import com.hyc.helper.model.UserModel;
 import java.util.List;
+
+import static android.app.Activity.RESULT_OK;
 
 public class StatementFragment extends
     BaseListFragment<StatementBean.StatementInfoBean, StatementBean, StatementViewHolder> {
@@ -143,8 +146,16 @@ public class StatementFragment extends
         sendComment();
         break;
       case R.id.fb_publish_statement:
-        goToOtherActivity(PublishStatementActivity.class,false);
+        startActivityForResult(new Intent(getActivity(),PublishStatementActivity.class),2010);
         break;
+    }
+  }
+
+  @Override
+  public void onActivityResult(int requestCode, int resultCode, Intent data) {
+    super.onActivityResult(requestCode, resultCode, data);
+    if (requestCode == 2010 && resultCode == RESULT_OK) {
+      refresh();
     }
   }
 }
