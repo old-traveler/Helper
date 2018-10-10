@@ -23,6 +23,7 @@ import com.hyc.helper.activity.fragment.TimetableFragment;
 import com.hyc.helper.adapter.TechFragmentPageAdapter;
 import com.hyc.helper.base.activity.BaseActivity;
 import com.hyc.helper.base.fragment.BaseFragment;
+import com.hyc.helper.base.fragment.BaseListFragment;
 import com.hyc.helper.base.util.UiHelper;
 import com.hyc.helper.bean.ConfigureBean;
 import com.hyc.helper.helper.ConfigureHelper;
@@ -65,10 +66,28 @@ public class MainActivity extends BaseActivity {
   public void initViewWithIntentData(Bundle bundle) {
     ButterKnife.bind(this);
     setToolBar(R.id.toolbar, "Helper", R.drawable.ic_more_info);
-    tbMain.addTab(tbMain.newTab().setText("课表"));
+    tbMain.addTab(tbMain.newTab().setText("课程表"));
     tbMain.addTab(tbMain.newTab().setText("校园说说"));
     tbMain.addTab(tbMain.newTab().setText("二手市场"));
     tbMain.addTab(tbMain.newTab().setText("失物招领"));
+    tbMain.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+      @Override
+      public void onTabSelected(TabLayout.Tab tab) {
+
+      }
+
+      @Override
+      public void onTabUnselected(TabLayout.Tab tab) {
+
+      }
+
+      @Override
+      public void onTabReselected(TabLayout.Tab tab) {
+        if (adapter.getItem(tab.getPosition()) instanceof BaseListFragment){
+          ((BaseListFragment)adapter.getItem(tab.getPosition())).backToTop();
+        }
+      }
+    });
     list = new ArrayList<>(4);
     list.add(new TimetableFragment());
     list.add(new StatementFragment());

@@ -36,6 +36,8 @@ public class TimetableFragment extends BaseRequestFragment<CourseBean> implement
   LinearLayout llLeftTip;
   @BindView(R.id.ctl_course)
   CourseTableLayout ctlCourse;
+  @BindView(R.id.tv_month)
+  TextView tvMonth;
   private CourseModel courseModel;
   private UserModel userModel;
   private boolean needRefreshDb = false;
@@ -88,6 +90,7 @@ public class TimetableFragment extends BaseRequestFragment<CourseBean> implement
       }
       llTopTitle.addView(textView, index++);
     }
+    tvMonth.setText(DateHelper.getCurMonth()+"月");
   }
 
   private void initCurWeekText(TextView textView) {

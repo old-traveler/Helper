@@ -60,6 +60,12 @@ public abstract class BaseListFragment<T, B extends BaseRequestBean, VH extends 
     }
   }
 
+  public void backToTop(){
+    if (recyclerView!=null){
+      recyclerView.scrollToPosition(0);
+    }
+  }
+
   public RecyclerView getRecyclerView() {
     return recyclerView;
   }

@@ -52,6 +52,7 @@
     android:layout_height="30dp">
 
     <TextView
+      android:id="@+id/tv_month"
       android:textSize="11sp"
       android:text="9月"
       android:gravity="center"

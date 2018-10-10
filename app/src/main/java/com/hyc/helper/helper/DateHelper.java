@@ -23,4 +23,11 @@ public class DateHelper {
     int day = c.get(Calendar.DAY_OF_WEEK) - 1;
     return day == 0 ? 7 : day;
   }
+
+  public static int getCurMonth(){
+    Calendar c = Calendar.getInstance();
+    int month = c.get(Calendar.MONTH)+1;
+    return month;
+  }
+
 }

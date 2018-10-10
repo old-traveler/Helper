@@ -9,12 +9,15 @@ import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.hyc.helper.R;
+import com.hyc.helper.activity.PictureBrowsingActivity;
 import com.hyc.helper.base.adapter.viewholder.BaseViewHolder;
 import com.hyc.helper.base.util.UiHelper;
 import com.hyc.helper.bean.LostBean;
 import com.hyc.helper.view.ImageLayout;
+import java.util.ArrayList;
 
-public class LostFindViewHolder extends BaseViewHolder<LostBean.GoodsBean> {
+public class LostFindViewHolder extends BaseViewHolder<LostBean.GoodsBean>
+    implements ImageLayout.OnItemClickListener {
 
   @BindView(R.id.tv_content)
   TextView tvContent;
@@ -56,5 +59,14 @@ public class LostFindViewHolder extends BaseViewHolder<LostBean.GoodsBean> {
     tvUsername.setText(data.getUsername());
     tvDate.setText(data.getTime());
     ivLostImage.setImageListUrl(data.getPics());
+    ivLostImage.setOnItemClickListener(this);
+  }
+
+  @Override
+  public void onItemImageClick(int position) {
+    if (itemView.getContext()!= null){
+      PictureBrowsingActivity.goToPictureBrowsingActivity(ivLostImage.getContext(),position,
+          (ArrayList<String>) getData().getPics());
+    }
   }
 }
