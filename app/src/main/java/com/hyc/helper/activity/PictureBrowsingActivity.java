@@ -1,5 +1,7 @@
 package com.hyc.helper.activity;
 
+import android.app.Activity;
+import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.PointF;
@@ -24,9 +26,12 @@ import com.davemorrissey.labs.subscaleview.ImageViewState;
 import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView;
 import com.hyc.helper.R;
 import com.hyc.helper.base.util.UiHelper;
+import com.hyc.helper.bean.BigImageLoadRecordBean;
 import com.hyc.helper.bean.ImageSizeBean;
 import com.hyc.helper.helper.FileHelper;
 import com.hyc.helper.helper.ImageRequestHelper;
+import com.hyc.helper.model.ImageModel;
+import io.reactivex.functions.Consumer;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -38,6 +43,7 @@ public class PictureBrowsingActivity extends AppCompatActivity {
   private ViewPager viewPager;
   private List<String> imagesUrl;
   private int curImagePosition;
+  private ImageModel imageModel = new ImageModel();
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +63,7 @@ public class PictureBrowsingActivity extends AppCompatActivity {
     bundle.putInt("curImagePosition", curImagePosition);
     bundle.putStringArrayList("images", imagesUrl);
     intent.putExtras(bundle);
-    context.startActivity(intent);
+    context.startActivity(intent, ActivityOptions.makeSceneTransitionAnimation((Activity) context).toBundle());
   }
 
   private void initViewWithData(Bundle bundle) {
@@ -94,15 +100,30 @@ public class PictureBrowsingActivity extends AppCompatActivity {
         loadImage(imageView, scaleImageView, new File(imagesUrl.get(position)));
         textView.setVisibility(View.GONE);
       } else {
-        textView.setVisibility(View.VISIBLE);
-        ImageRequestHelper.loadImage(PictureBrowsingActivity.this, imagesUrl.get(position),
-            imageView);
-        textView.setOnClickListener(
-            view -> showBigImage(view, progressBar, imageView, scaleImageView, position));
+        imageModel.getBigImageLoadRecord(imagesUrl.get(position),
+            bean -> {
+              if (bean != null && FileHelper.fileIsExist(bean.getFilePath())) {
+                textView.setVisibility(View.GONE);
+                loadImage(imageView, scaleImageView, new File(bean.getFilePath()));
+              } else {
+                showImage(textView, progressBar, imageView, scaleImageView, position);
+              }
+            }, throwable -> {
+              showImage(textView, progressBar, imageView, scaleImageView, position);
+            });
       }
 
       container.addView(itemView);
       return itemView;
+    }
+
+    private void showImage(View textView, ProgressBar progressBar, ImageView imageView,
+        SubsamplingScaleImageView scaleImageView, int position) {
+      textView.setVisibility(View.VISIBLE);
+      ImageRequestHelper.loadImage(PictureBrowsingActivity.this, imagesUrl.get(position),
+          imageView);
+      textView.setOnClickListener(
+          view -> showBigImage(view, progressBar, imageView, scaleImageView, position));
     }
 
     private void showBigImage(View textView, ProgressBar progressBar, ImageView imageView,
@@ -114,6 +135,8 @@ public class PictureBrowsingActivity extends AppCompatActivity {
             @Override
             public void onResourceReady(@NonNull File resource,
                 @Nullable Transition<? super File> transition) {
+              imageModel.saveBigImageLoadRecord(
+                  new BigImageLoadRecordBean(imagesUrl.get(position), resource.getPath()));
               loadImage(imageView, subsamplingScaleImageView, resource);
               progressBar.setVisibility(View.GONE);
             }

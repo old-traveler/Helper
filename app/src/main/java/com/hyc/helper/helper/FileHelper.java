@@ -146,4 +146,9 @@ public class FileHelper {
     }
     return data;
   }
+
+  public static boolean fileIsExist(String path){
+    return new File(path).exists();
+  }
+
 }

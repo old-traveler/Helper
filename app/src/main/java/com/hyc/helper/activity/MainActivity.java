@@ -98,8 +98,8 @@ public class MainActivity extends BaseActivity {
     vpMain.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tbMain));
     tbMain.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(vpMain));
     vpMain.setOffscreenPageLimit(5);
-    ConfigureBean configureBean = configModel.getConfigInfo();
-    cupid(configureBean, CupidHelper.cupid(configureBean, userModel.getStudentId()));
+    //ConfigureBean configureBean = configModel.getConfigInfo();
+    //cupid(configureBean, CupidHelper.cupid(configureBean, userModel.getStudentId()));
   }
 
   @Override

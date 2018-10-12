@@ -1,7 +1,9 @@
 package com.hyc.helper.helper;
 
+import com.hyc.helper.bean.BigImageLoadRecordBean;
 import com.hyc.helper.bean.CourseBean;
 import com.hyc.helper.bean.CourseInfoBean;
+import com.hyc.helper.gen.BigImageLoadRecordBeanDao;
 import com.hyc.helper.gen.CourseInfoBeanDao;
 import io.reactivex.Observable;
 import java.util.List;
@@ -27,4 +29,18 @@ public class DbSearchHelper {
       emitter.onComplete();
     });
   }
+
+  public static Observable<BigImageLoadRecordBean> searchBigImageLoadRecord(String originUrl){
+    return Observable.create(emitter -> {
+      BigImageLoadRecordBean bean = DaoHelper.getDefault()
+          .getDaoSession()
+          .getBigImageLoadRecordBeanDao()
+          .queryBuilder()
+          .where(BigImageLoadRecordBeanDao.Properties.OriginUrl.eq(originUrl))
+          .build().unique();
+      emitter.onNext(bean);
+      emitter.onComplete();
+    });
+  }
+
 }
