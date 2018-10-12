@@ -4,6 +4,7 @@ import butterknife.Optional;
 import com.hyc.helper.bean.BaseRequestBean;
 import com.hyc.helper.bean.ConfigureBean;
 import com.hyc.helper.bean.CourseBean;
+import com.hyc.helper.bean.FindPeopleBean;
 import com.hyc.helper.bean.GoodsDetailBean;
 import com.hyc.helper.bean.ImageUploadBean;
 import com.hyc.helper.bean.LostBean;
@@ -74,6 +75,11 @@ public interface NetApiService {
   @GET("statement/deleteWechat/{number}/{code}/{momend_id}")
   Observable<BaseRequestBean> deleteStatement(@Path("number") String number,
       @Path("code") String code, @Path("momend_id") String momend_id);
+
+  @FormUrlEncoded
+  @POST("im/get_students/{number}/{code}/{env}")
+  Observable<FindPeopleBean> findPeople(@Path("number") String number, @Path("code") String code,
+      @Path("env") String env, @Field("name") String name);
 
   //考试计划 home/examination_wechat/学号/code
 }

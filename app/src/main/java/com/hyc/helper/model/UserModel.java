@@ -1,8 +1,11 @@
 package com.hyc.helper.model;
 
+import com.hyc.helper.bean.FindPeopleBean;
 import com.hyc.helper.bean.UserBean;
 import com.hyc.helper.helper.RequestHelper;
 import com.hyc.helper.helper.SpCacheHelper;
+import com.hyc.helper.util.Sha1Utils;
+import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
@@ -34,5 +37,14 @@ public class UserModel {
 
   public String getStudentId() {
     return getCurUserInfo().getData().getStudentKH();
+  }
+
+  public Observable<FindPeopleBean> findUserInfoByName(String name) {
+    UserBean curUser = getCurUserInfo();
+    return RequestHelper.getRequestApi()
+        .findPeople(curUser.getData().getStudentKH(), curUser.getRemember_code_app(),
+            Sha1Utils.getEnv(curUser), name)
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread());
   }
 }

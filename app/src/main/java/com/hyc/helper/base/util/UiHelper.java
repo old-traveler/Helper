@@ -34,6 +34,11 @@ public class UiHelper {
     return HelperApplication.getContext().getResources().getString(resId);
   }
 
+  public static String getString(int resId,int value){
+    String str = getString(resId);
+    return String.format(str,value);
+  }
+
   public static int getColor(int resId) {
     return HelperApplication.getContext().getResources().getColor(resId);
   }

@@ -24,6 +24,13 @@
   <string name="max_count_image_tip">最多选择四张图片</string>
   <string name="delete">删除</string>
   <string name="show_oral_image">查看原图</string>
+  <string name="week_tip">第%1$d周</string>
+  <string name="course_table">课程表</string>
+  <string name="school_statement">校园说说</string>
+  <string name="second_market">二手市场</string>
+  <string name="lost_find">失物招领</string>
+  <string name="apk_name">helper.apk</string>
+  <string name="input_name">输入姓名</string>
 
   <string-array name="weeks">
     <item>周一</item>

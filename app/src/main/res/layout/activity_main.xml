@@ -6,7 +6,7 @@
   android:id="@+id/main_content"
   xmlns:app="http://schemas.android.com/apk/res-auto"
   tools:context=".activity.MainActivity">
-  <LinearLayout
+  <RelativeLayout
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -30,13 +30,25 @@
 
     </android.support.design.widget.AppBarLayout>
 
+    <android.support.v7.widget.RecyclerView
+      android:layout_marginBottom="200dp"
+      android:layout_marginTop="?attr/actionBarSize"
+      android:id="@+id/rv_search_people"
+      android:background="@color/white"
+      android:elevation="7dp"
+      android:layout_marginStart="10dp"
+      android:layout_marginEnd="10dp"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"/>
+
     <android.support.v4.view.ViewPager
+      android:layout_below="@id/appbar"
       android:id="@+id/vp_main"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       />
 
-  </LinearLayout>
+  </RelativeLayout>
 
   <android.support.design.widget.NavigationView
     android:id="@+id/nav_view"

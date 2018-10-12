@@ -1,7 +1,10 @@
 package com.hyc.helper.util;
 
+import com.hyc.helper.bean.UserBean;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Sha1Utils {
 
@@ -41,4 +44,12 @@ public class Sha1Utils {
     }
     return des;
   }
+
+  public static String getEnv(UserBean userBean){
+    SimpleDateFormat format = new SimpleDateFormat("YYYY-MM");
+    String date = format.format(new Date(System.currentTimeMillis()));
+    return shaEncrypt(
+        userBean.getData().getStudentKH() + userBean.getRemember_code_app() + date);
+  }
+
 }

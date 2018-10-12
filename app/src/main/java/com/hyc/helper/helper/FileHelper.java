@@ -104,10 +104,7 @@ public class FileHelper {
   @SuppressLint("CheckResult")
   public static void uploadImage(UserBean userBean, List<File> files,
       io.reactivex.Observer<ImageUploadBean> observer) {
-    SimpleDateFormat format = new SimpleDateFormat("YYYY-MM");
-    String date = format.format(new Date(System.currentTimeMillis()));
-    String env = Sha1Utils.shaEncrypt(
-        userBean.getData().getStudentKH() + userBean.getRemember_code_app() + date);
+    String env = Sha1Utils.getEnv(userBean);
     for (File file : files) {
       RequestBody requestFile =
           RequestBody.create(MediaType.parse("multipart/form-data"), file);
