@@ -33,6 +33,7 @@ import com.hyc.helper.base.activity.BaseActivity;
 import com.hyc.helper.base.adapter.BaseRecycleAdapter;
 import com.hyc.helper.base.fragment.BaseFragment;
 import com.hyc.helper.base.fragment.BaseListFragment;
+import com.hyc.helper.base.listener.OnItemClickListener;
 import com.hyc.helper.base.util.ToastHelper;
 import com.hyc.helper.base.util.UiHelper;
 import com.hyc.helper.bean.ConfigureBean;
@@ -70,7 +71,8 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
   private MenuItem selectWeek;
   private UserModel userModel = new UserModel();
   private ConfigModel configModel = new ConfigModel();
-  private BaseRecycleAdapter<FindPeopleBean.DataBean,SearchPeopleViewHolder> searchAdapter;
+  private String searchUsername;
+  private BaseRecycleAdapter<FindPeopleBean.DataBean, SearchPeopleViewHolder> searchAdapter;
 
   @Override
   protected int getContentViewId() {
@@ -107,8 +109,12 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
   private void initSearchList() {
     rvSearchPeople.setLayoutManager(new LinearLayoutManager(this));
     rvSearchPeople.setItemAnimator(new DefaultItemAnimator());
-    searchAdapter = new BaseRecycleAdapter<>(R.layout.item_search_people,SearchPeopleViewHolder.class);
+    searchAdapter =
+        new BaseRecycleAdapter<>(R.layout.item_search_people, SearchPeopleViewHolder.class);
     rvSearchPeople.setAdapter(searchAdapter);
+    searchAdapter.setOnItemClickListener(
+        (itemData, view, position) -> UserInfoActivity.goToUserInfoActivity(MainActivity.this,
+            itemData.getId(), searchUsername, null, itemData.getHead_pic_thumb()));
   }
 
   private void initViewPager() {
@@ -163,13 +169,14 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
     searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
       @Override
       public boolean onQueryTextSubmit(String s) {
+        searchUsername = s;
         requestInfoFromApi(s);
         return true;
       }
 
       @Override
       public boolean onQueryTextChange(String s) {
-        if (TextUtils.isEmpty(s)){
+        if (TextUtils.isEmpty(s)) {
           searchAdapter.setDataList(null);
         }
         return false;
@@ -178,7 +185,7 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
   }
 
   @SuppressLint("CheckResult")
-  private void requestInfoFromApi(String name){
+  private void requestInfoFromApi(String name) {
     showLoadingView();
     userModel.findUserInfoByName(name)
         .subscribe(findPeopleBean -> {

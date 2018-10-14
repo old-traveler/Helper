@@ -4,6 +4,7 @@ import android.content.Context;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import com.bumptech.glide.Glide;
@@ -26,6 +27,13 @@ public class ImageRequestHelper {
         .into(imageView);
   }
 
+  public static void loadOtherImage(Context context,String url,ImageView imageView){
+    Glide.with(context)
+        .load(url)
+        .apply(new RequestOptions().placeholder(UiHelper.getDefaultPlaceholder()))
+        .into(imageView);
+  }
+
   public static void loadImage(Context context, Uri uri, ImageView imageView) {
     Glide.with(context)
         .load(uri)
@@ -41,16 +49,21 @@ public class ImageRequestHelper {
   }
 
   public static void loadHeadImage(Context context, String url, ImageView imageView) {
+    if (TextUtils.isEmpty(url)){
+      return;
+    }
     if (url.endsWith("?")) {
       url = url.substring(0, url.length() - 2);
-    }
-    if (url.endsWith("gif")) {
-      LogHelper.log(url);
     }
     Glide.with(context)
         .load(Constant.BASE_IMAGE_URL + url)
         .apply(new RequestOptions().circleCrop().placeholder(UiHelper.getDefaultPlaceholder()))
         .into(imageView);
+  }
+
+  public static void loadBigHeadImage(Context context,String url,ImageView imageView){
+    url = url.replace("_thumb", "");
+    loadHeadImage(context,url,imageView);
   }
 
   public static void loadImageAsFile(Context context, String url, SimpleTarget<File> simpleTarget) {

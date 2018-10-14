@@ -13,4 +13,13 @@ public class Constant {
   public static final String BASE_IMAGE_URL = "http://223.111.182.121:8888/";
 
   public static final String SP_CONFIG = "configure";
+
+  public static final String USER_NAME = "user_name";
+
+  public static final String USER_ID = "user_id";
+
+  public static final String USER_BIO = "user_bio";
+
+  public static final String USER_HEAD_URL = "user_head_url";
+
 }

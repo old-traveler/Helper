@@ -16,7 +16,7 @@ public class ImageLayout extends ViewGroup implements View.OnClickListener {
 
   public static final int DEFAULT_MAX_COUNT = 4;
 
-  public static final int DEFAULR_LINE = 5;
+  public static final int DEFAULT_LINE = 5;
 
   private List<String> imageUrlList;
 
@@ -58,11 +58,11 @@ public class ImageLayout extends ViewGroup implements View.OnClickListener {
     } else {
       int count = getChildCount();
       for (int j = 0; j < count; j++) {
-        int top = j / 2 * (length + DEFAULR_LINE);
+        int top = j / 2 * (length + DEFAULT_LINE);
         if (j % 2 == 0) {
           getChildAt(j).layout(l, top, l + length, top + length);
         } else {
-          getChildAt(j).layout(l + length + DEFAULR_LINE, top, r, top + length);
+          getChildAt(j).layout(l + length + DEFAULT_LINE, top, r, top + length);
         }
       }
     }
@@ -108,11 +108,11 @@ public class ImageLayout extends ViewGroup implements View.OnClickListener {
     if (getChildCount() == 0) {
       return 0;
     } else if (getChildCount() == 1) {
-      return getChildAt(0).getMeasuredHeight();
+      return Math.min(getChildAt(0).getMeasuredHeight(),maxHeight);
     } else {
       int imageLength = maxWidth / 2;
       int childCount = getChildCount() - 1;
-      return imageLength * (childCount / 2 + 1) + childCount / 2 * DEFAULR_LINE;
+      return imageLength * (childCount / 2 + 1) + childCount / 2 * DEFAULT_LINE;
     }
   }
 
@@ -122,7 +122,7 @@ public class ImageLayout extends ViewGroup implements View.OnClickListener {
     } else if (getChildCount() == 1) {
       return getChildAt(0).getMeasuredWidth();
     } else {
-      return maxWidth + DEFAULR_LINE;
+      return maxWidth + DEFAULT_LINE;
     }
   }
 

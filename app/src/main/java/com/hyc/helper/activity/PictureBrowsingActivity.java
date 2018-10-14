@@ -66,6 +66,12 @@ public class PictureBrowsingActivity extends AppCompatActivity {
     context.startActivity(intent, ActivityOptions.makeSceneTransitionAnimation((Activity) context).toBundle());
   }
 
+  public static void goToPictureBrowsingActivity(Context context,String imageUrl){
+    ArrayList<String> arrayList = new ArrayList<>(1);
+    arrayList.add(imageUrl.replace("_thumb",""));
+    goToPictureBrowsingActivity(context,0,arrayList);
+  }
+
   private void initViewWithData(Bundle bundle) {
     imagesUrl = bundle.getStringArrayList("images");
     curImagePosition = bundle.getInt("curImagePosition");
