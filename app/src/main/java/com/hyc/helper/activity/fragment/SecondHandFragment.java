@@ -77,6 +77,9 @@ public class SecondHandFragment
 
   @Override
   protected List<SecondHandBean.GoodsBean> getData(SecondHandBean secondHandBean) {
+    if (secondHandBean.getCurrent_page()<getCurPage()){
+      return null;
+    }
     return secondHandBean.getGoods();
   }
 

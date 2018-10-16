@@ -42,6 +42,10 @@ public abstract class BaseListFragment<T, B extends BaseRequestBean, VH extends 
     startRequest();
   }
 
+  public int getCurPage(){
+    return page;
+  }
+
   private void startRequest() {
     if (mRefreshLayout != null) {
       mRefreshLayout.setOnRefreshListener(this);
@@ -155,7 +159,7 @@ public abstract class BaseListFragment<T, B extends BaseRequestBean, VH extends 
     } else {
       if (null != data && data.size() > 0) {
         adapter.appendDataToList(data);
-      } else if (null != data) {
+      } else {
         mRefreshLayout.setEnableLoadMore(false);
       }
       mRefreshLayout.finishLoadMore();

@@ -75,6 +75,9 @@ public class LostFindFragment
 
   @Override
   protected List<LostBean.GoodsBean> getData(LostBean lostBean) {
+    if (lostBean.getCurrent_page()<getCurPage()){
+      return null;
+    }
     return lostBean.getGoods();
   }
 

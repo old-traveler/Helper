@@ -85,6 +85,13 @@ public class StatementFragment extends
 
   @Override
   protected List<StatementBean.StatementInfoBean> getData(StatementBean statementBean) {
+    try{
+      if (Integer.parseInt(statementBean.getCurrent_page())<getCurPage()){
+        return null;
+      }
+    }catch (Exception e){
+     return statementBean.getStatement();
+    }
     return statementBean.getStatement();
   }
 
