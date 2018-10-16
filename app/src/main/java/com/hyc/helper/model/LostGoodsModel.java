@@ -14,4 +14,11 @@ public class LostGoodsModel {
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(observer);
   }
+
+  public void getPersonalLost(String number,String code,int page,String userId,Observer<LostBean> observer){
+    RequestHelper.getRequestApi().getUserLost(number,code,page,userId)
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(observer);
+  }
 }

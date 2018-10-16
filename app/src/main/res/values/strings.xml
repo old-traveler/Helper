@@ -35,6 +35,7 @@
   <string name="default_info_bg">http://bmob-cdn-12662.b0.upaiyun.com/2018/10/13/8756918040dee896801414552faa0d5e.png</string>
   <string name="user_info_desc_default">这家伙太懒了，什么也没留下</string>
   <string name="user_info">User Info</string>
+  <string name="my_publish">My Publish</string>
 
   <string-array name="weeks">
     <item>周一</item>

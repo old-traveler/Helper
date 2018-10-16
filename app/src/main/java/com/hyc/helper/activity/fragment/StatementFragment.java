@@ -1,11 +1,14 @@
 package com.hyc.helper.activity.fragment;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -20,6 +23,7 @@ import com.hyc.helper.base.util.ToastHelper;
 import com.hyc.helper.bean.CommentInfoBean;
 import com.hyc.helper.bean.StatementBean;
 import com.hyc.helper.bean.UserBean;
+import com.hyc.helper.helper.Constant;
 import com.hyc.helper.model.StatementModel;
 import com.hyc.helper.model.UserModel;
 import java.util.List;
@@ -33,9 +37,27 @@ public class StatementFragment extends
   @BindView(R.id.cv_comment)
   CardView cvComment;
   Unbinder unbinder;
+  private String userId;
   private int position;
   private UserModel userModel = new UserModel();
   private StatementModel statementModel = new StatementModel();
+
+  public static StatementFragment newInstance(String userId) {
+    StatementFragment statementFragment = new StatementFragment();
+    Bundle bundle = new Bundle();
+    bundle.putString(Constant.USER_ID, userId);
+    statementFragment.setArguments(bundle);
+    return statementFragment;
+  }
+
+  @Override
+  public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
+      Bundle savedInstanceState) {
+    if (getArguments() != null) {
+      userId = getArguments().getString(Constant.USER_ID);
+    }
+    return super.onCreateView(inflater, container, savedInstanceState);
+  }
 
   @Override
   protected BaseRecycleAdapter<StatementBean.StatementInfoBean, StatementViewHolder> setRecycleAdapter() {
@@ -54,7 +76,11 @@ public class StatementFragment extends
 
   @Override
   protected void requestListData(int page) {
-    statementModel.getStatementByPage(page, userModel.getStudentId(), this);
+    if (TextUtils.isEmpty(userId)) {
+      statementModel.getStatementByPage(page, userModel.getStudentId(), this);
+    } else {
+      statementModel.getPersonalStatement(userModel.getStudentId(), page, userId, this);
+    }
   }
 
   @Override

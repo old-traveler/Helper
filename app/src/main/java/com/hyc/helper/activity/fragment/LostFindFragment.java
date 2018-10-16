@@ -1,23 +1,49 @@
 package com.hyc.helper.activity.fragment;
 
+import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import com.hyc.helper.R;
 import com.hyc.helper.adapter.viewholder.LostFindViewHolder;
 import com.hyc.helper.base.adapter.BaseRecycleAdapter;
 import com.hyc.helper.base.fragment.BaseListFragment;
 import com.hyc.helper.bean.LostBean;
+import com.hyc.helper.helper.Constant;
 import com.hyc.helper.model.LostGoodsModel;
+import com.hyc.helper.model.UserModel;
 import java.util.List;
 
 public class LostFindFragment
     extends BaseListFragment<LostBean.GoodsBean, LostBean, LostFindViewHolder> {
 
   private LostGoodsModel lostGoodsModel = new LostGoodsModel();
+  private UserModel userModel = new UserModel();
+  private String userId;
 
   @Override
   protected BaseRecycleAdapter<LostBean.GoodsBean, LostFindViewHolder> setRecycleAdapter() {
     return new BaseRecycleAdapter<>(null, R.layout.item_lost, LostFindViewHolder.class);
+  }
+
+  public static LostFindFragment newInstance(String userId) {
+    LostFindFragment lostFindFragment = new LostFindFragment();
+    Bundle bundle = new Bundle();
+    bundle.putString(Constant.USER_ID, userId);
+    lostFindFragment.setArguments(bundle);
+    return lostFindFragment;
+  }
+
+  @Override
+  public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
+      Bundle savedInstanceState) {
+    if (getArguments() != null) {
+      userId = getArguments().getString(Constant.USER_ID);
+    }
+    return super.onCreateView(inflater, container, savedInstanceState);
   }
 
   @Override
@@ -39,7 +65,12 @@ public class LostFindFragment
 
   @Override
   protected void requestListData(int page) {
-    lostGoodsModel.getAllLostGoods(page, this);
+    if (TextUtils.isEmpty(userId)) {
+      lostGoodsModel.getAllLostGoods(page, this);
+    } else {
+      lostGoodsModel.getPersonalLost(userModel.getStudentId(),
+          userModel.getCurUserInfo().getRemember_code_app(), page, userId, this);
+    }
   }
 
   @Override

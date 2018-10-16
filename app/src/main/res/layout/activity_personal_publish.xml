@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  tools:context=".activity.PersonalPublishActivity">
+
+  <include layout="@layout/lib_layout_toolbar"/>
+
+  <FrameLayout
+    android:id="@+id/fl_personal_statement"
+    android:layout_marginTop="?attr/actionBarSize"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+  </FrameLayout>
+
+</FrameLayout>

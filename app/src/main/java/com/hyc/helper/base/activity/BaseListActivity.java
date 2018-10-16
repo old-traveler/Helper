@@ -5,18 +5,30 @@ import android.support.annotation.NonNull;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
+import android.view.View;
 import com.hyc.helper.base.adapter.BaseRecycleAdapter;
 import com.hyc.helper.base.adapter.viewholder.BaseViewHolder;
+import com.hyc.helper.base.listener.OnItemClickListener;
 import com.hyc.helper.base.util.ToastHelper;
+import com.hyc.helper.bean.BaseRequestBean;
+import com.hyc.helper.helper.Constant;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.constant.RefreshState;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
+import io.reactivex.Observer;
+import io.reactivex.disposables.Disposable;
 import java.util.List;
 
-public abstract class BaseListActivity<T, VH extends BaseViewHolder<T>>
-    extends BaseActivity implements OnRefreshListener, OnLoadMoreListener {
+public abstract class BaseListActivity<T, B extends BaseRequestBean, VH extends BaseViewHolder<T>>
+    extends BaseActivity implements OnRefreshListener, OnLoadMoreListener, Observer<B>,
+    OnItemClickListener<T> {
 
+  private Disposable disposable;
+  private RecyclerView recyclerView;
+  private static final int delay = 1500;
   private SmartRefreshLayout mRefreshLayout;
   private int pageStart = 1;
   private int page = pageStart;
@@ -28,22 +40,52 @@ public abstract class BaseListActivity<T, VH extends BaseViewHolder<T>>
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     initRecyclerView();
+    startRequest();
   }
 
-  private void initRecyclerView() {
-    RecyclerView recyclerView = getRecycleView();
-    mRefreshLayout = getRefreshLayout();
-    adapter = getRecycleAdapter();
-    recyclerView.setItemAnimator(new DefaultItemAnimator());
-    recyclerView.setLayoutManager(getLayoutManager());
-    recyclerView.setAdapter(adapter);
+  private void startRequest() {
     if (mRefreshLayout != null) {
-      initRecyclerView();
       mRefreshLayout.setOnRefreshListener(this);
       mRefreshLayout.setOnLoadMoreListener(this);
       mRefreshLayout.autoRefresh();
     }
   }
+
+  public void refresh() {
+    if (mRefreshLayout != null) {
+      mRefreshLayout.autoRefresh();
+    }
+  }
+
+  public void backToTop(){
+    if (recyclerView!=null){
+      recyclerView.scrollToPosition(0);
+    }
+  }
+
+  public RecyclerView getRecyclerView() {
+    return recyclerView;
+  }
+
+  public BaseRecycleAdapter<T, VH> getRecycleAdapter() {
+    return (BaseRecycleAdapter<T, VH>) recyclerView.getAdapter();
+  }
+
+  protected void initRecyclerView() {
+    recyclerView = findViewById(getRecycleViewId());
+    mRefreshLayout = findViewById(getRefreshLayoutId());
+    adapter = setRecycleAdapter();
+    adapter.setOnItemClickListener(this);
+    recyclerView.setItemAnimator(new DefaultItemAnimator());
+    recyclerView.setLayoutManager(getLayoutManager());
+    recyclerView.setAdapter(adapter);
+  }
+
+  protected abstract BaseRecycleAdapter<T, VH> setRecycleAdapter();
+
+  protected abstract int getRefreshLayoutId();
+
+  protected abstract int getRecycleViewId();
 
   protected abstract RecyclerView getRecycleView();
 
@@ -85,11 +127,11 @@ public abstract class BaseListActivity<T, VH extends BaseViewHolder<T>>
     requestListData(page);
   }
 
-  public abstract BaseRecycleAdapter<T, VH> getRecycleAdapter();
 
   public RecyclerView.LayoutManager getLayoutManager() {
     return new LinearLayoutManager(this);
   }
+
 
   public void loadMoreFinish(List<T> data) {
     if (page == pageStart) {
@@ -105,6 +147,62 @@ public abstract class BaseListActivity<T, VH extends BaseViewHolder<T>>
       }
       mRefreshLayout.finishLoadMore();
     }
+    page++;
+  }
+
+  public void refreshFailure(String msg) {
+    mRefreshLayout.finishRefresh(delay);
+    ToastHelper.toast(msg);
+  }
+
+  public void loadMoreFailure(String msg) {
+    mRefreshLayout.finishLoadMore(delay);
+    ToastHelper.toast(msg);
+  }
+
+  public void showRefreshing() {
+    if (!mRefreshLayout.getState().equals(RefreshState.Refreshing)) {
+      mRefreshLayout.autoRefresh();
+    }
+  }
+
+  public void stopRefreshing() {
+    mRefreshLayout.finishRefresh();
+    mRefreshLayout.finishLoadMore(0);
+  }
+
+  @Override
+  public void onSubscribe(Disposable d) {
+    disposable = d;
+  }
+
+  @Override
+  public void onNext(B ts) {
+    if (ts.getCode() == Constant.REQUEST_SUCCESS) {
+      loadMoreFinish(getData(ts));
+    } else if (!TextUtils.isEmpty(ts.getMsg())) {
+      ToastHelper.toast(ts.getMsg());
+    } else {
+      ToastHelper.toast(String.valueOf(ts.getCode()));
+    }
+  }
+
+  protected abstract List<T> getData(B b);
+
+  @Override
+  public void onError(Throwable e) {
+    stopRefreshing();
+    ToastHelper.toast(e.getMessage());
+  }
+
+  @Override
+  public void onComplete() {
+    stopRefreshing();
+  }
+
+  @Override
+  public void onItemClick(T itemData, View view, int position) {
+
   }
 
   public void loadFail(String msg) {

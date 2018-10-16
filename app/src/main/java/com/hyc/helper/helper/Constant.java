@@ -22,4 +22,12 @@ public class Constant {
 
   public static final String USER_HEAD_URL = "user_head_url";
 
+  public static final String TYPE = "type";
+
+  public static final String TYPE_STATEMENT = "statement";
+
+  public static final String TYPE_SECOND = "second_market";
+
+  public static final String TYPE_LOST = "lost";
+
 }

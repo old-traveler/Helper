@@ -28,6 +28,7 @@ public class UserInfoActivity extends BaseActivity {
   @BindView(R.id.cv_info_portrait)
   ImageView cvInfoPortrait;
   private String headUrl;
+  private String userId;
 
   @Override
   protected int getContentViewId() {
@@ -54,6 +55,7 @@ public class UserInfoActivity extends BaseActivity {
     tvInfoName.setText(bundle.getString(Constant.USER_NAME));
     ImageRequestHelper.loadHeadImage(this,bundle.getString(Constant.USER_HEAD_URL),cvInfoPortrait);
     headUrl = bundle.getString(Constant.USER_HEAD_URL);
+    userId = bundle.getString(Constant.USER_ID);
     if (!TextUtils.isEmpty(bundle.getString(Constant.USER_BIO))){
       tvInfoDesc.setText(bundle.getString(Constant.USER_BIO));
     }
@@ -66,14 +68,24 @@ public class UserInfoActivity extends BaseActivity {
   public void onViewClicked(View view) {
     switch (view.getId()) {
       case R.id.fb_user_lost:
+        goToPersonalPublishActivity(Constant.TYPE_LOST);
         break;
       case R.id.fb_user_statement:
+        goToPersonalPublishActivity(Constant.TYPE_STATEMENT);
         break;
       case R.id.fb_user_market:
+        goToPersonalPublishActivity(Constant.TYPE_SECOND);
         break;
       case R.id.cv_info_portrait:
         PictureBrowsingActivity.goToPictureBrowsingActivity(this,headUrl);
         break;
     }
+  }
+
+  public void goToPersonalPublishActivity(String type){
+    Bundle bundle = new Bundle();
+    bundle.putString(Constant.TYPE,type);
+    bundle.putString(Constant.USER_ID,userId);
+    goToOtherActivity(PersonalPublishActivity.class,bundle,true);
   }
 }

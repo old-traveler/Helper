@@ -120,9 +120,9 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
   private void initViewPager() {
     list = new ArrayList<>(tbMain.getTabCount());
     list.add(new TimetableFragment());
-    list.add(new StatementFragment());
-    list.add(new SecondHandFragment());
-    list.add(new LostFindFragment());
+    list.add(StatementFragment.newInstance(null));
+    list.add(SecondHandFragment.newInstance(null));
+    list.add(LostFindFragment.newInstance(null));
     adapter = new TechFragmentPageAdapter(getSupportFragmentManager(), list);
     vpMain.setAdapter(adapter);
     vpMain.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tbMain));

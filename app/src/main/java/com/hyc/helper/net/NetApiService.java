@@ -81,5 +81,14 @@ public interface NetApiService {
   Observable<FindPeopleBean> findPeople(@Path("number") String number, @Path("code") String code,
       @Path("env") String env, @Field("name") String name);
 
+  @GET("statement/statement/{number}/{page}/{user_id}")
+  Observable<StatementBean> getUserStatement(@Path("number")String number,@Path("page")int page,@Path("user_id")String userId);
+
+  @GET("trade/own/{number}/{code}/{page}/{user_id}")
+  Observable<SecondHandBean> getUserSecondMaker(@Path("number")String number,@Path("code")String code,@Path("page")int page,@Path("user_id")String userId);
+
+  @GET("loses/own/{number}/{code}/{page}/{user_id}")
+  Observable<LostBean> getUserLost(@Path("number")String number,@Path("code")String code,@Path("page")int page,@Path("user_id")String userId);
+
   //考试计划 home/examination_wechat/学号/code
 }

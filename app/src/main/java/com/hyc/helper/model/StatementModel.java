@@ -57,6 +57,13 @@ public class StatementModel {
         .subscribe(consumer);
   }
 
+  public void getPersonalStatement(String number,int page,String userId,Observer<StatementBean> observer){
+    RequestHelper.getRequestApi().getUserStatement(number,page,userId)
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(observer);
+  }
+
   @SuppressLint("CheckResult")
   public void publishStatement(UserBean userBean, String content, List<String> images,
       Observer<BaseRequestBean> observer) {
