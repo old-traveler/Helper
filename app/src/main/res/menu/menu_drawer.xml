@@ -1,4 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto">
+
+  <item
+    android:icon="@drawable/ic_power"
+    android:id="@+id/item_query_power"
+    android:title="@string/query_power" />
+  <item
+    android:icon="@drawable/ic_exam"
+    android:id="@+id/item_examination"
+    android:title="@string/examination" />
+  <item
+    android:icon="@drawable/ic_grade"
+    android:id="@+id/item_achievement"
+    android:title="@string/my_achievement" />
+  <item
+    android:icon="@drawable/ic_libary"
+    android:id="@+id/item"
+    android:title="@string/library" />
+  <item
+    android:icon="@drawable/ic_date"
+    android:id="@+id/item_school_date"
+    android:title="@string/school_date" />
+  <item
+    android:icon="@drawable/ic_about"
+    android:id="@+id/mn_about"
+    android:title="@string/about" />
+  <item
+    android:icon="@drawable/ic_logout"
+    android:id="@+id/mn_out"
+    android:title="@string/logout" />
 
 </menu>

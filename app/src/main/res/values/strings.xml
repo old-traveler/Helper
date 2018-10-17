@@ -36,6 +36,14 @@
   <string name="user_info_desc_default">这家伙太懒了，什么也没留下</string>
   <string name="user_info">User Info</string>
   <string name="my_publish">My Publish</string>
+  <string name="examination">考试计划</string>
+  <string name="my_achievement">我的成绩</string>
+  <string name="query_power">查电费</string>
+  <string name="library">图书馆</string>
+  <string name="school_date">校历</string>
+  <string name="logout">注销登陆</string>
+  <string name="about">关于我们</string>
+  <string name="more">更多</string>
 
   <string-array name="weeks">
     <item>周一</item>

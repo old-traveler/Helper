@@ -38,9 +38,11 @@ import com.hyc.helper.base.util.ToastHelper;
 import com.hyc.helper.base.util.UiHelper;
 import com.hyc.helper.bean.ConfigureBean;
 import com.hyc.helper.bean.FindPeopleBean;
+import com.hyc.helper.bean.UserBean;
 import com.hyc.helper.helper.ConfigureHelper;
 import com.hyc.helper.helper.CupidHelper;
 import com.hyc.helper.helper.DateHelper;
+import com.hyc.helper.helper.ImageRequestHelper;
 import com.hyc.helper.util.DensityUtil;
 import com.hyc.helper.helper.UpdateAppHelper;
 import com.hyc.helper.model.ConfigModel;
@@ -101,9 +103,21 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
     ButterKnife.bind(this);
     setToolBar(R.id.toolbar, "Helper", R.drawable.ic_more_info);
     initTabLayout();
+    initLeftView();
     initViewPager();
     initSearchList();
     checkUpdate(configModel.getConfigInfo());
+  }
+
+  private void initLeftView() {
+    UserBean userBean = userModel.getCurUserInfo();
+    ImageRequestHelper.loadBigHeadImage(this, userBean.getData().getHead_pic_thumb(),
+        navView.getHeaderView(0).findViewById(R.id.iv_main_head));
+    TextView tvName = navView.getHeaderView(0).findViewById(R.id.tv_main_name);
+    tvName.setText(userBean.getData().getTrueName());
+    TextView tvDesc = navView.getHeaderView(0).findViewById(R.id.tv_main_desc);
+    tvDesc.setText(TextUtils.isEmpty(userBean.getData().getBio())
+        ? UiHelper.getString(R.string.default_bio) : userBean.getData().getBio());
   }
 
   private void initSearchList() {
@@ -215,7 +229,8 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
   }
 
   private void checkUpdate(ConfigureBean configureBean) {
-    if (ConfigureHelper.getVersionCode(this) < configureBean.getUpdate_version_code()
+    if (configureBean != null
+        && ConfigureHelper.getVersionCode(this) < configureBean.getUpdate_version_code()
         && !TextUtils.isEmpty(configureBean.getUpdate())) {
       showTipDialog(UiHelper.getString(R.string.update_tip), configureBean.getContent(),
           isPosition -> {

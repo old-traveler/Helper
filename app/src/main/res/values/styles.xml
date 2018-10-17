@@ -15,6 +15,7 @@
     <item name="textAppearanceListItemSmall">@style/myTextAppearanceListItemSmall</item>
   </style>
 
+
   <style name="myTextAppearanceListItemSmall">
     <item name="android:textColor">@color/front_black</item>
     <item name="android:textSize">12sp</item>

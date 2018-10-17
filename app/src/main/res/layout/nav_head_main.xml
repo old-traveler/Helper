@@ -1,6 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-  xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-  android:layout_height="match_parent">
+<FrameLayout
+  android:background="@color/colorPrimary"
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent"
+  android:layout_height="170dp">
 
-</android.support.constraint.ConstraintLayout>
+  <ImageView
+    android:id="@+id/iv_main_head"
+    android:layout_marginStart="20dp"
+    android:layout_marginTop="80dp"
+    android:layout_width="70dp"
+    android:layout_height="70dp" />
+
+  <TextView
+    android:id="@+id/tv_main_name"
+    android:layout_marginStart="100dp"
+    android:layout_marginTop="88dp"
+    android:textSize="20sp"
+    android:textColor="@color/white"
+    android:text="@string/comment_hint_tip"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" />
+
+  <TextView
+    android:id="@+id/tv_main_desc"
+    android:layout_marginStart="100dp"
+    android:layout_marginTop="121dp"
+    android:textSize="15sp"
+    android:textColor="@color/bg_common_select"
+    android:text="@string/comment_hint_tip"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" />
+</FrameLayout>

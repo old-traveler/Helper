@@ -74,9 +74,6 @@ public class StatementViewHolder extends BaseViewHolder<StatementBean.StatementI
   public void loadItemData(Context context, StatementBean.StatementInfoBean data, int position) {
     ImageRequestHelper.loadHeadImage(context, data.getHead_pic_thumb(), ivPublisherHead);
     tvPublishName.setText(data.getUsername());
-    if (data.getUsername().startsWith("ETO")) {
-      LogHelper.log(data.getHead_pic_thumb());
-    }
     tvUserDesc.setText(TextUtils.isEmpty(data.getBio())
         ? UiHelper.getString(R.string.default_bio) : data.getBio());
     tvContent.setText(data.getContent());

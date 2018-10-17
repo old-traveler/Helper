@@ -52,9 +52,6 @@ public class ImageRequestHelper {
     if (TextUtils.isEmpty(url)){
       return;
     }
-    if (url.endsWith("?")) {
-      url = url.substring(0, url.length() - 2);
-    }
     Glide.with(context)
         .load(Constant.BASE_IMAGE_URL + url)
         .apply(new RequestOptions().circleCrop().placeholder(UiHelper.getDefaultPlaceholder()))
