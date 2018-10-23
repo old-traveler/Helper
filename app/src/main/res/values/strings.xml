@@ -44,6 +44,12 @@
   <string name="logout">注销登陆</string>
   <string name="about">关于我们</string>
   <string name="more">更多</string>
+  <string name="name">姓名：</string>
+  <string name="number">学号：</string>
+  <string name="dep">学院：</string>
+  <string name="str_class">班级：</string>
+  <string name="personal">Personal</string>
+  <string name="personal_publish">我的发布</string>
 
   <string-array name="weeks">
     <item>周一</item>

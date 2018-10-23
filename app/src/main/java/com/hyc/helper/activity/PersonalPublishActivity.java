@@ -1,5 +1,7 @@
 package com.hyc.helper.activity;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import com.hyc.helper.R;
@@ -15,6 +17,15 @@ public class PersonalPublishActivity extends BaseActivity {
   @Override
   protected int getContentViewId() {
     return R.layout.activity_personal_publish;
+  }
+
+  public static void goToPersonalPublishActivity(Context context,String userId,String type){
+    Bundle bundle = new Bundle();
+    bundle.putString(Constant.TYPE,type);
+    bundle.putString(Constant.USER_ID,userId);
+    Intent intent = new Intent(context,PersonalPublishActivity.class);
+    intent.putExtras(bundle);
+    context.startActivity(intent);
   }
 
   @Override

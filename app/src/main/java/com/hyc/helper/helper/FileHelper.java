@@ -102,7 +102,7 @@ public class FileHelper {
   }
 
   @SuppressLint("CheckResult")
-  public static void uploadImage(UserBean userBean, List<File> files,
+  public static void uploadImage(UserBean userBean,String type, List<File> files,
       io.reactivex.Observer<ImageUploadBean> observer) {
     String env = Sha1Utils.getEnv(userBean);
     for (File file : files) {
@@ -111,7 +111,7 @@ public class FileHelper {
       MultipartBody.Part body =
           MultipartBody.Part.createFormData("file", file.getName(), requestFile);
       RequestHelper.getRequestApi()
-          .uploadImage(userBean.getData().getStudentKH(), userBean.getRemember_code_app(), env,body)
+          .uploadImage(userBean.getData().getStudentKH(), userBean.getRemember_code_app(), env,type,body)
           .subscribeOn(Schedulers.io())
           .observeOn(AndroidSchedulers.mainThread())
           .subscribe(observer);

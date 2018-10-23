@@ -95,7 +95,7 @@ public class StatementModel {
             .filter(path -> !(TextUtils.isEmpty(path) || path.toLowerCase().endsWith(".gif")))
             .get())
         .observeOn(AndroidSchedulers.mainThread())
-        .subscribe(files -> FileHelper.uploadImage(userBean, files, uploadBeanObserver),
+        .subscribe(files -> FileHelper.uploadImage(userBean, "0", files, uploadBeanObserver),
             observer::onError);
   }
 

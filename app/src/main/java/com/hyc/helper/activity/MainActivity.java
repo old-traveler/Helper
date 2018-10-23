@@ -3,6 +3,7 @@ package com.hyc.helper.activity;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
@@ -18,6 +19,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListPopupWindow;
 import android.widget.TextView;
 import butterknife.BindView;
@@ -109,15 +111,39 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
     checkUpdate(configModel.getConfigInfo());
   }
 
-  private void initLeftView() {
+  @Override
+  protected void onResume() {
+    super.onResume();
+    refreshUserInfo();
+  }
+
+  private void refreshUserInfo() {
     UserBean userBean = userModel.getCurUserInfo();
+    ImageView headImageView = navView.getHeaderView(0).findViewById(R.id.iv_main_head);
     ImageRequestHelper.loadBigHeadImage(this, userBean.getData().getHead_pic_thumb(),
-        navView.getHeaderView(0).findViewById(R.id.iv_main_head));
+        headImageView);
     TextView tvName = navView.getHeaderView(0).findViewById(R.id.tv_main_name);
     tvName.setText(userBean.getData().getTrueName());
     TextView tvDesc = navView.getHeaderView(0).findViewById(R.id.tv_main_desc);
     tvDesc.setText(TextUtils.isEmpty(userBean.getData().getBio())
         ? UiHelper.getString(R.string.default_bio) : userBean.getData().getBio());
+  }
+
+  private void initLeftView() {
+    UserBean userBean = userModel.getCurUserInfo();
+    View.OnClickListener listener = view -> goToOtherActivity(PersonalActivity.class, false);
+    ImageView headImageView = navView.getHeaderView(0).findViewById(R.id.iv_main_head);
+    ImageRequestHelper.loadBigHeadImage(this, userBean.getData().getHead_pic_thumb(),
+        headImageView);
+    headImageView.setOnClickListener(listener);
+    TextView tvName = navView.getHeaderView(0).findViewById(R.id.tv_main_name);
+    tvName.setText(userBean.getData().getTrueName());
+    tvName.setOnClickListener(listener);
+    TextView tvDesc = navView.getHeaderView(0).findViewById(R.id.tv_main_desc);
+    tvDesc.setText(TextUtils.isEmpty(userBean.getData().getBio())
+        ? UiHelper.getString(R.string.default_bio) : userBean.getData().getBio());
+    tvDesc.setOnClickListener(listener);
+    navView.setNavigationItemSelectedListener(this::onOptionsItemSelected);
   }
 
   private void initSearchList() {
@@ -218,7 +244,7 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
     }
     weekListPopWindow = new ListPopupWindow(this);
     weekListPopWindow.setAdapter(new ArrayAdapter<>(this, R.layout.item_select_week, list));
-    weekListPopWindow.setWidth(DensityUtil.dip2px(70f));
+    weekListPopWindow.setWidth(DensityUtil.dip2px(80f));
     weekListPopWindow.setHeight(DensityUtil.dip2px(150f));
     weekListPopWindow.setModal(true);
     weekListPopWindow.setOnItemClickListener((adapterView, view, i, l) -> {

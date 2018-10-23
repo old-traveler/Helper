@@ -83,9 +83,6 @@ public class UserInfoActivity extends BaseActivity {
   }
 
   public void goToPersonalPublishActivity(String type){
-    Bundle bundle = new Bundle();
-    bundle.putString(Constant.TYPE,type);
-    bundle.putString(Constant.USER_ID,userId);
-    goToOtherActivity(PersonalPublishActivity.class,bundle,true);
+    PersonalPublishActivity.goToPersonalPublishActivity(this,userId,type);
   }
 }

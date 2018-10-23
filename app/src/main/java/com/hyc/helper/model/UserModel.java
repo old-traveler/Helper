@@ -1,15 +1,23 @@
 package com.hyc.helper.model;
 
+import android.content.Context;
+import android.net.Uri;
 import com.hyc.helper.bean.FindPeopleBean;
+import com.hyc.helper.bean.ImageUploadBean;
 import com.hyc.helper.bean.UserBean;
+import com.hyc.helper.helper.FileHelper;
 import com.hyc.helper.helper.RequestHelper;
 import com.hyc.helper.helper.SpCacheHelper;
+import com.hyc.helper.helper.UploadImageObserver;
 import com.hyc.helper.util.Sha1Utils;
 import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
+import java.io.File;
 import java.lang.ref.WeakReference;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserModel {
 
@@ -47,4 +55,17 @@ public class UserModel {
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread());
   }
+
+  public void updateUserHeadImage(Context context,UserBean bean,Uri uri,UploadImageObserver observer){
+    List<File> files = new ArrayList<>(1);
+    files.add(new File(FileHelper.getFilePath(context,uri)));
+    FileHelper.uploadImage(bean,"3",files,observer);
+  }
+
+  public void updateLocalUserHeadImage(String image){
+    UserBean bean = getCurUserInfo();
+    bean.getData().setHead_pic_thumb(image);
+    cacheUserInfo(bean);
+  }
+
 }

@@ -1,12 +1,20 @@
 package com.hyc.helper.model;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
+import android.net.Uri;
 import com.hyc.helper.bean.BigImageLoadRecordBean;
+import com.hyc.helper.bean.UserBean;
 import com.hyc.helper.helper.DbInsertHelper;
 import com.hyc.helper.helper.DbSearchHelper;
+import com.hyc.helper.helper.FileHelper;
+import com.hyc.helper.helper.UploadImageObserver;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ImageModel {
 
@@ -24,4 +32,6 @@ public class ImageModel {
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(consumer, throwableConsumer);
   }
+
+
 }

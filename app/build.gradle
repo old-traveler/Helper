@@ -54,4 +54,5 @@ dependencies {
   annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
   implementation 'com.sackcentury:shinebutton:0.2.0'
   implementation 'com.zhihu.android:matisse:0.5.2-beta3'
+  implementation 'com.github.yalantis:ucrop:2.2.2'
 }

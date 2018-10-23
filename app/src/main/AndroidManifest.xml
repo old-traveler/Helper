@@ -33,7 +33,12 @@
     <activity android:name=".activity.PictureBrowsingActivity" />
     <activity android:name=".activity.PublishStatementActivity" />
     <activity android:name=".activity.UserInfoActivity" />
-    <activity android:name=".activity.PersonalPublishActivity"/>
+    <activity android:name=".activity.PersonalPublishActivity" />
+    <activity android:name=".activity.PersonalActivity"></activity>
+    <activity
+      android:name="com.yalantis.ucrop.UCropActivity"
+      android:screenOrientation="portrait"
+      android:theme="@style/AppTheme"/>
   </application>
 
 </manifest>

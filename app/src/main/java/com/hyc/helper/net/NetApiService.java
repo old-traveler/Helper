@@ -67,9 +67,9 @@ public interface NetApiService {
       @Field("hidden") String hidden);
 
   @Multipart
-  @POST("https://pic.htmln.com/api/v3/upload/images/{number}/{code}/{env}/0")
+  @POST("https://pic.htmln.com/api/v3/upload/images/{number}/{code}/{env}/{type}")
   Observable<ImageUploadBean> uploadImage(@Path("number") String number, @Path("code") String code,
-      @Path("env") String env, @Part
+      @Path("env") String env, @Path("type") String type,@Part
       MultipartBody.Part file);
 
   @GET("statement/deleteWechat/{number}/{code}/{momend_id}")
@@ -89,6 +89,16 @@ public interface NetApiService {
 
   @GET("loses/own/{number}/{code}/{page}/{user_id}")
   Observable<LostBean> getUserLost(@Path("number")String number,@Path("code")String code,@Path("page")int page,@Path("user_id")String userId);
+
+  @FormUrlEncoded
+  @POST("set/profile/{number}/{code}")
+  Observable<BaseRequestBean> updateUsername(@Path("number")String number,@Path("code")String code,@Field("username")String username);
+
+  @FormUrlEncoded
+  @POST("set/profile/{number}/{code}")
+  Observable<BaseRequestBean> updateUserBio(@Path("number")String number,@Path("code")String code,@Field("bio")String bio);
+
+
 
   //考试计划 home/examination_wechat/学号/code
 }
