@@ -50,6 +50,8 @@
   <string name="str_class">班级：</string>
   <string name="personal">Personal</string>
   <string name="personal_publish">我的发布</string>
+  <string name="complete">完成</string>
+  <string name="input_tip">请先输入信息</string>
 
   <string-array name="weeks">
     <item>周一</item>

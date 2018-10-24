@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  tools:context=".activity.InputActivity">
+
+  <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:elevation="8dp"
+    android:id="@+id/toolbar"
+    app:titleTextAppearance="@style/toolbar_title"
+    app:layout_collapseMode="pin"
+    android:background="@color/colorPrimary"
+    android:layout_height="?attr/actionBarSize">
+
+    <EditText
+      android:id="@+id/et_input"
+      android:padding="2dp"
+      android:maxLines="1"
+      android:background="@drawable/bg_input_edit"
+      android:layout_width="match_parent"
+      android:layout_height="35dp" />
+
+
+  </android.support.v7.widget.Toolbar>
+
+</FrameLayout>

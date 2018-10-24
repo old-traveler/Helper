@@ -2,6 +2,7 @@ package com.hyc.helper.model;
 
 import android.content.Context;
 import android.net.Uri;
+import com.hyc.helper.bean.BaseRequestBean;
 import com.hyc.helper.bean.FindPeopleBean;
 import com.hyc.helper.bean.ImageUploadBean;
 import com.hyc.helper.bean.UserBean;
@@ -56,16 +57,43 @@ public class UserModel {
         .observeOn(AndroidSchedulers.mainThread());
   }
 
-  public void updateUserHeadImage(Context context,UserBean bean,Uri uri,UploadImageObserver observer){
+  public void updateUserHeadImage(Context context, UserBean bean, Uri uri,
+      UploadImageObserver observer) {
     List<File> files = new ArrayList<>(1);
-    files.add(new File(FileHelper.getFilePath(context,uri)));
-    FileHelper.uploadImage(bean,"3",files,observer);
+    files.add(new File(FileHelper.getFilePath(context, uri)));
+    FileHelper.uploadImage(bean, "3", files, observer);
   }
 
-  public void updateLocalUserHeadImage(String image){
+  public void updateLocalUserHeadImage(String image) {
     UserBean bean = getCurUserInfo();
     bean.getData().setHead_pic_thumb(image);
     cacheUserInfo(bean);
+  }
+
+  public void updateLocalUsername(String username){
+    UserBean bean = getCurUserInfo();
+    bean.getData().setUsername(username);
+    cacheUserInfo(bean);
+  }
+
+  public void updateLocalUserBio(String bio){
+    UserBean bean = getCurUserInfo();
+    bean.getData().setBio(bio);
+    cacheUserInfo(bean);
+  }
+
+  public Observable<BaseRequestBean> updateUsername(UserBean bean, String username) {
+    return RequestHelper.getRequestApi()
+        .updateUsername(bean.getData().getStudentKH(), bean.getRemember_code_app(), username)
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread());
+  }
+
+  public Observable<BaseRequestBean> updateBio(UserBean bean, String bio){
+    return RequestHelper.getRequestApi()
+        .updateUserBio(bean.getData().getStudentKH(),bean.getRemember_code_app(),bio)
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread());
   }
 
 }

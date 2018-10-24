@@ -123,7 +123,11 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
     ImageRequestHelper.loadBigHeadImage(this, userBean.getData().getHead_pic_thumb(),
         headImageView);
     TextView tvName = navView.getHeaderView(0).findViewById(R.id.tv_main_name);
-    tvName.setText(userBean.getData().getTrueName());
+    if (TextUtils.isEmpty(userBean.getData().getUsername())) {
+      tvName.setText(userBean.getData().getTrueName());
+    } else {
+      tvName.setText(userBean.getData().getUsername());
+    }
     TextView tvDesc = navView.getHeaderView(0).findViewById(R.id.tv_main_desc);
     tvDesc.setText(TextUtils.isEmpty(userBean.getData().getBio())
         ? UiHelper.getString(R.string.default_bio) : userBean.getData().getBio());
@@ -137,7 +141,11 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
         headImageView);
     headImageView.setOnClickListener(listener);
     TextView tvName = navView.getHeaderView(0).findViewById(R.id.tv_main_name);
-    tvName.setText(userBean.getData().getTrueName());
+    if (TextUtils.isEmpty(userBean.getData().getUsername())) {
+      tvName.setText(userBean.getData().getTrueName());
+    } else {
+      tvName.setText(userBean.getData().getUsername());
+    }
     tvName.setOnClickListener(listener);
     TextView tvDesc = navView.getHeaderView(0).findViewById(R.id.tv_main_desc);
     tvDesc.setText(TextUtils.isEmpty(userBean.getData().getBio())

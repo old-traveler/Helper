@@ -21,6 +21,7 @@ import com.hyc.helper.R;
 import com.hyc.helper.base.activity.BaseActivity;
 import com.hyc.helper.base.util.ToastHelper;
 import com.hyc.helper.base.util.UiHelper;
+import com.hyc.helper.bean.BaseRequestBean;
 import com.hyc.helper.bean.UserBean;
 import com.hyc.helper.helper.Constant;
 import com.hyc.helper.helper.ImageRequestHelper;
@@ -34,6 +35,8 @@ import com.yalantis.ucrop.UCrop;
 import com.yalantis.ucrop.UCropActivity;
 import com.zhihu.matisse.Matisse;
 import com.zhihu.matisse.MimeType;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -58,9 +61,11 @@ public class PersonalActivity extends BaseActivity {
   private ListPopupWindow publishPopupWindow;
   private UserModel userModel = new UserModel();
   private ImageModel imageModel = new ImageModel();
+  private Disposable disposable;
 
   private int REQUEST_CODE_CHOOSE = 2009;
-  private int REQUEST_CODE_CROP = 2010;
+  private int REQUEST_CODE_USERNAME = 2010;
+  private int REQUEST_CODE_BIO = 2011;
 
   @Override
   protected int getContentViewId() {
@@ -137,8 +142,10 @@ public class PersonalActivity extends BaseActivity {
         replaceHeadImage();
         break;
       case R.id.tv_username:
+        goToOtherActivityForResult(InputActivity.class, REQUEST_CODE_USERNAME);
         break;
       case R.id.tv_bio:
+        goToOtherActivityForResult(InputActivity.class, REQUEST_CODE_BIO);
         break;
     }
   }
@@ -167,18 +174,26 @@ public class PersonalActivity extends BaseActivity {
         .forResult(REQUEST_CODE_CHOOSE);
   }
 
-  public void startCropImage(Uri sourceUri){
+  public void startCropImage(Uri sourceUri) {
     String headImageFilePath = "head_image.jpg";
     Uri destinationUri = Uri.fromFile(new File(getCacheDir(), headImageFilePath));
     UCrop.Options options = new UCrop.Options();
     options.setAllowedGestures(UCropActivity.SCALE, UCropActivity.ROTATE, UCropActivity.ALL);
     options.setToolbarColor(UiHelper.getColor(R.color.colorPrimary));
     options.setStatusBarColor(UiHelper.getColor(R.color.colorPrimary));
-    options.withAspectRatio(9,9);
-    options.withMaxResultSize(1080,1080);
+    options.withAspectRatio(9, 9);
+    options.withMaxResultSize(1080, 1080);
     UCrop.of(sourceUri, destinationUri)
         .withOptions(options)
         .start(this);
+  }
+
+  @Override
+  protected void onDestroy() {
+    super.onDestroy();
+    if (disposable != null && !disposable.isDisposed()) {
+      disposable.dispose();
+    }
   }
 
   @Override
@@ -186,19 +201,61 @@ public class PersonalActivity extends BaseActivity {
     super.onActivityResult(requestCode, resultCode, data);
     if (requestCode == REQUEST_CODE_CHOOSE && resultCode == RESULT_OK && data != null) {
       List<Uri> result = Matisse.obtainResult(data);
-      if (result != null && result.size() > 0){
+      if (result != null && result.size() > 0) {
         startCropImage(result.get(0));
       }
-    }else if (resultCode == RESULT_OK && requestCode == UCrop.REQUEST_CROP && data != null){
+    } else if (resultCode == RESULT_OK && requestCode == UCrop.REQUEST_CROP && data != null) {
       uploadImage(UCrop.getOutput(data));
-    }else if (resultCode == UCrop.RESULT_ERROR && data!= null) {
+    } else if (resultCode == UCrop.RESULT_ERROR && data != null) {
       ToastHelper.toast(Objects.requireNonNull(UCrop.getError(data)).getMessage());
+    } else if (resultCode == RESULT_OK && requestCode == REQUEST_CODE_USERNAME && data != null) {
+      updateUsername(Objects.requireNonNull(data.getExtras()).getString("input"));
+    } else if (resultCode == RESULT_OK && requestCode == REQUEST_CODE_BIO && data != null) {
+      updateBio(Objects.requireNonNull(data.getExtras()).getString("input"));
     }
   }
 
-  public void uploadImage(Uri uri){
+  private void updateUsername(final String input) {
     showLoadingView();
-    userModel.updateUserHeadImage(this,userModel.getCurUserInfo(),uri,new UploadImageObserver(1,
+    disposable = userModel.updateUsername(userModel.getCurUserInfo(), input)
+        .subscribe(baseRequestBean -> {
+          closeLoadingView();
+          if (baseRequestBean.getCode() == 200) {
+            tvUsername.setText(input);
+            userModel.updateLocalUsername(input);
+          } else if (TextUtils.isEmpty(baseRequestBean.getMsg())) {
+            ToastHelper.toast(String.valueOf(baseRequestBean.getCode()));
+          } else {
+            ToastHelper.toast(baseRequestBean.getMsg());
+          }
+        }, throwable -> {
+          closeLoadingView();
+          ToastHelper.toast(throwable.getMessage());
+        });
+  }
+
+  private void updateBio(final String input) {
+    showLoadingView();
+    disposable = userModel.updateBio(userModel.getCurUserInfo(), input)
+        .subscribe(baseRequestBean -> {
+          closeLoadingView();
+          if (baseRequestBean.getCode() == 200) {
+            tvBio.setText(input);
+            userModel.updateLocalUserBio(input);
+          } else if (TextUtils.isEmpty(baseRequestBean.getMsg())) {
+            ToastHelper.toast(String.valueOf(baseRequestBean.getCode()));
+          } else {
+            ToastHelper.toast(baseRequestBean.getMsg());
+          }
+        }, throwable -> {
+          closeLoadingView();
+          ToastHelper.toast(throwable.getMessage());
+        });
+  }
+
+  public void uploadImage(Uri uri) {
+    showLoadingView();
+    userModel.updateUserHeadImage(this, userModel.getCurUserInfo(), uri, new UploadImageObserver(1,
         new UploadImageObserver.OnUploadImageListener() {
           @Override
           public void onSuccess(String image) {
@@ -214,5 +271,4 @@ public class PersonalActivity extends BaseActivity {
           }
         }));
   }
-
 }
