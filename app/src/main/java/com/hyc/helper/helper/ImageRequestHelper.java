@@ -73,6 +73,13 @@ public class ImageRequestHelper {
         .into(simpleTarget);
   }
 
+  public static void loadOtherImageAsFile(Context context,String url,SimpleTarget<File> simpleTarget){
+    Glide.with(context)
+        .asFile()
+        .load(url)
+        .into(simpleTarget);
+  }
+
   public static void loadOralImageAsFile(Context context, String url,
       SimpleTarget<File> simpleTarget) {
     url = url.replace("_thumb", "");

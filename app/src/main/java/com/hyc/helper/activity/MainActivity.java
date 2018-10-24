@@ -204,6 +204,8 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
       goToOtherActivity(ExamActivity.class, false);
     } else if (item.getItemId() == R.id.item_achievement) {
       goToOtherActivity(GradeActivity.class, false);
+    }else if (item.getItemId() == R.id.item_school_date){
+      goToOtherActivity(SchoolCalendarActivity.class,false);
     }
     return false;
   }

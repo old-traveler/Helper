@@ -42,7 +42,8 @@
     <activity android:name=".activity.InputActivity" />
     <activity android:name=".activity.QueryPowerActivity" />
     <activity android:name=".activity.ExamActivity" />
-    <activity android:name=".activity.GradeActivity"></activity>
+    <activity android:name=".activity.GradeActivity" />
+    <activity android:name=".activity.SchoolCalendarActivity"></activity>
   </application>
 
 </manifest>
