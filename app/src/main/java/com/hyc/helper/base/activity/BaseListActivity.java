@@ -179,6 +179,9 @@ public abstract class BaseListActivity<T, B extends BaseRequestBean, VH extends 
   public void onNext(B ts) {
     if (ts.getCode() == Constant.REQUEST_SUCCESS) {
       loadMoreFinish(getData(ts));
+    } else if (ts.getCode() == Constant.NEED_API_DATA){
+      disposable.dispose();
+      requestListData(page);
     } else if (!TextUtils.isEmpty(ts.getMsg())) {
       ToastHelper.toast(ts.getMsg());
     } else {

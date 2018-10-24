@@ -5,6 +5,8 @@ import com.hyc.helper.bean.CourseBean;
 import com.hyc.helper.bean.CourseInfoBean;
 import com.hyc.helper.bean.ExamBean;
 import com.hyc.helper.bean.ExamInfoBean;
+import com.hyc.helper.bean.GradeBean;
+import com.hyc.helper.bean.GradeInfoBean;
 import com.hyc.helper.gen.BigImageLoadRecordBeanDao;
 import com.hyc.helper.gen.CourseInfoBeanDao;
 import com.hyc.helper.gen.ExamInfoBeanDao;
@@ -63,6 +65,25 @@ public class DbSearchHelper {
       resBean.setExam(examInfoBeans);
       examBean.setRes(resBean);
       emitter.onNext(examBean);
+      emitter.onComplete();
+    });
+  }
+
+  public static Observable<GradeBean> searchGradeInfo(){
+    return Observable.create(emitter -> {
+      List<GradeInfoBean> gradeInfoBeans = DaoHelper.getDefault()
+          .getDaoSession()
+          .getGradeInfoBeanDao()
+          .queryBuilder()
+          .list();
+      GradeBean gradeBean = new GradeBean();
+      if (gradeInfoBeans.size()>0){
+        gradeBean.setCode(Constant.REQUEST_SUCCESS);
+      }else {
+        gradeBean.setCode(Constant.NEED_API_DATA);
+      }
+      gradeBean.setData(gradeInfoBeans);
+      emitter.onNext(gradeBean);
       emitter.onComplete();
     });
   }

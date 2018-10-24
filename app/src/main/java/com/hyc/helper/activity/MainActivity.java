@@ -197,11 +197,13 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
       Objects.requireNonNull(
           weekListPopWindow.getListView()).setBackgroundColor(UiHelper.getColor(R.color.white));
       return true;
-    }else if (item.getItemId() == R.id.item_query_power){
-      goToOtherActivity(QueryPowerActivity.class,false);
+    } else if (item.getItemId() == R.id.item_query_power) {
+      goToOtherActivity(QueryPowerActivity.class, false);
       return true;
-    }else if (item.getItemId() == R.id.item_examination){
-      goToOtherActivity(ExamActivity.class,false);
+    } else if (item.getItemId() == R.id.item_examination) {
+      goToOtherActivity(ExamActivity.class, false);
+    } else if (item.getItemId() == R.id.item_achievement) {
+      goToOtherActivity(GradeActivity.class, false);
     }
     return false;
   }

@@ -26,5 +26,16 @@ public class DbDeleteHelper {
     });
   }
 
+  public static Observable<Boolean> deleteUserGradeInfo(){
+    return Observable.create(emitter -> {
+      DaoHelper.getDefault()
+          .getDaoSession()
+          .getGradeInfoBeanDao()
+          .deleteAll();
+      emitter.onNext(true);
+      emitter.onComplete();
+    });
+  }
+
 
 }

@@ -41,7 +41,8 @@
       android:theme="@style/AppTheme" />
     <activity android:name=".activity.InputActivity" />
     <activity android:name=".activity.QueryPowerActivity" />
-    <activity android:name=".activity.ExamActivity"></activity>
+    <activity android:name=".activity.ExamActivity" />
+    <activity android:name=".activity.GradeActivity"></activity>
   </application>
 
 </manifest>

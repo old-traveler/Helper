@@ -60,6 +60,7 @@
   <string name="query_tip">清先填写寝室号</string>
   <string name="surplus_day">剩余%d天</string>
   <string name="surplus_hour">剩余%d小时</string>
+  <string name="my_grade">My Grade</string>
 
   <string-array name="weeks">
     <item>周一</item>
