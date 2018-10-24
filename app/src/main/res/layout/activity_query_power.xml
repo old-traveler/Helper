@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:orientation="vertical"
+  tools:context=".activity.QueryPowerActivity">
+
+  <include layout="@layout/lib_layout_toolbar"/>
+
+  <EditText
+    android:inputType="number"
+    android:id="@+id/et_locate"
+    android:textColor="@color/front_black"
+    android:textColorHint="@color/bg_no"
+    android:hint="@string/locate_tip"
+    android:gravity="center_horizontal"
+    android:layout_marginTop="20dp"
+    android:layout_gravity="center_horizontal"
+    android:layout_width="200dp"
+    android:layout_height="wrap_content" />
+
+  <EditText
+    android:inputType="number"
+    android:id="@+id/et_room"
+    android:textColor="@color/front_black"
+    android:gravity="center"
+    android:textColorHint="@color/bg_no"
+    android:hint="@string/room_tip"
+    android:layout_marginTop="20dp"
+    android:layout_gravity="center_horizontal"
+    android:layout_width="200dp"
+    android:layout_height="wrap_content" />
+
+  <RadioGroup
+    android:layout_marginTop="10dp"
+    android:gravity="center_horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+    <RadioButton
+      android:checked="true"
+      android:textColor="@color/colorPrimary"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/west_school"
+      android:id="@+id/rb_west"/>
+    <RadioButton
+      android:textColor="@color/colorPrimary"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/east_school"
+      android:id="@+id/rb_east"/>
+  </RadioGroup>
+
+  <android.support.design.button.MaterialButton
+    android:layout_marginTop="20dp"
+    android:layout_width="250dp"
+    app:cornerRadius="1dp"
+    android:id="@+id/btn_query_power"
+    app:backgroundTint="@color/colorPrimary"
+    android:text="@string/query_power"
+    android:layout_gravity="center"
+    android:layout_height="wrap_content" />
+
+</LinearLayout>

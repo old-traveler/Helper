@@ -14,4 +14,17 @@ public class DbDeleteHelper {
       emitter.onComplete();
     });
   }
+
+  public static Observable<Boolean> deleteUserExamInfo(){
+    return Observable.create(emitter -> {
+      DaoHelper.getDefault()
+          .getDaoSession()
+          .getExamInfoBeanDao()
+          .deleteAll();
+      emitter.onNext(true);
+      emitter.onComplete();
+    });
+  }
+
+
 }

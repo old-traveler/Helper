@@ -3,8 +3,11 @@ package com.hyc.helper.helper;
 import com.hyc.helper.bean.BigImageLoadRecordBean;
 import com.hyc.helper.bean.CourseBean;
 import com.hyc.helper.bean.CourseInfoBean;
+import com.hyc.helper.bean.ExamBean;
+import com.hyc.helper.bean.ExamInfoBean;
 import com.hyc.helper.gen.BigImageLoadRecordBeanDao;
 import com.hyc.helper.gen.CourseInfoBeanDao;
+import com.hyc.helper.gen.ExamInfoBeanDao;
 import io.reactivex.Observable;
 import java.util.List;
 
@@ -39,6 +42,27 @@ public class DbSearchHelper {
           .where(BigImageLoadRecordBeanDao.Properties.OriginUrl.eq(originUrl))
           .build().unique();
       emitter.onNext(bean);
+      emitter.onComplete();
+    });
+  }
+
+  public static Observable<ExamBean> searchExamInfo(){
+    return Observable.create(emitter -> {
+      List<ExamInfoBean> examInfoBeans = DaoHelper.getDefault()
+          .getDaoSession()
+          .getExamInfoBeanDao()
+          .queryBuilder()
+          .list();
+      ExamBean examBean = new ExamBean();
+      if (examInfoBeans.size()>0){
+        examBean.setStatus("success");
+      }else {
+        examBean.setStatus("need_api");
+      }
+      ExamBean.ResBean resBean =new ExamBean.ResBean();
+      resBean.setExam(examInfoBeans);
+      examBean.setRes(resBean);
+      emitter.onNext(examBean);
       emitter.onComplete();
     });
   }

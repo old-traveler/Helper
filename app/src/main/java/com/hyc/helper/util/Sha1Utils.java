@@ -10,6 +10,7 @@ public class Sha1Utils {
 
   /**
    * SHA加密
+   *
    * @param strSrc 明文
    * @return 加密之后的密文
    */
@@ -29,10 +30,11 @@ public class Sha1Utils {
 
   /**
    * byte数组转换为16进制字符串
+   *
    * @param bts 数据源
    * @return 16进制字符串
    */
-  public static String bytes2Hex(byte[] bts) {
+  private static String bytes2Hex(byte[] bts) {
     String des = "";
     String tmp = null;
     for (int i = 0; i < bts.length; i++) {
@@ -45,11 +47,15 @@ public class Sha1Utils {
     return des;
   }
 
-  public static String getEnv(UserBean userBean){
+  public static String getEnc(String locate, String room, UserBean userBean, String part) {
+    return shaEncrypt(
+        locate + room + userBean.getData().getStudentKH() + userBean.getRemember_code_app() + part);
+  }
+
+  public static String getEnv(UserBean userBean) {
     SimpleDateFormat format = new SimpleDateFormat("YYYY-MM");
     String date = format.format(new Date(System.currentTimeMillis()));
     return shaEncrypt(
         userBean.getData().getStudentKH() + userBean.getRemember_code_app() + date);
   }
-
 }

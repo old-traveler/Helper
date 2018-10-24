@@ -39,6 +39,7 @@
   <string name="examination">考试计划</string>
   <string name="my_achievement">我的成绩</string>
   <string name="query_power">查电费</string>
+  <string name="query_power_title">Query Power</string>
   <string name="library">图书馆</string>
   <string name="school_date">校历</string>
   <string name="logout">注销登陆</string>
@@ -52,6 +53,13 @@
   <string name="personal_publish">我的发布</string>
   <string name="complete">完成</string>
   <string name="input_tip">请先输入信息</string>
+  <string name="locate_tip">请输入楼栋号</string>
+  <string name="room_tip">请输入寝室号</string>
+  <string name="west_school">西校区</string>
+  <string name="east_school">东校区</string>
+  <string name="query_tip">清先填写寝室号</string>
+  <string name="surplus_day">剩余%d天</string>
+  <string name="surplus_hour">剩余%d小时</string>
 
   <string-array name="weeks">
     <item>周一</item>

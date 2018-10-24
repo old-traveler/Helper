@@ -57,6 +57,7 @@ public abstract class BaseListActivity<T, B extends BaseRequestBean, VH extends 
     }
   }
 
+
   public void backToTop(){
     if (recyclerView!=null){
       recyclerView.scrollToPosition(0);
@@ -87,7 +88,6 @@ public abstract class BaseListActivity<T, B extends BaseRequestBean, VH extends 
 
   protected abstract int getRecycleViewId();
 
-  protected abstract RecyclerView getRecycleView();
 
   public void setEnableLoadMore(boolean enableLoadMore) {
     if (mRefreshLayout != null) {
@@ -102,7 +102,6 @@ public abstract class BaseListActivity<T, B extends BaseRequestBean, VH extends 
     }
   }
 
-  protected abstract SmartRefreshLayout getRefreshLayout();
 
   @Override
   public void onRefresh(@NonNull RefreshLayout refreshLayout) {

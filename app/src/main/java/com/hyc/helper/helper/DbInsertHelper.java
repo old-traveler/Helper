@@ -2,6 +2,7 @@ package com.hyc.helper.helper;
 
 import com.hyc.helper.bean.BigImageLoadRecordBean;
 import com.hyc.helper.bean.CourseInfoBean;
+import com.hyc.helper.bean.ExamInfoBean;
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
@@ -26,6 +27,17 @@ public class DbInsertHelper {
           .getDaoSession()
           .getBigImageLoadRecordBeanDao()
           .insertOrReplace(bean);
+      emitter.onNext(true);
+      emitter.onComplete();
+    });
+  }
+
+  public static Observable<Boolean> insertExamInfo(List<ExamInfoBean> examInfoBeans){
+    return Observable.create(emitter -> {
+      DaoHelper.getDefault()
+          .getDaoSession()
+          .getExamInfoBeanDao()
+          .insertInTx(examInfoBeans);
       emitter.onNext(true);
       emitter.onComplete();
     });

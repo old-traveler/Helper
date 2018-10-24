@@ -11,6 +11,7 @@ import com.hyc.helper.helper.LogHelper;
 import com.hyc.helper.helper.RequestHelper;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import java.util.List;
 
@@ -32,17 +33,15 @@ public class CourseModel {
         .subscribe(observer);
   }
 
-  @SuppressLint("CheckResult")
-  public void insertCourseIntoDb(List<CourseInfoBean> courseInfoBeans) {
-    DbInsertHelper.insertCourseInfo(courseInfoBeans).subscribeOn(Schedulers.io())
+  public Disposable insertCourseIntoDb(List<CourseInfoBean> courseInfoBeans) {
+    return DbInsertHelper.insertCourseInfo(courseInfoBeans)
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(aBoolean -> LogHelper.log("插入数据完成"));
   }
 
-  @SuppressLint("CheckResult")
-  public void refreshLocalDb(List<CourseInfoBean> courseInfoBeans) {
-    DbDeleteHelper.deleteUserCourseInfo()
+  public Disposable refreshLocalDb(List<CourseInfoBean> courseInfoBeans) {
+    return DbDeleteHelper.deleteUserCourseInfo()
         .subscribeOn(Schedulers.io())
         .observeOn(Schedulers.io())
         .subscribe(aBoolean -> insertCourseIntoDb(courseInfoBeans));
