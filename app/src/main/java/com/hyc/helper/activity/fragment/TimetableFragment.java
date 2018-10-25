@@ -10,6 +10,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import com.hyc.helper.R;
+import com.hyc.helper.activity.CourseDetailActivity;
 import com.hyc.helper.base.fragment.BaseRequestFragment;
 import com.hyc.helper.base.util.UiHelper;
 import com.hyc.helper.bean.CourseBean;
@@ -53,6 +54,8 @@ public class TimetableFragment extends BaseRequestFragment<CourseBean> implement
     srlTimetable.setOnRefreshListener(this);
     initTopTitle();
     initLeftTip();
+    ctlCourse.setOnItemClickListener(
+        (position, infoBean) -> CourseDetailActivity.startCourseDetail(getActivity(), infoBean));
   }
 
   private void initLeftTip() {
@@ -90,7 +93,7 @@ public class TimetableFragment extends BaseRequestFragment<CourseBean> implement
       }
       llTopTitle.addView(textView, index++);
     }
-    tvMonth.setText(DateHelper.getCurMonth()+"月");
+    tvMonth.setText(DateHelper.getCurMonth() + "月");
   }
 
   private void initCurWeekText(TextView textView) {

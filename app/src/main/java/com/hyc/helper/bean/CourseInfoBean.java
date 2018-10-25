@@ -1,13 +1,17 @@
 package com.hyc.helper.bean;
 
 import com.hyc.helper.helper.IntegerConverter;
+import java.io.Serializable;
 import java.util.List;
 import org.greenrobot.greendao.annotation.Convert;
 import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Generated;
 
 @Entity
-public class CourseInfoBean {
+public class CourseInfoBean  implements Serializable{
+
+  public static final long serialVersionUID = 42L;
+
 
   private String xh;
   private String xqj;

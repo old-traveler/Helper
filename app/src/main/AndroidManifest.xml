@@ -44,7 +44,8 @@
     <activity android:name=".activity.ExamActivity" />
     <activity android:name=".activity.GradeActivity" />
     <activity android:name=".activity.SchoolCalendarActivity" />
-    <activity android:name=".activity.WebActivity"></activity>
+    <activity android:name=".activity.WebActivity" />
+    <activity android:name=".activity.CourseDetailActivity"></activity>
   </application>
 
 </manifest>

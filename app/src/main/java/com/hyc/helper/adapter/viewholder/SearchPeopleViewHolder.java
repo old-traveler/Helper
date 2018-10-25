@@ -31,7 +31,7 @@ public class SearchPeopleViewHolder extends BaseViewHolder<FindPeopleBean.DataBe
 
   @Override
   public void loadItemData(Context context, FindPeopleBean.DataBean data, int position) {
-    ImageRequestHelper.loadHeadImage(context,data.getHead_pic_thumb(),ivSearchProfile);
+    ImageRequestHelper.loadHeadImage(context, data.getHead_pic_thumb(), ivSearchProfile);
     tvSearchName.setText(String.format("%s/%s", data.getClass_name(), data.getDep_name()));
   }
 }

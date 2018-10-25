@@ -97,6 +97,7 @@ public class CourseTableLayout extends ViewGroup implements View.OnClickListener
     String info = courseInfoBean.getName() + "\n@" + courseInfoBean.getRoom();
     textView.setText(info);
     itemView.setTag(new CourseTableItemBean(getPoint(courseInfoBean), courseInfoBean));
+    itemView.setOnClickListener(this);
     return itemView;
   }
 

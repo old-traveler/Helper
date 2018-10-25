@@ -66,6 +66,7 @@
   <string name="library_title">Library</string>
   <string name="about_us">仅供学习交流使用</string>
   <string name="logout_tip">注销后需要重新登陆\n是否继续?</string>
+  <string name="course_detail">Course Detail</string>
 
   <string-array name="weeks">
     <item>周一</item>
