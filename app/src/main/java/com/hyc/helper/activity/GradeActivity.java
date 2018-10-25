@@ -17,6 +17,7 @@ public class GradeActivity extends BaseListActivity<GradeInfoBean,GradeBean,Grad
   private GradeModel gradeModel = new GradeModel();
   private UserModel userModel = new UserModel();
   private boolean isFirst = true;
+  private boolean isNeedFresh = false;
 
   @Override
   protected BaseRecycleAdapter<GradeInfoBean, GradeViewHolder> setRecycleAdapter() {
@@ -39,14 +40,17 @@ public class GradeActivity extends BaseListActivity<GradeInfoBean,GradeBean,Grad
       isFirst = false;
       gradeModel.getGradeInfoFromCache(this);
     }else {
+      isNeedFresh = true;
       gradeModel.getGradeFromApi(userModel.getCurUserInfo(),this);
     }
   }
 
   @Override
   protected List<GradeInfoBean> getData(GradeBean gradeBean) {
+    if (isNeedFresh){
+      gradeModel.refreshLocalDb(gradeBean.getData());
+    }
     Collections.sort(gradeBean.getData());
-    gradeModel.refreshLocalDb(gradeBean.getData());
     return gradeBean.getData();
   }
 

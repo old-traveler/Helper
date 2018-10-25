@@ -189,6 +189,12 @@ public abstract class BaseListActivity<T, B extends BaseRequestBean, VH extends 
     }
   }
 
+  public void dispose(){
+    if (disposable != null && !disposable.isDisposed()){
+      disposable.dispose();
+    }
+  }
+
   protected abstract List<T> getData(B b);
 
   @Override

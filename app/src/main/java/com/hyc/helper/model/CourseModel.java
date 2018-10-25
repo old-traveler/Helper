@@ -46,4 +46,11 @@ public class CourseModel {
         .observeOn(Schedulers.io())
         .subscribe(aBoolean -> insertCourseIntoDb(courseInfoBeans));
   }
+
+  public Disposable clearLocalDb(){
+    return DbDeleteHelper.deleteUserCourseInfo()
+        .subscribeOn(Schedulers.io())
+        .observeOn(Schedulers.io())
+        .subscribe();
+  }
 }

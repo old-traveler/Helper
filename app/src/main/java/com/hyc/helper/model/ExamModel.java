@@ -44,4 +44,11 @@ public class ExamModel {
         .subscribe(observer);
   }
 
+  public Disposable deleteExamInfoFromCache(){
+    return DbDeleteHelper.deleteUserExamInfo()
+        .subscribeOn(Schedulers.io())
+        .observeOn(Schedulers.io())
+        .subscribe();
+  }
+
 }

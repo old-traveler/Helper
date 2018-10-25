@@ -55,4 +55,5 @@ dependencies {
   implementation 'com.sackcentury:shinebutton:0.2.0'
   implementation 'com.zhihu.android:matisse:0.5.2-beta3'
   implementation 'com.github.yalantis:ucrop:2.2.2'
+  implementation 'com.ms-square:expandableTextView:0.1.4'
 }

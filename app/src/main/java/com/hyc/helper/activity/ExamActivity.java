@@ -19,6 +19,7 @@ public class ExamActivity extends BaseListActivity<ExamInfoBean,ExamBean,ExamVie
   private ExamModel examModel = new ExamModel();
   private UserModel userModel = new UserModel();
   private boolean isFirst = true;
+  private boolean isNeedFresh = false;
 
   @Override
   protected BaseRecycleAdapter<ExamInfoBean, ExamViewHolder> setRecycleAdapter() {
@@ -42,6 +43,7 @@ public class ExamActivity extends BaseListActivity<ExamInfoBean,ExamBean,ExamVie
       isFirst = false;
       examModel.getExamInfoFromCache(this);
     }else {
+      isNeedFresh = true;
       examModel.getExam(userModel.getCurUserInfo(),this);
     }
   }
@@ -49,9 +51,12 @@ public class ExamActivity extends BaseListActivity<ExamInfoBean,ExamBean,ExamVie
   @Override
   public void onNext(ExamBean ts) {
     if (ts.getStatus().equals("need_api")){
+      dispose();
       requestListData(0);
     } else if (ts.getStatus().equals("success")) {
-      examModel.refreshLocalDb(ts.getRes().getExam());
+      if (isNeedFresh){
+        examModel.refreshLocalDb(ts.getRes().getExam());
+      }
       loadMoreFinish(getData(ts));
     } else if (!TextUtils.isEmpty(ts.getMsg())) {
       ToastHelper.toast(ts.getMsg());

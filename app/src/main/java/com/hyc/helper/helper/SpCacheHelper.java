@@ -24,6 +24,10 @@ public class SpCacheHelper {
     }).subscribeOn(Schedulers.io()).subscribe();
   }
 
+  public static void deleteClassFromSp(String key){
+    getEditor().clear().commit();
+  }
+
   public static <T> T getClassFromSp(String key, Class<T> cls) {
     try {
       String json = getSharedPreferences().getString(key, "");

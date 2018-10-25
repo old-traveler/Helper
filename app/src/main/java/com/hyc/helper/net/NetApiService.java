@@ -13,6 +13,7 @@ import com.hyc.helper.bean.PowerBean;
 import com.hyc.helper.bean.SecondHandBean;
 import com.hyc.helper.bean.StatementBean;
 import com.hyc.helper.bean.UserBean;
+import com.hyc.helper.bean.UserInfoBean;
 import io.reactivex.Observable;
 import okhttp3.MultipartBody;
 import retrofit2.http.Field;
@@ -29,37 +30,37 @@ public interface NetApiService {
 
   /**
    * 登陆
+   *
    * @param number 学号
    * @param password 密码
-   * @return
    */
   @GET("get/loginWx/{number}/{password}/0")
   Observable<UserBean> login(@Path("number") String number, @Path("password") String password);
 
   /**
    * 查询课程表
+   *
    * @param number 学号
-   * @param code   code
-   * @return
+   * @param code code
    */
   @GET("get/schedule/{number}/{code}")
   Observable<CourseBean> getSchedule(@Path("number") String number, @Path("code") String code);
 
   /**
    * 查询校园说说
+   *
    * @param number 学号
-   * @param page  页号
-   * @return
+   * @param page 页号
    */
   @GET("statement/statement/{number}/{page}")
   Observable<StatementBean> getStatement(@Path("number") String number, @Path("page") int page);
 
   /**
    * 赞说说
+   *
    * @param number 学号
    * @param code code
    * @param statementId 说说id
-   * @return
    */
   @GET("statement/like/{number}/{code}/{statement_id}")
   Observable<BaseRequestBean> likeStatement(
@@ -68,18 +69,18 @@ public interface NetApiService {
 
   /**
    * 查询二手市场
+   *
    * @param page 页号
-   * @return
    */
   @GET("trade/goods/{page}/0")
   Observable<SecondHandBean> getSecondHandMaker(@Path("page") int page);
 
   /**
    * 获取二手商品详情
+   *
    * @param number 学号
-   * @param code   code
+   * @param code code
    * @param goodsId 商品id
-   * @return
    */
   @GET("trade/details/{number}/{code}/{goodsId}")
   Observable<GoodsDetailBean> getGoodsDetailInfo(
@@ -87,26 +88,23 @@ public interface NetApiService {
 
   /**
    * 查询失物招领
+   *
    * @param page 页号
-   * @return
    */
   @GET("loses/goods/{page}/0")
   Observable<LostBean> getLostAndFind(@Path("page") int page);
 
   /**
    * 获取应用配置信息，静态Api
-   * @return
    */
   @GET("https://raw.githubusercontent.com/old-traveler/Helper/master/img/love.json")
   Observable<ConfigureBean> getConfigure();
 
   /**
    * 评论说说
-   * @param number
-   * @param code
+   *
    * @param comment 评论
-   * @param moment_id  说说id
-   * @return
+   * @param moment_id 说说id
    */
   @FormUrlEncoded
   @POST("statement/comment/{number}/{code}")
@@ -116,12 +114,10 @@ public interface NetApiService {
 
   /**
    * 发布说说
+   *
    * @param number 学号
-   * @param code
    * @param content 内容
-   * @param userId
    * @param hidden 照片
-   * @return
    */
   @FormUrlEncoded
   @POST("statement/create/{number}/{code}")
@@ -131,12 +127,10 @@ public interface NetApiService {
 
   /**
    * 上传照片
-   * @param number
-   * @param code
-   * @param env  sha1验证码
+   *
+   * @param env sha1验证码
    * @param type 上传类型
    * @param file 照片
-   * @return
    */
   @Multipart
   @POST("https://pic.htmln.com/api/v3/upload/images/{number}/{code}/{env}/{type}")
@@ -146,10 +140,6 @@ public interface NetApiService {
 
   /**
    * 删除说说
-   * @param number
-   * @param code
-   * @param momend_id
-   * @return
    */
   @GET("statement/deleteWechat/{number}/{code}/{momend_id}")
   Observable<BaseRequestBean> deleteStatement(@Path("number") String number,
@@ -157,11 +147,6 @@ public interface NetApiService {
 
   /**
    * 找人
-   * @param number
-   * @param code
-   * @param env
-   * @param name
-   * @return
    */
   @FormUrlEncoded
   @POST("im/get_students/{number}/{code}/{env}")
@@ -170,10 +155,6 @@ public interface NetApiService {
 
   /**
    * 获取某人发布的说说
-   * @param number
-   * @param page
-   * @param userId
-   * @return
    */
   @GET("statement/statement/{number}/{page}/{user_id}")
   Observable<StatementBean> getUserStatement(@Path("number") String number, @Path("page") int page,
@@ -181,11 +162,6 @@ public interface NetApiService {
 
   /**
    * 获取某人发布的二手
-   * @param number
-   * @param code
-   * @param page
-   * @param userId
-   * @return
    */
   @GET("trade/own/{number}/{code}/{page}/{user_id}")
   Observable<SecondHandBean> getUserSecondMaker(@Path("number") String number,
@@ -193,11 +169,6 @@ public interface NetApiService {
 
   /**
    * 获取默认发布的失物招领
-   * @param number
-   * @param code
-   * @param page
-   * @param userId
-   * @return
    */
   @GET("loses/own/{number}/{code}/{page}/{user_id}")
   Observable<LostBean> getUserLost(@Path("number") String number, @Path("code") String code,
@@ -205,10 +176,6 @@ public interface NetApiService {
 
   /**
    * 更新用户名
-   * @param number
-   * @param code
-   * @param username
-   * @return
    */
   @FormUrlEncoded
   @POST("set/profile/{number}/{code}")
@@ -217,10 +184,6 @@ public interface NetApiService {
 
   /**
    * 更新用户签名
-   * @param number
-   * @param code
-   * @param bio
-   * @return
    */
   @FormUrlEncoded
   @POST("set/profile/{number}/{code}")
@@ -229,27 +192,18 @@ public interface NetApiService {
 
   /**
    * 获取排名信息
-   * @param number
-   * @param code
-   * @return
    */
   @GET("Get/rank/{number}/{code}")
   Observable<BaseRequestBean> getRankInfo(@Path("number") String number, @Path("code") String code);
 
   /**
    * 获取所有成绩
-   * @param number
-   * @param code
-   * @return
    */
   @GET("Get/score/{number}/{code}")
   Observable<GradeBean> getGradeInfo(@Path("number") String number, @Path("code") String code);
 
   /**
    * 获取考试计划信息
-   * @param number
-   * @param code
-   * @return
    */
   @GET("home/examination_wechat/{number}/{code}")
   Observable<ExamBean> getExam(@Path("number") String number,
@@ -257,21 +211,15 @@ public interface NetApiService {
 
   /**
    * 查询电费
-   * @param part
-   * @param locate
-   * @param room
-   * @param number
-   * @param code
-   * @param enc
-   * @return
    */
   @GET("get/power_e/{part}/{locate}/{room}/{number}/{code}/{enc}")
   Observable<PowerBean> getPowerInfo(@Path("part") String part, @Path("locate") String locate,
       @Path("room") String room, @Path("number") String number, @Path("code") String code,
       @Path("enc") String enc);
 
+  @GET("set/user_info/{number}/{code}/{user_id}")
+  Observable<UserInfoBean> findUserbyUserId(@Path("number") String number,
+      @Path("code") String code, @Path("user_id") String userId);
 
   //@GET("home/lessonsExp_Wechat/{number}/{code}")
-
-
 }

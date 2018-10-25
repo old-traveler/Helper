@@ -62,6 +62,10 @@
   <string name="surplus_hour">剩余%d小时</string>
   <string name="my_grade">My Grade</string>
   <string name="school_calendar">School Calendar</string>
+  <string name="library_url">http://218.75.197.122:8989/opac/weixin/account/service/index</string>
+  <string name="library_title">Library</string>
+  <string name="about_us">仅供学习交流使用</string>
+  <string name="logout_tip">注销后需要重新登陆\n是否继续?</string>
 
   <string-array name="weeks">
     <item>周一</item>

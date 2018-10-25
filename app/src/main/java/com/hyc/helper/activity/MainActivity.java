@@ -35,6 +35,7 @@ import com.hyc.helper.base.activity.BaseActivity;
 import com.hyc.helper.base.adapter.BaseRecycleAdapter;
 import com.hyc.helper.base.fragment.BaseFragment;
 import com.hyc.helper.base.fragment.BaseListFragment;
+import com.hyc.helper.base.listener.OnDialogClickListener;
 import com.hyc.helper.base.listener.OnItemClickListener;
 import com.hyc.helper.base.util.ToastHelper;
 import com.hyc.helper.base.util.UiHelper;
@@ -45,6 +46,9 @@ import com.hyc.helper.helper.ConfigureHelper;
 import com.hyc.helper.helper.CupidHelper;
 import com.hyc.helper.helper.DateHelper;
 import com.hyc.helper.helper.ImageRequestHelper;
+import com.hyc.helper.model.CourseModel;
+import com.hyc.helper.model.ExamModel;
+import com.hyc.helper.model.GradeModel;
 import com.hyc.helper.util.DensityUtil;
 import com.hyc.helper.helper.UpdateAppHelper;
 import com.hyc.helper.model.ConfigModel;
@@ -204,8 +208,23 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
       goToOtherActivity(ExamActivity.class, false);
     } else if (item.getItemId() == R.id.item_achievement) {
       goToOtherActivity(GradeActivity.class, false);
-    }else if (item.getItemId() == R.id.item_school_date){
-      goToOtherActivity(SchoolCalendarActivity.class,false);
+    } else if (item.getItemId() == R.id.item_school_date) {
+      goToOtherActivity(SchoolCalendarActivity.class, false);
+    } else if (item.getItemId() == R.id.item_library) {
+      WebActivity.startWebBrowsing(this, R.string.library_url, R.string.library_title);
+    } else if (item.getItemId() == R.id.item_about) {
+      showConfirmDialog(UiHelper.getString(R.string.about_us));
+    } else if (item.getItemId() == R.id.item_logout) {
+      showTipDialog(UiHelper.getString(R.string.tip), UiHelper.getString(R.string.logout_tip),
+          isPosition -> {
+            if (isPosition) {
+              userModel.logout();
+              new CourseModel().clearLocalDb();
+              new ExamModel().deleteExamInfoFromCache();
+              new GradeModel().deleteGradeInfoFromCache();
+              goToOtherActivity(LoginActivity.class, true);
+            }
+          });
     }
     return false;
   }

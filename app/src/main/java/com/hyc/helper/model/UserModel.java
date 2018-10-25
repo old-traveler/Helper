@@ -6,6 +6,7 @@ import com.hyc.helper.bean.BaseRequestBean;
 import com.hyc.helper.bean.FindPeopleBean;
 import com.hyc.helper.bean.ImageUploadBean;
 import com.hyc.helper.bean.UserBean;
+import com.hyc.helper.bean.UserInfoBean;
 import com.hyc.helper.helper.FileHelper;
 import com.hyc.helper.helper.RequestHelper;
 import com.hyc.helper.helper.SpCacheHelper;
@@ -70,13 +71,13 @@ public class UserModel {
     cacheUserInfo(bean);
   }
 
-  public void updateLocalUsername(String username){
+  public void updateLocalUsername(String username) {
     UserBean bean = getCurUserInfo();
     bean.getData().setUsername(username);
     cacheUserInfo(bean);
   }
 
-  public void updateLocalUserBio(String bio){
+  public void updateLocalUserBio(String bio) {
     UserBean bean = getCurUserInfo();
     bean.getData().setBio(bio);
     cacheUserInfo(bean);
@@ -89,11 +90,25 @@ public class UserModel {
         .observeOn(AndroidSchedulers.mainThread());
   }
 
-  public Observable<BaseRequestBean> updateBio(UserBean bean, String bio){
+  public Observable<BaseRequestBean> updateBio(UserBean bean, String bio) {
     return RequestHelper.getRequestApi()
-        .updateUserBio(bean.getData().getStudentKH(),bean.getRemember_code_app(),bio)
+        .updateUserBio(bean.getData().getStudentKH(), bean.getRemember_code_app(), bio)
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread());
   }
 
+  public void findUserInfoById(UserBean userBean, String userId,
+      Observer<UserInfoBean> userInfoBeanObserver) {
+    RequestHelper.getRequestApi()
+        .findUserbyUserId(userBean.getData().getStudentKH(), userBean.getRemember_code_app(),
+            userId)
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(userInfoBeanObserver);
+  }
+
+  public void logout() {
+    SpCacheHelper.deleteClassFromSp("user");
+    curUserBean = new WeakReference<>(null);
+  }
 }

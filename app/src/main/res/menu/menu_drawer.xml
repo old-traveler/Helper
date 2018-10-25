@@ -16,7 +16,7 @@
     android:title="@string/my_achievement" />
   <item
     android:icon="@drawable/ic_libary"
-    android:id="@+id/item"
+    android:id="@+id/item_library"
     android:title="@string/library" />
   <item
     android:icon="@drawable/ic_date"
@@ -24,11 +24,11 @@
     android:title="@string/school_date" />
   <item
     android:icon="@drawable/ic_about"
-    android:id="@+id/mn_about"
+    android:id="@+id/item_about"
     android:title="@string/about" />
   <item
     android:icon="@drawable/ic_logout"
-    android:id="@+id/mn_out"
+    android:id="@+id/item_logout"
     android:title="@string/logout" />
 
 </menu>

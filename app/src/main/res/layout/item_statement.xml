@@ -59,12 +59,33 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <TextView
-      android:lineSpacingExtra="2dp"
-      android:elegantTextHeight="true"
-      android:id="@+id/tv_content"
+    <com.ms.square.android.expandabletextview.ExpandableTextView
+      android:id="@+id/ept_content"
+      app:maxCollapsedLines="5"
+      app:animDuration="200"
       android:layout_width="match_parent"
-      android:layout_height="wrap_content" />
+      android:layout_height="wrap_content">
+
+      <TextView
+        android:id="@id/expandable_text"
+        android:autoLink="web"
+        android:linksClickable="true"
+        android:lineSpacingExtra="2dp"
+        android:elegantTextHeight="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+      <ImageButton
+        android:paddingEnd="3dp"
+        android:id="@id/expand_collapse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:background="@android:color/transparent"/>
+
+    </com.ms.square.android.expandabletextview.ExpandableTextView>
+
+
 
     <com.hyc.helper.view.ImageLayout
       android:id="@+id/imageLayout"
@@ -123,6 +144,7 @@
     </FrameLayout>
 
     <TextView
+      android:autoLink="all"
       android:textSize="13sp"
       android:lineSpacingExtra="5dp"
       android:elegantTextHeight="true"

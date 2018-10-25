@@ -46,6 +46,13 @@ public class GradeModel {
         .subscribe(observer);
   }
 
+  public Disposable deleteGradeInfoFromCache(){
+    return DbDeleteHelper.deleteUserGradeInfo()
+        .subscribeOn(Schedulers.io())
+        .observeOn(Schedulers.io())
+        .subscribe();
+  }
+
 
 
 
