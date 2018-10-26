@@ -217,6 +217,13 @@ public interface NetApiService {
       @Path("room") String room, @Path("number") String number, @Path("code") String code,
       @Path("enc") String enc);
 
+  /**
+   * 通过用户id查找用户
+   * @param number
+   * @param code
+   * @param userId
+   * @return
+   */
   @GET("set/user_info/{number}/{code}/{user_id}")
   Observable<UserInfoBean> findUserbyUserId(@Path("number") String number,
       @Path("code") String code, @Path("user_id") String userId);
