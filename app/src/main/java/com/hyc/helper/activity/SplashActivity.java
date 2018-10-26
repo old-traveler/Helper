@@ -47,7 +47,7 @@ public class SplashActivity extends BaseRequestActivity<ConfigureBean> {
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(this);
-    handler.sendMessageDelayed(message, 5000);
+    handler.sendMessageDelayed(message, 2000);
   }
 
   @Override
