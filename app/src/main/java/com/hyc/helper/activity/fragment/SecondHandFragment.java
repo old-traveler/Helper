@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import com.hyc.helper.R;
+import com.hyc.helper.activity.SecondGoodsDetailActivity;
 import com.hyc.helper.adapter.viewholder.SecondGoodsViewHolder;
 import com.hyc.helper.base.adapter.BaseRecycleAdapter;
 import com.hyc.helper.base.fragment.BaseListFragment;
@@ -86,5 +87,13 @@ public class SecondHandFragment
   @Override
   protected int getLayoutId() {
     return R.layout.fragment_second_hand;
+  }
+
+  @Override
+  public void onItemClick(SecondHandBean.GoodsBean itemData, View view, int position) {
+    super.onItemClick(itemData, view, position);
+    Bundle bundle = new Bundle();
+    bundle.putString("goodsId",itemData.getId());
+    goToOtherActivity(SecondGoodsDetailActivity.class,bundle,false);
   }
 }

@@ -1,14 +1,25 @@
 package com.hyc.helper.base.util;
 
+import android.content.ClipboardManager;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomSheetDialog;
+import android.text.Spannable;
+import android.text.SpannableStringBuilder;
+import android.text.style.ClickableSpan;
+import android.text.style.URLSpan;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import com.hyc.helper.HelperApplication;
 import com.hyc.helper.R;
+import com.hyc.helper.activity.WebActivity;
 import com.hyc.helper.bean.ImageSizeBean;
 import com.hyc.helper.util.DensityUtil;
 
@@ -34,9 +45,9 @@ public class UiHelper {
     return HelperApplication.getContext().getResources().getString(resId);
   }
 
-  public static String getString(int resId,int value){
+  public static String getString(int resId, int value) {
     String str = getString(resId);
-    return String.format(str,value);
+    return String.format(str, value);
   }
 
   public static int getColor(int resId) {
@@ -120,5 +131,68 @@ public class UiHelper {
     float screenScale = DensityUtil.getScreenHeight() * 1.0f / DensityUtil.getScreenWidth();
     float imageScale = bean.getHeight() * 1.0f / bean.getWidth();
     return imageScale > screenScale;
+  }
+
+  public static SpannableStringBuilder getWebLinkStyle(CharSequence text, Context context) {
+    if (text instanceof Spannable) {
+      int end = text.length();
+      Spannable sp = (Spannable) text;
+      URLSpan urls[] = sp.getSpans(0, end, URLSpan.class);
+      SpannableStringBuilder style = new SpannableStringBuilder(text);
+      style.clearSpans();
+      for (URLSpan urlSpan : urls) {
+        ClickableSpan myURLSpan = new ClickableSpan() {
+          @Override
+          public void onClick(@NonNull View view) {
+            if (urlSpan.getURL().startsWith("http")) {
+              WebActivity.startWebBrowsing(context, urlSpan.getURL(), "");
+            } else {
+              String number = urlSpan.getURL();
+              if (number.contains(":")) {
+                number = number.split(":")[1];
+              }
+              showBottomSheetDialog(context, number);
+            }
+          }
+        };
+        style.setSpan(myURLSpan, sp.getSpanStart(urlSpan),
+            sp.getSpanEnd(urlSpan),
+            Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
+      }
+      return style;
+    }
+    return null;
+  }
+
+  public static void showBottomSheetDialog(Context context, final String number) {
+    BottomSheetDialog dialog = new BottomSheetDialog(context);
+    View dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_bottom, null);
+    TextView tvTitle = dialogView.findViewById(R.id.tv_title);
+    tvTitle.setText(String.format("%s\n可能是一个电话号码或者其他联系方式，你可以", number));
+    TextView tvCall = dialogView.findViewById(R.id.tv_call);
+    tvCall.setOnClickListener(view -> {
+      Intent dialIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + number));
+      context.startActivity(dialIntent);
+      dialog.dismiss();
+    });
+    TextView tvCopty = dialogView.findViewById(R.id.tv_copy);
+    tvCopty.setOnClickListener(view -> {
+      ClipboardManager copy =
+          (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
+      copy.setText(number);
+      dialog.dismiss();
+      ToastHelper.toast("已复制到剪切板");
+    });
+    TextView tvCancel = dialogView.findViewById(R.id.tv_cancel);
+    tvCancel.setOnClickListener(view -> dialog.dismiss());
+    dialog.setContentView(dialogView);
+    dialog.show();
+  }
+
+  public static void initLinkTextView(TextView textView,Context context){
+    SpannableStringBuilder spannableStringBuilder = getWebLinkStyle(textView.getText(),context);
+    if (spannableStringBuilder != null){
+      textView.setText(spannableStringBuilder);
+    }
   }
 }

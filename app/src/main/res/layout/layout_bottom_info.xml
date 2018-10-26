@@ -19,6 +19,7 @@
     android:layout_height="wrap_content" />
 
   <TextView
+    android:autoLink="all"
     android:id="@+id/tv_value"
     android:layout_marginTop="55dp"
     android:layout_marginStart="10dp"

@@ -42,7 +42,6 @@ public class PictureBrowsingActivity extends AppCompatActivity {
 
   private ViewPager viewPager;
   private List<String> imagesUrl;
-  private int curImagePosition;
   private ImageModel imageModel = new ImageModel();
 
   @Override
@@ -74,7 +73,7 @@ public class PictureBrowsingActivity extends AppCompatActivity {
 
   private void initViewWithData(Bundle bundle) {
     imagesUrl = bundle.getStringArrayList("images");
-    curImagePosition = bundle.getInt("curImagePosition");
+    int curImagePosition = bundle.getInt("curImagePosition");
     viewPager.setAdapter(new ViewPagerAdapter());
     viewPager.setCurrentItem(curImagePosition);
   }

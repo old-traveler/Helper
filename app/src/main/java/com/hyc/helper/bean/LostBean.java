@@ -1,5 +1,6 @@
 package com.hyc.helper.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
 public class LostBean extends BaseRequestBean{
@@ -40,7 +41,7 @@ public class LostBean extends BaseRequestBean{
     this.goods = goods;
   }
 
-  public static class GoodsBean {
+  public static class GoodsBean implements Serializable {
     /**
      * id : 2360
      * tit : 校园卡

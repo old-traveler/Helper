@@ -68,7 +68,7 @@
 
       <TextView
         android:id="@id/expandable_text"
-        android:autoLink="web"
+        android:autoLink="all"
         android:linksClickable="true"
         android:lineSpacingExtra="2dp"
         android:elegantTextHeight="true"

@@ -2,12 +2,14 @@ package com.hyc.helper.adapter.viewholder;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.text.SpannableStringBuilder;
 import android.view.View;
 import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.hyc.helper.R;
 import com.hyc.helper.base.adapter.viewholder.BaseViewHolder;
+import com.hyc.helper.base.util.UiHelper;
 import com.hyc.helper.bean.InfoEntity;
 
 public class ShowInfoViewHolder extends BaseViewHolder<InfoEntity> {
@@ -30,5 +32,6 @@ public class ShowInfoViewHolder extends BaseViewHolder<InfoEntity> {
   public void loadItemData(Context context, InfoEntity data, int position) {
     tvName.setText(data.getTitle());
     tvValue.setText(data.getValue());
+    UiHelper.initLinkTextView(tvValue,context);
   }
 }

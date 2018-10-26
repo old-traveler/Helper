@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  android:orientation="vertical"
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent">
+
+  <TextView
+    android:id="@+id/tv_title"
+    android:gravity="center"
+    android:textColor="#a9a8a8"
+    android:textSize="12sp"
+    android:layout_width="match_parent"
+    android:layout_height="50dp" />
+
+  <View
+    android:background="#e6e6e6"
+    android:layout_width="match_parent"
+    android:layout_height="0.3dp"/>
+
+  <TextView
+    android:id="@+id/tv_call"
+    android:text="@string/call"
+    android:gravity="center"
+    android:textColor="@color/front_black"
+    android:textSize="16sp"
+    android:layout_width="match_parent"
+    android:layout_height="50dp" />
+
+  <View
+    android:background="#e6e6e6"
+    android:layout_width="match_parent"
+    android:layout_height="0.3dp"/>
+
+  <TextView
+    android:id="@+id/tv_copy"
+    android:text="@string/copy"
+    android:gravity="center"
+    android:textColor="@color/front_black"
+    android:textSize="16sp"
+    android:layout_width="match_parent"
+    android:layout_height="50dp" />
+
+  <View
+    android:background="#dfdfdf"
+    android:layout_width="match_parent"
+    android:layout_height="10dp"/>
+  <TextView
+    android:id="@+id/tv_cancel"
+    android:text="@string/cancel"
+    android:gravity="center"
+    android:textColor="@color/front_black"
+    android:textSize="16sp"
+    android:layout_width="match_parent"
+    android:layout_height="50dp" />
+
+</LinearLayout>

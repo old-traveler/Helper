@@ -63,7 +63,6 @@ public class SplashActivity extends BaseRequestActivity<ConfigureBean> {
 
   @Override
   protected void onFailGetData(Throwable e) {
-    super.onFailGetData(e);
     goToNextActivity(null);
   }
 

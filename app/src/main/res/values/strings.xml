@@ -67,6 +67,10 @@
   <string name="about_us">仅供学习交流使用</string>
   <string name="logout_tip">注销后需要重新登陆\n是否继续?</string>
   <string name="course_detail">Course Detail</string>
+  <string name="load_fail_tip">加载失败,点击重试</string>
+  <string name="page">%d/%d</string>
+  <string name="copy">复制</string>
+  <string name="call">呼叫</string>
 
   <string-array name="weeks">
     <item>周一</item>

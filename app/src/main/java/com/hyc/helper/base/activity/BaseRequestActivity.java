@@ -2,22 +2,36 @@ package com.hyc.helper.base.activity;
 
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.View;
+import android.widget.TextView;
+import com.hyc.helper.R;
 import com.hyc.helper.base.util.ToastHelper;
 import com.hyc.helper.bean.BaseRequestBean;
 import com.hyc.helper.helper.Constant;
 import com.hyc.helper.helper.LogHelper;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
+import java.util.Objects;
 
 public abstract class BaseRequestActivity<T extends BaseRequestBean> extends BaseActivity
     implements Observer<T> {
 
   private Disposable disposable;
 
+  private TextView tvLoadFail;
+
+  private boolean atCreateRequest;
+
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    if (isOnCreateRequest()) {
+    atCreateRequest = isOnCreateRequest();
+    tvLoadFail = findViewById(R.id.tv_fail_tip);
+    if (tvLoadFail != null){
+      tvLoadFail.setVisibility(View.GONE);
+      tvLoadFail.setOnClickListener(view -> startRequest());
+    }
+    if (atCreateRequest) {
       startRequest();
     }
   }
@@ -52,6 +66,9 @@ public abstract class BaseRequestActivity<T extends BaseRequestBean> extends Bas
   protected abstract void onSuccessGetData(T t);
 
   protected void onFailGetData(Throwable e) {
+    if (atCreateRequest){
+      tvLoadFail.setVisibility(View.VISIBLE);
+    }
     ToastHelper.toast(e.getMessage());
   }
 
@@ -77,6 +94,9 @@ public abstract class BaseRequestActivity<T extends BaseRequestBean> extends Bas
     if (t == null) {
       LogHelper.log("数据为空");
     } else if (t.getCode() == Constant.REQUEST_SUCCESS) {
+      if (tvLoadFail != null){
+        tvLoadFail.setVisibility(View.GONE);
+      }
       onSuccessGetData(t);
     } else if (t.getCode() == Constant.NEED_API_DATA) {
       disposable.dispose();

@@ -101,15 +101,9 @@ public class StatementViewHolder extends BaseViewHolder<StatementBean.StatementI
       tvDeleteStatement.setVisibility(View.GONE);
     }
     imageLayout.setOnItemClickListener(this);
-    initContentWebLinkClick(tvContent, context);
+    UiHelper.initLinkTextView(tvContent, context);
   }
 
-  private void initContentWebLinkClick(TextView textView, Context context) {
-    SpannableStringBuilder style = getWebLinkStyle(textView.getText(), context);
-    if (style != null) {
-      textView.setText(style);
-    }
-  }
 
   private void initCommentClick(Context context, List<CommentInfoBean> commentInfoBeans) {
     StringBuilder stringBuilder = new StringBuilder();
@@ -125,7 +119,7 @@ public class StatementViewHolder extends BaseViewHolder<StatementBean.StatementI
       textPositionBeans.add(new TextPositionBean<>(start,end,commentInfoBeans.get(i).getUser_id()));
     }
     tvCommentInfo.setText(stringBuilder.toString());
-    SpannableStringBuilder style = getWebLinkStyle(tvCommentInfo.getText(),context);
+    SpannableStringBuilder style = UiHelper.getWebLinkStyle(tvCommentInfo.getText(),context);
     if (style == null){
       style = new SpannableStringBuilder(stringBuilder.toString());
     }
@@ -142,28 +136,7 @@ public class StatementViewHolder extends BaseViewHolder<StatementBean.StatementI
     tvCommentInfo.setText(style);
   }
 
-  private SpannableStringBuilder getWebLinkStyle(CharSequence text, Context context) {
-    if (text instanceof Spannable) {
-      int end = text.length();
-      Spannable sp = (Spannable) text;
-      URLSpan urls[] = sp.getSpans(0, end, URLSpan.class);
-      SpannableStringBuilder style = new SpannableStringBuilder(text);
-      style.clearSpans();
-      for (URLSpan urlSpan : urls) {
-        ClickableSpan myURLSpan = new ClickableSpan() {
-          @Override
-          public void onClick(@NonNull View view) {
-            WebActivity.startWebBrowsing(context, urlSpan.getURL(), "");
-          }
-        };
-        style.setSpan(myURLSpan, sp.getSpanStart(urlSpan),
-            sp.getSpanEnd(urlSpan),
-            Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
-      }
-      return style;
-    }
-    return null;
-  }
+
 
   @OnClick({ R.id.iv_publisher_head, R.id.tv_publish_name, R.id.sb_like, R.id.tv_delete_statement })
   public void onViewClicked(View view) {

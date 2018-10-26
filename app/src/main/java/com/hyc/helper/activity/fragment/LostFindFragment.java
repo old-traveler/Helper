@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import com.hyc.helper.R;
+import com.hyc.helper.activity.LostFindDetailActivity;
 import com.hyc.helper.adapter.viewholder.LostFindViewHolder;
 import com.hyc.helper.base.adapter.BaseRecycleAdapter;
 import com.hyc.helper.base.fragment.BaseListFragment;
@@ -84,5 +85,13 @@ public class LostFindFragment
   @Override
   protected int getLayoutId() {
     return R.layout.fragment_lost_find;
+  }
+
+  @Override
+  public void onItemClick(LostBean.GoodsBean itemData, View view, int position) {
+    super.onItemClick(itemData, view, position);
+    Bundle bundle = new Bundle();
+    bundle.putSerializable("lost",itemData);
+    goToOtherActivity(LostFindDetailActivity.class,bundle,false);
   }
 }
