@@ -11,7 +11,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import com.hyc.helper.R;
-import com.hyc.helper.base.activity.BaseActivity;
 import com.hyc.helper.base.activity.BaseRequestActivity;
 import com.hyc.helper.base.util.UiHelper;
 import com.hyc.helper.bean.UserInfoBean;

@@ -64,7 +64,7 @@ public class SecondGoodsDetailActivity extends BaseRequestActivity<GoodsDetailBe
 
   @Override
   protected void onSuccessGetData(GoodsDetailBean goodsDetailBean) {
-    initImageBrowsing(goodsDetailBean.getData().getPics());
+    initImageBrowsing(goodsDetailBean.getData().getPics_src());
     initGoodsInfo(goodsDetailBean.getData());
   }
 
