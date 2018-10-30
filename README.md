@@ -10,10 +10,9 @@
  
  
 ## 项目结构
-
----
  
 项目使用mvc为架构。并封装base类支持全异步任务处理
+
  
 * 网络请求： [Retrofit 2.0](https://github.com/square/retrofit)
 * 异步任务： [RxJava 2.0](https://github.com/ReactiveX/RxJava)
@@ -27,8 +26,6 @@
 
 
 ## 功能介绍
-
----
 
 - [x] 课程表
 - [x] 校园说说
