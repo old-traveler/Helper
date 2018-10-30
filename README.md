@@ -5,7 +5,7 @@
  
  [![AppVeyor](https://img.shields.io/badge/build-passing-green.svg)](https://github.com/old-traveler/Helper)&nbsp;&nbsp;
  [![Packagist](https://img.shields.io/badge/download-3.8M-red.svg)](http://bmob-cdn-12662.b0.upaiyun.com/2018/10/30/5f4c627f407591ce806d77532311da2c.apk)&nbsp;&nbsp;
- [![Packagist](https://img.shields.io/badge/API-28+-blue.svg)](https://github.com/old-traveler/Here)&nbsp;&nbsp;
+ [![Packagist](https://img.shields.io/badge/API-28+-blue.svg)](https://github.com/old-traveler/Helper)&nbsp;&nbsp;
  [![Packagist](https://img.shields.io/badge/Version-1.0.0-green.svg)](https://github.com/old-traveler/Helper)
  
  
@@ -15,15 +15,15 @@
  
 项目使用mvc为架构。并封装base类支持全异步任务处理
  
-* 网络请求： Retrofit 2.0
-* 异步任务： RxJava 2.0
-* 图片加载： Glide
-* 存数据库： GreenDao
-* 大图加载： Subsampling Scale Image View
-* 权限处理： RxPermissions
-* 图片选择： Matisse
-* 图片压缩： Luban
-* 头像剪裁： Ucrop
+* 网络请求： [Retrofit 2.0](https://github.com/square/retrofit)
+* 异步任务： [RxJava 2.0](https://github.com/ReactiveX/RxJava)
+* 图片加载： [Glide](https://github.com/bumptech/glide)
+* 存数据库： [GreenDao](https://github.com/greenrobot/greenDAO)
+* 大图加载： [Subsampling Scale Image View](https://github.com/davemorrissey/subsampling-scale-image-view)
+* 权限处理： [RxPermissions](https://github.com/tbruyelle/RxPermissions)
+* 图片选择： [Matisse](https://github.com/zhihu/Matisse)
+* 图片压缩： [Luban](https://github.com/Curzibn/Luban)
+* 头像剪裁： [Ucrop](https://github.com/Yalantis/uCrop)
 
 
 ## 功能介绍
