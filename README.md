@@ -3,6 +3,11 @@
 
  helper是一款遵从Material Design风格设计且只服务于湖工大学子的App
  
+ [![AppVeyor](https://img.shields.io/badge/build-passing-green.svg)](https://github.com/old-traveler/Helper)&nbsp;&nbsp;
+ [![Packagist](https://img.shields.io/badge/download-3.8M-red.svg)](http://bmob-cdn-12662.b0.upaiyun.com/2018/10/30/5f4c627f407591ce806d77532311da2c.apk)&nbsp;&nbsp;
+ [![Packagist](https://img.shields.io/badge/API-28+-blue.svg)](https://github.com/old-traveler/Here)&nbsp;&nbsp;
+ [![Packagist](https://img.shields.io/badge/Version-1.0.0-green.svg)](https://github.com/old-traveler/Helper)
+ 
  
 ## 项目结构
 
@@ -26,7 +31,6 @@
 ---
 
 - [x] 课程表
--- [x] 评论
 - [x] 校园说说
 - [x] 二手市场
 - [x] 失物招领
@@ -97,5 +101,7 @@
 <div class="half">
     <img src="https://raw.githubusercontent.com/old-traveler/Helper/master/img/screener_date.png" width = "400" height = "720"><img src = "https://raw.githubusercontent.com/old-traveler/Helper/master/img/screener_grade.png" width = "400" height = "720">
 </div>
+
+
 
 
