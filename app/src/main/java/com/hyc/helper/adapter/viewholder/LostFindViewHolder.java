@@ -13,6 +13,7 @@ import com.hyc.helper.activity.PictureBrowsingActivity;
 import com.hyc.helper.base.adapter.viewholder.BaseViewHolder;
 import com.hyc.helper.base.util.UiHelper;
 import com.hyc.helper.bean.LostBean;
+import com.hyc.helper.model.UserModel;
 import com.hyc.helper.view.ImageLayout;
 import java.util.ArrayList;
 
@@ -33,14 +34,17 @@ public class LostFindViewHolder extends BaseViewHolder<LostBean.GoodsBean>
   TextView tvLocation;
   @BindView(R.id.cv_lost)
   CardView cvLost;
+  @BindView(R.id.tv_delete)
+  TextView tvDelete;
+  private UserModel userModel = new UserModel();
 
   public LostFindViewHolder(@NonNull View itemView) {
     super(itemView);
-    ButterKnife.bind(this, itemView);
   }
 
   @Override
   protected void initItemView(View view) {
+    ButterKnife.bind(this, itemView);
   }
 
   @Override
@@ -60,13 +64,24 @@ public class LostFindViewHolder extends BaseViewHolder<LostBean.GoodsBean>
     tvDate.setText(data.getTime());
     ivLostImage.setImageListUrl(data.getPics());
     ivLostImage.setOnItemClickListener(this);
+    if (userModel.getCurUserInfo().getData().getUser_id() == Integer.parseInt(data.getUser_id())) {
+      tvDelete.setVisibility(View.VISIBLE);
+    } else {
+      tvDelete.setVisibility(View.GONE);
+    }
   }
 
   @Override
   public void onItemImageClick(int position) {
-    if (itemView.getContext()!= null){
-      PictureBrowsingActivity.goToPictureBrowsingActivity(ivLostImage.getContext(),position,
+    if (itemView.getContext() != null) {
+      PictureBrowsingActivity.goToPictureBrowsingActivity(ivLostImage.getContext(), position,
           (ArrayList<String>) getData().getPics());
     }
+  }
+
+  @Override
+  public void setOnClickListener(View.OnClickListener onClickListener) {
+    super.setOnClickListener(onClickListener);
+    tvDelete.setOnClickListener(onClickListener);
   }
 }

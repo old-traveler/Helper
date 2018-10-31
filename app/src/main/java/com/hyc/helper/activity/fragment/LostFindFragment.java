@@ -1,22 +1,32 @@
 package com.hyc.helper.activity.fragment;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import com.hyc.helper.R;
+import com.hyc.helper.activity.LosePublishActivity;
 import com.hyc.helper.activity.LostFindDetailActivity;
+import com.hyc.helper.activity.SecondMarketPublishActivity;
 import com.hyc.helper.adapter.viewholder.LostFindViewHolder;
 import com.hyc.helper.base.adapter.BaseRecycleAdapter;
 import com.hyc.helper.base.fragment.BaseListFragment;
+import com.hyc.helper.base.util.ToastHelper;
+import com.hyc.helper.bean.BaseRequestBean;
 import com.hyc.helper.bean.LostBean;
 import com.hyc.helper.helper.Constant;
 import com.hyc.helper.model.LostGoodsModel;
 import com.hyc.helper.model.UserModel;
+import io.reactivex.functions.Consumer;
 import java.util.List;
+
+import static android.app.Activity.RESULT_OK;
 
 public class LostFindFragment
     extends BaseListFragment<LostBean.GoodsBean, LostBean, LostFindViewHolder> {
@@ -36,6 +46,14 @@ public class LostFindFragment
     bundle.putString(Constant.USER_ID, userId);
     lostFindFragment.setArguments(bundle);
     return lostFindFragment;
+  }
+
+  @Override
+  protected void initLayoutView(View view) {
+    super.initLayoutView(view);
+    FloatingActionButton floatingActionButton = view.findViewById(R.id.fb_publish);
+    floatingActionButton.setOnClickListener(view1 -> startActivityForResult(
+        new Intent(getActivity(), LosePublishActivity.class), 2010));
   }
 
   @Override
@@ -87,11 +105,33 @@ public class LostFindFragment
     return R.layout.fragment_lost_find;
   }
 
+  @SuppressLint("CheckResult")
   @Override
   public void onItemClick(LostBean.GoodsBean itemData, View view, int position) {
     super.onItemClick(itemData, view, position);
+    if (R.id.tv_delete == view.getId()){
+      showLoadingView();
+      lostGoodsModel.deleteLost(userModel.getCurUserInfo(),itemData.getId())
+          .subscribe(baseRequestBean -> {
+            getRecycleAdapter().removeItemFormList(position);
+            closeLoadingView();
+          }, throwable -> {
+            closeLoadingView();
+            ToastHelper.toast(throwable.getMessage());
+          });
+      return;
+    }
     Bundle bundle = new Bundle();
     bundle.putSerializable("lost",itemData);
     goToOtherActivity(LostFindDetailActivity.class,bundle,false);
   }
+
+  @Override
+  public void onActivityResult(int requestCode, int resultCode, Intent data) {
+    super.onActivityResult(requestCode, resultCode, data);
+    if (requestCode == 2010 && resultCode == RESULT_OK) {
+      refresh();
+    }
+  }
+
 }

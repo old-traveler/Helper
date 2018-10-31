@@ -81,6 +81,9 @@
   <string name="publish_goods">Publish Goods</string>
   <string name="sell">出售</string>
   <string name="buy">求购</string>
+  <string name="input_thing_name">请输入物品名</string>
+  <string name="locate_input_tip">请输入地点</string>
+  <string name="lost_time">%d-%s-%s %s:00</string>
 
   <string-array name="weeks">
     <item>周一</item>

@@ -24,6 +24,12 @@ public class DateHelper {
     return day == 0 ? 7 : day;
   }
 
+
+  public static int getCurYear() {
+    Calendar c = Calendar.getInstance();
+    return c.get(Calendar.YEAR);
+  }
+
   public static int getCurMonth(){
     Calendar c = Calendar.getInstance();
     int month = c.get(Calendar.MONTH)+1;

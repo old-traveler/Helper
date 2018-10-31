@@ -48,7 +48,8 @@
     <activity android:name=".activity.CourseDetailActivity" />
     <activity android:name=".activity.SecondGoodsDetailActivity" />
     <activity android:name=".activity.LostFindDetailActivity" />
-    <activity android:name=".activity.SecondMarketPublishActivity"/>
+    <activity android:name=".activity.SecondMarketPublishActivity" />
+    <activity android:name=".activity.LosePublishActivity"></activity>
   </application>
 
 </manifest>

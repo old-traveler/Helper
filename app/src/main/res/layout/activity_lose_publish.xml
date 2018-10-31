@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  tools:context=".activity.LosePublishActivity">
+
+  <LinearLayout
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <include layout="@layout/lib_layout_toolbar"/>
+
+    <EditText
+      android:id="@+id/et_title"
+      style="@style/input_text"
+      android:hint="@string/input_thing_name"
+      android:maxLines="1"
+      android:layout_width="match_parent"
+      android:layout_height="40dp" />
+
+    <EditText
+      android:id="@+id/et_area"
+      style="@style/input_text"
+      android:hint="@string/locate_input_tip"
+      android:maxLines="1"
+      android:layout_width="match_parent"
+      android:layout_height="40dp" />
+    
+    <LinearLayout
+      android:orientation="horizontal"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content">
+      <EditText
+        android:hint="月"
+        android:inputType="number"
+        android:layout_weight="1"
+        android:id="@+id/et_month"
+        style="@style/input_text"
+        android:maxLines="1"
+        android:layout_width="0dp"
+        android:layout_height="40dp" />
+      <EditText
+        android:inputType="number"
+        android:hint="日"
+        android:layout_marginStart="5dp"
+        android:layout_weight="1"
+        android:id="@+id/et_day"
+        style="@style/input_text"
+        android:maxLines="1"
+        android:layout_width="0dp"
+        android:layout_height="40dp" />
+      <EditText
+        android:inputType="number"
+        android:hint="时"
+        android:layout_marginStart="5dp"
+        android:layout_weight="1"
+        android:id="@+id/et_hour"
+        style="@style/input_text"
+        android:maxLines="1"
+        android:layout_width="0dp"
+        android:layout_height="40dp" />
+    </LinearLayout>
+
+   
+
+    <EditText
+      android:inputType="phone"
+      android:id="@+id/et_phone"
+      style="@style/input_text"
+      android:hint="@string/phone_input_tip"
+      android:maxLines="1"
+      android:layout_width="match_parent"
+      android:layout_height="40dp" />
+
+    <EditText
+      android:id="@+id/et_content"
+      style="@style/input_text"
+      android:gravity="start"
+      android:hint="@string/content_input_tip"
+      android:textColorHint="@color/bg_no"
+      android:layout_width="match_parent"
+      android:layout_height="120dp" />
+
+    <TextView
+      android:layout_marginStart="5dp"
+      android:textColor="@color/bg_no"
+      android:layout_marginTop="10dp"
+      android:text="@string/add_image_tip"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content" />
+
+    <android.support.v7.widget.RecyclerView
+      android:layout_marginStart="5dp"
+      android:layout_marginTop="10dp"
+      android:id="@+id/rv_publish_lost"
+      android:layout_width="match_parent"
+      android:layout_height="120dp"/>
+
+  </LinearLayout>
+
+</ScrollView>

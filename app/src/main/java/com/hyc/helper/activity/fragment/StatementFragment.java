@@ -163,7 +163,11 @@ public class StatementFragment extends
       showLoadingView();
       statementModel.deleteStatement(userModel.getCurUserInfo(), itemData.getId())
           .subscribe(baseRequestBean -> {
-            getRecycleAdapter().removeItemFormList(position);
+            if (baseRequestBean.getCode() == 200){
+              getRecycleAdapter().removeItemFormList(position);
+            }else {
+              ToastHelper.toast(baseRequestBean.getCode());
+            }
             closeLoadingView();
           }, throwable -> {
             ToastHelper.toast(throwable.getMessage());
