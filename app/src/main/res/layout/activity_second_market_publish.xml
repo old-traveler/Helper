@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  tools:context=".activity.SecondMarketPublishActivity">
+
+  <LinearLayout
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <include layout="@layout/lib_layout_toolbar"/>
+
+    <EditText
+      android:id="@+id/et_title"
+      style="@style/input_text"
+      android:hint="@string/title_input_tip"
+      android:maxLines="1"
+      android:layout_width="match_parent"
+      android:layout_height="40dp" />
+
+    <EditText
+      android:inputType="number"
+      android:id="@+id/et_price"
+      style="@style/input_text"
+      android:hint="@string/price_input_tip"
+      android:maxLines="1"
+      android:layout_width="match_parent"
+      android:layout_height="40dp" />
+
+    <EditText
+      android:id="@+id/et_area"
+      style="@style/input_text"
+      android:hint="@string/area_input_tip"
+      android:maxLines="1"
+      android:layout_width="match_parent"
+      android:layout_height="40dp" />
+
+    <EditText
+      android:inputType="phone"
+      android:id="@+id/et_phone"
+      style="@style/input_text"
+      android:hint="@string/phone_input_tip"
+      android:maxLines="1"
+      android:layout_width="match_parent"
+      android:layout_height="40dp" />
+
+    <EditText
+      android:inputType="number"
+      android:id="@+id/et_attr"
+      style="@style/input_text"
+      android:hint="@string/attr_input_tip"
+      android:maxLines="1"
+      android:layout_width="match_parent"
+      android:layout_height="40dp" />
+
+    <EditText
+      android:id="@+id/et_content"
+      style="@style/input_text"
+      android:gravity="left"
+      android:hint="@string/content_input_tip"
+      android:textColorHint="@color/bg_no"
+      android:layout_width="match_parent"
+      android:layout_height="120dp" />
+
+    <TextView
+      android:layout_marginStart="5dp"
+      android:textColor="@color/bg_no"
+      android:layout_marginTop="10dp"
+      android:text="@string/add_image_tip"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content" />
+
+    <android.support.v7.widget.RecyclerView
+      android:layout_marginStart="5dp"
+      android:layout_marginTop="10dp"
+      android:id="@+id/rv_publish_goods"
+      android:layout_width="match_parent"
+      android:layout_height="120dp"/>
+
+  </LinearLayout>
+
+</ScrollView>

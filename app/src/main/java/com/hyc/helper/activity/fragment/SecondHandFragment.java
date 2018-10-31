@@ -1,7 +1,10 @@
 package com.hyc.helper.activity.fragment;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.GridLayoutManager;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -9,16 +12,22 @@ import android.view.View;
 import android.view.ViewGroup;
 import com.hyc.helper.R;
 import com.hyc.helper.activity.SecondGoodsDetailActivity;
+import com.hyc.helper.activity.SecondMarketPublishActivity;
 import com.hyc.helper.adapter.viewholder.SecondGoodsViewHolder;
 import com.hyc.helper.base.adapter.BaseRecycleAdapter;
 import com.hyc.helper.base.fragment.BaseListFragment;
+import com.hyc.helper.base.util.ToastHelper;
+import com.hyc.helper.bean.BaseRequestBean;
 import com.hyc.helper.bean.SecondHandBean;
 import com.hyc.helper.helper.Constant;
 import com.hyc.helper.model.UserModel;
 import com.hyc.helper.util.DensityUtil;
 import com.hyc.helper.model.SecondGoodsModel;
 import com.hyc.helper.view.SpacesItemDecoration;
+import io.reactivex.functions.Consumer;
 import java.util.List;
+
+import static android.app.Activity.RESULT_OK;
 
 public class SecondHandFragment
     extends BaseListFragment<SecondHandBean.GoodsBean, SecondHandBean, SecondGoodsViewHolder> {
@@ -38,6 +47,15 @@ public class SecondHandFragment
     bundle.putString(Constant.USER_ID, userId);
     secondHandFragment.setArguments(bundle);
     return secondHandFragment;
+  }
+
+  @Override
+  protected void initLayoutView(View view) {
+    super.initLayoutView(view);
+    FloatingActionButton floatingActionButton = view.findViewById(R.id.fb_publish_second);
+    floatingActionButton.setOnClickListener(
+        view1 -> startActivityForResult(
+            new Intent(getActivity(), SecondMarketPublishActivity.class), 2010));
   }
 
   @Override
@@ -78,7 +96,7 @@ public class SecondHandFragment
 
   @Override
   protected List<SecondHandBean.GoodsBean> getData(SecondHandBean secondHandBean) {
-    if (secondHandBean.getCurrent_page()<getCurPage()){
+    if (secondHandBean.getCurrent_page() < getCurPage()) {
       return null;
     }
     return secondHandBean.getGoods();
@@ -89,11 +107,34 @@ public class SecondHandFragment
     return R.layout.fragment_second_hand;
   }
 
+  @SuppressLint("CheckResult")
   @Override
   public void onItemClick(SecondHandBean.GoodsBean itemData, View view, int position) {
     super.onItemClick(itemData, view, position);
+    if (view.getId() == R.id.tv_delete){
+      showLoadingView();
+      model.deleteGoods(userModel.getCurUserInfo(),itemData.getId())
+          .subscribe(baseRequestBean -> {
+            getRecycleAdapter().removeItemFormList(position);
+            closeLoadingView();
+          }, throwable -> {
+            ToastHelper.toast(throwable.getMessage());
+            closeLoadingView();
+          });
+      return;
+    }
     Bundle bundle = new Bundle();
-    bundle.putString("goodsId",itemData.getId());
-    goToOtherActivity(SecondGoodsDetailActivity.class,bundle,false);
+    bundle.putString("goodsId", itemData.getId());
+    goToOtherActivity(SecondGoodsDetailActivity.class, bundle, false);
   }
+
+  @Override
+  public void onActivityResult(int requestCode, int resultCode, Intent data) {
+    super.onActivityResult(requestCode, resultCode, data);
+    if (requestCode == 2010 && resultCode == RESULT_OK) {
+      refresh();
+    }
+  }
+
+
 }

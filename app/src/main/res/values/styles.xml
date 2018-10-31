@@ -64,4 +64,13 @@
     <item name="android:backgroundDimEnabled">false</item>
   </style>
 
+  <style name="input_text">
+    <item name="android:background">@color/white</item>
+    <item name="android:textColor">@color/front_black</item>
+    <item name="android:padding">5dp</item>
+    <item name="android:textSize">15sp</item>
+    <item name="android:textColorHint">@color/bg_no</item>
+    <item name="android:layout_marginTop">5dp</item>
+  </style>
+
 </resources>

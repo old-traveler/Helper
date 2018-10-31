@@ -47,7 +47,8 @@
     <activity android:name=".activity.WebActivity" />
     <activity android:name=".activity.CourseDetailActivity" />
     <activity android:name=".activity.SecondGoodsDetailActivity" />
-    <activity android:name=".activity.LostFindDetailActivity"></activity>
+    <activity android:name=".activity.LostFindDetailActivity" />
+    <activity android:name=".activity.SecondMarketPublishActivity"/>
   </application>
 
 </manifest>

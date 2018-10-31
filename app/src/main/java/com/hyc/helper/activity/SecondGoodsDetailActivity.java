@@ -8,6 +8,8 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -71,20 +73,21 @@ public class SecondGoodsDetailActivity extends BaseRequestActivity<GoodsDetailBe
   private void initGoodsInfo(GoodsDetailBean.DataBean dataBean) {
     tvTitle.setText(dataBean.getTit());
     tvContent.setText(dataBean.getContent());
-    UiHelper.initLinkTextView(tvContent,this);
-    rvInfo.setLayoutManager(new GridLayoutManager(this,2));
+    UiHelper.initLinkTextView(tvContent, this);
+    rvInfo.setLayoutManager(new GridLayoutManager(this, 2));
     List<InfoEntity> data = new ArrayList<>();
-    data.add(new InfoEntity("商品价格",String.format("¥%s",dataBean.getPrize())));
-    data.add(new InfoEntity("商品成色",dataBean.getAttr()));
-    data.add(new InfoEntity("联系方式",dataBean.getPhone()));
-    data.add(new InfoEntity("发布区域",dataBean.getAddress()));
-    data.add(new InfoEntity("发布用户",dataBean.getUsername()));
-    data.add(new InfoEntity("发布时间",dataBean.getCreated_on()));
-    rvInfo.setAdapter(new BaseRecycleAdapter<>(data,R.layout.layout_bottom_info,ShowInfoViewHolder.class));
+    data.add(new InfoEntity("商品价格", String.format("¥%s", dataBean.getPrize())));
+    data.add(new InfoEntity("商品成色", dataBean.getAttr()));
+    data.add(new InfoEntity("联系方式", dataBean.getPhone()));
+    data.add(new InfoEntity("发布区域", dataBean.getAddress()));
+    data.add(new InfoEntity("发布用户", dataBean.getUsername()));
+    data.add(new InfoEntity("发布时间", dataBean.getCreated_on()));
+    rvInfo.setAdapter(
+        new BaseRecycleAdapter<>(data, R.layout.layout_bottom_info, ShowInfoViewHolder.class));
   }
 
   private void initImageBrowsing(List<String> pic) {
-    tvPage.setText(String.format(UiHelper.getString(R.string.page),1,pic.size()));
+    tvPage.setText(String.format(UiHelper.getString(R.string.page), 1, pic.size()));
     vpGoodsImages.setAdapter(new ViewPagerAdapter(pic));
     vpGoodsImages.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
       @Override
@@ -94,7 +97,7 @@ public class SecondGoodsDetailActivity extends BaseRequestActivity<GoodsDetailBe
 
       @Override
       public void onPageSelected(int i) {
-        tvPage.setText(String.format(UiHelper.getString(R.string.page),i+1,pic.size()));
+        tvPage.setText(String.format(UiHelper.getString(R.string.page), i + 1, pic.size()));
       }
 
       @Override
