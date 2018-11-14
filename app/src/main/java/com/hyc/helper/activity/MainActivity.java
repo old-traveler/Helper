@@ -3,7 +3,6 @@ package com.hyc.helper.activity;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
@@ -35,15 +34,12 @@ import com.hyc.helper.base.activity.BaseActivity;
 import com.hyc.helper.base.adapter.BaseRecycleAdapter;
 import com.hyc.helper.base.fragment.BaseFragment;
 import com.hyc.helper.base.fragment.BaseListFragment;
-import com.hyc.helper.base.listener.OnDialogClickListener;
-import com.hyc.helper.base.listener.OnItemClickListener;
 import com.hyc.helper.base.util.ToastHelper;
 import com.hyc.helper.base.util.UiHelper;
 import com.hyc.helper.bean.ConfigureBean;
 import com.hyc.helper.bean.FindPeopleBean;
 import com.hyc.helper.bean.UserBean;
 import com.hyc.helper.helper.ConfigureHelper;
-import com.hyc.helper.helper.CupidHelper;
 import com.hyc.helper.helper.DateHelper;
 import com.hyc.helper.helper.ImageRequestHelper;
 import com.hyc.helper.model.CourseModel;
@@ -54,7 +50,6 @@ import com.hyc.helper.helper.UpdateAppHelper;
 import com.hyc.helper.model.ConfigModel;
 import com.hyc.helper.model.UserModel;
 import com.tbruyelle.rxpermissions2.RxPermissions;
-import io.reactivex.functions.Consumer;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -73,7 +68,6 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
   DrawerLayout mainContent;
   @BindView(R.id.rv_search_people)
   RecyclerView rvSearchPeople;
-  private List<BaseFragment> list;
   private TechFragmentPageAdapter adapter;
   private ListPopupWindow weekListPopWindow;
   private MenuItem selectWeek;
@@ -170,7 +164,7 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
   }
 
   private void initViewPager() {
-    list = new ArrayList<>(tbMain.getTabCount());
+    List<BaseFragment> list = new ArrayList<>(tbMain.getTabCount());
     list.add(new TimetableFragment());
     list.add(StatementFragment.newInstance(null));
     list.add(SecondHandFragment.newInstance(null));
@@ -260,17 +254,16 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
     });
   }
 
-  @SuppressLint("CheckResult")
   private void requestInfoFromApi(String name) {
     showLoadingView();
-    userModel.findUserInfoByName(name)
+    addDisposable(userModel.findUserInfoByName(name)
         .subscribe(findPeopleBean -> {
           closeLoadingView();
           searchAdapter.setDataList(findPeopleBean.getData());
         }, throwable -> {
           closeLoadingView();
           ToastHelper.toast(throwable.getMessage());
-        });
+        }));
   }
 
   private void initListPopView() {
@@ -306,12 +299,12 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
   @SuppressLint("CheckResult")
   public void startUpdate(ConfigureBean configureBean) {
     RxPermissions rxPermissions = new RxPermissions(this);
-    rxPermissions.request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+    addDisposable(rxPermissions.request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
         .subscribe(granted -> {
           if (granted) {
             downApk(configureBean);
           }
-        });
+        }));
   }
 
   public void downApk(ConfigureBean configureBean) {

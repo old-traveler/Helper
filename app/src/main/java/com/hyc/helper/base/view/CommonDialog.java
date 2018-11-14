@@ -76,11 +76,11 @@ public class CommonDialog extends Dialog implements View.OnClickListener {
       return content;
     }
 
-    public String getPositiveName() {
+    private String getPositiveName() {
       return positiveName;
     }
 
-    public String getNegativeName() {
+    private String getNegativeName() {
       return negativeName;
     }
 
@@ -88,7 +88,7 @@ public class CommonDialog extends Dialog implements View.OnClickListener {
       return title;
     }
 
-    public OnDialogClickListener getDialogClickListener() {
+    private OnDialogClickListener getDialogClickListener() {
       return dialogClickListener;
     }
 

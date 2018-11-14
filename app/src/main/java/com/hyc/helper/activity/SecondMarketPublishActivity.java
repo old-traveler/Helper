@@ -154,7 +154,7 @@ public class SecondMarketPublishActivity extends BaseRequestActivity<BaseRequest
 
   @SuppressLint("CheckResult")
   private void goToSelectImage() {
-    new RxPermissions(this)
+    addDisposable(new RxPermissions(this)
         .request(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE)
         .subscribe(granted -> {
           if (granted) {
@@ -162,7 +162,7 @@ public class SecondMarketPublishActivity extends BaseRequestActivity<BaseRequest
           } else {
             ToastHelper.toast(R.string.camera_premission_tip);
           }
-        });
+        }));
   }
 
   private void startSelectImage() {

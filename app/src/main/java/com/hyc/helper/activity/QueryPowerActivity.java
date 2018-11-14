@@ -10,7 +10,6 @@ import butterknife.OnClick;
 import com.hyc.helper.R;
 import com.hyc.helper.base.activity.BaseRequestActivity;
 import com.hyc.helper.base.util.ToastHelper;
-import com.hyc.helper.bean.BaseRequestBean;
 import com.hyc.helper.bean.PowerBean;
 import com.hyc.helper.model.PowerModel;
 import com.hyc.helper.model.UserModel;

@@ -2,7 +2,6 @@ package com.hyc.helper.adapter.viewholder;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
-import android.text.SpannableStringBuilder;
 import android.view.View;
 import android.widget.TextView;
 import butterknife.BindView;

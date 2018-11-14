@@ -9,10 +9,15 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import com.hyc.helper.base.activity.BaseActivity;
 import com.hyc.helper.base.interfaces.IBaseFragment;
+import io.reactivex.disposables.Disposable;
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class BaseFragment extends Fragment implements View.OnClickListener, IBaseFragment {
 
   protected BaseActivity mBaseActivity;
+
+  private List<Disposable> disposableList;
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
@@ -32,6 +37,26 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
   public void onDestroy() {
     super.onDestroy();
     mBaseActivity = null;
+    cancelAllDisposable();
+  }
+
+  protected void cancelAllDisposable(){
+    if (disposableList == null || disposableList.size() == 0){
+      return;
+    }
+    for (Disposable disposable : disposableList) {
+      if (disposable != null && !disposable.isDisposed()){
+        disposable.dispose();
+      }
+    }
+    disposableList.clear();
+  }
+
+  public void addDisposable(Disposable disposable){
+    if (disposableList == null){
+      disposableList = new ArrayList<>();
+    }
+    disposableList.add(disposable);
   }
 
   protected abstract void initLayoutView(View view);
@@ -43,7 +68,6 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
 
   }
 
-  @Override
   public void goToOtherActivity(Class<?> cls, boolean isFinish) {
     mBaseActivity.goToOtherActivity(cls, isFinish);
   }
@@ -53,7 +77,6 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
     mBaseActivity.goToOtherActivity(cls, bundle, isFinish);
   }
 
-  @Override
   public void goToOtherActivityForResult(Class<?> cls, Bundle bundle, int requestCode) {
     mBaseActivity.goToOtherActivityForResult(cls, bundle, requestCode);
   }
@@ -62,7 +85,6 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
     mBaseActivity.goToOtherActivityForResult(cls, requestCode);
   }
 
-  @Override
   public void backForResult(Class<?> cls, Bundle bundle, int resultCode) {
     mBaseActivity.backForResult(cls, bundle, resultCode);
   }

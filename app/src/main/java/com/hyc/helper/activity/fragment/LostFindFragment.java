@@ -1,6 +1,5 @@
 package com.hyc.helper.activity.fragment;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -13,17 +12,14 @@ import android.view.ViewGroup;
 import com.hyc.helper.R;
 import com.hyc.helper.activity.LosePublishActivity;
 import com.hyc.helper.activity.LostFindDetailActivity;
-import com.hyc.helper.activity.SecondMarketPublishActivity;
 import com.hyc.helper.adapter.viewholder.LostFindViewHolder;
 import com.hyc.helper.base.adapter.BaseRecycleAdapter;
 import com.hyc.helper.base.fragment.BaseListFragment;
 import com.hyc.helper.base.util.ToastHelper;
-import com.hyc.helper.bean.BaseRequestBean;
 import com.hyc.helper.bean.LostBean;
 import com.hyc.helper.helper.Constant;
 import com.hyc.helper.model.LostGoodsModel;
 import com.hyc.helper.model.UserModel;
-import io.reactivex.functions.Consumer;
 import java.util.List;
 
 import static android.app.Activity.RESULT_OK;
@@ -105,25 +101,28 @@ public class LostFindFragment
     return R.layout.fragment_lost_find;
   }
 
-  @SuppressLint("CheckResult")
   @Override
   public void onItemClick(LostBean.GoodsBean itemData, View view, int position) {
     super.onItemClick(itemData, view, position);
     if (R.id.tv_delete == view.getId()){
-      showLoadingView();
-      lostGoodsModel.deleteLost(userModel.getCurUserInfo(),itemData.getId())
-          .subscribe(baseRequestBean -> {
-            getRecycleAdapter().removeItemFormList(position);
-            closeLoadingView();
-          }, throwable -> {
-            closeLoadingView();
-            ToastHelper.toast(throwable.getMessage());
-          });
-      return;
+      deleteLostItem(itemData.getId(),position);
+    }else {
+      Bundle bundle = new Bundle();
+      bundle.putSerializable("lost",itemData);
+      goToOtherActivity(LostFindDetailActivity.class,bundle,false);
     }
-    Bundle bundle = new Bundle();
-    bundle.putSerializable("lost",itemData);
-    goToOtherActivity(LostFindDetailActivity.class,bundle,false);
+  }
+
+  private void deleteLostItem(String id,int position) {
+    showLoadingView();
+    addDisposable(lostGoodsModel.deleteLost(userModel.getCurUserInfo(),id)
+        .subscribe(baseRequestBean -> {
+          getRecycleAdapter().removeItemFormList(position);
+          closeLoadingView();
+        }, throwable -> {
+          closeLoadingView();
+          ToastHelper.toast(throwable.getMessage());
+        }));
   }
 
   @Override

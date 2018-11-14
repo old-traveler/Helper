@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
-import android.webkit.JavascriptInterface;
 import android.webkit.JsResult;
 import android.webkit.WebChromeClient;
 import android.webkit.WebResourceError;
@@ -32,7 +31,7 @@ public class WebActivity extends BaseActivity {
   @BindView(R.id.web_view)
   WebView webView;
 
-  private String toolBarTitle;
+  public String toolBarTitle;
 
   @Override
   public int getMenuId() {
@@ -153,13 +152,14 @@ public class WebActivity extends BaseActivity {
     }
     return super.onKeyDown(keyCode, event);
   }
-
-  /**
-   * JS调用android的方法
-   */
-  @JavascriptInterface //仍然必不可少
-  public void getClient(String str) {
-  }
+  //
+  ///**
+  // * JS调用android的方法
+  // */
+  //@JavascriptInterface //仍然必不可少
+  //public void getClient(String str) {
+  //
+  //}
 
   @Override
   protected void onDestroy() {

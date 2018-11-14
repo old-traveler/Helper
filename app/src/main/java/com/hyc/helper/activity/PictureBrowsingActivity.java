@@ -31,10 +31,11 @@ import com.hyc.helper.bean.ImageSizeBean;
 import com.hyc.helper.helper.FileHelper;
 import com.hyc.helper.helper.ImageRequestHelper;
 import com.hyc.helper.model.ImageModel;
-import io.reactivex.functions.Consumer;
+import io.reactivex.disposables.Disposable;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import static com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView.ZOOM_FOCUS_CENTER_IMMEDIATE;
 
@@ -50,7 +51,7 @@ public class PictureBrowsingActivity extends AppCompatActivity {
     getWindow().getDecorView().setSystemUiVisibility(View.INVISIBLE);
     setContentView(R.layout.activity_picture_browsing);
     viewPager = findViewById(R.id.vp_picture);
-    initViewWithData(getIntent().getExtras());
+    initViewWithData(Objects.requireNonNull(getIntent().getExtras()));
     viewPager.setOffscreenPageLimit(imagesUrl.size());
     getWindow().setEnterTransition(new Fade().setDuration(500));
   }
@@ -105,7 +106,7 @@ public class PictureBrowsingActivity extends AppCompatActivity {
         loadImage(imageView, scaleImageView, new File(imagesUrl.get(position)));
         textView.setVisibility(View.GONE);
       } else {
-        imageModel.getBigImageLoadRecord(imagesUrl.get(position),
+        Disposable disposable = imageModel.getBigImageLoadRecord(imagesUrl.get(position),
             bean -> {
               if (bean != null && FileHelper.fileIsExist(bean.getFilePath())) {
                 textView.setVisibility(View.GONE);
@@ -113,11 +114,9 @@ public class PictureBrowsingActivity extends AppCompatActivity {
               } else {
                 showImage(textView, progressBar, imageView, scaleImageView, position);
               }
-            }, throwable -> {
-              showImage(textView, progressBar, imageView, scaleImageView, position);
-            });
+            }, throwable -> showImage(textView, progressBar, imageView, scaleImageView, position));
+        itemView.setTag(disposable);
       }
-
       container.addView(itemView);
       return itemView;
     }
@@ -172,11 +171,15 @@ public class PictureBrowsingActivity extends AppCompatActivity {
     }
 
     @Override
-    public void destroyItem(@NonNull ViewGroup container, int position, Object object) {
+    public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
       SubsamplingScaleImageView scaleImageView
-          = container.findViewById(R.id.sv_image_browsing);
+          = ((View)object).findViewById(R.id.sv_image_browsing);
       if (scaleImageView != null) {
         scaleImageView.recycle();
+      }
+      Disposable disposable = (Disposable) ((View)object).getTag();
+      if (disposable != null && !disposable.isDisposed()){
+        disposable.dispose();
       }
       container.removeView((View) object);
     }

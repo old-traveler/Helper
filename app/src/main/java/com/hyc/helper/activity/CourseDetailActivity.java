@@ -16,9 +16,7 @@ import com.hyc.helper.base.adapter.BaseRecycleAdapter;
 import com.hyc.helper.bean.CourseInfoBean;
 import com.hyc.helper.bean.InfoEntity;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class CourseDetailActivity extends BaseActivity {
 
@@ -46,7 +44,9 @@ public class CourseDetailActivity extends BaseActivity {
     setToolBarTitle(R.string.course_detail);
     CourseInfoBean bean = (CourseInfoBean) bundle.getSerializable("data");
     initCourseDateInfo(bean);
-    initCourseInfo(bean);
+    if (bean != null){
+      initCourseInfo(bean);
+    }
   }
 
   private void initCourseInfo(CourseInfoBean bean) {

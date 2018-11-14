@@ -1,6 +1,5 @@
 package com.hyc.helper.activity.fragment;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -17,14 +16,12 @@ import com.hyc.helper.adapter.viewholder.SecondGoodsViewHolder;
 import com.hyc.helper.base.adapter.BaseRecycleAdapter;
 import com.hyc.helper.base.fragment.BaseListFragment;
 import com.hyc.helper.base.util.ToastHelper;
-import com.hyc.helper.bean.BaseRequestBean;
 import com.hyc.helper.bean.SecondHandBean;
 import com.hyc.helper.helper.Constant;
 import com.hyc.helper.model.UserModel;
 import com.hyc.helper.util.DensityUtil;
 import com.hyc.helper.model.SecondGoodsModel;
 import com.hyc.helper.view.SpacesItemDecoration;
-import io.reactivex.functions.Consumer;
 import java.util.List;
 
 import static android.app.Activity.RESULT_OK;
@@ -107,29 +104,33 @@ public class SecondHandFragment
     return R.layout.fragment_second_hand;
   }
 
-  @SuppressLint("CheckResult")
   @Override
   public void onItemClick(SecondHandBean.GoodsBean itemData, View view, int position) {
     super.onItemClick(itemData, view, position);
     if (view.getId() == R.id.tv_delete){
-      showLoadingView();
-      model.deleteGoods(userModel.getCurUserInfo(),itemData.getId())
-          .subscribe(baseRequestBean -> {
-            if (baseRequestBean.getCode() == 200){
-              getRecycleAdapter().removeItemFormList(position);
-            }else {
-              ToastHelper.toast(baseRequestBean.getCode());
-            }
-            closeLoadingView();
-          }, throwable -> {
-            ToastHelper.toast(throwable.getMessage());
-            closeLoadingView();
-          });
-      return;
+      deleteGoods(itemData.getId(),position);
+    }else {
+      Bundle bundle = new Bundle();
+      bundle.putString("goodsId", itemData.getId());
+      goToOtherActivity(SecondGoodsDetailActivity.class, bundle, false);
     }
-    Bundle bundle = new Bundle();
-    bundle.putString("goodsId", itemData.getId());
-    goToOtherActivity(SecondGoodsDetailActivity.class, bundle, false);
+
+  }
+
+  public void deleteGoods(String id,int position){
+    showLoadingView();
+    addDisposable(model.deleteGoods(userModel.getCurUserInfo(),id)
+        .subscribe(baseRequestBean -> {
+          if (baseRequestBean.getCode() == 200){
+            getRecycleAdapter().removeItemFormList(position);
+          }else {
+            ToastHelper.toast(baseRequestBean.getCode());
+          }
+          closeLoadingView();
+        }, throwable -> {
+          ToastHelper.toast(throwable.getMessage());
+          closeLoadingView();
+        }));
   }
 
   @Override

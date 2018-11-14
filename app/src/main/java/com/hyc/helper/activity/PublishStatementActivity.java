@@ -1,7 +1,6 @@
 package com.hyc.helper.activity;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.net.Uri;
@@ -107,9 +106,8 @@ public class PublishStatementActivity extends BaseRequestActivity<BaseRequestBea
     });
   }
 
-  @SuppressLint("CheckResult")
   private void goToSelectImage() {
-    new RxPermissions(this)
+    addDisposable(new RxPermissions(this)
         .request(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE)
         .subscribe(granted -> {
           if (granted) {
@@ -117,7 +115,7 @@ public class PublishStatementActivity extends BaseRequestActivity<BaseRequestBea
           } else {
             ToastHelper.toast(R.string.camera_premission_tip);
           }
-        });
+        }));
   }
 
   @Override

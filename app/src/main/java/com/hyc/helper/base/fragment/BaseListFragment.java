@@ -75,7 +75,7 @@ public abstract class BaseListFragment<T, B extends BaseRequestBean, VH extends 
   }
 
   public BaseRecycleAdapter<T, VH> getRecycleAdapter() {
-    return (BaseRecycleAdapter<T, VH>) recyclerView.getAdapter();
+    return adapter;
   }
 
   protected void initRecyclerView(View view) {

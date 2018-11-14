@@ -3,7 +3,6 @@ package com.hyc.helper.activity;
 import android.os.Bundle;
 import android.support.design.button.MaterialButton;
 import android.text.TextUtils;
-import android.transition.Fade;
 import android.view.View;
 import android.widget.EditText;
 import butterknife.BindView;

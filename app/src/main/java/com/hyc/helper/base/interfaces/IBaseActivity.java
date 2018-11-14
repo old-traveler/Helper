@@ -24,12 +24,6 @@ public interface IBaseActivity {
   void showInputWindow(EditText mEditText);
 
 
-  void showTipDialog(String content);
-
-  void showTipDialog(String title, String content);
-
   void showConfirmDialog(String content);
-
-  void showCancelDialog(String content);
 
 }

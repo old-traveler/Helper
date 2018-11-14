@@ -24,6 +24,9 @@ public class TechFragmentPageAdapter extends FragmentPagerAdapter {
   }
 
   public <T extends BaseFragment> T getFragmentList(Class<T> cls, int index) {
-    return (T) fragmentList.get(index);
+    if(cls.isInstance(fragmentList.get(index))){
+      return cls.cast(fragmentList.get(index));
+    }
+    return null;
   }
 }

@@ -1,5 +1,6 @@
 package com.hyc.helper.adapter.viewholder;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
@@ -10,7 +11,6 @@ import butterknife.ButterKnife;
 import com.hyc.helper.R;
 import com.hyc.helper.base.adapter.viewholder.BaseViewHolder;
 import com.hyc.helper.base.util.UiHelper;
-import com.hyc.helper.bean.ExamBean;
 import com.hyc.helper.bean.ExamInfoBean;
 import com.hyc.helper.helper.Constant;
 import java.text.ParseException;
@@ -51,7 +51,7 @@ public class ExamViewHolder extends BaseViewHolder<ExamInfoBean> {
       tvDate.setText(temp[0]);
       tvWeek.setText(
           String.format("(%s周 %s-%s)", data.getWeek_Num(), temp[1], data.getEndTime().split(" ")[1]));
-      SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+      @SuppressLint("SimpleDateFormat") SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
       Date date = null;
       try {
         date = formatter.parse(temp[0]);

@@ -7,8 +7,6 @@ import android.view.View;
 
 public abstract class BaseViewHolder<T> extends RecyclerView.ViewHolder {
 
-  public int currentPosition;
-
   private T data;
 
   public BaseViewHolder(@NonNull View itemView) {
@@ -20,9 +18,6 @@ public abstract class BaseViewHolder<T> extends RecyclerView.ViewHolder {
 
   public abstract void loadItemData(Context context, T data, int position);
 
-  public void onViewRecycled() {
-
-  }
 
   public T getData() {
     return data;

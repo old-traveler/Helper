@@ -113,7 +113,7 @@ public class LostFindDetailActivity extends BaseActivity {
 
     List<String> pics;
 
-    public ViewPagerAdapter(List<String> pics) {
+    ViewPagerAdapter(List<String> pics) {
       this.pics = pics;
     }
 
@@ -141,7 +141,7 @@ public class LostFindDetailActivity extends BaseActivity {
     }
 
     @Override
-    public void destroyItem(@NonNull ViewGroup container, int position, Object object) {
+    public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
       container.removeView((View) object);
     }
   }

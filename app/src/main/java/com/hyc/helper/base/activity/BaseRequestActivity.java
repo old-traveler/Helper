@@ -11,7 +11,6 @@ import com.hyc.helper.helper.Constant;
 import com.hyc.helper.helper.LogHelper;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
-import java.util.Objects;
 
 public abstract class BaseRequestActivity<T extends BaseRequestBean> extends BaseActivity
     implements Observer<T> {

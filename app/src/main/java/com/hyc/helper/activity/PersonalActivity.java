@@ -1,7 +1,6 @@
 package com.hyc.helper.activity;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.net.Uri;
@@ -21,12 +20,10 @@ import com.hyc.helper.R;
 import com.hyc.helper.base.activity.BaseActivity;
 import com.hyc.helper.base.util.ToastHelper;
 import com.hyc.helper.base.util.UiHelper;
-import com.hyc.helper.bean.BaseRequestBean;
 import com.hyc.helper.bean.UserBean;
 import com.hyc.helper.helper.Constant;
 import com.hyc.helper.helper.ImageRequestHelper;
 import com.hyc.helper.helper.UploadImageObserver;
-import com.hyc.helper.model.ImageModel;
 import com.hyc.helper.model.UserModel;
 import com.hyc.helper.util.DensityUtil;
 import com.hyc.helper.util.Glide4Engine;
@@ -36,7 +33,6 @@ import com.yalantis.ucrop.UCropActivity;
 import com.zhihu.matisse.Matisse;
 import com.zhihu.matisse.MimeType;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Consumer;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -60,7 +56,6 @@ public class PersonalActivity extends BaseActivity {
   TextView tvClassName;
   private ListPopupWindow publishPopupWindow;
   private UserModel userModel = new UserModel();
-  private ImageModel imageModel = new ImageModel();
   private Disposable disposable;
 
   private int REQUEST_CODE_CHOOSE = 2009;
@@ -150,9 +145,8 @@ public class PersonalActivity extends BaseActivity {
     }
   }
 
-  @SuppressLint("CheckResult")
   private void replaceHeadImage() {
-    new RxPermissions(this)
+    addDisposable(new RxPermissions(this)
         .request(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE)
         .subscribe(granted -> {
           if (granted) {
@@ -160,7 +154,7 @@ public class PersonalActivity extends BaseActivity {
           } else {
             ToastHelper.toast(R.string.camera_premission_tip);
           }
-        });
+        }));
   }
 
   private void startSelectImage() {

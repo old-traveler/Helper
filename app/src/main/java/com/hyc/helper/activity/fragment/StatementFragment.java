@@ -161,7 +161,7 @@ public class StatementFragment extends
       this.position = position;
     } else if (view.getId() == R.id.tv_delete_statement) {
       showLoadingView();
-      statementModel.deleteStatement(userModel.getCurUserInfo(), itemData.getId())
+      addDisposable(statementModel.deleteStatement(userModel.getCurUserInfo(), itemData.getId())
           .subscribe(baseRequestBean -> {
             if (baseRequestBean.getCode() == 200){
               getRecycleAdapter().removeItemFormList(position);
@@ -172,7 +172,7 @@ public class StatementFragment extends
           }, throwable -> {
             ToastHelper.toast(throwable.getMessage());
             closeLoadingView();
-          });
+          }));
     }
   }
 

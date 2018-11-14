@@ -6,10 +6,6 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -111,7 +107,7 @@ public class SecondGoodsDetailActivity extends BaseRequestActivity<GoodsDetailBe
 
     List<String> pics;
 
-    public ViewPagerAdapter(List<String> pics) {
+    ViewPagerAdapter(List<String> pics) {
       this.pics = pics;
     }
 
@@ -139,7 +135,7 @@ public class SecondGoodsDetailActivity extends BaseRequestActivity<GoodsDetailBe
     }
 
     @Override
-    public void destroyItem(@NonNull ViewGroup container, int position, Object object) {
+    public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
       container.removeView((View) object);
     }
   }

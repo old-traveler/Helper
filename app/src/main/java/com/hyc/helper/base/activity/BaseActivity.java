@@ -13,17 +13,21 @@ import android.view.View;
 import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
-import butterknife.ButterKnife;
 import com.hyc.helper.R;
 import com.hyc.helper.base.interfaces.IBaseActivity;
 import com.hyc.helper.base.listener.OnDialogClickListener;
 import com.hyc.helper.base.view.CommonDialog;
 import com.hyc.helper.base.view.LoadingDialog;
+import io.reactivex.disposables.Disposable;
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class BaseActivity extends AppCompatActivity
     implements View.OnClickListener, IBaseActivity, OnDialogClickListener {
 
   private LoadingDialog loadingDialog;
+
+  private List<Disposable> disposableList;
 
   public Toolbar mToolbar;
 
@@ -44,6 +48,26 @@ public abstract class BaseActivity extends AppCompatActivity
   @Override
   protected void onDestroy() {
     super.onDestroy();
+    cancelAllDisposable();
+  }
+
+  protected void cancelAllDisposable(){
+    if (disposableList == null || disposableList.size() == 0){
+      return;
+    }
+    for (Disposable disposable : disposableList) {
+      if (disposable != null && !disposable.isDisposed()){
+        disposable.dispose();
+      }
+    }
+    disposableList.clear();
+  }
+
+  public void addDisposable(Disposable disposable){
+    if (disposableList == null){
+      disposableList = new ArrayList<>();
+    }
+    disposableList.add(disposable);
   }
 
   @Override
@@ -55,17 +79,15 @@ public abstract class BaseActivity extends AppCompatActivity
 
   @Override
   public void goToOtherActivity(Class<?> cls, boolean isFinish) {
-    Intent intent = new Intent(this, cls);
-    startActivity(intent);
-    if (isFinish) {
-      finish();
-    }
+    goToOtherActivity(cls,null,isFinish);
   }
 
   @Override
   public void goToOtherActivity(Class<?> cls, Bundle bundle, boolean isFinish) {
     Intent intent = new Intent(this, cls);
-    intent.putExtras(bundle);
+    if (bundle != null){
+      intent.putExtras(bundle);
+    }
     startActivity(intent);
     if (isFinish) finish();
   }
@@ -73,27 +95,28 @@ public abstract class BaseActivity extends AppCompatActivity
   @Override
   public void goToOtherActivityForResult(Class<?> cls, Bundle bundle, int requestCode) {
     Intent intent = new Intent(this, cls);
-    intent.putExtras(bundle);
+    if (null != bundle){
+      intent.putExtras(bundle);
+    }
     startActivityForResult(intent, requestCode);
   }
 
   public void goToOtherActivityForResult(Class<?> cls, int requestCode) {
-    Intent intent = new Intent(this, cls);
-    startActivityForResult(intent, requestCode);
+    goToOtherActivityForResult(cls,null,requestCode);
   }
 
   @Override
   public void backForResult(Class<?> cls, Bundle bundle, int resultCode) {
     Intent intent = new Intent(this, cls);
-    intent.putExtras(bundle);
+    if (null != bundle){
+      intent.putExtras(bundle);
+    }
     setResult(resultCode, intent);
     finish();
   }
 
   public void backForResult(Class<?> cls, int resultCode) {
-    Intent intent = new Intent(this, cls);
-    setResult(resultCode, intent);
-    finish();
+    backForResult(cls,null,resultCode);
   }
 
   public void setToolBar() {
@@ -211,12 +234,10 @@ public abstract class BaseActivity extends AppCompatActivity
     }
   }
 
-  @Override
   public void showTipDialog(String content) {
     showTipDialog(getString(R.string.tip), content);
   }
 
-  @Override
   public void showTipDialog(String title, String content) {
     new CommonDialog.Builder(this)
         .setTitle(title)
@@ -248,7 +269,6 @@ public abstract class BaseActivity extends AppCompatActivity
         .createAndShow();
   }
 
-  @Override
   public void showCancelDialog(String content) {
     new CommonDialog.Builder(this)
         .setTitle(getString(R.string.tip))

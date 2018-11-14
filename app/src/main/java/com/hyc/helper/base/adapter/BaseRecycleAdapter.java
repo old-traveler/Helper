@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import com.hyc.helper.base.adapter.viewholder.BaseViewHolder;
 import com.hyc.helper.base.listener.OnItemClickListener;
-import com.hyc.helper.base.listener.OnItemLongClickListener;
 import com.hyc.helper.helper.LogHelper;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
@@ -17,13 +16,13 @@ import java.util.List;
 
 public class BaseRecycleAdapter<T, V extends BaseViewHolder<T>> extends RecyclerView.Adapter<V> {
 
-  protected List<T> dataList;
+  private List<T> dataList;
 
   private int layoutId;
 
   private OnItemClickListener<T> onItemClickListener;
 
-  private OnItemLongClickListener<T> onItemLongClickListener;
+  //private OnItemLongClickListener<T> onItemLongClickListener;
 
   private Context mContext;
   private Class<V> vClass;
@@ -50,7 +49,7 @@ public class BaseRecycleAdapter<T, V extends BaseViewHolder<T>> extends Recycler
       e.printStackTrace();
       LogHelper.log("反射失败");
     }
-    return null;
+    throw new RuntimeException("反射失败");
   }
 
   private View newItemView(ViewGroup viewGroup, int resId) {
@@ -65,10 +64,10 @@ public class BaseRecycleAdapter<T, V extends BaseViewHolder<T>> extends Recycler
       baseViewHolder.setOnClickListener(v
           -> onItemClickListener.onItemClick(dataList.get(i), v, i));
     }
-    if (onItemLongClickListener != null) {
-      baseViewHolder.itemView.setOnLongClickListener(v ->
-          onItemLongClickListener.onItemLongClick(dataList.get(i), i));
-    }
+    //if (onItemLongClickListener != null) {
+    //  baseViewHolder.itemView.setOnLongClickListener(v ->
+    //      onItemLongClickListener.onItemLongClick(dataList.get(i), i));
+    //}
   }
 
   @Override
@@ -76,20 +75,20 @@ public class BaseRecycleAdapter<T, V extends BaseViewHolder<T>> extends Recycler
     return dataList == null ? 0 : dataList.size();
   }
 
-  public void appendDataToList(T data) {
-    if (dataList == null) {
-      dataList = new ArrayList<>();
-    }
-    dataList.add(data);
-    notifyItemInserted(getItemCount() - 1);
-  }
+  //public void appendDataToList(T data) {
+  //  if (dataList == null) {
+  //    dataList = new ArrayList<>();
+  //  }
+  //  dataList.add(data);
+  //  notifyItemInserted(getItemCount() - 1);
+  //}
 
   /**
    * 用于上拉加载更多更新界面
    */
-  public void appendDataToList(List<T> datas) {
+  public void appendDataToList(List<T> data) {
     int firstPosition = getItemCount();
-    dataList.addAll(datas);
+    dataList.addAll(data);
     int lastPosition = getItemCount();
     for (int i = firstPosition; i < lastPosition; i++) {
       notifyItemInserted(i);
@@ -130,23 +129,23 @@ public class BaseRecycleAdapter<T, V extends BaseViewHolder<T>> extends Recycler
     notifyItemChanged(position);
   }
 
-  public void refreshRangeData(int start, List<T> datas) {
-    int end = start + datas.size();
-    if (start < 0 || end > getItemCount()) {
-      return;
-    }
-    for (int i = start; i < end; i++) {
-      dataList.set(i, datas.get(i - start));
-    }
-    notifyItemRangeChanged(start, datas.size());
-  }
+  //public void refreshRangeData(int start, List<T> data) {
+  //  int end = start + data.size();
+  //  if (start < 0 || end > getItemCount()) {
+  //    return;
+  //  }
+  //  for (int i = start; i < end; i++) {
+  //    dataList.set(i, data.get(i - start));
+  //  }
+  //  notifyItemRangeChanged(start, data.size());
+  //}
 
   public void setOnItemClickListener(OnItemClickListener<T> onItemClickListener) {
     this.onItemClickListener = onItemClickListener;
   }
 
-  public void setOnItemLongClickListener(
-      OnItemLongClickListener<T> onItemLongClickListener) {
-    this.onItemLongClickListener = onItemLongClickListener;
-  }
+  //public void setOnItemLongClickListener(
+  //    OnItemLongClickListener<T> onItemLongClickListener) {
+  //  this.onItemLongClickListener = onItemLongClickListener;
+  //}
 }

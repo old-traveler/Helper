@@ -40,9 +40,9 @@ public class ImageLayout extends ViewGroup implements View.OnClickListener {
     TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.imageLayout);
     try {
       maxWidth = typedArray.getDimensionPixelSize(
-          R.styleable.imageLayout_maxWidth, DensityUtil.dip2px(200f));
+          R.styleable.imageLayout_maxWidth, DensityUtil.dip2px(300f));
       maxHeight = typedArray.getDimensionPixelSize(
-          R.styleable.imageLayout_maxHeight, DensityUtil.dip2px(200f));
+          R.styleable.imageLayout_maxHeight, DensityUtil.dip2px(300f));
       maxCount = typedArray.getDimensionPixelSize(
           R.styleable.imageLayout_maxCount, DEFAULT_MAX_COUNT);
     } finally {
@@ -99,6 +99,7 @@ public class ImageLayout extends ViewGroup implements View.OnClickListener {
   protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
     super.onMeasure(widthMeasureSpec, heightMeasureSpec);
     measureChildren(widthMeasureSpec, heightMeasureSpec);
+    maxWidth = Math.min(MeasureSpec.getSize(widthMeasureSpec),maxWidth);
     int measureWidth = measureWidth();
     int measureHeight = measureHeight();
     setMeasuredDimension(measureWidth, measureHeight);

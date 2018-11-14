@@ -57,7 +57,6 @@ public abstract class BaseListActivity<T, B extends BaseRequestBean, VH extends 
     }
   }
 
-
   public void backToTop(){
     if (recyclerView!=null){
       recyclerView.scrollToPosition(0);
@@ -69,11 +68,11 @@ public abstract class BaseListActivity<T, B extends BaseRequestBean, VH extends 
   }
 
   public BaseRecycleAdapter<T, VH> getRecycleAdapter() {
-    return (BaseRecycleAdapter<T, VH>) recyclerView.getAdapter();
+    return adapter;
   }
 
   protected void initRecyclerView() {
-    recyclerView = findViewById(getRecycleViewId());
+    RecyclerView recyclerView = findViewById(getRecycleViewId());
     mRefreshLayout = findViewById(getRefreshLayoutId());
     adapter = setRecycleAdapter();
     adapter.setOnItemClickListener(this);

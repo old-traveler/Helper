@@ -12,7 +12,6 @@ import butterknife.Unbinder;
 import com.hyc.helper.R;
 import com.hyc.helper.activity.CourseDetailActivity;
 import com.hyc.helper.base.fragment.BaseRequestFragment;
-import com.hyc.helper.base.util.ToastHelper;
 import com.hyc.helper.base.util.UiHelper;
 import com.hyc.helper.bean.CourseBean;
 import com.hyc.helper.bean.CourseInfoBean;

@@ -9,7 +9,6 @@ import com.hyc.helper.base.adapter.BaseRecycleAdapter;
 import com.hyc.helper.base.util.ToastHelper;
 import com.hyc.helper.bean.ExamBean;
 import com.hyc.helper.bean.ExamInfoBean;
-import com.hyc.helper.helper.Constant;
 import com.hyc.helper.model.ExamModel;
 import com.hyc.helper.model.UserModel;
 import java.util.List;
