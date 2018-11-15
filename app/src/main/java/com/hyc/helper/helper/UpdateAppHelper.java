@@ -5,8 +5,7 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Environment;
 import android.text.TextUtils;
-import com.hyc.helper.HelperApplication;
-import com.hyc.helper.bean.ConfigureBean;
+import com.hyc.helper.bean.ConfigureDateBean;
 import java.io.File;
 import java.io.IOException;
 
@@ -14,7 +13,7 @@ import static android.content.Context.DOWNLOAD_SERVICE;
 
 public class UpdateAppHelper {
 
-  private static String checkUpdate(ConfigureBean configureBean) {
+  private static String checkUpdate(ConfigureDateBean configureBean) {
     if (configureBean != null && !TextUtils.isEmpty(configureBean.getUpdate())) {
       return configureBean.getUpdate();
     }

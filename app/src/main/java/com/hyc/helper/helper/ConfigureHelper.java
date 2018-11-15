@@ -3,32 +3,26 @@ package com.hyc.helper.helper;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import com.hyc.helper.bean.ConfigureBean;
-import com.hyc.helper.model.ConfigModel;
+import android.text.TextUtils;
+import com.hyc.helper.bean.ConfigureDateBean;
 
 public class ConfigureHelper {
 
-  public static void init(ConfigureBean configureBean) {
-    ConfigModel configModel = new ConfigModel();
-    ConfigureBean preConfigure = configModel.getConfigInfo();
-    if (preConfigure == null) {
-      if (configureBean != null) {
-        DateHelper.DATE_OF_SCHOOL = configureBean.getDate();
-        configModel.setConfigInfo(configureBean);
-      }
-    } else {
-      if (configureBean == null) {
-        DateHelper.DATE_OF_SCHOOL = preConfigure.getDate();
-      } else {
-        long preUpdateTime = Long.parseLong(preConfigure.getUpdate_time());
-        long curUpdateTime = Long.parseLong(configureBean.getUpdate_time());
-        if (curUpdateTime > preUpdateTime) {
-          configModel.setConfigInfo(configureBean);
-          DateHelper.DATE_OF_SCHOOL = configureBean.getDate();
-        } else {
-          DateHelper.DATE_OF_SCHOOL = preConfigure.getDate();
-        }
-      }
+  public static void init(ConfigureDateBean configureDateBean) {
+    if (configureDateBean != null){
+      SpCacheHelper.putString("school_date",configureDateBean.getDate());
+    }
+    initSchoolDate();
+  }
+
+  public static String getDateOfSchool(){
+    return SpCacheHelper.getString("school_date");
+  }
+
+  public static void initSchoolDate(){
+    String date = getDateOfSchool();
+    if (!TextUtils.isEmpty(date)){
+      DateHelper.DATE_OF_SCHOOL = getDateOfSchool();
     }
   }
 

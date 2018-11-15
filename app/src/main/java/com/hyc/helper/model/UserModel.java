@@ -4,7 +4,6 @@ import android.content.Context;
 import android.net.Uri;
 import com.hyc.helper.bean.BaseRequestBean;
 import com.hyc.helper.bean.FindPeopleBean;
-import com.hyc.helper.bean.ImageUploadBean;
 import com.hyc.helper.bean.UserBean;
 import com.hyc.helper.bean.UserInfoBean;
 import com.hyc.helper.helper.FileHelper;

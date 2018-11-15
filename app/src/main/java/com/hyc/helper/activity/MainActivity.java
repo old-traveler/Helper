@@ -36,7 +36,7 @@ import com.hyc.helper.base.fragment.BaseFragment;
 import com.hyc.helper.base.fragment.BaseListFragment;
 import com.hyc.helper.base.util.ToastHelper;
 import com.hyc.helper.base.util.UiHelper;
-import com.hyc.helper.bean.ConfigureBean;
+import com.hyc.helper.bean.ConfigureDateBean;
 import com.hyc.helper.bean.FindPeopleBean;
 import com.hyc.helper.bean.UserBean;
 import com.hyc.helper.helper.ConfigureHelper;
@@ -47,7 +47,6 @@ import com.hyc.helper.model.ExamModel;
 import com.hyc.helper.model.GradeModel;
 import com.hyc.helper.util.DensityUtil;
 import com.hyc.helper.helper.UpdateAppHelper;
-import com.hyc.helper.model.ConfigModel;
 import com.hyc.helper.model.UserModel;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 import java.util.ArrayList;
@@ -72,7 +71,7 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
   private ListPopupWindow weekListPopWindow;
   private MenuItem selectWeek;
   private UserModel userModel = new UserModel();
-  private ConfigModel configModel = new ConfigModel();
+  //private ConfigModel configModel = new ConfigModel();
   private String searchUsername;
   private BaseRecycleAdapter<FindPeopleBean.DataBean, SearchPeopleViewHolder> searchAdapter;
 
@@ -106,7 +105,7 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
     initLeftView();
     initViewPager();
     initSearchList();
-    checkUpdate(configModel.getConfigInfo());
+    //checkUpdate(configModel.getConfigInfo());
   }
 
   @Override
@@ -283,34 +282,34 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
     });
   }
 
-  private void checkUpdate(ConfigureBean configureBean) {
-    if (configureBean != null
-        && ConfigureHelper.getVersionCode(this) < configureBean.getUpdate_version_code()
-        && !TextUtils.isEmpty(configureBean.getUpdate())) {
-      showTipDialog(UiHelper.getString(R.string.update_tip), configureBean.getContent(),
-          isPosition -> {
-            if (isPosition) {
-              startUpdate(configureBean);
-            }
-          });
-    }
-  }
-
-  @SuppressLint("CheckResult")
-  public void startUpdate(ConfigureBean configureBean) {
-    RxPermissions rxPermissions = new RxPermissions(this);
-    addDisposable(rxPermissions.request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-        .subscribe(granted -> {
-          if (granted) {
-            downApk(configureBean);
-          }
-        }));
-  }
-
-  public void downApk(ConfigureBean configureBean) {
-    UpdateAppHelper.download(configureBean.getUpdate(), UiHelper.getString(R.string.apk_name),
-        this);
-    configureBean.setUpdate("");
-    configModel.setConfigInfo(configureBean);
-  }
+  //private void checkUpdate(ConfigureDateBean configureBean) {
+  //  if (configureBean != null
+  //      && ConfigureHelper.getVersionCode(this) < configureBean.getUpdate_version_code()
+  //      && !TextUtils.isEmpty(configureBean.getUpdate())) {
+  //    showTipDialog(UiHelper.getString(R.string.update_tip), configureBean.getContent(),
+  //        isPosition -> {
+  //          if (isPosition) {
+  //            startUpdate(configureBean);
+  //          }
+  //        });
+  //  }
+  //}
+  //
+  //@SuppressLint("CheckResult")
+  //public void startUpdate(ConfigureDateBean configureBean) {
+  //  RxPermissions rxPermissions = new RxPermissions(this);
+  //  addDisposable(rxPermissions.request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+  //      .subscribe(granted -> {
+  //        if (granted) {
+  //          downApk(configureBean);
+  //        }
+  //      }));
+  //}
+  //
+  //public void downApk(ConfigureDateBean configureBean) {
+  //  UpdateAppHelper.download(configureBean.getUpdate(), UiHelper.getString(R.string.apk_name),
+  //      this);
+  //  configureBean.setUpdate("");
+  //  configModel.setConfigInfo(configureBean);
+  //}
 }

@@ -5,7 +5,7 @@ import java.util.Date;
 
 public class DateHelper {
 
-  public static String DATE_OF_SCHOOL = "2018.9.10";
+  static String DATE_OF_SCHOOL = "2018.9.10";
 
   public static int getCurWeek() {
     Calendar caleEnd = Calendar.getInstance();

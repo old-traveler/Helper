@@ -41,6 +41,14 @@ public class SpCacheHelper {
     getEditor().putBoolean(key, data).commit();
   }
 
+  public static void putString(String key, String data) {
+    getEditor().putString(key, data).commit();
+  }
+
+  public static String getString(String key){
+    return getSharedPreferences().getString(key,null);
+  }
+
   public static boolean getBoolean(String key) {
     return getSharedPreferences().getBoolean(key, false);
   }

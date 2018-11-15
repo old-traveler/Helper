@@ -4,17 +4,19 @@ import android.content.Intent;
 import android.os.Handler;
 import android.os.Bundle;
 import android.os.Message;
+import android.text.TextUtils;
 import com.hyc.helper.R;
 import com.hyc.helper.base.activity.BaseRequestActivity;
-import com.hyc.helper.bean.ConfigureBean;
+import com.hyc.helper.bean.ConfigureDateBean;
 import com.hyc.helper.helper.ConfigureHelper;
+import com.hyc.helper.helper.DateHelper;
 import com.hyc.helper.helper.RequestHelper;
 import com.hyc.helper.model.UserModel;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 import java.lang.ref.WeakReference;
 
-public class SplashActivity extends BaseRequestActivity<ConfigureBean> {
+public class SplashActivity extends BaseRequestActivity<ConfigureDateBean> {
 
   private Handler handler = new SplashHandler(new WeakReference<>(this));
 
@@ -43,11 +45,23 @@ public class SplashActivity extends BaseRequestActivity<ConfigureBean> {
 
   @Override
   protected void requestDataFromApi() {
-    RequestHelper.getRequestApi().getConfigure()
-        .subscribeOn(Schedulers.io())
-        .observeOn(AndroidSchedulers.mainThread())
-        .subscribe(this);
-    handler.sendMessageDelayed(message, 2000);
+    String date = ConfigureHelper.getDateOfSchool();
+    if (TextUtils.isEmpty(date) || needUpdateDate()){
+      RequestHelper.getRequestApi().getConfigure()
+          .subscribeOn(Schedulers.io())
+          .observeOn(AndroidSchedulers.mainThread())
+          .subscribe(this);
+      if (!TextUtils.isEmpty(date)){
+        handler.sendMessageDelayed(message, 1500);
+      }
+    }else {
+      goToNextActivity(null);
+    }
+  }
+
+  private boolean needUpdateDate(){
+    ConfigureHelper.initSchoolDate();
+    return DateHelper.getCurWeek() > 20;
   }
 
   @Override
@@ -57,7 +71,7 @@ public class SplashActivity extends BaseRequestActivity<ConfigureBean> {
   }
 
   @Override
-  protected void onSuccessGetData(ConfigureBean configureBean) {
+  protected void onSuccessGetData(ConfigureDateBean configureBean) {
     goToNextActivity(configureBean);
   }
 
@@ -81,7 +95,8 @@ public class SplashActivity extends BaseRequestActivity<ConfigureBean> {
 
   }
 
-  public void goToNextActivity(ConfigureBean configureBean) {
+
+  public void goToNextActivity(ConfigureDateBean configureBean) {
     ConfigureHelper.init(configureBean);
     dispose();
     handler.removeMessages(1);
