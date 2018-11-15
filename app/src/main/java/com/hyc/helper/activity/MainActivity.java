@@ -34,14 +34,17 @@ import com.hyc.helper.base.activity.BaseActivity;
 import com.hyc.helper.base.adapter.BaseRecycleAdapter;
 import com.hyc.helper.base.fragment.BaseFragment;
 import com.hyc.helper.base.fragment.BaseListFragment;
+import com.hyc.helper.base.listener.OnDialogClickListener;
 import com.hyc.helper.base.util.ToastHelper;
 import com.hyc.helper.base.util.UiHelper;
 import com.hyc.helper.bean.ConfigureDateBean;
 import com.hyc.helper.bean.FindPeopleBean;
+import com.hyc.helper.bean.UpdateApkBean;
 import com.hyc.helper.bean.UserBean;
 import com.hyc.helper.helper.ConfigureHelper;
 import com.hyc.helper.helper.DateHelper;
 import com.hyc.helper.helper.ImageRequestHelper;
+import com.hyc.helper.helper.RequestHelper;
 import com.hyc.helper.model.CourseModel;
 import com.hyc.helper.model.ExamModel;
 import com.hyc.helper.model.GradeModel;
@@ -49,6 +52,9 @@ import com.hyc.helper.util.DensityUtil;
 import com.hyc.helper.helper.UpdateAppHelper;
 import com.hyc.helper.model.UserModel;
 import com.tbruyelle.rxpermissions2.RxPermissions;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -105,7 +111,7 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
     initLeftView();
     initViewPager();
     initSearchList();
-    //checkUpdate(configModel.getConfigInfo());
+    checkUpdate();
   }
 
   @Override
@@ -282,34 +288,34 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
     });
   }
 
-  //private void checkUpdate(ConfigureDateBean configureBean) {
-  //  if (configureBean != null
-  //      && ConfigureHelper.getVersionCode(this) < configureBean.getUpdate_version_code()
-  //      && !TextUtils.isEmpty(configureBean.getUpdate())) {
-  //    showTipDialog(UiHelper.getString(R.string.update_tip), configureBean.getContent(),
-  //        isPosition -> {
-  //          if (isPosition) {
-  //            startUpdate(configureBean);
-  //          }
-  //        });
-  //  }
-  //}
-  //
-  //@SuppressLint("CheckResult")
-  //public void startUpdate(ConfigureDateBean configureBean) {
-  //  RxPermissions rxPermissions = new RxPermissions(this);
-  //  addDisposable(rxPermissions.request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-  //      .subscribe(granted -> {
-  //        if (granted) {
-  //          downApk(configureBean);
-  //        }
-  //      }));
-  //}
-  //
-  //public void downApk(ConfigureDateBean configureBean) {
-  //  UpdateAppHelper.download(configureBean.getUpdate(), UiHelper.getString(R.string.apk_name),
-  //      this);
-  //  configureBean.setUpdate("");
-  //  configModel.setConfigInfo(configureBean);
-  //}
+  private void checkUpdate() {
+    addDisposable(RequestHelper.getRequestApi().getUpdateApkInfo()
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(updateApkBean -> {
+          if (ConfigureHelper.getVersionCode(this) < updateApkBean.getVersion_code()){
+            showTipDialog("版本更新", "发现新版本，是否更新?", isPosition -> {
+              if (isPosition){
+                startUpdate(updateApkBean.getApk_url());
+              }
+            });
+          }
+        }, throwable -> {
+
+        }));
+  }
+
+  public void startUpdate(String url) {
+    RxPermissions rxPermissions = new RxPermissions(this);
+    addDisposable(rxPermissions.request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+        .subscribe(granted -> {
+          if (granted) {
+            downApk(url);
+          }
+        }));
+  }
+
+  public void downApk(String url) {
+    UpdateAppHelper.download(url, UiHelper.getString(R.string.apk_name), this);
+  }
 }

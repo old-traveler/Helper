@@ -13,12 +13,12 @@ import static android.content.Context.DOWNLOAD_SERVICE;
 
 public class UpdateAppHelper {
 
-  private static String checkUpdate(ConfigureDateBean configureBean) {
-    if (configureBean != null && !TextUtils.isEmpty(configureBean.getUpdate())) {
-      return configureBean.getUpdate();
-    }
-    return null;
-  }
+  //private static String checkUpdate(ConfigureDateBean configureBean) {
+  //    if (configureBean != null && !TextUtils.isEmpty(configureBean.getUpdate())) {
+  //      return configureBean.getUpdate();
+  //    }
+  //    return null;
+  //}
 
   public static void download(String url, String fileName, Context context) {
     DownloadManager downloadManager = (DownloadManager) context.getSystemService(DOWNLOAD_SERVICE);
