@@ -45,6 +45,14 @@ public class SpCacheHelper {
     getEditor().putString(key, data).commit();
   }
 
+  public static void putLong(String key, long data){
+    getEditor().putLong(key,data).commit();
+  }
+
+  public static long getLong(String key){
+    return getSharedPreferences().getLong(key,0);
+  }
+
   public static String getString(String key){
     return getSharedPreferences().getString(key,null);
   }

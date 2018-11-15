@@ -42,9 +42,11 @@ import com.hyc.helper.bean.FindPeopleBean;
 import com.hyc.helper.bean.UpdateApkBean;
 import com.hyc.helper.bean.UserBean;
 import com.hyc.helper.helper.ConfigureHelper;
+import com.hyc.helper.helper.Constant;
 import com.hyc.helper.helper.DateHelper;
 import com.hyc.helper.helper.ImageRequestHelper;
 import com.hyc.helper.helper.RequestHelper;
+import com.hyc.helper.helper.SpCacheHelper;
 import com.hyc.helper.model.CourseModel;
 import com.hyc.helper.model.ExamModel;
 import com.hyc.helper.model.GradeModel;
@@ -289,14 +291,19 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
   }
 
   private void checkUpdate() {
+    if (System.currentTimeMillis() - SpCacheHelper.getLong("cancel") < Constant.ONE_DAY_TIME) {
+      return;
+    }
     addDisposable(RequestHelper.getRequestApi().getUpdateApkInfo()
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(updateApkBean -> {
-          if (ConfigureHelper.getVersionCode(this) < updateApkBean.getVersion_code()){
+          if (ConfigureHelper.getVersionCode(this) < updateApkBean.getVersion_code()) {
             showTipDialog("版本更新", "发现新版本，是否更新?", isPosition -> {
-              if (isPosition){
+              if (isPosition) {
                 startUpdate(updateApkBean.getApk_url());
+              } else {
+                SpCacheHelper.putLong("cancel", System.currentTimeMillis());
               }
             });
           }
