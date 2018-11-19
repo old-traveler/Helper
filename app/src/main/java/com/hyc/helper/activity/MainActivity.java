@@ -274,9 +274,13 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
   }
 
   private void initListPopView() {
+    int curWeek = DateHelper.getCurWeek();
     List<String> list = new ArrayList<>();
     for (int i = 1; i <= 20; i++) {
       list.add(UiHelper.getString(R.string.week_tip, i));
+      if (curWeek == i){
+        list.set(i - 1,"本周");
+      }
     }
     weekListPopWindow = new ListPopupWindow(this);
     weekListPopWindow.setAdapter(new ArrayAdapter<>(this, R.layout.item_select_week, list));

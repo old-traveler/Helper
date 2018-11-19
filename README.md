@@ -4,7 +4,7 @@
  helper是一款遵从Material Design风格设计且只服务于湖工大学子的App
  
  [![AppVeyor](https://img.shields.io/badge/build-passing-green.svg)](https://github.com/old-traveler/Helper)&nbsp;&nbsp;
- [![Packagist](https://img.shields.io/badge/download-3.8M-red.svg)](http://bmob-cdn-12662.b0.upaiyun.com/2018/10/30/5f4c627f407591ce806d77532311da2c.apk)&nbsp;&nbsp;
+ [![Packagist](https://img.shields.io/badge/download-3.8M-red.svg)](http://bmob-cdn-12662.b0.upaiyun.com/2018/11/19/3e73420c4048507380139669d6edb442.apk)&nbsp;&nbsp;
  [![Packagist](https://img.shields.io/badge/API-28+-blue.svg)](https://github.com/old-traveler/Helper)&nbsp;&nbsp;
  [![Packagist](https://img.shields.io/badge/Version-1.0.0-green.svg)](https://github.com/old-traveler/Helper)
  
@@ -12,7 +12,7 @@
  ## 下载
  
  <div>
-  <img src="https://raw.githubusercontent.com/old-traveler/Helper/master/img/1540870843.png" width = "200" height= "200">
+  <img src="https://raw.githubusercontent.com/old-traveler/Helper/master/img/1542629167.png" width = "200" height= "200">
  </div>
  
 ## 项目结构
@@ -105,6 +105,14 @@
 <div class="half">
     <img src="https://raw.githubusercontent.com/old-traveler/Helper/master/img/screener_date.png" width = "400" height = "720"><img src = "https://raw.githubusercontent.com/old-traveler/Helper/master/img/screener_grade.png" width = "400" height = "720">
 </div>
+
+##版本更新
+
+### 1.1.1
+
+* 新增课表日期提示
+* 使用队列管理Disposable防止内存泄漏
+* 优化体验，如已下载原图优先加载原图
 
 
 
