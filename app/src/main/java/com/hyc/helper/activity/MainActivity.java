@@ -14,6 +14,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.text.TextUtils;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,6 +22,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListPopupWindow;
 import android.widget.TextView;
+import android.widget.ViewFlipper;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.hyc.helper.R;
@@ -37,6 +39,7 @@ import com.hyc.helper.base.fragment.BaseListFragment;
 import com.hyc.helper.base.listener.OnDialogClickListener;
 import com.hyc.helper.base.util.ToastHelper;
 import com.hyc.helper.base.util.UiHelper;
+import com.hyc.helper.bean.CalendarBean;
 import com.hyc.helper.bean.ConfigureDateBean;
 import com.hyc.helper.bean.FindPeopleBean;
 import com.hyc.helper.bean.UpdateApkBean;
@@ -45,6 +48,7 @@ import com.hyc.helper.helper.ConfigureHelper;
 import com.hyc.helper.helper.Constant;
 import com.hyc.helper.helper.DateHelper;
 import com.hyc.helper.helper.ImageRequestHelper;
+import com.hyc.helper.helper.LogHelper;
 import com.hyc.helper.helper.RequestHelper;
 import com.hyc.helper.helper.SpCacheHelper;
 import com.hyc.helper.model.CourseModel;
@@ -75,11 +79,12 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
   DrawerLayout mainContent;
   @BindView(R.id.rv_search_people)
   RecyclerView rvSearchPeople;
+  @BindView(R.id.vf)
+  ViewFlipper viewFlipper;
   private TechFragmentPageAdapter adapter;
   private ListPopupWindow weekListPopWindow;
   private MenuItem selectWeek;
   private UserModel userModel = new UserModel();
-  //private ConfigModel configModel = new ConfigModel();
   private String searchUsername;
   private BaseRecycleAdapter<FindPeopleBean.DataBean, SearchPeopleViewHolder> searchAdapter;
 
@@ -112,8 +117,35 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
     initTabLayout();
     initLeftView();
     initViewPager();
+    initCalendar();
     initSearchList();
     checkUpdate();
+  }
+
+  private void initCalendar() {
+    addDisposable(RequestHelper.getRequestApi().getCalendar()
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(this::loadCalendar, throwable -> {
+          LogHelper.log(throwable.getMessage());
+          setToolBarTitle(R.string.app_name);
+          viewFlipper.setVisibility(View.GONE);
+        }));
+  }
+
+  private void loadCalendar(List<CalendarBean> calendarBeans) {
+    if (calendarBeans == null) {
+      return;
+    }
+    for (CalendarBean calendarBean : calendarBeans) {
+      TextView textView = new TextView(this);
+      textView.setTextSize(15);
+      textView.setTextColor(UiHelper.getColor(R.color.white));
+      textView.setText(
+          String.format(UiHelper.getString(R.string.calendar_tip), calendarBean.getName(),
+              calendarBean.getDays()));
+      viewFlipper.addView(textView);
+    }
   }
 
   @Override
@@ -278,8 +310,8 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
     List<String> list = new ArrayList<>();
     for (int i = 1; i <= 20; i++) {
       list.add(UiHelper.getString(R.string.week_tip, i));
-      if (curWeek == i){
-        list.set(i - 1,"本周");
+      if (curWeek == i) {
+        list.set(i - 1, "本周");
       }
     }
     weekListPopWindow = new ListPopupWindow(this);

@@ -18,9 +18,22 @@
 
       <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
+        android:gravity="center_vertical"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/colorPrimary"/>
+        android:background="@color/colorPrimary">
+
+        <ViewFlipper
+          android:layout_marginStart="5dp"
+          android:id="@+id/vf"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:autoStart="true"
+          android:flipInterval="3000"
+          android:inAnimation="@anim/anim_marquee_in"
+          android:outAnimation="@anim/anim_marquee_out" />
+
+      </android.support.v7.widget.Toolbar>
 
       <android.support.design.widget.TabLayout
         android:backgroundTint="@color/colorPrimary"
