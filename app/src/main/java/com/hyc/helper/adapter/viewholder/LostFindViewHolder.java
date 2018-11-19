@@ -80,6 +80,12 @@ public class LostFindViewHolder extends BaseViewHolder<LostBean.GoodsBean>
   }
 
   @Override
+  public void onViewRecycled() {
+    super.onViewRecycled();
+    ivLostImage.clear();
+  }
+
+  @Override
   public void setOnClickListener(View.OnClickListener onClickListener) {
     super.setOnClickListener(onClickListener);
     tvDelete.setOnClickListener(onClickListener);

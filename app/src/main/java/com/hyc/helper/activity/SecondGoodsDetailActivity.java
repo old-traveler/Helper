@@ -19,6 +19,7 @@ import com.hyc.helper.base.adapter.BaseRecycleAdapter;
 import com.hyc.helper.base.util.UiHelper;
 import com.hyc.helper.bean.GoodsDetailBean;
 import com.hyc.helper.bean.InfoEntity;
+import com.hyc.helper.helper.DisposableManager;
 import com.hyc.helper.helper.ImageRequestHelper;
 import com.hyc.helper.model.SecondGoodsModel;
 import com.hyc.helper.model.UserModel;
@@ -107,8 +108,11 @@ public class SecondGoodsDetailActivity extends BaseRequestActivity<GoodsDetailBe
 
     List<String> pics;
 
+    private DisposableManager disposableManager;
+
     ViewPagerAdapter(List<String> pics) {
       this.pics = pics;
+      disposableManager = new DisposableManager(getCount());
     }
 
     @Override
@@ -126,7 +130,8 @@ public class SecondGoodsDetailActivity extends BaseRequestActivity<GoodsDetailBe
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
       ImageView imageView = new ImageView(container.getContext());
       imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-      ImageRequestHelper.loadImage(container.getContext(), pics.get(position), imageView);
+      disposableManager.addDisposable(position,
+          ImageRequestHelper.loadImage(container.getContext(), pics.get(position), imageView));
       imageView.setOnClickListener(view -> PictureBrowsingActivity.goToPictureBrowsingActivity(
           SecondGoodsDetailActivity.this, position,
           (ArrayList<String>) pics));
@@ -136,6 +141,7 @@ public class SecondGoodsDetailActivity extends BaseRequestActivity<GoodsDetailBe
 
     @Override
     public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
+      disposableManager.cancelDisposable(position);
       container.removeView((View) object);
     }
   }

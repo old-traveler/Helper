@@ -14,10 +14,13 @@ public abstract class BaseViewHolder<T> extends RecyclerView.ViewHolder {
     initItemView(itemView);
   }
 
+  public void onViewRecycled() {
+
+  }
+
   protected abstract void initItemView(View view);
 
   public abstract void loadItemData(Context context, T data, int position);
-
 
   public T getData() {
     return data;
@@ -30,4 +33,5 @@ public abstract class BaseViewHolder<T> extends RecyclerView.ViewHolder {
   public void setOnClickListener(View.OnClickListener onClickListener) {
     itemView.setOnClickListener(onClickListener);
   }
+
 }

@@ -160,6 +160,12 @@ public class StatementViewHolder extends BaseViewHolder<StatementBean.StatementI
   }
 
   @Override
+  public void onViewRecycled() {
+    super.onViewRecycled();
+    imageLayout.clear();
+  }
+
+  @Override
   public void setOnClickListener(View.OnClickListener onClickListener) {
     super.setOnClickListener(onClickListener);
     vComment.setOnClickListener(onClickListener);

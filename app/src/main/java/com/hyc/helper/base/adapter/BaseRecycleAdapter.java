@@ -33,6 +33,12 @@ public class BaseRecycleAdapter<T, V extends BaseViewHolder<T>> extends Recycler
     this.vClass = vClass;
   }
 
+  @Override
+  public void onViewRecycled(@NonNull V holder) {
+    super.onViewRecycled(holder);
+    holder.onViewRecycled();
+  }
+
   public BaseRecycleAdapter(int layoutId, Class<V> vClass) {
     this(null, layoutId, vClass);
   }

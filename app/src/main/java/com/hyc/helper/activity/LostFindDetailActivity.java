@@ -22,6 +22,7 @@ import com.hyc.helper.base.adapter.BaseRecycleAdapter;
 import com.hyc.helper.base.util.UiHelper;
 import com.hyc.helper.bean.InfoEntity;
 import com.hyc.helper.bean.LostBean;
+import com.hyc.helper.helper.DisposableManager;
 import com.hyc.helper.helper.ImageRequestHelper;
 import com.hyc.helper.util.DensityUtil;
 import java.util.ArrayList;
@@ -66,16 +67,17 @@ public class LostFindDetailActivity extends BaseActivity {
     String type = dataBean.getType();
     tvTitle.setText(dataBean.getTit());
     tvContent.setText(dataBean.getContent());
-    UiHelper.initLinkTextView(tvContent,this);
-    rvInfo.setLayoutManager(new GridLayoutManager(this,2));
+    UiHelper.initLinkTextView(tvContent, this);
+    rvInfo.setLayoutManager(new GridLayoutManager(this, 2));
     List<InfoEntity> data = new ArrayList<>();
-    data.add(new InfoEntity(type.equals("1") ? "拾到物品":"丢失物品",dataBean.getTit()));
-    data.add(new InfoEntity(type.equals("1") ? "拾到时间":"丢失时间",dataBean.getTime()));
-    data.add(new InfoEntity(type.equals("1") ? "拾到地点":"丢失地点",dataBean.getLocate()));
-    data.add(new InfoEntity("联系电话",dataBean.getPhone()));
-    data.add(new InfoEntity("发布用户",dataBean.getUsername()));
-    data.add(new InfoEntity("发布时间",dataBean.getCreated_on()));
-    rvInfo.setAdapter(new BaseRecycleAdapter<>(data,R.layout.layout_bottom_info,ShowInfoViewHolder.class));
+    data.add(new InfoEntity(type.equals("1") ? "拾到物品" : "丢失物品", dataBean.getTit()));
+    data.add(new InfoEntity(type.equals("1") ? "拾到时间" : "丢失时间", dataBean.getTime()));
+    data.add(new InfoEntity(type.equals("1") ? "拾到地点" : "丢失地点", dataBean.getLocate()));
+    data.add(new InfoEntity("联系电话", dataBean.getPhone()));
+    data.add(new InfoEntity("发布用户", dataBean.getUsername()));
+    data.add(new InfoEntity("发布时间", dataBean.getCreated_on()));
+    rvInfo.setAdapter(
+        new BaseRecycleAdapter<>(data, R.layout.layout_bottom_info, ShowInfoViewHolder.class));
   }
 
   private void initImageBrowsing(List<String> pic) {
@@ -111,10 +113,13 @@ public class LostFindDetailActivity extends BaseActivity {
 
   public class ViewPagerAdapter extends PagerAdapter {
 
+    private DisposableManager disposableManager;
+
     List<String> pics;
 
     ViewPagerAdapter(List<String> pics) {
       this.pics = pics;
+      disposableManager = new DisposableManager(getCount());
     }
 
     @Override
@@ -132,7 +137,8 @@ public class LostFindDetailActivity extends BaseActivity {
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
       ImageView imageView = new ImageView(container.getContext());
       imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-      ImageRequestHelper.loadImage(container.getContext(), pics.get(position), imageView);
+      disposableManager.addDisposable(position,
+          ImageRequestHelper.loadImage(container.getContext(), pics.get(position), imageView));
       imageView.setOnClickListener(view -> PictureBrowsingActivity.goToPictureBrowsingActivity(
           LostFindDetailActivity.this, position,
           (ArrayList<String>) pics));
@@ -142,6 +148,7 @@ public class LostFindDetailActivity extends BaseActivity {
 
     @Override
     public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
+      disposableManager.cancelDisposable(position);
       container.removeView((View) object);
     }
   }

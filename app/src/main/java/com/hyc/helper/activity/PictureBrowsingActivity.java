@@ -124,7 +124,7 @@ public class PictureBrowsingActivity extends AppCompatActivity {
     private void showImage(View textView, ProgressBar progressBar, ImageView imageView,
         SubsamplingScaleImageView scaleImageView, int position) {
       textView.setVisibility(View.VISIBLE);
-      ImageRequestHelper.loadImage(PictureBrowsingActivity.this, imagesUrl.get(position),
+      ImageRequestHelper.loadImageByUrl(PictureBrowsingActivity.this, imagesUrl.get(position),
           imageView);
       textView.setOnClickListener(
           view -> showBigImage(view, progressBar, imageView, scaleImageView, position));

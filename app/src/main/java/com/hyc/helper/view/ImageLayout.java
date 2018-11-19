@@ -8,8 +8,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import com.hyc.helper.R;
+import com.hyc.helper.helper.DisposableManager;
 import com.hyc.helper.util.DensityUtil;
 import com.hyc.helper.helper.ImageRequestHelper;
+import io.reactivex.disposables.Disposable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ImageLayout extends ViewGroup implements View.OnClickListener {
@@ -21,6 +24,8 @@ public class ImageLayout extends ViewGroup implements View.OnClickListener {
   private List<String> imageUrlList;
 
   private OnItemClickListener onItemClickListener;
+
+  private DisposableManager disposableManager;
 
   public interface OnItemClickListener {
     void onItemImageClick(int position);
@@ -72,6 +77,12 @@ public class ImageLayout extends ViewGroup implements View.OnClickListener {
     if (getChildCount() > 0) {
       removeAllViews();
     }
+    if (disposableManager == null) {
+      disposableManager = new DisposableManager();
+    } else {
+      disposableManager.cancelAllDisposable();
+      disposableManager = new DisposableManager(imageUrlList.size());
+    }
     this.imageUrlList = imageUrlList;
     if (imageUrlList == null || imageUrlList.size() == 0) {
       setVisibility(GONE);
@@ -85,12 +96,19 @@ public class ImageLayout extends ViewGroup implements View.OnClickListener {
     }
   }
 
+  public void clear(){
+    if (disposableManager != null){
+      disposableManager.cancelAllDisposable();
+    }
+    removeAllViews();
+  }
+
   private void addItemImageView(String url, int width, int height) {
     ImageView imageView = new ImageView(getContext());
     imageView.setScaleType(ImageView.ScaleType.CENTER);
     LayoutParams params = new LayoutParams(width, height);
     imageView.setLayoutParams(params);
-    ImageRequestHelper.loadImage(getContext(), url, imageView);
+    disposableManager.addDisposable(ImageRequestHelper.loadImage(getContext(), url, imageView));
     imageView.setOnClickListener(this);
     addView(imageView);
   }
@@ -99,7 +117,7 @@ public class ImageLayout extends ViewGroup implements View.OnClickListener {
   protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
     super.onMeasure(widthMeasureSpec, heightMeasureSpec);
     measureChildren(widthMeasureSpec, heightMeasureSpec);
-    maxWidth = Math.min(MeasureSpec.getSize(widthMeasureSpec),maxWidth);
+    maxWidth = Math.min(MeasureSpec.getSize(widthMeasureSpec), maxWidth);
     int measureWidth = measureWidth();
     int measureHeight = measureHeight();
     setMeasuredDimension(measureWidth, measureHeight);
@@ -109,7 +127,7 @@ public class ImageLayout extends ViewGroup implements View.OnClickListener {
     if (getChildCount() == 0) {
       return 0;
     } else if (getChildCount() == 1) {
-      return Math.min(getChildAt(0).getMeasuredHeight(),maxHeight);
+      return Math.min(getChildAt(0).getMeasuredHeight(), maxHeight);
     } else {
       int imageLength = maxWidth / 2;
       int childCount = getChildCount() - 1;

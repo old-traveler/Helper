@@ -54,7 +54,6 @@
     <TextView
       android:id="@+id/tv_month"
       android:textSize="11sp"
-      android:text="9月"
       android:gravity="center"
       android:layout_width="30dp"
       android:layout_height="match_parent" />

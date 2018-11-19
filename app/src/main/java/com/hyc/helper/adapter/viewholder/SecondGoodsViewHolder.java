@@ -12,6 +12,7 @@ import com.hyc.helper.base.adapter.viewholder.BaseViewHolder;
 import com.hyc.helper.bean.SecondHandBean;
 import com.hyc.helper.helper.ImageRequestHelper;
 import com.hyc.helper.model.UserModel;
+import io.reactivex.disposables.Disposable;
 
 public class SecondGoodsViewHolder extends BaseViewHolder<SecondHandBean.GoodsBean> {
 
@@ -26,11 +27,21 @@ public class SecondGoodsViewHolder extends BaseViewHolder<SecondHandBean.GoodsBe
   @BindView(R.id.tv_delete)
   TextView tvDelete;
 
+  private Disposable disposable;
+
   public UserModel userModel = new UserModel();
 
   public SecondGoodsViewHolder(@NonNull View itemView) {
     super(itemView);
     ButterKnife.bind(this, itemView);
+  }
+
+  @Override
+  public void onViewRecycled() {
+    super.onViewRecycled();
+    if (disposable != null && !disposable.isDisposed()){
+      disposable.dispose();
+    }
   }
 
   @Override
@@ -40,7 +51,10 @@ public class SecondGoodsViewHolder extends BaseViewHolder<SecondHandBean.GoodsBe
 
   @Override
   public void loadItemData(Context context, SecondHandBean.GoodsBean data, int position) {
-    ImageRequestHelper.loadImage(context, data.getImage(), ivSecondGoods);
+    if (disposable != null && !disposable.isDisposed()){
+      disposable.dispose();
+    }
+    disposable = ImageRequestHelper.loadImage(context, data.getImage(), ivSecondGoods);
     tvSecondTitle.setText(data.getTit());
     String price = "¥" + data.getPrize();
     tvSecondPrice.setText(price);
@@ -51,6 +65,7 @@ public class SecondGoodsViewHolder extends BaseViewHolder<SecondHandBean.GoodsBe
       tvDelete.setVisibility(View.GONE);
     }
   }
+
 
   @Override
   public void setOnClickListener(View.OnClickListener onClickListener) {

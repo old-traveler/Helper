@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import com.hyc.helper.base.activity.BaseActivity;
 import com.hyc.helper.base.interfaces.IBaseFragment;
+import com.hyc.helper.helper.DisposableManager;
 import io.reactivex.disposables.Disposable;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +18,7 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
 
   protected BaseActivity mBaseActivity;
 
-  private List<Disposable> disposableList;
+  private DisposableManager disposableManager;
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
@@ -41,22 +42,16 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
   }
 
   protected void cancelAllDisposable(){
-    if (disposableList == null || disposableList.size() == 0){
-      return;
+    if (disposableManager != null){
+      disposableManager.cancelAllDisposable();
     }
-    for (Disposable disposable : disposableList) {
-      if (disposable != null && !disposable.isDisposed()){
-        disposable.dispose();
-      }
-    }
-    disposableList.clear();
   }
 
   public void addDisposable(Disposable disposable){
-    if (disposableList == null){
-      disposableList = new ArrayList<>();
+    if (disposableManager == null){
+      disposableManager = new DisposableManager();
     }
-    disposableList.add(disposable);
+    disposableManager.addDisposable(disposable);
   }
 
   protected abstract void initLayoutView(View view);

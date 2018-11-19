@@ -13,21 +13,39 @@ import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.hyc.helper.activity.PictureBrowsingActivity;
 import com.hyc.helper.base.util.UiHelper;
+import com.hyc.helper.model.ImageModel;
+import io.reactivex.disposables.Disposable;
 import java.io.File;
 
 public class ImageRequestHelper {
 
-  public static void loadImage(Context context, String url, ImageView imageView) {
+  public static Disposable loadImage(Context context, String url, ImageView imageView) {
+    loadImageByUrl(context, url, imageView);
+    return new ImageModel().getBigImageLoadRecord(url,
+        bean -> {
+          if (bean != null && FileHelper.fileIsExist(bean.getFilePath())) {
+            Glide.with(context)
+                .load(new File(bean.getFilePath()))
+                .apply(new RequestOptions().placeholder(UiHelper.getDefaultPlaceholder()))
+                .into(imageView);
+          }
+        }, throwable ->{
+
+        });
+  }
+
+  public static void loadImageByUrl(Context context, String url, ImageView imageView) {
     if (url.endsWith("?")) {
       url = url.substring(0, url.length() - 2);
     }
+
     Glide.with(context)
         .load(Constant.BASE_IMAGE_URL + url)
         .apply(new RequestOptions().placeholder(UiHelper.getDefaultPlaceholder()))
         .into(imageView);
   }
 
-  public static void loadOtherImage(Context context,String url,ImageView imageView){
+  public static void loadOtherImage(Context context, String url, ImageView imageView) {
     Glide.with(context)
         .load(url)
         .apply(new RequestOptions().placeholder(UiHelper.getDefaultPlaceholder()))
@@ -49,7 +67,7 @@ public class ImageRequestHelper {
   }
 
   public static void loadHeadImage(Context context, String url, ImageView imageView) {
-    if (TextUtils.isEmpty(url)){
+    if (TextUtils.isEmpty(url)) {
       return;
     }
     Glide.with(context)
@@ -58,9 +76,9 @@ public class ImageRequestHelper {
         .into(imageView);
   }
 
-  public static void loadBigHeadImage(Context context,String url,ImageView imageView){
+  public static void loadBigHeadImage(Context context, String url, ImageView imageView) {
     url = url.replace("_thumb", "");
-    loadHeadImage(context,url,imageView);
+    loadHeadImage(context, url, imageView);
   }
 
   public static void loadImageAsFile(Context context, String url, SimpleTarget<File> simpleTarget) {
@@ -73,7 +91,8 @@ public class ImageRequestHelper {
         .into(simpleTarget);
   }
 
-  public static void loadOtherImageAsFile(Context context,String url,SimpleTarget<File> simpleTarget){
+  public static void loadOtherImageAsFile(Context context, String url,
+      SimpleTarget<File> simpleTarget) {
     Glide.with(context)
         .asFile()
         .load(url)
