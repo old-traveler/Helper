@@ -4,15 +4,15 @@
  helper是一款遵从Material Design风格设计且只服务于湖工大学子的App
  
  [![AppVeyor](https://img.shields.io/badge/build-passing-green.svg)](https://github.com/old-traveler/Helper)&nbsp;&nbsp;
- [![Packagist](https://img.shields.io/badge/download-3.8M-red.svg)](http://bmob-cdn-12662.b0.upaiyun.com/2018/11/19/3e73420c4048507380139669d6edb442.apk)&nbsp;&nbsp;
+ [![Packagist](https://img.shields.io/badge/download-3.8M-red.svg)](http://bmob-cdn-12662.b0.upaiyun.com/2018/11/20/2ee0765d40a02ca6802553be2a69d195.apk)&nbsp;&nbsp;
  [![Packagist](https://img.shields.io/badge/API-28+-blue.svg)](https://github.com/old-traveler/Helper)&nbsp;&nbsp;
- [![Packagist](https://img.shields.io/badge/Version-1.1.1-green.svg)](https://github.com/old-traveler/Helper)
+ [![Packagist](https://img.shields.io/badge/Version-1.2.0-green.svg)](https://github.com/old-traveler/Helper)
  
  
  ## 下载
  
  <div>
-  <img src="https://raw.githubusercontent.com/old-traveler/Helper/master/img/1542629167.png" width = "200" height= "200">
+  <img src="https://raw.githubusercontent.com/old-traveler/Helper/master/img/1542717410.png" width = "200" height= "200">
  </div>
  
 ## 项目结构
@@ -44,7 +44,7 @@
 - [x] 校园日历
 - [x] 个人信息
 - [x] 查找用户
-- [ ] 实验课表
+- [x] 实验课表
 
 ## 界面展示
 
@@ -113,6 +113,14 @@
 * 新增课表日期提示
 * 使用队列管理Disposable防止内存泄漏
 * 优化体验，如已下载原图优先加载原图
+
+
+### 1.2.0
+
+* 新增实验课表与正常课表同时查看
+* 重要日期提醒
+* 优化体验
+
 
 
 
