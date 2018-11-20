@@ -28,9 +28,12 @@ import com.hyc.helper.R;
 import com.hyc.helper.base.util.UiHelper;
 import com.hyc.helper.bean.BigImageLoadRecordBean;
 import com.hyc.helper.bean.ImageSizeBean;
+import com.hyc.helper.bean.MessageEvent;
+import com.hyc.helper.helper.Constant;
 import com.hyc.helper.helper.FileHelper;
 import com.hyc.helper.helper.ImageRequestHelper;
 import com.hyc.helper.model.ImageModel;
+import com.hyc.helper.util.RxBus;
 import io.reactivex.disposables.Disposable;
 import java.io.File;
 import java.util.ArrayList;
@@ -139,6 +142,7 @@ public class PictureBrowsingActivity extends AppCompatActivity {
             @Override
             public void onResourceReady(@NonNull File resource,
                 @Nullable Transition<? super File> transition) {
+              RxBus.getDefault().post(new MessageEvent<>(Constant.EventType.ORIGINAL_DOWNLOAD,null));
               imageModel.saveBigImageLoadRecord(
                   new BigImageLoadRecordBean(imagesUrl.get(position), resource.getPath()));
               loadImage(imageView, subsamplingScaleImageView, resource);

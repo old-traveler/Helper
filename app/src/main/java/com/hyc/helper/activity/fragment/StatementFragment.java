@@ -17,15 +17,19 @@ import butterknife.Unbinder;
 import com.hyc.helper.R;
 import com.hyc.helper.activity.PublishStatementActivity;
 import com.hyc.helper.adapter.viewholder.StatementViewHolder;
+import com.hyc.helper.annotation.Subscribe;
 import com.hyc.helper.base.adapter.BaseRecycleAdapter;
 import com.hyc.helper.base.fragment.BaseListFragment;
 import com.hyc.helper.base.util.ToastHelper;
 import com.hyc.helper.bean.CommentInfoBean;
+import com.hyc.helper.bean.MessageEvent;
 import com.hyc.helper.bean.StatementBean;
 import com.hyc.helper.bean.UserBean;
 import com.hyc.helper.helper.Constant;
 import com.hyc.helper.model.StatementModel;
 import com.hyc.helper.model.UserModel;
+import com.hyc.helper.util.RxBus;
+import com.hyc.helper.util.ThreadMode;
 import java.util.List;
 
 import static android.app.Activity.RESULT_OK;
@@ -194,5 +198,22 @@ public class StatementFragment extends
     if (requestCode == 2010 && resultCode == RESULT_OK) {
       refresh();
     }
+  }
+
+  @Subscribe(threadMode = ThreadMode.MAIN,eventType = {Constant.EventType.ORIGINAL_DOWNLOAD})
+  public void onEvent(MessageEvent event){
+    getRecycleAdapter().notifyDataSetChanged();
+  }
+
+  @Override
+  public void onStart() {
+    super.onStart();
+    RxBus.getDefault().register(this);
+  }
+
+  @Override
+  public void onStop() {
+    super.onStop();
+    RxBus.getDefault().unRegister(this);
   }
 }

@@ -32,4 +32,10 @@ public class Constant {
 
   public static final String TYPE_LOST = "lost";
 
+  public class EventType{
+
+    public static final String ORIGINAL_DOWNLOAD = "ORIGINAL_DOWNLOAD";
+
+  }
+
 }
