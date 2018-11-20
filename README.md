@@ -6,7 +6,7 @@
  [![AppVeyor](https://img.shields.io/badge/build-passing-green.svg)](https://github.com/old-traveler/Helper)&nbsp;&nbsp;
  [![Packagist](https://img.shields.io/badge/download-3.8M-red.svg)](http://bmob-cdn-12662.b0.upaiyun.com/2018/11/19/3e73420c4048507380139669d6edb442.apk)&nbsp;&nbsp;
  [![Packagist](https://img.shields.io/badge/API-28+-blue.svg)](https://github.com/old-traveler/Helper)&nbsp;&nbsp;
- [![Packagist](https://img.shields.io/badge/Version-1.0.0-green.svg)](https://github.com/old-traveler/Helper)
+ [![Packagist](https://img.shields.io/badge/Version-1.1.1-green.svg)](https://github.com/old-traveler/Helper)
  
  
  ## 下载
