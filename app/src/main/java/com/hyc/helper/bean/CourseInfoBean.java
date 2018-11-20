@@ -8,22 +8,22 @@ import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Generated;
 
 @Entity
-public class CourseInfoBean  implements Serializable{
+public class CourseInfoBean  implements Serializable,Cloneable {
 
   public static final long serialVersionUID = 42L;
 
 
   private String xh;
-  private String xqj;
-  private String djj;
+  private String xqj;//星期几
+  private String djj;//第几节
   private int dsz;
   private String qsz;
   private String jsz;
-  private String name;
-  private String teacher;
-  private String room;
+  private String name;//名字
+  private String teacher;//老师
+  private String room;//教室
   @Convert(columnType = String.class, converter = IntegerConverter.class)
-  private List<Integer> zs;
+  private List<Integer> zs;//周数
 
   @Generated(hash = 29831154)
   public CourseInfoBean(String xh, String xqj, String djj, int dsz, String qsz,
@@ -124,4 +124,16 @@ public class CourseInfoBean  implements Serializable{
   public void setZs(List<Integer> zs) {
     this.zs = zs;
   }
+
+  @Override
+  public Object clone() {
+    CourseInfoBean courseInfoBean = null;
+    try{
+      courseInfoBean = (CourseInfoBean) super.clone();
+    }catch(CloneNotSupportedException e) {
+      e.printStackTrace();
+    }
+    return courseInfoBean;
+  }
+
 }

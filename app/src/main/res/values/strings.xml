@@ -85,6 +85,7 @@
   <string name="locate_input_tip">请输入地点</string>
   <string name="lost_time">%d-%s-%s %s:00</string>
   <string name="calendar_tip">距离 %s 还有 %d 天</string>
+  <string name="date_tip">%s\n%d</string>
 
   <string-array name="weeks">
     <item>周一</item>

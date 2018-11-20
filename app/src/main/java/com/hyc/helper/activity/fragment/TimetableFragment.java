@@ -15,6 +15,7 @@ import com.hyc.helper.base.fragment.BaseRequestFragment;
 import com.hyc.helper.base.util.UiHelper;
 import com.hyc.helper.bean.CourseBean;
 import com.hyc.helper.bean.CourseInfoBean;
+import com.hyc.helper.bean.LessonsExpBean;
 import com.hyc.helper.helper.DateHelper;
 import com.hyc.helper.util.DensityUtil;
 import com.hyc.helper.model.CourseModel;
@@ -43,6 +44,7 @@ public class TimetableFragment extends BaseRequestFragment<CourseBean> implement
   private UserModel userModel;
   private boolean needRefreshDb = false;
   private int curWeek;
+  private LessonsExpBean lessonsExpBean;
 
   @Override
   protected void initLayoutView(View view) {
@@ -76,7 +78,7 @@ public class TimetableFragment extends BaseRequestFragment<CourseBean> implement
   }
 
   private void initTopTitle(int week) {
-    while (llTopTitle.getChildCount() > 1){
+    while (llTopTitle.getChildCount() > 1) {
       llTopTitle.removeViewAt(0);
     }
     String[] weeks = UiHelper.getStringArrays(R.array.weeks);
@@ -85,7 +87,7 @@ public class TimetableFragment extends BaseRequestFragment<CourseBean> implement
     int day[] = DateHelper.getCurDayOfWeek(week);
     for (int i = 0; i < 7; i++) {
       TextView textView = new TextView(getContext());
-      textView.setText(String.format("%s\n%d", weeks[i], day[i]));
+      textView.setText(String.format(UiHelper.getString(R.string.date_tip), weeks[i], day[i]));
       textView.setGravity(Gravity.CENTER);
       LinearLayout.LayoutParams params =
           new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1);
@@ -93,18 +95,18 @@ public class TimetableFragment extends BaseRequestFragment<CourseBean> implement
       textView.setTextSize(11);
       textView.setTextColor(UiHelper.getColor(R.color.front_black));
       if (index == curDay) {
-        initCurWeekText(textView,week);
+        initCurWeekText(textView, week);
       }
       llTopTitle.addView(textView, index++);
     }
     tvMonth.setText(String.format(UiHelper.getString(R.string.month), day[7]));
   }
 
-  private void initCurWeekText(TextView textView,int week) {
-    if (week == DateHelper.getCurWeek()){
+  private void initCurWeekText(TextView textView, int week) {
+    if (week == DateHelper.getCurWeek()) {
       textView.setTextColor(UiHelper.getColor(R.color.white));
       textView.setBackgroundColor(UiHelper.getColor(R.color.colorPrimary));
-    }else {
+    } else {
       textView.setTextColor(UiHelper.getColor(R.color.front_black));
       textView.setBackgroundColor(UiHelper.getColor(R.color.white));
     }
@@ -118,7 +120,12 @@ public class TimetableFragment extends BaseRequestFragment<CourseBean> implement
   @Override
   protected void requestDataFromApi() {
     needRefreshDb = true;
-    courseModel.getCourseFromApi(userModel.getCurUserInfo(), this);
+    addDisposable(courseModel.getLessonsExpFromApi(userModel.getCurUserInfo()).subscribe(
+        lessonsExpBean -> {
+          this.lessonsExpBean = lessonsExpBean;
+          courseModel.getCourseFromApi(userModel.getCurUserInfo(), this);
+        },
+        this::onError));
   }
 
   @Override
@@ -129,11 +136,13 @@ public class TimetableFragment extends BaseRequestFragment<CourseBean> implement
 
   @Override
   protected void onSuccessGetData(CourseBean courseBean) {
+    List<CourseInfoBean> courseInfoBeans = courseBean.getData();
     if (needRefreshDb) {
       needRefreshDb = false;
-      courseModel.refreshLocalDb(courseBean.getData());
+      courseInfoBeans.addAll(courseModel.lessonsToCourse(userModel.getStudentId(), lessonsExpBean));
+      courseModel.refreshLocalDb(courseInfoBeans);
     }
-    refreshCourseInfo(courseBean.getData());
+    refreshCourseInfo(courseInfoBeans);
     srlTimetable.finishRefresh();
   }
 
