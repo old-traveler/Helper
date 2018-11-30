@@ -86,6 +86,12 @@
   <string name="lost_time">%d-%s-%s %s:00</string>
   <string name="calendar_tip">距离 %s 还有 %d 天</string>
   <string name="date_tip">%s\n%d</string>
+  <string name="message">Message</string>
+  <string name="private_message">私信</string>
+  <string name="app_key">e8c7f8ed34bb48dd4c5ab6b54d8cf11d</string>
+  <string name="default_content">快来私信我吧～</string>
+  <string name="voice_record_tip">%d:%02d</string>
+  <string name="voice_length_tip">[语音] %d\'\'</string>
 
   <string-array name="weeks">
     <item>周一</item>

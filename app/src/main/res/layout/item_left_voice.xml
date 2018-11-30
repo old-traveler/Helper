@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  xmlns:app="http://schemas.android.com/apk/res-auto">
+
+  <ImageView
+    android:id="@+id/cv_voice_left"
+    android:layout_marginStart="10dp"
+    android:layout_width="@dimen/item_head_length"
+    android:layout_height="@dimen/item_head_length" />
+
+  <com.github.library.bubbleview.BubbleTextView
+    android:maxWidth="200dp"
+    android:layout_marginStart="55dp"
+    android:id="@+id/tv_left_duration"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="10dp"
+    android:textColor="@android:color/white"
+    app:arrowWidth="8dp"
+    app:angle="8dp"
+    android:autoLink="all"
+    android:textColorLink="#7accf9"
+    app:arrowHeight="10dp"
+    app:arrowPosition="14dp"
+    app:arrowLocation="left"
+    app:bubbleColor="@color/colorPrimary"/>
+
+  <View
+    android:layout_toEndOf="@id/tv_left_duration"
+    android:visibility="gone"
+    android:background="@drawable/playing"
+    android:id="@+id/v_playing"
+    android:layout_marginStart="10dp"
+    android:layout_marginTop="5dp"
+    android:layout_width="30dp"
+    android:layout_height="30dp" />
+
+</RelativeLayout>

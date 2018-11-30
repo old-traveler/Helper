@@ -5,13 +5,12 @@
   <item
     app:showAsAction="ifRoom"
     android:id="@+id/action_select"
-    android:title="第3周" />
+    android:title="" />
 
   <item
-    android:id="@+id/action_search"
-    android:icon="@drawable/ic_search"
-    android:title="@string/search"
-    app:actionViewClass="android.support.v7.widget.SearchView"
-    app:showAsAction="ifRoom" />
+    app:showAsAction="ifRoom"
+    android:icon="@drawable/ic_message"
+    android:id="@+id/item_message"
+    android:title="@string/private_message"/>
 
 </menu>

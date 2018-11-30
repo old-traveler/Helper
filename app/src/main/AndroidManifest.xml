@@ -4,9 +4,15 @@
   package="com.hyc.helper">
 
   <uses-permission android:name="android.permission.INTERNET" />
+  <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+  <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+  <uses-permission android:name="android.permission.WAKE_LOCK" />
+  <uses-permission android:name="android.permission.READ_PHONE_STATE" />
   <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
   <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
   <uses-permission android:name="android.permission.CAMERA" />
+  <uses-permission android:name="android.permission.RECORD_AUDIO" />
+  <uses-permission android:name="android.permission.VIBRATE" />
 
   <application
     android:name=".HelperApplication"
@@ -17,6 +23,10 @@
     android:supportsRtl="true"
     android:theme="@style/AppTheme"
     tools:ignore="GoogleAppIndexingWarning">
+    <meta-data
+      android:name="Bmob_APP_KEY"
+      android:value="e8c7f8ed34bb48dd4c5ab6b54d8cf11d" />
+
     <activity
       android:name=".activity.SplashActivity"
       android:windowSoftInputMode="adjustPan|stateHidden">
@@ -49,7 +59,30 @@
     <activity android:name=".activity.SecondGoodsDetailActivity" />
     <activity android:name=".activity.LostFindDetailActivity" />
     <activity android:name=".activity.SecondMarketPublishActivity" />
-    <activity android:name=".activity.LosePublishActivity"></activity>
+    <activity android:name=".activity.LosePublishActivity" />
+
+    <receiver android:name="cn.bmob.newim.core.ConnectChangeReceiver">
+      <intent-filter>
+        <action android:name="cn.bmob.action.RECONNECT" />
+        <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+        <action android:name="android.intent.action.BOOT_COMPLETED" />
+        <action android:name="android.intent.action.USER_PRESENT" />
+      </intent-filter>
+    </receiver>
+
+    <service
+      android:name="cn.bmob.newim.core.service.BmobIMService"
+      android:process=":bmobcore" />
+    <service
+      android:name="cn.bmob.newim.core.service.NotifyService"
+      android:process=":bmobcore" />
+    <service android:name="cn.bmob.newim.core.service.ReConnectService" />
+    <service android:name="cn.bmob.newim.core.service.HeartBeatService" />
+
+    <activity
+      android:name=".im.ConversationActivity"
+      android:windowSoftInputMode="adjustPan" />
+    <activity android:name=".im.ChatActivity"></activity>
   </application>
 
 </manifest>

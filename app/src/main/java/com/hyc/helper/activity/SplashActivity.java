@@ -11,6 +11,7 @@ import com.hyc.helper.bean.ConfigureDateBean;
 import com.hyc.helper.helper.ConfigureHelper;
 import com.hyc.helper.helper.DateHelper;
 import com.hyc.helper.helper.RequestHelper;
+import com.hyc.helper.im.ConnectManager;
 import com.hyc.helper.model.UserModel;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;

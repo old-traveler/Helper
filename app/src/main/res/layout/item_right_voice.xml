@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  xmlns:app="http://schemas.android.com/apk/res-auto">
+
+  <ImageView
+    android:id="@+id/cv_voice_right"
+    android:layout_alignParentEnd="true"
+    android:layout_marginEnd="10dp"
+    android:layout_width="@dimen/item_head_length"
+    android:layout_height="@dimen/item_head_length" />
+
+  <com.github.library.bubbleview.BubbleTextView
+    android:maxWidth="200dp"
+    android:layout_alignParentEnd="true"
+    android:layout_marginEnd="55dp"
+    android:id="@+id/tv_right_duration"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="10dp"
+    android:textColor="@android:color/white"
+    app:arrowWidth="8dp"
+    android:autoLink="all"
+    android:textColorLink="#7accf9"
+    app:angle="8dp"
+    app:arrowHeight="10dp"
+    app:arrowPosition="14dp"
+    app:arrowLocation="right"
+    app:bubbleColor="#9d6cb6"/>
+
+  <ProgressBar
+    android:visibility="gone"
+    android:layout_toStartOf="@id/tv_right_duration"
+    android:layout_gravity="end"
+    android:id="@+id/pb_message"
+    android:layout_marginEnd="10dp"
+    android:layout_marginTop="5dp"
+    android:layout_width="30dp"
+    android:layout_height="30dp" />
+
+
+  <View
+    android:visibility="gone"
+    android:layout_toStartOf="@id/tv_right_duration"
+    android:background="@drawable/ic_send_fail"
+    android:id="@+id/iv_send_error"
+    android:layout_marginEnd="10dp"
+    android:layout_marginTop="5dp"
+    android:layout_width="30dp"
+    android:layout_height="30dp" />
+
+  <View
+    android:visibility="gone"
+    android:background="@drawable/playing"
+    android:layout_toStartOf="@id/tv_right_duration"
+    android:id="@+id/v_playing"
+    android:layout_marginEnd="10dp"
+    android:layout_marginTop="5dp"
+    android:layout_width="30dp"
+    android:layout_height="30dp" />
+
+</RelativeLayout>

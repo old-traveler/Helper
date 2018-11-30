@@ -4,6 +4,7 @@ import com.hyc.helper.bean.BigImageLoadRecordBean;
 import com.hyc.helper.bean.CourseInfoBean;
 import com.hyc.helper.bean.ExamInfoBean;
 import com.hyc.helper.bean.GradeInfoBean;
+import com.hyc.helper.bean.ImageMessageRecord;
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
@@ -20,6 +21,11 @@ public class DbInsertHelper {
       emitter.onNext(true);
       emitter.onComplete();
     });
+  }
+
+
+  public static void insertImageRecord(ImageMessageRecord record){
+    DaoHelper.getDefault().getDaoSession().getImageMessageRecordDao().insertOrReplace(record);
   }
 
   public static Observable<Boolean> insertBigImageLoadRecord(BigImageLoadRecordBean bean) {

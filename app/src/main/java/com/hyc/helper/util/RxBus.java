@@ -54,7 +54,23 @@ public class RxBus {
     LogHelper.log("register "+ object.getClass().getSimpleName());
   }
 
-  public void unRegister(Object object) {
+  public boolean isRegister(Object object){
+    Subscribe subscribe = getSubscribe(object);
+    if (subscribe == null) {
+      throw new RuntimeException("you must defined a onEvent()");
+    }
+    if (subscribeMap == null) {
+      return false;
+    }
+    if (subscribe.eventType().length > 0){
+      ArrayList<Object> arrayList = subscribeMap.get(subscribe.eventType()[0]);
+      return arrayList != null && arrayList.contains(object);
+    }else {
+      return false;
+    }
+  }
+
+  public synchronized void unregister(Object object) {
     Subscribe subscribe = getSubscribe(object);
     if (subscribe == null) {
       throw new RuntimeException("the object not is a subscriber");
@@ -73,7 +89,7 @@ public class RxBus {
   }
 
   public void post(MessageEvent messageEvent) {
-    if (subscribeMap != null) {
+    if (subscribeMap != null && subscribeMap.get(messageEvent.getType()) != null) {
       for (Object o : subscribeMap.get(messageEvent.getType())) {
         dispathMessage(o,messageEvent);
       }

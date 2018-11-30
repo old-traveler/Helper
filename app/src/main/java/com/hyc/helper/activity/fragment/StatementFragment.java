@@ -214,6 +214,6 @@ public class StatementFragment extends
   @Override
   public void onStop() {
     super.onStop();
-    RxBus.getDefault().unRegister(this);
+    RxBus.getDefault().unregister(this);
   }
 }

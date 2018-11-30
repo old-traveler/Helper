@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content">
+
+  <ImageView
+    android:layout_marginTop="7dp"
+    android:layout_alignParentEnd="true"
+    android:id="@+id/cv_image_right"
+    android:layout_marginEnd="10dp"
+    android:layout_width="@dimen/item_head_length"
+    android:layout_height="@dimen/item_head_length" />
+
+  <ImageView
+    android:layout_alignParentEnd="true"
+    android:transitionName="transitionImg"
+    android:scaleType="centerCrop"
+    android:id="@+id/iv_image_right"
+    android:layout_marginTop="5dp"
+    android:layout_marginEnd="55dp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"/>
+
+
+  <ProgressBar
+    android:visibility="gone"
+    android:id="@+id/pb_message"
+    android:layout_marginEnd="10dp"
+    android:layout_toStartOf="@+id/iv_image_right"
+    android:layout_marginTop="5dp"
+    android:layout_width="30dp"
+    android:layout_height="30dp" />
+
+  <View
+    android:visibility="gone"
+    android:background="@drawable/ic_send_fail"
+    android:id="@+id/iv_send_error"
+    android:layout_marginEnd="10dp"
+    android:layout_toStartOf="@+id/iv_image_right"
+    android:layout_marginTop="5dp"
+    android:layout_width="30dp"
+    android:layout_height="30dp" />
+
+</RelativeLayout>

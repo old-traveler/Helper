@@ -13,6 +13,7 @@ public class LoadingDialog extends Dialog {
     super(context, themeResId);
   }
 
+
   public static class Builder {
 
     private Context context;

@@ -81,13 +81,13 @@ public class BaseRecycleAdapter<T, V extends BaseViewHolder<T>> extends Recycler
     return dataList == null ? 0 : dataList.size();
   }
 
-  //public void appendDataToList(T data) {
-  //  if (dataList == null) {
-  //    dataList = new ArrayList<>();
-  //  }
-  //  dataList.add(data);
-  //  notifyItemInserted(getItemCount() - 1);
-  //}
+  public void appendDataToList(T data) {
+    if (dataList == null) {
+      dataList = new ArrayList<>();
+    }
+    dataList.add(data);
+    notifyItemInserted(getItemCount() - 1);
+  }
 
   /**
    * 用于上拉加载更多更新界面

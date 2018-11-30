@@ -11,6 +11,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
+import com.hyc.helper.R;
 import com.hyc.helper.activity.PictureBrowsingActivity;
 import com.hyc.helper.base.util.UiHelper;
 import com.hyc.helper.model.ImageModel;
@@ -46,6 +47,10 @@ public class ImageRequestHelper {
   }
 
   public static void loadOtherImage(Context context, String url, ImageView imageView) {
+    if (url.equals(imageView.getTag(R.id.data))){
+      return;
+    }
+    imageView.setTag(R.id.data,url);
     Glide.with(context)
         .load(url)
         .apply(new RequestOptions().placeholder(UiHelper.getDefaultPlaceholder()))
@@ -70,6 +75,10 @@ public class ImageRequestHelper {
     if (TextUtils.isEmpty(url)) {
       return;
     }
+    if (url.equals(imageView.getTag(R.id.data))){
+      return;
+    }
+    imageView.setTag(R.id.data,url);
     Glide.with(context)
         .load(Constant.BASE_IMAGE_URL + url)
         .apply(new RequestOptions().circleCrop().placeholder(UiHelper.getDefaultPlaceholder()))

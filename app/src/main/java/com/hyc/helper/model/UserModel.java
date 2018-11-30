@@ -2,6 +2,9 @@ package com.hyc.helper.model;
 
 import android.content.Context;
 import android.net.Uri;
+import cn.bmob.newim.BmobIM;
+import cn.bmob.newim.bean.BmobIMUserInfo;
+import cn.bmob.v3.BmobUser;
 import com.hyc.helper.bean.BaseRequestBean;
 import com.hyc.helper.bean.FindPeopleBean;
 import com.hyc.helper.bean.UserBean;
@@ -109,5 +112,23 @@ public class UserModel {
   public void logout() {
     SpCacheHelper.deleteClassFromSp("user");
     curUserBean = new WeakReference<>(null);
+    BmobIM.getInstance().disConnect();
+    BmobUser.logOut();
+    new CourseModel().clearLocalDb();
+    new ExamModel().deleteExamInfoFromCache();
+    new GradeModel().deleteGradeInfoFromCache();
+  }
+
+  public BmobIMUserInfo getIMUserInfo(){
+    UserBean userBean = getCurUserInfo();
+    BmobIMUserInfo info = BmobIM.getInstance().getUserInfo(
+        String.valueOf(userBean.getData().getUser_id()));
+    if (info == null){
+      info = new BmobIMUserInfo();
+    }
+    info.setAvatar(userBean.getData().getHead_pic_thumb());
+    info.setUserId(String.valueOf(userBean.getData().getUser_id()));
+    info.setName(userBean.getData().getUsername());
+    return info;
   }
 }

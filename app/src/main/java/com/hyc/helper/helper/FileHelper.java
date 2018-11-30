@@ -18,13 +18,9 @@ import com.hyc.helper.util.Sha1Utils;
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.functions.Consumer;
-import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 import java.io.File;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -71,11 +67,15 @@ public class FileHelper {
       if (cursor != null && cursor.moveToFirst()) {
         do {
           pictureInfo.setThumbnailPath(cursor.getString(1));
-          emitter.onNext(pictureInfo);
+          if (pictureInfo != null){
+            emitter.onNext(pictureInfo);
+          }
         } while (cursor.moveToNext());
         cursor.close();
       } else {
-        emitter.onNext(pictureInfo);
+        if (pictureInfo != null){
+          emitter.onNext(pictureInfo);
+        }
       }
     }
     emitter.onComplete();

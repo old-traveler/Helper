@@ -1,5 +1,6 @@
 package com.hyc.helper.helper;
 
+import android.annotation.SuppressLint;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -14,7 +15,7 @@ public class DateHelper {
     return distanceDay / 7 + 1;
   }
 
-  private static long getBeginSchoolTime(){
+  private static long getBeginSchoolTime() {
     Calendar caleEnd = Calendar.getInstance();
     String[] dateStr = DATE_OF_SCHOOL.split("\\.");
     caleEnd.set(Integer.valueOf(dateStr[0]), Integer.valueOf(dateStr[1]) - 1,
@@ -23,12 +24,12 @@ public class DateHelper {
     return dateEnd.getTime();
   }
 
-  public static int[] getCurDayOfWeek(int week){
-    if (week < 1){
+  public static int[] getCurDayOfWeek(int week) {
+    if (week < 1) {
       throw new RuntimeException("week can not less than 1");
     }
     long schoolTime = getBeginSchoolTime();
-    long curWeekTime = schoolTime + (week - 1) * 7 *Constant.ONE_DAY_TIME;
+    long curWeekTime = schoolTime + (week - 1) * 7 * Constant.ONE_DAY_TIME;
     SimpleDateFormat format = new SimpleDateFormat("dd");
     int[] date = new int[8];
     date[7] = new Date(curWeekTime).getMonth() + 1;
@@ -45,16 +46,32 @@ public class DateHelper {
     return day == 0 ? 7 : day;
   }
 
-
   public static int getCurYear() {
     Calendar c = Calendar.getInstance();
     return c.get(Calendar.YEAR);
   }
 
-  public static int getCurMonth(){
+  public static int getCurMonth() {
     Calendar c = Calendar.getInstance();
-    int month = c.get(Calendar.MONTH)+1;
+    int month = c.get(Calendar.MONTH) + 1;
     return month;
   }
 
+  @SuppressLint("DefaultLocale")
+  public static String getDateInfo(long time) {
+    long timeDis = System.currentTimeMillis() - time;
+    if (timeDis < 60 * 1000L) {
+      return "just";
+    } else if (timeDis < 60 * 60 * 1000L) {
+      return String.format("%d分钟前", timeDis / (60 * 1000L));
+    } else if (timeDis < Constant.ONE_DAY_TIME) {
+      return String.format("%d小时前", timeDis / (60 * 60 * 1000L));
+    } else if (timeDis < Constant.ONE_DAY_TIME * 10) {
+      return String.format("%d天前", timeDis / Constant.ONE_DAY_TIME);
+    } else {
+      @SuppressLint("SimpleDateFormat")
+      SimpleDateFormat format = new SimpleDateFormat("MM月dd日");
+      return format.format(new Date(time));
+    }
+  }
 }

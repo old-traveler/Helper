@@ -7,9 +7,10 @@ import com.hyc.helper.bean.ExamBean;
 import com.hyc.helper.bean.ExamInfoBean;
 import com.hyc.helper.bean.GradeBean;
 import com.hyc.helper.bean.GradeInfoBean;
+import com.hyc.helper.bean.ImageMessageRecord;
 import com.hyc.helper.gen.BigImageLoadRecordBeanDao;
 import com.hyc.helper.gen.CourseInfoBeanDao;
-import com.hyc.helper.gen.ExamInfoBeanDao;
+import com.hyc.helper.gen.ImageMessageRecordDao;
 import io.reactivex.Observable;
 import java.util.List;
 
@@ -31,6 +32,34 @@ public class DbSearchHelper {
       }
       courseBean.setData(courseInfoBeans);
       emitter.onNext(courseBean);
+      emitter.onComplete();
+    });
+  }
+
+  public static Observable<ImageMessageRecord> getOriginalPath(String compressPath){
+    return Observable.create(emitter -> {
+      emitter.onNext(
+          DaoHelper.getDefault()
+              .getDaoSession()
+              .getImageMessageRecordDao()
+              .queryBuilder()
+              .where(ImageMessageRecordDao.Properties.CompressPath.eq(compressPath)).build().unique());
+      emitter.onComplete();
+    });
+  }
+
+  public static Observable<ImageMessageRecord> getCloudPath(String originalPath){
+    return Observable.create(emitter -> {
+      ImageMessageRecord record =  DaoHelper.getDefault()
+          .getDaoSession()
+          .getImageMessageRecordDao()
+          .queryBuilder()
+          .where(ImageMessageRecordDao.Properties.OriginalPath.eq(originalPath)).build().unique();
+      if (record != null){
+        emitter.onNext(record);
+      }else {
+        emitter.onNext(new ImageMessageRecord());
+      }
       emitter.onComplete();
     });
   }

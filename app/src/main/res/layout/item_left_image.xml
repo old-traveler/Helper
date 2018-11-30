@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content">
+
+  <ImageView
+    android:layout_marginTop="7dp"
+    android:id="@+id/cv_image_left"
+    android:layout_marginStart="10dp"
+    android:layout_width="@dimen/item_head_length"
+    android:layout_height="@dimen/item_head_length" />
+
+  <ImageView
+    android:transitionName="transitionImg"
+    android:scaleType="centerCrop"
+    android:id="@+id/iv_image_left"
+    android:layout_marginTop="5dp"
+    android:layout_marginStart="55dp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"/>
+
+
+</FrameLayout>

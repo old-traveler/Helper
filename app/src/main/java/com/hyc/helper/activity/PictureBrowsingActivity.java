@@ -108,6 +108,16 @@ public class PictureBrowsingActivity extends AppCompatActivity {
           .startsWith("/uploads")) {
         loadImage(imageView, scaleImageView, new File(imagesUrl.get(position)));
         textView.setVisibility(View.GONE);
+      } else if (imagesUrl.get(position).startsWith("http")) {
+        textView.setVisibility(View.GONE);
+        ImageRequestHelper.loadOtherImageAsFile(PictureBrowsingActivity.this, imagesUrl.get(position),
+            new SimpleTarget<File>() {
+              @Override
+              public void onResourceReady(@NonNull File resource,
+                  @Nullable Transition<? super File> transition) {
+                loadImage(imageView, scaleImageView, resource);
+              }
+            });
       } else {
         Disposable disposable = imageModel.getBigImageLoadRecord(imagesUrl.get(position),
             bean -> {

@@ -1,7 +1,7 @@
 package com.hyc.helper.activity;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.NavigationView;
@@ -9,12 +9,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.SearchView;
 import android.text.TextUtils;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,24 +20,21 @@ import android.widget.TextView;
 import android.widget.ViewFlipper;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import cn.bmob.newim.BmobIM;
+import cn.bmob.newim.bean.BmobIMMessage;
 import com.hyc.helper.R;
 import com.hyc.helper.activity.fragment.LostFindFragment;
 import com.hyc.helper.activity.fragment.SecondHandFragment;
 import com.hyc.helper.activity.fragment.StatementFragment;
 import com.hyc.helper.activity.fragment.TimetableFragment;
 import com.hyc.helper.adapter.TechFragmentPageAdapter;
-import com.hyc.helper.adapter.viewholder.SearchPeopleViewHolder;
+import com.hyc.helper.annotation.Subscribe;
 import com.hyc.helper.base.activity.BaseActivity;
-import com.hyc.helper.base.adapter.BaseRecycleAdapter;
 import com.hyc.helper.base.fragment.BaseFragment;
 import com.hyc.helper.base.fragment.BaseListFragment;
-import com.hyc.helper.base.listener.OnDialogClickListener;
-import com.hyc.helper.base.util.ToastHelper;
 import com.hyc.helper.base.util.UiHelper;
 import com.hyc.helper.bean.CalendarBean;
-import com.hyc.helper.bean.ConfigureDateBean;
-import com.hyc.helper.bean.FindPeopleBean;
-import com.hyc.helper.bean.UpdateApkBean;
+import com.hyc.helper.bean.MessageEvent;
 import com.hyc.helper.bean.UserBean;
 import com.hyc.helper.helper.ConfigureHelper;
 import com.hyc.helper.helper.Constant;
@@ -51,15 +43,14 @@ import com.hyc.helper.helper.ImageRequestHelper;
 import com.hyc.helper.helper.LogHelper;
 import com.hyc.helper.helper.RequestHelper;
 import com.hyc.helper.helper.SpCacheHelper;
-import com.hyc.helper.model.CourseModel;
-import com.hyc.helper.model.ExamModel;
-import com.hyc.helper.model.GradeModel;
+import com.hyc.helper.im.ConversationActivity;
 import com.hyc.helper.util.DensityUtil;
 import com.hyc.helper.helper.UpdateAppHelper;
 import com.hyc.helper.model.UserModel;
+import com.hyc.helper.util.RxBus;
+import com.hyc.helper.util.ThreadMode;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 import java.util.ArrayList;
 import java.util.List;
@@ -77,16 +68,25 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
   NavigationView navView;
   @BindView(R.id.main_content)
   DrawerLayout mainContent;
-  @BindView(R.id.rv_search_people)
-  RecyclerView rvSearchPeople;
   @BindView(R.id.vf)
   ViewFlipper viewFlipper;
   private TechFragmentPageAdapter adapter;
   private ListPopupWindow weekListPopWindow;
   private MenuItem selectWeek;
+  private MenuItem messageTip;
   private UserModel userModel = new UserModel();
-  private String searchUsername;
-  private BaseRecycleAdapter<FindPeopleBean.DataBean, SearchPeopleViewHolder> searchAdapter;
+
+  @Override
+  protected void onStart() {
+    super.onStart();
+    RxBus.getDefault().register(this);
+  }
+
+  @Override
+  protected void onStop() {
+    super.onStop();
+    RxBus.getDefault().unregister(this);
+  }
 
   @Override
   protected int getContentViewId() {
@@ -118,7 +118,6 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
     initLeftView();
     initViewPager();
     initCalendar();
-    initSearchList();
     checkUpdate();
   }
 
@@ -191,16 +190,6 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
     navView.setNavigationItemSelectedListener(this::onOptionsItemSelected);
   }
 
-  private void initSearchList() {
-    rvSearchPeople.setLayoutManager(new LinearLayoutManager(this));
-    rvSearchPeople.setItemAnimator(new DefaultItemAnimator());
-    searchAdapter =
-        new BaseRecycleAdapter<>(R.layout.item_search_people, SearchPeopleViewHolder.class);
-    rvSearchPeople.setAdapter(searchAdapter);
-    searchAdapter.setOnItemClickListener(
-        (itemData, view, position) -> UserInfoActivity.goToUserInfoActivity(MainActivity.this,
-            itemData.getId(), searchUsername, null, itemData.getHead_pic_thumb()));
-  }
 
   private void initViewPager() {
     List<BaseFragment> list = new ArrayList<>(tbMain.getTabCount());
@@ -252,12 +241,11 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
           isPosition -> {
             if (isPosition) {
               userModel.logout();
-              new CourseModel().clearLocalDb();
-              new ExamModel().deleteExamInfoFromCache();
-              new GradeModel().deleteGradeInfoFromCache();
               goToOtherActivity(LoginActivity.class, true);
             }
           });
+    } else if (item.getItemId() == R.id.item_message) {
+      goToOtherActivity(ConversationActivity.class, false);
     }
     return false;
   }
@@ -266,43 +254,24 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
   public boolean onCreateOptionsMenu(Menu menu) {
     getMenuInflater().inflate(R.menu.menu_main, menu);
     selectWeek = menu.findItem(R.id.action_select);
+    messageTip = menu.findItem(R.id.item_message);
     selectWeek.setTitle(UiHelper.getString(R.string.week_tip, DateHelper.getCurWeek()));
-    MenuItem searchItem = menu.findItem(R.id.action_search);
-    initSearchView((SearchView) searchItem.getActionView());
+    loadMessageTip();
     initListPopView();
     return true;
   }
 
-  private void initSearchView(SearchView searchView) {
-    searchView.setQueryHint(UiHelper.getString(R.string.input_name));
-    searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-      @Override
-      public boolean onQueryTextSubmit(String s) {
-        searchUsername = s;
-        requestInfoFromApi(s);
-        return true;
-      }
-
-      @Override
-      public boolean onQueryTextChange(String s) {
-        if (TextUtils.isEmpty(s)) {
-          searchAdapter.setDataList(null);
-        }
-        return false;
-      }
-    });
+  private void loadMessageTip(){
+    if (BmobIM.getInstance().getAllUnReadCount() > 0){
+      messageTip.setIcon(R.drawable.ic_message_new);
+    }else {
+      messageTip.setIcon(R.drawable.ic_message);
+    }
   }
 
-  private void requestInfoFromApi(String name) {
-    showLoadingView();
-    addDisposable(userModel.findUserInfoByName(name)
-        .subscribe(findPeopleBean -> {
-          closeLoadingView();
-          searchAdapter.setDataList(findPeopleBean.getData());
-        }, throwable -> {
-          closeLoadingView();
-          ToastHelper.toast(throwable.getMessage());
-        }));
+  @Subscribe(threadMode = ThreadMode.MAIN, eventType = Constant.EventType.IM_MESSAGE)
+  public void onEvent(MessageEvent<BmobIMMessage> event) {
+    loadMessageTip();
   }
 
   private void initListPopView() {

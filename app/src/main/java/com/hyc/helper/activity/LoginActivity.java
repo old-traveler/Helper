@@ -12,6 +12,7 @@ import com.hyc.helper.R;
 import com.hyc.helper.base.activity.BaseRequestActivity;
 import com.hyc.helper.base.util.ToastHelper;
 import com.hyc.helper.bean.UserBean;
+import com.hyc.helper.im.ConnectManager;
 import com.hyc.helper.model.UserModel;
 
 public class LoginActivity extends BaseRequestActivity<UserBean> {
@@ -73,6 +74,7 @@ public class LoginActivity extends BaseRequestActivity<UserBean> {
     if (userBean.getCode() == 200 && userBean.getData() != null) {
       userModel.cacheUserInfo(userBean);
       goToOtherActivity(MainActivity.class, true);
+      ConnectManager.getDefault().connect();
     } else if (userBean.getMsg() != null) {
       ToastHelper.toast(userBean.getMsg());
     }
