@@ -2,10 +2,16 @@ package com.hyc.helper;
 
 import android.annotation.SuppressLint;
 import android.app.Application;
+import android.app.DownloadManager;
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.net.Network;
 import android.net.NetworkRequest;
+import android.net.Uri;
+import android.os.Environment;
 import cn.bmob.newim.BmobIM;
 import cn.bmob.v3.Bmob;
 import com.hyc.helper.base.util.ToastHelper;
@@ -31,7 +37,7 @@ public class HelperApplication extends Application {
   public void onCreate() {
     super.onCreate();
     mContext = getApplicationContext();
-    if (getApplicationInfo().packageName.equals(getMyProcessName())){
+    if (getApplicationInfo().packageName.equals(getMyProcessName())) {
       BmobIM.init(this);
       BmobIM.registerDefaultMessageHandler(new MessageHandler());
       ConnectManager.getDefault();
@@ -44,20 +50,21 @@ public class HelperApplication extends Application {
     return mContext;
   }
 
-  public static boolean isNetAvailable(){
+  public static boolean isNetAvailable() {
     return netAvailable;
   }
 
   private void registerNetListener() {
     ConnectivityManager connectivityManager =
         (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-    if (connectivityManager != null){
+    if (connectivityManager != null) {
       connectivityManager.requestNetwork(new NetworkRequest
           .Builder().build(), new ConnectivityManager.NetworkCallback() {
-        @Override public void onAvailable(Network network) {
+        @Override
+        public void onAvailable(Network network) {
           super.onAvailable(network);
           netAvailable = true;
-          RxBus.getDefault().post(new MessageEvent<>(Constant.EventType.NET_AVAILABLE,null));
+          RxBus.getDefault().post(new MessageEvent<>(Constant.EventType.NET_AVAILABLE, null));
         }
 
         @Override
@@ -71,7 +78,6 @@ public class HelperApplication extends Application {
 
   /**
    * 获取当前运行的进程名
-   * @return
    */
   public static String getMyProcessName() {
     try {

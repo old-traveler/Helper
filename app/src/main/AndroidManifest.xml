@@ -13,6 +13,7 @@
   <uses-permission android:name="android.permission.CAMERA" />
   <uses-permission android:name="android.permission.RECORD_AUDIO" />
   <uses-permission android:name="android.permission.VIBRATE" />
+  <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES"/>
 
   <application
     android:name=".HelperApplication"
@@ -82,7 +83,17 @@
     <activity
       android:name=".im.ConversationActivity"
       android:windowSoftInputMode="adjustPan" />
-    <activity android:name=".im.ChatActivity"></activity>
+    <activity android:name=".im.ChatActivity"/>
+
+    <provider
+      android:authorities="com.helper.fileprovider"
+      android:name="android.support.v4.content.FileProvider"
+      android:grantUriPermissions="true"
+      android:exported="false">
+      <meta-data
+        android:name="android.support.FILE_PROVIDER_PATHS"
+        android:resource="@xml/filepaths"/>
+    </provider>
   </application>
 
 </manifest>

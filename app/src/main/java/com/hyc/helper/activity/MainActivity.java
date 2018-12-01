@@ -1,13 +1,11 @@
 package com.hyc.helper.activity;
 
 import android.Manifest;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.GravityCompat;
-import android.support.v4.view.MarginLayoutParamsCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.text.TextUtils;
@@ -36,7 +34,6 @@ import com.hyc.helper.base.fragment.BaseFragment;
 import com.hyc.helper.base.fragment.BaseListFragment;
 import com.hyc.helper.base.util.UiHelper;
 import com.hyc.helper.bean.CalendarBean;
-import com.hyc.helper.bean.CourseBean;
 import com.hyc.helper.bean.MessageEvent;
 import com.hyc.helper.bean.UserBean;
 import com.hyc.helper.helper.ConfigureHelper;
@@ -47,7 +44,6 @@ import com.hyc.helper.helper.LogHelper;
 import com.hyc.helper.helper.RequestHelper;
 import com.hyc.helper.helper.SpCacheHelper;
 import com.hyc.helper.im.ConversationActivity;
-import com.hyc.helper.model.CourseModel;
 import com.hyc.helper.model.ExamModel;
 import com.hyc.helper.util.DensityUtil;
 import com.hyc.helper.helper.UpdateAppHelper;
@@ -57,7 +53,6 @@ import com.hyc.helper.util.ThreadMode;
 import com.hyc.helper.view.MarqueeTextView;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -84,6 +79,7 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
   private ExamModel examModel = new ExamModel();
   private MenuItem messageTip;
   private UserModel userModel = new UserModel();
+  private UpdateAppHelper updateAppHelper;
 
   @Override
   protected void onStart() {
@@ -360,6 +356,15 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
   }
 
   public void downApk(String url) {
-    UpdateAppHelper.download(url, UiHelper.getString(R.string.apk_name), this);
+    updateAppHelper = new UpdateAppHelper();
+    updateAppHelper.download(url, UiHelper.getString(R.string.apk_name), this);
+  }
+
+  @Override
+  protected void onDestroy() {
+    super.onDestroy();
+    if (updateAppHelper != null){
+      updateAppHelper.clear();
+    }
   }
 }
