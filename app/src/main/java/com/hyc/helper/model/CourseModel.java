@@ -1,6 +1,7 @@
 package com.hyc.helper.model;
 
 import android.annotation.SuppressLint;
+import com.hyc.helper.bean.CalendarBean;
 import com.hyc.helper.bean.CourseBean;
 import com.hyc.helper.bean.CourseInfoBean;
 import com.hyc.helper.bean.LessonsExpBean;
@@ -33,10 +34,14 @@ public class CourseModel {
   }
 
   public void getCourseFromCache(String studentId, Observer<CourseBean> observer) {
-    DbSearchHelper.searchCourseInfo(studentId)
-        .subscribeOn(Schedulers.io())
-        .observeOn(AndroidSchedulers.mainThread())
+    getCourseFromCache(studentId)
         .subscribe(observer);
+  }
+
+  private Observable<CourseBean> getCourseFromCache(String studentId){
+    return DbSearchHelper.searchCourseInfo(studentId)
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread());
   }
 
   public Disposable insertCourseIntoDb(List<CourseInfoBean> courseInfoBeans) {
@@ -119,4 +124,7 @@ public class CourseModel {
     }
     return courseInfoBeans;
   }
+
+
+
 }

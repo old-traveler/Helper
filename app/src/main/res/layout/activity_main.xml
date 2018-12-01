@@ -29,7 +29,7 @@
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:autoStart="true"
-          android:flipInterval="3000"
+          android:flipInterval="7000"
           android:inAnimation="@anim/anim_marquee_in"
           android:outAnimation="@anim/anim_marquee_out" />
 

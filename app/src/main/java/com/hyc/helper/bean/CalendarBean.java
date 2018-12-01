@@ -1,6 +1,8 @@
 package com.hyc.helper.bean;
 
-public class CalendarBean extends BaseRequestBean {
+import android.support.annotation.NonNull;
+
+public class CalendarBean extends BaseRequestBean implements Comparable<CalendarBean>{
 
   /**
    * name : CFA
@@ -34,5 +36,10 @@ public class CalendarBean extends BaseRequestBean {
 
   public void setDays(int days) {
     this.days = days;
+  }
+
+  @Override
+  public int compareTo(@NonNull CalendarBean calendarBean) {
+    return Math.abs(days) - Math.abs(calendarBean.getDays());
   }
 }

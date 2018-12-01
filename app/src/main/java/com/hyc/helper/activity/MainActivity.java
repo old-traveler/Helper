@@ -7,9 +7,11 @@ import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.MarginLayoutParamsCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -34,6 +36,7 @@ import com.hyc.helper.base.fragment.BaseFragment;
 import com.hyc.helper.base.fragment.BaseListFragment;
 import com.hyc.helper.base.util.UiHelper;
 import com.hyc.helper.bean.CalendarBean;
+import com.hyc.helper.bean.CourseBean;
 import com.hyc.helper.bean.MessageEvent;
 import com.hyc.helper.bean.UserBean;
 import com.hyc.helper.helper.ConfigureHelper;
@@ -44,15 +47,20 @@ import com.hyc.helper.helper.LogHelper;
 import com.hyc.helper.helper.RequestHelper;
 import com.hyc.helper.helper.SpCacheHelper;
 import com.hyc.helper.im.ConversationActivity;
+import com.hyc.helper.model.CourseModel;
+import com.hyc.helper.model.ExamModel;
 import com.hyc.helper.util.DensityUtil;
 import com.hyc.helper.helper.UpdateAppHelper;
 import com.hyc.helper.model.UserModel;
 import com.hyc.helper.util.RxBus;
 import com.hyc.helper.util.ThreadMode;
+import com.hyc.helper.view.MarqueeTextView;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -73,6 +81,7 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
   private TechFragmentPageAdapter adapter;
   private ListPopupWindow weekListPopWindow;
   private MenuItem selectWeek;
+  private ExamModel examModel = new ExamModel();
   private MenuItem messageTip;
   private UserModel userModel = new UserModel();
 
@@ -127,22 +136,46 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(this::loadCalendar, throwable -> {
           LogHelper.log(throwable.getMessage());
-          setToolBarTitle(R.string.app_name);
-          viewFlipper.setVisibility(View.GONE);
+          loadCalendar(null);
         }));
   }
 
   private void loadCalendar(List<CalendarBean> calendarBeans) {
-    if (calendarBeans == null) {
+    addDisposable(examModel.getExamInfoFromCache()
+        .subscribe(examBean -> {
+          if (calendarBeans != null) {
+            calendarBeans.addAll(examModel.toCalendar(examBean));
+            loadAllCalendar(calendarBeans);
+          } else {
+            loadAllCalendar(examModel.toCalendar(examBean));
+          }
+        }, throwable -> {
+          LogHelper.log(throwable.getMessage());
+          loadAllCalendar(calendarBeans);
+        }));
+  }
+
+  private void loadAllCalendar(List<CalendarBean> calendarBeans) {
+    if (calendarBeans == null || calendarBeans.size() == 0) {
+      viewFlipper.setVisibility(View.GONE);
+      setToolBarTitle(R.string.app_name);
       return;
     }
+    Collections.sort(calendarBeans);
     for (CalendarBean calendarBean : calendarBeans) {
-      TextView textView = new TextView(this);
-      textView.setTextSize(15);
-      textView.setTextColor(UiHelper.getColor(R.color.white));
-      textView.setText(
-          String.format(UiHelper.getString(R.string.calendar_tip), calendarBean.getName(),
-              calendarBean.getDays()));
+      MarqueeTextView textView =
+          (MarqueeTextView) LayoutInflater.from(this)
+              .inflate(R.layout.text_notify, viewFlipper, false);
+      if (calendarBean.getDays() < 0) {
+        textView.setText(
+            String.format(UiHelper.getString(R.string.calendar_tip_exam), calendarBean.getName(),
+                calendarBean.getDate()));
+      } else {
+        textView.setText(
+            String.format(UiHelper.getString(R.string.calendar_tip), calendarBean.getName(),
+                calendarBean.getDays()));
+      }
+      textView.setMarqueeEnable(true);
       viewFlipper.addView(textView);
     }
   }
@@ -189,7 +222,6 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
     tvDesc.setOnClickListener(listener);
     navView.setNavigationItemSelectedListener(this::onOptionsItemSelected);
   }
-
 
   private void initViewPager() {
     List<BaseFragment> list = new ArrayList<>(tbMain.getTabCount());
@@ -261,10 +293,10 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
     return true;
   }
 
-  private void loadMessageTip(){
-    if (BmobIM.getInstance().getAllUnReadCount() > 0){
+  private void loadMessageTip() {
+    if (BmobIM.getInstance().getAllUnReadCount() > 0) {
       messageTip.setIcon(R.drawable.ic_message_new);
-    }else {
+    } else {
       messageTip.setIcon(R.drawable.ic_message);
     }
   }
