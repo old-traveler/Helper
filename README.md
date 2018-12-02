@@ -49,7 +49,7 @@
 
 ## 界面展示
 
-### 课表
+### 课表 & 实验课
 
 ---
 
@@ -73,6 +73,14 @@
     <img src="https://raw.githubusercontent.com/old-traveler/Helper/master/img/screener_market.png" width = "400" height = "720"><img src = "https://raw.githubusercontent.com/old-traveler/Helper/master/img/screener_second.png" width = "400" height = "720">
 </div>
 
+### 私信
+
+---
+
+<div class="half">
+    <img src="https://raw.githubusercontent.com/old-traveler/Helper/master/img/screener_conversation.png" width = "400" height = "720"><img src = "https://raw.githubusercontent.com/old-traveler/Helper/master/img/screener_message.png" width = "400" height = "720">
+</div>
+
 
 ### 用户信息
 
@@ -91,20 +99,12 @@
     <img src="https://raw.githubusercontent.com/old-traveler/Helper/master/img/screener_lost.png"  width = "400" height = "720"><img src = "https://raw.githubusercontent.com/old-traveler/Helper/master/img/screener_left.png" width = "400" height = "720">
 </div>
 
-### 登陆&查电费
+### 考试计划&成绩
 
 ---
 
 <div class="half">
-    <img src="https://raw.githubusercontent.com/old-traveler/Helper/master/img/screener_login.png" width = "400" height = "720"><img src = "https://raw.githubusercontent.com/old-traveler/Helper/master/img/screener_power.png" width = "400" height = "720">
-</div>
-
-### 校历&成绩
-
----
-
-<div class="half">
-    <img src="https://raw.githubusercontent.com/old-traveler/Helper/master/img/screener_date.png" width = "400" height = "720"><img src = "https://raw.githubusercontent.com/old-traveler/Helper/master/img/screener_grade.png" width = "400" height = "720">
+    <img src="https://raw.githubusercontent.com/old-traveler/Helper/master/img/screener_exam.png" width = "400" height = "720"><img src = "https://raw.githubusercontent.com/old-traveler/Helper/master/img/screener_grade.png" width = "400" height = "720">
 </div>
 
 ##版本更新
