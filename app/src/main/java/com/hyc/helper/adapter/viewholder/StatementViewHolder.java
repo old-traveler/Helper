@@ -7,6 +7,7 @@ import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
+import android.util.SparseBooleanArray;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -62,6 +63,7 @@ public class StatementViewHolder extends BaseViewHolder<StatementBean.StatementI
 
   private UserModel userModel;
   private StatementModel statementModel;
+  private SparseBooleanArray sparseBooleanArray;
 
   public StatementViewHolder(@NonNull View itemView) {
     super(itemView);
@@ -80,7 +82,7 @@ public class StatementViewHolder extends BaseViewHolder<StatementBean.StatementI
     tvPublishName.setText(data.getUsername());
     tvUserDesc.setText(TextUtils.isEmpty(data.getBio())
         ? UiHelper.getString(R.string.default_bio) : data.getBio());
-    expandableTextView.setText(data.getContent());
+    expandableTextView.setText(data.getContent(),sparseBooleanArray,position);
     tvFrom.setText(data.getDep_name());
     tvLikeCount.setText(data.getLikes());
     tvPublishDate.setText(data.getCreated_on());
@@ -100,6 +102,10 @@ public class StatementViewHolder extends BaseViewHolder<StatementBean.StatementI
     }
     imageLayout.setOnItemClickListener(this);
     UiHelper.initLinkTextView(tvContent, context);
+  }
+
+  public void setSparseBooleanArray(SparseBooleanArray sparseBooleanArray){
+    this.sparseBooleanArray = sparseBooleanArray;
   }
 
 

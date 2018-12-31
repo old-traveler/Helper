@@ -16,6 +16,7 @@ import butterknife.OnClick;
 import butterknife.Unbinder;
 import com.hyc.helper.R;
 import com.hyc.helper.activity.PublishStatementActivity;
+import com.hyc.helper.adapter.StatementAdapter;
 import com.hyc.helper.adapter.viewholder.StatementViewHolder;
 import com.hyc.helper.annotation.Subscribe;
 import com.hyc.helper.base.adapter.BaseRecycleAdapter;
@@ -65,7 +66,7 @@ public class StatementFragment extends
 
   @Override
   protected BaseRecycleAdapter<StatementBean.StatementInfoBean, StatementViewHolder> setRecycleAdapter() {
-    return new BaseRecycleAdapter<>(null, R.layout.item_statement, StatementViewHolder.class);
+    return new StatementAdapter(null, R.layout.item_statement, StatementViewHolder.class);
   }
 
   @Override

@@ -51,10 +51,10 @@ public class ExamViewHolder extends BaseViewHolder<ExamInfoBean> {
       tvDate.setText(temp[0]);
       tvWeek.setText(
           String.format("(%s周 %s-%s)", data.getWeek_Num(), temp[1], data.getEndTime().split(" ")[1]));
-      @SuppressLint("SimpleDateFormat") SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+      @SuppressLint("SimpleDateFormat") SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
       Date date = null;
       try {
-        date = formatter.parse(temp[0]);
+        date = formatter.parse(data.getStarttime());
       } catch (ParseException e) {
         e.printStackTrace();
       }
