@@ -9,11 +9,9 @@ import com.hyc.helper.HelperApplication;
 import com.hyc.helper.activity.MainActivity;
 import com.hyc.helper.base.activity.BaseActivity;
 import com.hyc.helper.bean.BaseRequestBean;
-import com.hyc.helper.bean.ImageUploadBean;
 import com.hyc.helper.bean.StatementBean;
 import com.hyc.helper.bean.UserBean;
 import com.hyc.helper.helper.FileHelper;
-import com.hyc.helper.helper.LogHelper;
 import com.hyc.helper.helper.RequestHelper;
 import com.hyc.helper.helper.UploadImageObserver;
 import io.reactivex.Flowable;
@@ -22,16 +20,11 @@ import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
-import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 import java.io.File;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
-import top.zibin.luban.CompressionPredicate;
 import top.zibin.luban.Luban;
-import top.zibin.luban.OnCompressListener;
 
 public class StatementModel {
 

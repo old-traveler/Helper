@@ -43,7 +43,7 @@ public class UploadImageObserver implements Observer<ImageUploadBean> {
     } else {
       disposable.dispose();
       listener.onFailure(
-          new Throwable(TextUtils.isEmpty(imageUploadBean.msg) ? "图片长传失败" : imageUploadBean.msg));
+          new Throwable(TextUtils.isEmpty(imageUploadBean.msg) ? "图片上传失败" : imageUploadBean.msg));
     }
   }
 

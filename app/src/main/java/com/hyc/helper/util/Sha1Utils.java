@@ -53,7 +53,7 @@ public class Sha1Utils {
   }
 
   public static String getEnv(UserBean userBean) {
-    SimpleDateFormat format = new SimpleDateFormat("YYYY-MM");
+    SimpleDateFormat format = new SimpleDateFormat("yyyy-MM");
     String date = format.format(new Date(System.currentTimeMillis()));
     return shaEncrypt(
         userBean.getData().getStudentKH() + userBean.getRemember_code_app() + date);
