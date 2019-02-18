@@ -20,8 +20,6 @@ import com.hyc.helper.base.view.CommonDialog;
 import com.hyc.helper.base.view.LoadingDialog;
 import com.hyc.helper.helper.DisposableManager;
 import io.reactivex.disposables.Disposable;
-import java.util.ArrayList;
-import java.util.List;
 
 public abstract class BaseActivity extends AppCompatActivity
     implements View.OnClickListener, IBaseActivity, OnDialogClickListener {
