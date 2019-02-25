@@ -161,8 +161,10 @@ public class GradeInfoBean implements Comparable<GradeInfoBean>{
     int myTerm = Integer.parseInt(xq);
     if (myYear > year){
       return -1;
-    }else if (myYear == year && myTerm >= term){
+    }else if (myYear == year && myTerm > term){
       return -1;
+    }else if (myYear == year && myTerm == term){
+      return 0;
     }
     return 1;
   }

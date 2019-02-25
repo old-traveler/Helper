@@ -94,13 +94,16 @@ public abstract class BaseRequestFragment<T extends BaseRequestBean> extends Bas
       LogHelper.log("数据为空");
     } else if (t.getCode() == Constant.REQUEST_SUCCESS) {
       onSuccessGetData(t);
+      closeLoadingView();
     } else if (t.getCode() == Constant.NEED_API_DATA) {
       disposable.dispose();
       requestDataFromApi();
     } else if (!TextUtils.isEmpty(t.getMsg())) {
       ToastHelper.toast(t.getMsg());
+      closeLoadingView();
     } else {
       ToastHelper.toast(String.valueOf(t.getCode()));
+      closeLoadingView();
     }
   }
 

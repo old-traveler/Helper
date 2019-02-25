@@ -50,6 +50,7 @@ public class GradeActivity extends BaseListActivity<GradeInfoBean,GradeBean,Grad
     if (isNeedFresh){
       gradeModel.refreshLocalDb(gradeBean.getData());
     }
+    System.setProperty("java.util.Arrays.useLegacyMergeSort", "true");
     Collections.sort(gradeBean.getData());
     return gradeBean.getData();
   }

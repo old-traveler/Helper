@@ -147,8 +147,8 @@ public class TimetableFragment extends BaseRequestFragment<CourseBean> implement
   }
 
   @Override
-  protected void onFailGetData(Throwable e) {
-    super.onFailGetData(e);
+  public void closeLoadingView() {
+    super.closeLoadingView();
     srlTimetable.finishRefresh();
   }
 
