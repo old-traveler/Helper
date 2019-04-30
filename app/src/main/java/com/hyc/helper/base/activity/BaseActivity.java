@@ -311,4 +311,13 @@ public abstract class BaseActivity extends AppCompatActivity
     getWindow().getDecorView().getWindowVisibleDisplayFrame(rect);
     return screenHeight - rect.bottom != 0;
   }
+
+  public int getStatusHeight(){
+    int height = 0;
+    int resourceId = getApplicationContext().getResources().getIdentifier("status_bar_height", "dimen", "android");
+    if (resourceId > 0) {
+      height = getApplicationContext().getResources().getDimensionPixelSize(resourceId);
+    }
+    return height;
+  }
 }

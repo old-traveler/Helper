@@ -21,6 +21,7 @@
   </android.support.v7.widget.Toolbar>
 
   <com.hyc.headzoomlayout.HeadZoomLayout
+    android:id="@+id/hzl_detail"
     app:headViewId="@id/fl_head"
     android:layout_width="match_parent"
     android:layout_height="match_parent">

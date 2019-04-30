@@ -15,6 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import com.hyc.headzoomlayout.HeadZoomLayout;
 import com.hyc.helper.R;
 import com.hyc.helper.adapter.viewholder.ShowInfoViewHolder;
 import com.hyc.helper.base.activity.BaseActivity;
@@ -46,6 +47,10 @@ public class LostFindDetailActivity extends BaseActivity {
   LinearLayout llInfo;
   @BindView(R.id.tv_fail_tip)
   TextView tvFailTip;
+  @BindView(R.id.fl_head)
+  FrameLayout flHead;
+  @BindView(R.id.hzl_detail)
+  HeadZoomLayout hzlDetail;
 
   @Override
   protected int getContentViewId() {
@@ -78,16 +83,19 @@ public class LostFindDetailActivity extends BaseActivity {
     data.add(new InfoEntity("发布时间", dataBean.getCreated_on()));
     rvInfo.setAdapter(
         new BaseRecycleAdapter<>(data, R.layout.layout_bottom_info, ShowInfoViewHolder.class));
+    FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) toolbar.getLayoutParams();
+    params.setMargins(0,getStatusHeight(), 0, 0);
   }
 
   private void initImageBrowsing(List<String> pic) {
     if (pic == null || pic.size() == 0) {
       setToolBarTitle("失物详情");
       toolbar.setBackgroundColor(UiHelper.getColor(R.color.colorPrimary));
-      vpGoodsImages.setVisibility(View.GONE);
-      tvPage.setVisibility(View.GONE);
-      FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) llInfo.getLayoutParams();
-      params.setMargins(DensityUtil.dip2px(10), DensityUtil.dip2px(63), DensityUtil.dip2px(10), 0);
+      hzlDetail.setZoomEnable(false);
+      flHead.setVisibility(View.GONE);
+      setStatusBarColor(R.color.colorPrimary);
+      FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) hzlDetail.getLayoutParams();
+      params.setMargins(0,DensityUtil.dip2px(50), 0, 0);
       llInfo.setLayoutParams(params);
       return;
     }
