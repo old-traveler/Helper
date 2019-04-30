@@ -64,5 +64,5 @@ dependencies {
   implementation 'com.ms-square:expandableTextView:0.1.4'
   implementation 'cn.bmob.android:bmob-im:2.1.1@aar'
   implementation 'cn.bmob.android:bmob-sdk:3.6.5'
-  implementation 'com.github.old-traveler:HeadZoomLayout:v1.0.2'
+  implementation 'com.github.old-traveler:HeadZoomLayout:v1.0.5'
 }

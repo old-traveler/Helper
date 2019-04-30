@@ -7,7 +7,8 @@
   tools:context=".activity.SecondGoodsDetailActivity">
 
   <android.support.v7.widget.Toolbar
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:fitsSystemWindows="false"
+    android:layout_marginTop="25dp"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:elevation="8dp"
@@ -24,7 +25,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <ScrollView
-      android:background="@color/white"
+      android:background="#ffffff"
       android:layout_width="match_parent"
       android:layout_height="match_parent">
         <LinearLayout
@@ -40,7 +41,6 @@
               android:id="@+id/vp_goods_images"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
-
             </android.support.v4.view.ViewPager>
             <TextView
               android:id="@+id/tv_page"
@@ -74,7 +74,7 @@
             android:layout_height="wrap_content" />
 
           <android.support.v7.widget.RecyclerView
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="8dp"
             android:id="@+id/rv_info"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"

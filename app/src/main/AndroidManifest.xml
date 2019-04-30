@@ -57,8 +57,10 @@
     <activity android:name=".activity.SchoolCalendarActivity" />
     <activity android:name=".activity.WebActivity" />
     <activity android:name=".activity.CourseDetailActivity" />
-    <activity android:name=".activity.SecondGoodsDetailActivity" />
-    <activity android:name=".activity.LostFindDetailActivity" />
+    <activity android:name=".activity.SecondGoodsDetailActivity"
+      android:theme="@style/fullScreenTheme"/>
+    <activity android:name=".activity.LostFindDetailActivity"
+      android:theme="@style/fullScreenTheme"/>
     <activity android:name=".activity.SecondMarketPublishActivity" />
     <activity android:name=".activity.LosePublishActivity" />
 

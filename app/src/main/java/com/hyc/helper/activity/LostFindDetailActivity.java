@@ -137,8 +137,7 @@ public class LostFindDetailActivity extends BaseActivity {
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
       ImageView imageView = new ImageView(container.getContext());
       imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-      disposableManager.addDisposable(position,
-          ImageRequestHelper.loadImage(container.getContext(), pics.get(position), imageView));
+      ImageRequestHelper.loadNotCropImage(container.getContext(), pics.get(position), imageView);
       imageView.setOnClickListener(view -> PictureBrowsingActivity.goToPictureBrowsingActivity(
           LostFindDetailActivity.this, position,
           (ArrayList<String>) pics));

@@ -1,18 +1,17 @@
 package com.hyc.helper.helper;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
-import android.view.View;
 import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.hyc.helper.R;
-import com.hyc.helper.activity.PictureBrowsingActivity;
 import com.hyc.helper.base.util.UiHelper;
 import com.hyc.helper.model.ImageModel;
 import io.reactivex.disposables.Disposable;
@@ -32,6 +31,23 @@ public class ImageRequestHelper {
           }
         }, throwable ->{
 
+        });
+  }
+
+  public static void loadNotCropImage(Context context, String url, ImageView imageView) {
+    if (url.endsWith("?")) {
+      url = url.substring(0, url.length() - 2);
+    }
+
+    Glide.with(context)
+        .asDrawable()
+        .load(Constant.BASE_IMAGE_URL + url)
+        .into(new SimpleTarget<Drawable>() {
+          @Override
+          public void onResourceReady(@NonNull Drawable resource,
+              @Nullable Transition<? super Drawable> transition) {
+            imageView.setImageDrawable(resource);
+          }
         });
   }
 

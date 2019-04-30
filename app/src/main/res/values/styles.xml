@@ -16,6 +16,13 @@
   </style>
 
 
+  <style name="fullScreenTheme" parent="AppTheme">
+    <item name="android:windowTranslucentStatus">false</item>
+    <item name="android:windowTranslucentNavigation">true</item>
+    <item name="android:statusBarColor">@android:color/transparent</item>
+  </style>
+
+
   <style name="myTextAppearanceListItemSmall">
     <item name="android:textColor">@color/front_black</item>
     <item name="android:textSize">12sp</item>

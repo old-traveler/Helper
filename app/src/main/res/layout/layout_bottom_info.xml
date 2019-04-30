@@ -3,9 +3,10 @@
   android:layout_width="match_parent"
   android:layout_height="100dp"
   app:cardCornerRadius="0dp"
+  android:layout_marginTop="2dp"
   android:layout_marginStart="2dp"
   android:layout_marginEnd="2dp"
-  android:layout_marginBottom="4dp"
+  android:layout_marginBottom="3dp"
   xmlns:app="http://schemas.android.com/apk/res-auto"
   app:cardBackgroundColor="#fff">
 
