@@ -3,10 +3,15 @@ package com.hyc.helper.base.util;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.DrawableWrapper;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomSheetDialog;
+import android.support.v4.graphics.drawable.DrawableCompat;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.style.ClickableSpan;
@@ -54,11 +59,6 @@ public class UiHelper {
     return HelperApplication.getContext().getResources().getColor(resId);
   }
 
-  public static LinearLayout getLinearLayout(Context context) {
-    LinearLayout linearLayout = new LinearLayout(context);
-    linearLayout.setOrientation(LinearLayout.VERTICAL);
-    return linearLayout;
-  }
 
   public static DisplayMetrics getDisplayMetrics() {
     return HelperApplication.getContext().getResources().getDisplayMetrics();
@@ -66,10 +66,6 @@ public class UiHelper {
 
   public static String[] getStringArrays(int resId) {
     return HelperApplication.getContext().getResources().getStringArray(resId);
-  }
-
-  public static Drawable getDefaultPlaceholder() {
-    return HelperApplication.getContext().getResources().getDrawable(R.drawable.bg_placeholder);
   }
 
   /**

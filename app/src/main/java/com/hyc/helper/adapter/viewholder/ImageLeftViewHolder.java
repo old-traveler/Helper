@@ -40,7 +40,7 @@ public class ImageLeftViewHolder extends BaseMessageViewHolder {
     RequestOptions options = RequestOptions
         .bitmapTransform(new RoundedCorners(10))
         .override(sizeBean.getWidth(), sizeBean.getHeight())
-        .placeholder(UiHelper.getDefaultPlaceholder());
+        .placeholder(R.drawable.bg_chat_placeholder);
     Glide.with(context)
         .load(data.getContent())
         .apply(options)

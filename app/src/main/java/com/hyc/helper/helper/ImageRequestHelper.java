@@ -26,7 +26,7 @@ public class ImageRequestHelper {
           if (bean != null && FileHelper.fileIsExist(bean.getFilePath())) {
             Glide.with(context)
                 .load(new File(bean.getFilePath()))
-                .apply(new RequestOptions().placeholder(UiHelper.getDefaultPlaceholder()))
+                .apply(new RequestOptions().placeholder(R.drawable.bg_placeholder))
                 .into(imageView);
           }
         }, throwable ->{
@@ -58,7 +58,7 @@ public class ImageRequestHelper {
 
     Glide.with(context)
         .load(Constant.BASE_IMAGE_URL + url)
-        .apply(new RequestOptions().placeholder(UiHelper.getDefaultPlaceholder()))
+        .apply(new RequestOptions().placeholder(R.drawable.bg_placeholder))
         .into(imageView);
   }
 
@@ -69,21 +69,21 @@ public class ImageRequestHelper {
     imageView.setTag(R.id.data,url);
     Glide.with(context)
         .load(url)
-        .apply(new RequestOptions().placeholder(UiHelper.getDefaultPlaceholder()))
+        .apply(new RequestOptions().placeholder(R.drawable.bg_placeholder))
         .into(imageView);
   }
 
   public static void loadImage(Context context, Uri uri, ImageView imageView) {
     Glide.with(context)
         .load(uri)
-        .apply(new RequestOptions().placeholder(UiHelper.getDefaultPlaceholder()))
+        .apply(new RequestOptions().placeholder(R.drawable.bg_placeholder))
         .into(imageView);
   }
 
   public static void loadImage(Context context, int resId, ImageView imageView) {
     Glide.with(context)
         .load(resId)
-        .apply(new RequestOptions().placeholder(UiHelper.getDefaultPlaceholder()))
+        .apply(new RequestOptions().placeholder(R.drawable.bg_placeholder))
         .into(imageView);
   }
 
@@ -97,7 +97,7 @@ public class ImageRequestHelper {
     imageView.setTag(R.id.data,url);
     Glide.with(context)
         .load(Constant.BASE_IMAGE_URL + url)
-        .apply(new RequestOptions().circleCrop().placeholder(UiHelper.getDefaultPlaceholder()))
+        .apply(new RequestOptions().circleCrop().placeholder(R.drawable.bg_chat_placeholder))
         .into(imageView);
   }
 
