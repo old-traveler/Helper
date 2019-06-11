@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  android:orientation="vertical"
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent">
+
+  <LinearLayout
+    android:paddingStart="10dp"
+    android:paddingEnd="10dp"
+    android:background="@color/white_less"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="120dp">
+
+    <FrameLayout
+      android:id="@+id/fl_collect"
+      android:layout_weight="1"
+      android:layout_width="0dp"
+      android:layout_gravity="center_vertical"
+      android:layout_height="wrap_content">
+      <ImageView
+        android:padding="10dp"
+        android:background="@drawable/bg_browse_bottom_button"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_collect"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="60dp"
+        android:layout_height="60dp" />
+
+      <TextView
+        android:textColor="@color/font_cancel"
+        android:textSize="15sp"
+        android:text="收藏"
+        android:layout_marginTop="65dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    </FrameLayout>
+
+    <FrameLayout
+      android:id="@+id/fl_copy"
+      android:layout_weight="1"
+      android:layout_width="0dp"
+      android:layout_gravity="center_vertical"
+      android:layout_height="wrap_content">
+      <ImageView
+        android:padding="13dp"
+        android:background="@drawable/bg_browse_bottom_button"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_copy"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="60dp"
+        android:layout_height="60dp" />
+
+      <TextView
+        android:textColor="@color/font_cancel"
+        android:textSize="15sp"
+        android:text="复制"
+        android:layout_marginTop="65dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    </FrameLayout>
+
+    <FrameLayout
+      android:id="@+id/fl_refresh"
+      android:layout_weight="1"
+      android:layout_width="0dp"
+      android:layout_gravity="center_vertical"
+      android:layout_height="wrap_content">
+      <ImageView
+        android:background="@drawable/bg_browse_bottom_button"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_refresh"
+        android:padding="13dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="60dp"
+        android:layout_height="60dp" />
+
+      <TextView
+        android:textColor="@color/font_cancel"
+        android:textSize="15sp"
+        android:text="刷新"
+        android:layout_marginTop="65dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    </FrameLayout>
+
+    <FrameLayout
+      android:id="@+id/fl_browse"
+      android:layout_weight="1"
+      android:layout_width="0dp"
+      android:layout_gravity="center_vertical"
+      android:layout_height="wrap_content">
+      <ImageView
+        android:padding="10dp"
+        android:background="@drawable/bg_browse_bottom_button"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_browse"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="60dp"
+        android:layout_height="60dp" />
+
+      <TextView
+        android:textColor="@color/font_cancel"
+        android:textSize="15sp"
+        android:text="浏览器"
+        android:layout_marginTop="65dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    </FrameLayout>
+
+
+  </LinearLayout>
+
+</LinearLayout>

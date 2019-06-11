@@ -2,11 +2,17 @@ package com.hyc.helper.activity;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.BottomSheetDialog;
+import android.text.TextUtils;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.webkit.JsResult;
@@ -19,10 +25,15 @@ import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import com.hyc.helper.HelperApplication;
 import com.hyc.helper.R;
 import com.hyc.helper.base.activity.BaseActivity;
 import com.hyc.helper.base.util.ToastHelper;
 import com.hyc.helper.base.util.UiHelper;
+import com.hyc.helper.helper.DbInsertHelper;
+import io.reactivex.functions.Consumer;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class WebActivity extends BaseActivity {
 
@@ -30,6 +41,8 @@ public class WebActivity extends BaseActivity {
   ProgressBar progressbar;
   @BindView(R.id.web_view)
   WebView webView;
+  private BottomSheetDialog sheetDialog;
+  private String mainUrl;
 
   public String toolBarTitle;
 
@@ -62,6 +75,7 @@ public class WebActivity extends BaseActivity {
     ButterKnife.bind(this);
     setToolBarTitle(bundle.getString("title"));
     webView.loadUrl(bundle.getString("url"));
+    mainUrl = bundle.getString("url");
     webView.addJavascriptInterface(this, "android");
     webView.setWebChromeClient(webChromeClient);
     webView.setWebViewClient(webViewClient);
@@ -76,12 +90,62 @@ public class WebActivity extends BaseActivity {
   @Override
   public boolean onOptionsItemSelected(MenuItem item) {
     if (item.getItemId() == R.id.item_refresh) {
-      if (webView != null) {
-        webView.reload();
-      }
+      showBottomView();
+      return true;
+    } else if (item.getItemId() == R.id.item_collect) {
+      startActivity(new Intent(this, WebUrlCollectActivity.class));
       return true;
     }
     return super.onOptionsItemSelected(item);
+  }
+
+  private void showBottomView() {
+    if (sheetDialog != null) {
+      sheetDialog.show();
+      return;
+    }
+    sheetDialog = new BottomSheetDialog(this);
+    View dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_bottom_browse, null);
+    dialogView.findViewById(R.id.fl_collect).setOnClickListener(this);
+    dialogView.findViewById(R.id.fl_copy).setOnClickListener(this);
+    dialogView.findViewById(R.id.fl_refresh).setOnClickListener(this);
+    dialogView.findViewById(R.id.fl_browse).setOnClickListener(this);
+    sheetDialog.setContentView(dialogView);
+    sheetDialog.show();
+  }
+
+  @Override
+  public void onClick(View view) {
+    super.onClick(view);
+    switch (view.getId()) {
+      case R.id.fl_collect:
+        addDisposable(
+            DbInsertHelper.insertCollectUrl(webView.getTitle(), webView.getUrl()).subscribe(
+                aBoolean -> {
+                  ToastHelper.toast("已收藏");
+                }));
+        sheetDialog.dismiss();
+        break;
+      case R.id.fl_copy:
+        ClipboardManager copy =
+            (ClipboardManager) this.getSystemService(Context.CLIPBOARD_SERVICE);
+        copy.setText(mainUrl);
+        ToastHelper.toast("已复制到剪切板");
+        sheetDialog.dismiss();
+        break;
+      case R.id.fl_refresh:
+        if (webView != null) {
+          webView.reload();
+        }
+        sheetDialog.dismiss();
+        break;
+      case R.id.fl_browse:
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse(webView.getUrl()));
+        startActivity(intent);
+        sheetDialog.dismiss();
+        break;
+    }
   }
 
   private WebViewClient webViewClient = new WebViewClient() {
@@ -131,10 +195,9 @@ public class WebActivity extends BaseActivity {
     @Override
     public void onReceivedTitle(WebView view, String title) {
       super.onReceivedTitle(view, title);
-      if (toolBarTitle == null || !toolBarTitle.equals(title)){
+      if (toolBarTitle == null || !toolBarTitle.equals(title)) {
         setToolBarTitle(title);
       }
-
     }
 
     //加载进度回调

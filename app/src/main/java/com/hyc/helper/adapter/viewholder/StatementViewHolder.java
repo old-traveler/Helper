@@ -21,6 +21,7 @@ import com.hyc.helper.base.adapter.viewholder.BaseViewHolder;
 import com.hyc.helper.base.util.UiHelper;
 import com.hyc.helper.bean.CommentInfoBean;
 import com.hyc.helper.bean.StatementBean;
+import com.hyc.helper.bean.StatementInfoBean;
 import com.hyc.helper.bean.TextPositionBean;
 import com.hyc.helper.helper.ImageRequestHelper;
 import com.hyc.helper.model.StatementModel;
@@ -31,7 +32,7 @@ import com.sackcentury.shinebuttonlib.ShineButton;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StatementViewHolder extends BaseViewHolder<StatementBean.StatementInfoBean>
+public class StatementViewHolder extends BaseViewHolder<StatementInfoBean>
     implements ImageLayout.OnItemClickListener {
 
   @BindView(R.id.iv_publisher_head)
@@ -77,7 +78,7 @@ public class StatementViewHolder extends BaseViewHolder<StatementBean.StatementI
   }
 
   @Override
-  public void loadItemData(Context context, StatementBean.StatementInfoBean data, int position) {
+  public void loadItemData(Context context, StatementInfoBean data, int position) {
     ImageRequestHelper.loadHeadImage(context, data.getHead_pic_thumb(), ivPublisherHead);
     tvPublishName.setText(data.getUsername());
     tvUserDesc.setText(TextUtils.isEmpty(data.getBio())

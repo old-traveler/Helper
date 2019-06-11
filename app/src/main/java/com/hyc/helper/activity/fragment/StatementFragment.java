@@ -25,6 +25,7 @@ import com.hyc.helper.base.util.ToastHelper;
 import com.hyc.helper.bean.CommentInfoBean;
 import com.hyc.helper.bean.MessageEvent;
 import com.hyc.helper.bean.StatementBean;
+import com.hyc.helper.bean.StatementInfoBean;
 import com.hyc.helper.bean.UserBean;
 import com.hyc.helper.helper.Constant;
 import com.hyc.helper.model.StatementModel;
@@ -36,7 +37,7 @@ import java.util.List;
 import static android.app.Activity.RESULT_OK;
 
 public class StatementFragment extends
-    BaseListFragment<StatementBean.StatementInfoBean, StatementBean, StatementViewHolder> {
+    BaseListFragment<StatementInfoBean, StatementBean, StatementViewHolder> {
   @BindView(R.id.et_comment)
   EditText etComment;
   @BindView(R.id.cv_comment)
@@ -65,7 +66,7 @@ public class StatementFragment extends
   }
 
   @Override
-  protected BaseRecycleAdapter<StatementBean.StatementInfoBean, StatementViewHolder> setRecycleAdapter() {
+  protected BaseRecycleAdapter<StatementInfoBean, StatementViewHolder> setRecycleAdapter() {
     return new StatementAdapter(null, R.layout.item_statement, StatementViewHolder.class);
   }
 
@@ -89,7 +90,7 @@ public class StatementFragment extends
   }
 
   @Override
-  protected List<StatementBean.StatementInfoBean> getData(StatementBean statementBean) {
+  protected List<StatementInfoBean> getData(StatementBean statementBean) {
     try{
       if (Integer.parseInt(statementBean.getCurrent_page())<getCurPage()){
         return null;
@@ -141,7 +142,7 @@ public class StatementFragment extends
       closeCommentInput();
       return;
     }
-    StatementBean.StatementInfoBean itemData = getRecycleAdapter().getItemData(position);
+    StatementInfoBean itemData = getRecycleAdapter().getItemData(position);
     UserBean userBean = userModel.getCurUserInfo();
     statementModel.commentStatement(userBean.getData().getStudentKH(),
         userBean.getRemember_code_app(), etComment.getText().toString(), itemData.getId(),
@@ -159,7 +160,7 @@ public class StatementFragment extends
   }
 
   @Override
-  public void onItemClick(StatementBean.StatementInfoBean itemData, View view, int position) {
+  public void onItemClick(StatementInfoBean itemData, View view, int position) {
     super.onItemClick(itemData, view, position);
     if (view.getId() == R.id.v_comment) {
       showCommentInput();

@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'org.greenrobot.greendao'
 
 greendao {
-  schemaVersion 5
+  schemaVersion 7
   daoPackage 'com.hyc.helper.gen'
   targetGenDir 'src/main/java'
 }

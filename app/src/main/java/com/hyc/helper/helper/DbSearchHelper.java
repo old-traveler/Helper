@@ -8,6 +8,9 @@ import com.hyc.helper.bean.ExamInfoBean;
 import com.hyc.helper.bean.GradeBean;
 import com.hyc.helper.bean.GradeInfoBean;
 import com.hyc.helper.bean.ImageMessageRecord;
+import com.hyc.helper.bean.StatementBean;
+import com.hyc.helper.bean.StatementInfoBean;
+import com.hyc.helper.bean.WebUrlBean;
 import com.hyc.helper.gen.BigImageLoadRecordBeanDao;
 import com.hyc.helper.gen.CourseInfoBeanDao;
 import com.hyc.helper.gen.ImageMessageRecordDao;
@@ -113,6 +116,32 @@ public class DbSearchHelper {
       }
       gradeBean.setData(gradeInfoBeans);
       emitter.onNext(gradeBean);
+      emitter.onComplete();
+    });
+  }
+
+  public static Observable<List<WebUrlBean>> searchAllCollectUrl(){
+    return Observable.create(emitter -> {
+      List<WebUrlBean> webUrlBeans = DaoHelper.getDefault()
+          .getDaoSession()
+          .getWebUrlBeanDao()
+          .queryBuilder()
+          .list();
+      emitter.onNext(webUrlBeans);
+      emitter.onComplete();
+    });
+  }
+
+  public static Observable<List<StatementInfoBean>> searchStatementInfo(int offset,int limit){
+    return Observable.create(emitter -> {
+      List<StatementInfoBean> statementInfoBeans = DaoHelper.getDefault()
+          .getDaoSession()
+          .getStatementInfoBeanDao()
+          .queryBuilder()
+          .offset(offset)
+          .limit(limit)
+          .list();
+      emitter.onNext(statementInfoBeans);
       emitter.onComplete();
     });
   }
