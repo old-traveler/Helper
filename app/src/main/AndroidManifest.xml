@@ -45,7 +45,9 @@
       android:name=".activity.MainActivity"
       android:windowSoftInputMode="adjustPan" />
     <activity android:name=".activity.LoginActivity" />
-    <activity android:name=".activity.PictureBrowsingActivity" />
+    <activity
+      android:name=".activity.PictureBrowsingActivity"
+      android:theme="@style/fullScreenTheme" />
     <activity android:name=".activity.PublishStatementActivity" />
     <activity android:name=".activity.UserInfoActivity" />
     <activity android:name=".activity.PersonalPublishActivity" />

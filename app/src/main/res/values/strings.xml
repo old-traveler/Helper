@@ -95,6 +95,7 @@
   <string name="voice_length_tip">[语音] %d\'\'</string>
   <string name="day_tip">%d 天</string>
   <string name="hour_tip">%d 小时</string>
+  <string name="save_image_name">/mnt/sdcard/Pictures/HELPER_%s</string>
 
   <string-array name="weeks">
     <item>周一</item>

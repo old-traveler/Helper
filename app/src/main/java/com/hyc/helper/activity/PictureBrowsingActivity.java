@@ -2,6 +2,8 @@ package com.hyc.helper.activity;
 
 import android.app.Activity;
 import android.app.ActivityOptions;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.PointF;
@@ -9,6 +11,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.BottomSheetDialog;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -19,12 +22,14 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.davemorrissey.labs.subscaleview.ImageSource;
 import com.davemorrissey.labs.subscaleview.ImageViewState;
 import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView;
 import com.hyc.helper.R;
+import com.hyc.helper.base.util.ToastHelper;
 import com.hyc.helper.base.util.UiHelper;
 import com.hyc.helper.bean.BigImageLoadRecordBean;
 import com.hyc.helper.bean.ImageSizeBean;
@@ -42,7 +47,7 @@ import java.util.Objects;
 
 import static com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView.ZOOM_FOCUS_CENTER_IMMEDIATE;
 
-public class PictureBrowsingActivity extends AppCompatActivity {
+public class PictureBrowsingActivity extends AppCompatActivity implements View.OnClickListener {
 
   private ViewPager viewPager;
   private List<String> imagesUrl;
@@ -51,7 +56,6 @@ public class PictureBrowsingActivity extends AppCompatActivity {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    getWindow().getDecorView().setSystemUiVisibility(View.INVISIBLE);
     setContentView(R.layout.activity_picture_browsing);
     viewPager = findViewById(R.id.vp_picture);
     initViewWithData(Objects.requireNonNull(getIntent().getExtras()));
@@ -66,13 +70,14 @@ public class PictureBrowsingActivity extends AppCompatActivity {
     bundle.putInt("curImagePosition", curImagePosition);
     bundle.putStringArrayList("images", imagesUrl);
     intent.putExtras(bundle);
-    context.startActivity(intent, ActivityOptions.makeSceneTransitionAnimation((Activity) context).toBundle());
+    context.startActivity(intent,
+        ActivityOptions.makeSceneTransitionAnimation((Activity) context).toBundle());
   }
 
-  public static void goToPictureBrowsingActivity(Context context,String imageUrl){
+  public static void goToPictureBrowsingActivity(Context context, String imageUrl) {
     ArrayList<String> arrayList = new ArrayList<>(1);
-    arrayList.add(imageUrl.replace("_thumb",""));
-    goToPictureBrowsingActivity(context,0,arrayList);
+    arrayList.add(imageUrl.replace("_thumb", ""));
+    goToPictureBrowsingActivity(context, 0, arrayList);
   }
 
   private void initViewWithData(Bundle bundle) {
@@ -80,6 +85,13 @@ public class PictureBrowsingActivity extends AppCompatActivity {
     int curImagePosition = bundle.getInt("curImagePosition");
     viewPager.setAdapter(new ViewPagerAdapter());
     viewPager.setCurrentItem(curImagePosition);
+  }
+
+  @Override
+  public void onClick(View v) {
+    if (v.getId() == R.id.tv_cancel) {
+      sheetDialog.dismiss();
+    }
   }
 
   public class ViewPagerAdapter extends PagerAdapter {
@@ -104,18 +116,20 @@ public class PictureBrowsingActivity extends AppCompatActivity {
       final ProgressBar progressBar = itemView.findViewById(R.id.pb_image_browsing);
       TextView textView = itemView.findViewById(R.id.tv_show_big_image);
       imageView.setOnClickListener(view -> onBackPressed());
+      imageView.setOnLongClickListener(v -> showMoreSelect(position));
       if (!imagesUrl.get(position).startsWith("http") && !imagesUrl.get(position)
           .startsWith("/uploads")) {
-        loadImage(imageView, scaleImageView, new File(imagesUrl.get(position)));
+        loadImage(imageView, scaleImageView, new File(imagesUrl.get(position)), position);
         textView.setVisibility(View.GONE);
       } else if (imagesUrl.get(position).startsWith("http")) {
         textView.setVisibility(View.GONE);
-        ImageRequestHelper.loadOtherImageAsFile(PictureBrowsingActivity.this, imagesUrl.get(position),
+        ImageRequestHelper.loadOtherImageAsFile(PictureBrowsingActivity.this,
+            imagesUrl.get(position),
             new SimpleTarget<File>() {
               @Override
               public void onResourceReady(@NonNull File resource,
                   @Nullable Transition<? super File> transition) {
-                loadImage(imageView, scaleImageView, resource);
+                loadImage(imageView, scaleImageView, resource, position);
               }
             });
       } else {
@@ -123,7 +137,7 @@ public class PictureBrowsingActivity extends AppCompatActivity {
             bean -> {
               if (bean != null && FileHelper.fileIsExist(bean.getFilePath())) {
                 textView.setVisibility(View.GONE);
-                loadImage(imageView, scaleImageView, new File(bean.getFilePath()));
+                loadImage(imageView, scaleImageView, new File(bean.getFilePath()), position);
               } else {
                 showImage(textView, progressBar, imageView, scaleImageView, position);
               }
@@ -152,17 +166,18 @@ public class PictureBrowsingActivity extends AppCompatActivity {
             @Override
             public void onResourceReady(@NonNull File resource,
                 @Nullable Transition<? super File> transition) {
-              RxBus.getDefault().post(new MessageEvent<>(Constant.EventType.ORIGINAL_DOWNLOAD,null));
+              RxBus.getDefault()
+                  .post(new MessageEvent<>(Constant.EventType.ORIGINAL_DOWNLOAD, null));
               imageModel.saveBigImageLoadRecord(
                   new BigImageLoadRecordBean(imagesUrl.get(position), resource.getPath()));
-              loadImage(imageView, subsamplingScaleImageView, resource);
+              loadImage(imageView, subsamplingScaleImageView, resource, position);
               progressBar.setVisibility(View.GONE);
             }
           });
     }
 
     private void loadImage(ImageView imageView, SubsamplingScaleImageView scaleImageView,
-        File file) {
+        File file, int position) {
       if (FileHelper.isGifImage(file.getAbsolutePath())) {
         imageView.setVisibility(View.VISIBLE);
         ImageRequestHelper.loadGifFromFile(PictureBrowsingActivity.this, file, imageView);
@@ -182,17 +197,18 @@ public class PictureBrowsingActivity extends AppCompatActivity {
         scaleImageView.setDoubleTapZoomStyle(ZOOM_FOCUS_CENTER_IMMEDIATE);
       }
       scaleImageView.setOnClickListener(view -> onBackPressed());
+      scaleImageView.setOnLongClickListener(v -> showMoreSelect(position));
     }
 
     @Override
     public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
       SubsamplingScaleImageView scaleImageView
-          = ((View)object).findViewById(R.id.sv_image_browsing);
+          = ((View) object).findViewById(R.id.sv_image_browsing);
       if (scaleImageView != null) {
         scaleImageView.recycle();
       }
-      Disposable disposable = (Disposable) ((View)object).getTag();
-      if (disposable != null && !disposable.isDisposed()){
+      Disposable disposable = (Disposable) ((View) object).getTag();
+      if (disposable != null && !disposable.isDisposed()) {
         disposable.dispose();
       }
       container.removeView((View) object);
@@ -204,6 +220,42 @@ public class PictureBrowsingActivity extends AppCompatActivity {
     getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_VISIBLE);
     getWindow().setExitTransition(new Fade().setDuration(500));
     super.onBackPressed();
+  }
+
+  private BottomSheetDialog sheetDialog;
+
+  private boolean showMoreSelect(int position) {
+    if (sheetDialog == null) {
+      sheetDialog = new BottomSheetDialog(this);
+      View contentView = LayoutInflater.from(this).inflate(R.layout.dialog_image_browse, null);
+      contentView.findViewById(R.id.tv_save).setOnClickListener(v -> {
+        ImageRequestHelper.loadImageAsFile(PictureBrowsingActivity.this,
+            imagesUrl.get(position).replace("_thumb", ""), new SimpleTarget<File>() {
+              @Override
+              public void onResourceReady(@NonNull File resource,
+                  @Nullable Transition<? super File> transition) {
+                String name = imagesUrl.get(position).replace("_thumb", "");
+                String[] temp = name.split("\\.");
+                String format = temp[temp.length - 1];
+                FileHelper.copy(PictureBrowsingActivity.this, resource,
+                    System.currentTimeMillis() + "." + format);
+              }
+            });
+        sheetDialog.dismiss();
+      });
+      contentView.findViewById(R.id.tv_copy).setOnClickListener(v -> {
+        ClipboardManager copy =
+            (ClipboardManager) PictureBrowsingActivity.this.getSystemService(
+                Context.CLIPBOARD_SERVICE);
+        copy.setText(Constant.BASE_IMAGE_URL + imagesUrl.get(position).replace("_thumb", ""));
+        sheetDialog.dismiss();
+        ToastHelper.toast("已复制到剪切板");
+      });
+      contentView.findViewById(R.id.tv_cancel).setOnClickListener(this);
+      sheetDialog.setContentView(contentView);
+    }
+    sheetDialog.show();
+    return true;
   }
 
   @Override

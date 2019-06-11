@@ -3,6 +3,7 @@ package com.hyc.helper.helper;
 import android.annotation.SuppressLint;
 import android.content.ContentResolver;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -10,6 +11,9 @@ import android.provider.MediaStore;
 import android.provider.MediaStore.Images.Thumbnails;
 import android.text.TextUtils;
 import com.hyc.helper.HelperApplication;
+import com.hyc.helper.R;
+import com.hyc.helper.base.util.ToastHelper;
+import com.hyc.helper.base.util.UiHelper;
 import com.hyc.helper.bean.ImageSizeBean;
 import com.hyc.helper.bean.ImageUploadBean;
 import com.hyc.helper.bean.LocalImageBean;
@@ -20,6 +24,9 @@ import io.reactivex.ObservableEmitter;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import okhttp3.MediaType;
@@ -67,13 +74,13 @@ public class FileHelper {
       if (cursor != null && cursor.moveToFirst()) {
         do {
           pictureInfo.setThumbnailPath(cursor.getString(1));
-          if (pictureInfo != null){
+          if (pictureInfo != null) {
             emitter.onNext(pictureInfo);
           }
         } while (cursor.moveToNext());
         cursor.close();
       } else {
-        if (pictureInfo != null){
+        if (pictureInfo != null) {
           emitter.onNext(pictureInfo);
         }
       }
@@ -98,11 +105,11 @@ public class FileHelper {
     options.inJustDecodeBounds = true;
     BitmapFactory.decodeFile(path, options);
     String type = options.outMimeType;
-    return !TextUtils.isEmpty(type)&&type.equals("image/gif");
+    return !TextUtils.isEmpty(type) && type.equals("image/gif");
   }
 
   @SuppressLint("CheckResult")
-  public static void uploadImage(UserBean userBean,String type, List<File> files,
+  public static void uploadImage(UserBean userBean, String type, List<File> files,
       io.reactivex.Observer<ImageUploadBean> observer) {
     String env = Sha1Utils.getEnv(userBean);
     for (File file : files) {
@@ -111,7 +118,8 @@ public class FileHelper {
       MultipartBody.Part body =
           MultipartBody.Part.createFormData("file", file.getName(), requestFile);
       RequestHelper.getRequestApi()
-          .uploadImage(userBean.getData().getStudentKH(), userBean.getRemember_code_app(), env,type,body)
+          .uploadImage(userBean.getData().getStudentKH(), userBean.getRemember_code_app(), env,
+              type, body)
           .subscribeOn(Schedulers.io())
           .observeOn(AndroidSchedulers.mainThread())
           .subscribe(observer);
@@ -144,8 +152,57 @@ public class FileHelper {
     return data;
   }
 
-  public static boolean fileIsExist(String path){
+  public static boolean fileIsExist(String path) {
     return new File(path).exists();
   }
 
+  public static void copy(Context context,File source,String name) {
+    File target =
+        new File(String.format(UiHelper.getString(R.string.save_image_name),name));
+    boolean isCreateSuccess = true;
+    if (!target.exists()){
+      try {
+        target.getParentFile().mkdirs();
+        isCreateSuccess = target.createNewFile();
+      } catch (IOException e) {
+        isCreateSuccess = false;
+        e.printStackTrace();
+      }
+    }else {
+      ToastHelper.toast("已保存到"+target.getAbsolutePath());
+      return;
+    }
+    if (!isCreateSuccess){
+      ToastHelper.toast("创建文件失败");
+      return;
+    }
+    FileInputStream fileInputStream = null;
+    FileOutputStream fileOutputStream = null;
+    try {
+      fileInputStream = new FileInputStream(source);
+      fileOutputStream = new FileOutputStream(target);
+      byte[] buffer = new byte[1024];
+      while (fileInputStream.read(buffer) > 0) {
+        fileOutputStream.write(buffer);
+      }
+      ToastHelper.toast("已保存到"+target.getAbsolutePath());
+      Intent intent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+      Uri uri = Uri.fromFile(target);
+      intent.setData(uri);
+      context.sendBroadcast(intent);
+    } catch (Exception e) {
+      e.printStackTrace();
+    } finally {
+      try {
+        if (fileInputStream != null) {
+          fileInputStream.close();
+        }
+        if (fileOutputStream != null) {
+          fileOutputStream.close();
+        }
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
+    }
+  }
 }
