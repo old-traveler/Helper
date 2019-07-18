@@ -3,6 +3,7 @@ package com.hyc.helper.activity;
 import android.os.Bundle;
 import android.support.design.button.MaterialButton;
 import android.text.TextUtils;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import butterknife.BindView;
@@ -11,6 +12,7 @@ import butterknife.Unbinder;
 import com.hyc.helper.R;
 import com.hyc.helper.base.activity.BaseRequestActivity;
 import com.hyc.helper.base.util.ToastHelper;
+import com.hyc.helper.base.util.UiHelper;
 import com.hyc.helper.bean.UserBean;
 import com.hyc.helper.im.ConnectManager;
 import com.hyc.helper.model.UserModel;
@@ -83,5 +85,20 @@ public class LoginActivity extends BaseRequestActivity<UserBean> {
   @Override
   public boolean isOnCreateRequest() {
     return false;
+  }
+
+  @Override
+  public int getMenuId() {
+    return R.menu.menu_login;
+  }
+
+  @Override
+  public boolean onOptionsItemSelected(MenuItem item) {
+    if (item.getItemId() == R.id.item_register) {
+      WebActivity.startWebBrowsing(this, UiHelper.getString(R.string.register_url),
+          UiHelper.getString(R.string.register));
+      return true;
+    }
+    return super.onOptionsItemSelected(item);
   }
 }

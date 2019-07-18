@@ -96,6 +96,8 @@
   <string name="day_tip">%d 天</string>
   <string name="hour_tip">%d 小时</string>
   <string name="save_image_name">/mnt/sdcard/Pictures/HELPER_%s</string>
+  <string name="register">注册</string>
+  <string name="register_url">https://api.huthelper.cn/auth/register</string>
 
   <string-array name="weeks">
     <item>周一</item>
