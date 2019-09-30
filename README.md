@@ -1,12 +1,14 @@
 # Helper
 
 
- helper是一款遵从Material Design风格设计且只服务于湖工大学子的App
+ helper是一款遵从Material Design风格设计且只服务于湖工大学子的App   
+ flutter 版本可查看[flutter_helper](https://github.com/old-traveler/flutter_helper)
  
  [![AppVeyor](https://img.shields.io/badge/build-passing-green.svg)](https://github.com/old-traveler/Helper)&nbsp;&nbsp;
- [![Packagist](https://img.shields.io/badge/download-4.7M-red.svg)](http://bmob-cdn-12662.b0.upaiyun.com/2018/12/01/f51c14d140e96346809f122d45baae91.apk)&nbsp;&nbsp;
+ [![Packagist](https://img.shields.io/badge/download-4.7M-red.svg)](https://raw.githubusercontent.com/old-traveler/Helper/master/release/app-release.apk)&nbsp;&nbsp;
  [![Packagist](https://img.shields.io/badge/API-28+-blue.svg)](https://github.com/old-traveler/Helper)&nbsp;&nbsp;
  [![Packagist](https://img.shields.io/badge/Version-1.3.0-green.svg)](https://github.com/old-traveler/Helper)
+ [![Packagist](https://img.shields.io/badge/flutter-building-yellow.svg)](https://github.com/old-traveler/flutter_helper)
  
  
  ## 下载
