@@ -8,6 +8,14 @@ greendao {
 }
 
 android {
+  signingConfigs {
+    release {
+      storeFile file('/Users/heyucheng/workspace/Untitled')
+      storePassword "hyc6832"
+      keyAlias = 'hyc'
+      keyPassword "hyc6832"
+    }
+  }
   compileSdkVersion 28
   defaultConfig {
     applicationId "com.hyc.helper"
@@ -19,8 +27,18 @@ android {
   }
   buildTypes {
     release {
-      minifyEnabled false
+      shrinkResources true
+      buildConfigField("boolean", "LOG_DEBUG", "false")
+      signingConfig signingConfigs.release
+      minifyEnabled true
+      zipAlignEnabled true
       proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+    }
+
+    debug {
+      signingConfig signingConfigs.release
+      minifyEnabled false
+      buildConfigField("boolean", "LOG_DEBUG", "true")
     }
   }
   compileOptions {
@@ -31,6 +49,7 @@ android {
 
 dependencies {
   implementation fileTree(dir: 'libs', include: ['*.jar'])
+  //noinspection GradleCompatible
   implementation 'com.android.support:appcompat-v7:28.0.0'
   configurations {
     all*.exclude group: 'com.google.code.gson'
@@ -50,6 +69,7 @@ dependencies {
   implementation 'com.github.lguipeng:BubbleView:1.0.1'
   implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-12'
   implementation 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.0-alpha-12'
+  //noinspection GradleDependency
   implementation 'com.github.bumptech.glide:glide:4.7.1'
   implementation 'top.zibin:Luban:1.1.8'
   implementation 'org.greenrobot:greendao:3.2.2'

@@ -24,10 +24,10 @@ public class DaoMaster extends AbstractDaoMaster {
         ExamInfoBeanDao.createTable(db, ifNotExists);
         GradeInfoBeanDao.createTable(db, ifNotExists);
         CourseInfoBeanDao.createTable(db, ifNotExists);
+        StatementInfoBeanDao.createTable(db, ifNotExists);
         BigImageLoadRecordBeanDao.createTable(db, ifNotExists);
         ImageMessageRecordDao.createTable(db, ifNotExists);
         WebUrlBeanDao.createTable(db, ifNotExists);
-        StatementInfoBeanDao.createTable(db, ifNotExists);
     }
 
     /** Drops underlying database table using DAOs. */
@@ -35,10 +35,10 @@ public class DaoMaster extends AbstractDaoMaster {
         ExamInfoBeanDao.dropTable(db, ifExists);
         GradeInfoBeanDao.dropTable(db, ifExists);
         CourseInfoBeanDao.dropTable(db, ifExists);
+        StatementInfoBeanDao.dropTable(db, ifExists);
         BigImageLoadRecordBeanDao.dropTable(db, ifExists);
         ImageMessageRecordDao.dropTable(db, ifExists);
         WebUrlBeanDao.dropTable(db, ifExists);
-        StatementInfoBeanDao.dropTable(db, ifExists);
     }
 
     /**
@@ -60,10 +60,10 @@ public class DaoMaster extends AbstractDaoMaster {
         registerDaoClass(ExamInfoBeanDao.class);
         registerDaoClass(GradeInfoBeanDao.class);
         registerDaoClass(CourseInfoBeanDao.class);
+        registerDaoClass(StatementInfoBeanDao.class);
         registerDaoClass(BigImageLoadRecordBeanDao.class);
         registerDaoClass(ImageMessageRecordDao.class);
         registerDaoClass(WebUrlBeanDao.class);
-        registerDaoClass(StatementInfoBeanDao.class);
     }
 
     public DaoSession newSession() {
