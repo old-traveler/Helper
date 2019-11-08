@@ -351,8 +351,7 @@ public static java.lang.String TABLENAME;
 
 #keep bean
 -keep class com.hyc.helper.bean.** { *; }
--keep class com.hyc.helper.net.** { *; }
--keep class com.hyc.helper.adapter.** { *; }
+-keep class com.hyc.helper.adapter.viewholder.** { *; }
 
 -keepclassmembers class ** {
     public void onEvent*(**);
