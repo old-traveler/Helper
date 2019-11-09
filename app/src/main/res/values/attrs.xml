@@ -5,4 +5,29 @@
     <attr name="maxHeight" format="dimension"/>
     <attr name="maxCount" format="integer"/>
   </declare-styleable>
+
+  <declare-styleable name="ExpandableLayout">
+    <attr name="collapseHeight" format="dimension" />
+    <attr name="hasAnimation" format="boolean" />
+    <attr name="animationDuration" format="integer" />
+    <attr name="enableCollapseAfterExpand" format="boolean" />
+    <attr name="expendableTriggerId" format="reference" />
+  </declare-styleable>
+
+  <declare-styleable name="SimpleTriggerView">
+    <attr name="textSize" format="dimension" />
+    <attr name="textColor" format="color" />
+    <attr name="icon" format="reference" />
+    <attr name="expandText" format="string" />
+    <attr name="collapseText" format="string" />
+    <attr name="iconColor" format="color" />
+    <attr name="iconSize" format="dimension" />
+    <attr name="enableBaseLine" format="boolean" />
+    <attr name="textStyle">
+      <flag name="normal" value="0" />
+      <flag name="bold" value="1" />
+      <flag name="italic" value="2" />
+    </attr>
+  </declare-styleable>
+
 </resources>

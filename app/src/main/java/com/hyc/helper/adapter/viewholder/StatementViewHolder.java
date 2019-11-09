@@ -7,7 +7,7 @@ import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
-import android.util.SparseBooleanArray;
+import android.util.SparseIntArray;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -20,14 +20,14 @@ import com.hyc.helper.activity.UserInfoActivity;
 import com.hyc.helper.base.adapter.viewholder.BaseViewHolder;
 import com.hyc.helper.base.util.UiHelper;
 import com.hyc.helper.bean.CommentInfoBean;
-import com.hyc.helper.bean.StatementBean;
 import com.hyc.helper.bean.StatementInfoBean;
 import com.hyc.helper.bean.TextPositionBean;
 import com.hyc.helper.helper.ImageRequestHelper;
+import com.hyc.helper.helper.LogHelper;
 import com.hyc.helper.model.StatementModel;
 import com.hyc.helper.model.UserModel;
+import com.hyc.helper.view.ExpandableLayout;
 import com.hyc.helper.view.ImageLayout;
-import com.ms.square.android.expandabletextview.ExpandableTextView;
 import com.sackcentury.shinebuttonlib.ShineButton;
 import java.util.ArrayList;
 import java.util.List;
@@ -43,10 +43,12 @@ public class StatementViewHolder extends BaseViewHolder<StatementInfoBean>
   TextView tvUserDesc;
   @BindView(R.id.tv_publish_date)
   TextView tvPublishDate;
-  @BindView(R.id.expandable_text)
+  @BindView(R.id.tv_content)
   TextView tvContent;
   @BindView(R.id.ept_content)
-  ExpandableTextView expandableTextView;
+  ExpandableLayout expandableLayout;
+  @BindView(R.id.el_comment)
+  ExpandableLayout commentExpandableLayout;
   @BindView(R.id.imageLayout)
   ImageLayout imageLayout;
   @BindView(R.id.tv_from)
@@ -64,7 +66,7 @@ public class StatementViewHolder extends BaseViewHolder<StatementInfoBean>
 
   private UserModel userModel;
   private StatementModel statementModel;
-  private SparseBooleanArray sparseBooleanArray;
+  private SparseIntArray sparseIntArray;
 
   public StatementViewHolder(@NonNull View itemView) {
     super(itemView);
@@ -83,7 +85,10 @@ public class StatementViewHolder extends BaseViewHolder<StatementInfoBean>
     tvPublishName.setText(data.getUsername());
     tvUserDesc.setText(TextUtils.isEmpty(data.getBio())
         ? UiHelper.getString(R.string.default_bio) : data.getBio());
-    expandableTextView.setText(data.getContent(),sparseBooleanArray,position);
+    expandableLayout.updateState(sparseIntArray, position * position);
+    commentExpandableLayout.updateState(sparseIntArray, 2 * position + 1);
+    tvContent.setText(data.getContent().trim());
+    LogHelper.log(tvContent.getText().toString());
     tvFrom.setText(data.getDep_name());
     tvLikeCount.setText(data.getLikes());
     tvPublishDate.setText(data.getCreated_on());
@@ -92,6 +97,7 @@ public class StatementViewHolder extends BaseViewHolder<StatementInfoBean>
       tvCommentInfo.setVisibility(View.VISIBLE);
     } else {
       tvCommentInfo.setVisibility(View.GONE);
+      tvCommentInfo.setText("");
     }
     imageLayout.setImageListUrl(data.getPics());
     sbLike.setChecked(data.isIs_like());
@@ -105,8 +111,8 @@ public class StatementViewHolder extends BaseViewHolder<StatementInfoBean>
     UiHelper.initLinkTextView(tvContent, context);
   }
 
-  public void setSparseBooleanArray(SparseBooleanArray sparseBooleanArray){
-    this.sparseBooleanArray = sparseBooleanArray;
+  public void setSparseBooleanArray(SparseIntArray sparseIntArray){
+    this.sparseIntArray = sparseIntArray;
   }
 
 

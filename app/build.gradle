@@ -1,4 +1,6 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-android'
 apply plugin: 'org.greenrobot.greendao'
 
 greendao {
@@ -81,8 +83,11 @@ dependencies {
   implementation 'com.zhihu.android:matisse:0.5.2-beta3'
   implementation 'com.github.yalantis:ucrop:2.2.2'
   implementation 'cn.bmob.android:http-legacy:1.0'
-  implementation 'com.ms-square:expandableTextView:0.1.4'
   implementation 'cn.bmob.android:bmob-im:2.1.1@aar'
   implementation 'cn.bmob.android:bmob-sdk:3.6.5'
   implementation 'com.github.old-traveler:HeadZoomLayout:v1.0.5'
+  implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+}
+repositories {
+  mavenCentral()
 }

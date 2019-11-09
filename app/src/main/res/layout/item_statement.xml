@@ -16,7 +16,8 @@
     android:layout_marginStart="10dp"
     android:layout_marginTop="10dp"
     android:layout_width="50dp"
-    android:layout_height="50dp" />
+    android:layout_height="50dp"
+    tools:ignore="ContentDescription" />
 
   <TextView
     android:id="@+id/tv_publish_name"
@@ -59,15 +60,16 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <com.ms.square.android.expandabletextview.ExpandableTextView
+    <com.hyc.helper.view.ExpandableLayout
+      app:collapseHeight="117dp"
       android:id="@+id/ept_content"
-      app:maxCollapsedLines="5"
-      app:animDuration="200"
+      app:animationDuration="400"
+      app:expendableTriggerId="@id/tv_content"
       android:layout_width="match_parent"
       android:layout_height="wrap_content">
 
       <TextView
-        android:id="@id/expandable_text"
+        android:id="@+id/tv_content"
         android:autoLink="all"
         android:linksClickable="true"
         android:lineSpacingExtra="2dp"
@@ -75,15 +77,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-      <ImageButton
-        android:paddingEnd="3dp"
-        android:id="@id/expand_collapse"
-        android:layout_width="wrap_content"
+      <com.hyc.helper.view.SimpleTriggerView
+        app:enableBaseLine="false"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="end|bottom"
-        android:background="@android:color/transparent"/>
+        app:collapseText="展开"
+        app:expandText="收起"
+        app:textSize="17sp"
+        app:textStyle="bold" />
 
-    </com.ms.square.android.expandabletextview.ExpandableTextView>
+    </com.hyc.helper.view.ExpandableLayout>
 
 
 
@@ -143,15 +146,31 @@
         android:layout_height="wrap_content" />
     </FrameLayout>
 
-    <TextView
-      android:autoLink="all"
-      android:textSize="13sp"
-      android:lineSpacingExtra="5dp"
-      android:elegantTextHeight="true"
-      android:id="@+id/tv_comment_info"
-      android:layout_marginTop="5dp"
+    <com.hyc.helper.view.ExpandableLayout
+      app:collapseHeight="120dp"
+      android:id="@+id/el_comment"
+      app:animationDuration="400"
       android:layout_width="match_parent"
-      android:layout_height="wrap_content" />
+      android:layout_height="wrap_content">
+      <TextView
+        android:autoLink="all"
+        android:textSize="13sp"
+        android:lineSpacingExtra="5dp"
+        android:elegantTextHeight="true"
+        android:id="@+id/tv_comment_info"
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+      <com.hyc.helper.view.SimpleTriggerView
+        app:enableBaseLine="false"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:collapseText="展开"
+        app:expandText="收起"
+        app:textSize="17sp"
+        app:textStyle="bold" />
+    </com.hyc.helper.view.ExpandableLayout>
 
   </LinearLayout>
 
