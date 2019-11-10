@@ -38,6 +38,7 @@ class ExpandableLayout @JvmOverloads constructor(
   private var sparseArray: SparseIntArray? = null
   private var position: Int = 0
   private var enableCollapseAfterExpand: Boolean = true
+  private var maxLine = 0
   var mTriggerId: Int = -1
   private var mCurState: Int by Delegates.observable(STATE_COLLAPSE) { _: KProperty<*>, oldValue: Int, newValue: Int ->
     if (mTriggerView?.visibility == View.VISIBLE && isEnabled) {
@@ -112,6 +113,7 @@ class ExpandableLayout @JvmOverloads constructor(
     enableCollapseAfterExpand =
       typedArray.getBoolean(styleable.ExpandableLayout_enableCollapseAfterExpand, true)
     mTriggerId = typedArray.getResourceId(styleable.ExpandableLayout_expendableTriggerId, -1)
+    maxLine = typedArray.getInt(styleable.ExpandableLayout_maxLine, 0)
     typedArray.recycle()
   }
 
@@ -121,7 +123,7 @@ class ExpandableLayout @JvmOverloads constructor(
       expandHeight = getTargetViewExpandHeight(widthMeasureSpec, heightMeasureSpec)
       (this.mTargetView.layoutParams as? LayoutParams?).let {
         it?.height = when (mCurState) {
-          STATE_COLLAPSE -> minOf(collapseHeight.toInt(),expandHeight.toInt())
+          STATE_COLLAPSE -> minOf(collapseHeight.toInt(), expandHeight.toInt())
           STATE_EXPAND -> android.view.ViewGroup.LayoutParams.WRAP_CONTENT
           else -> it?.height
         }
@@ -138,17 +140,30 @@ class ExpandableLayout @JvmOverloads constructor(
   override fun onDetachedFromWindow() {
     super.onDetachedFromWindow()
     this.ensureTarget()
-    if (mTargetView is TextView){
+    if (mTargetView is TextView) {
       mTargetView.layoutParams.height = ViewGroup.LayoutParams.WRAP_CONTENT
     }
   }
 
-  private fun getTargetViewExpandHeight(widthMeasureSpec: Int, heightMeasureSpec: Int): Float {
+  private fun getTargetViewExpandHeight(
+    widthMeasureSpec: Int,
+    heightMeasureSpec: Int,
+    measureText: Boolean = true
+  ): Float {
     val layout = this.mTargetView.layoutParams as LayoutParams
-    layout.height = android.view.ViewGroup.LayoutParams.WRAP_CONTENT
+    layout.height = ViewGroup.LayoutParams.WRAP_CONTENT
     this.mTargetView.layoutParams = layout
     measureChildWithMargins(this.mTargetView, widthMeasureSpec, 0, heightMeasureSpec, 0)
-    return this.mTargetView.measuredHeight.toFloat()
+    val height = this.mTargetView.measuredHeight.toFloat()
+    if (mTargetView is TextView && maxLine > 0 && (mTargetView as TextView).lineCount >= maxLine && measureText) {
+      val textView = mTargetView as TextView
+      textView.maxLines = maxLine
+      val curLine = (mTargetView as TextView).lineCount
+      collapseHeight = getTargetViewExpandHeight(widthMeasureSpec, heightMeasureSpec, false)
+      LogHelper.log("line $curLine collapseHeight : $collapseHeight height : $height")
+      textView.maxLines = Integer.MAX_VALUE
+    }
+    return height
   }
 
   private fun ensureTarget() {

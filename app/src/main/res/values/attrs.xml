@@ -8,6 +8,7 @@
 
   <declare-styleable name="ExpandableLayout">
     <attr name="collapseHeight" format="dimension" />
+    <attr name="maxLine" format="integer" />
     <attr name="hasAnimation" format="boolean" />
     <attr name="animationDuration" format="integer" />
     <attr name="enableCollapseAfterExpand" format="boolean" />

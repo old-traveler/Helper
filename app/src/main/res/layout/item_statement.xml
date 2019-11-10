@@ -61,6 +61,7 @@
     android:layout_height="wrap_content">
 
     <com.hyc.helper.view.ExpandableLayout
+      app:maxLine="5"
       app:collapseHeight="110dp"
       android:id="@+id/ept_content"
       app:animationDuration="400"
@@ -148,6 +149,7 @@
 
     <com.hyc.helper.view.ExpandableLayout
       app:collapseHeight="114dp"
+      app:maxLine="5"
       android:id="@+id/el_comment"
       app:animationDuration="400"
       android:layout_width="match_parent"
