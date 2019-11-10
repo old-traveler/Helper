@@ -41,4 +41,17 @@ public class ConfigureHelper {
     }
     return versionCode;
   }
+
+  public static String getVersionName(Context context) {
+    PackageManager packageManager = context.getPackageManager();
+    PackageInfo packageInfo;
+    String versionCode = "1.0.0";
+    try {
+      packageInfo = packageManager.getPackageInfo(context.getPackageName(), 0);
+      versionCode = packageInfo.versionName;
+    } catch (PackageManager.NameNotFoundException e) {
+      e.printStackTrace();
+    }
+    return versionCode;
+  }
 }

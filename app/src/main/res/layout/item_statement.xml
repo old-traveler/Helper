@@ -61,14 +61,14 @@
     android:layout_height="wrap_content">
 
     <com.hyc.helper.view.ExpandableLayout
-      app:collapseHeight="117dp"
+      app:collapseHeight="110dp"
       android:id="@+id/ept_content"
       app:animationDuration="400"
       app:expendableTriggerId="@id/tv_content"
       android:layout_width="match_parent"
       android:layout_height="wrap_content">
 
-      <TextView
+      <com.hyc.helper.view.NoScrollTextView
         android:id="@+id/tv_content"
         android:autoLink="all"
         android:linksClickable="true"
@@ -147,12 +147,12 @@
     </FrameLayout>
 
     <com.hyc.helper.view.ExpandableLayout
-      app:collapseHeight="120dp"
+      app:collapseHeight="114dp"
       android:id="@+id/el_comment"
       app:animationDuration="400"
       android:layout_width="match_parent"
       android:layout_height="wrap_content">
-      <TextView
+      <com.hyc.helper.view.NoScrollTextView
         android:autoLink="all"
         android:textSize="13sp"
         android:lineSpacingExtra="5dp"

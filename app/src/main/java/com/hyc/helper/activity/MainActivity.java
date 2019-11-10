@@ -263,7 +263,8 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
     } else if (item.getItemId() == R.id.item_library) {
       WebActivity.startWebBrowsing(this, R.string.library_url, R.string.library_title);
     } else if (item.getItemId() == R.id.item_about) {
-      showConfirmDialog(UiHelper.getString(R.string.about_us));
+      showConfirmDialog(String.format(UiHelper.getString(R.string.about_us),
+          ConfigureHelper.getVersionName(this)));
     } else if (item.getItemId() == R.id.item_logout) {
       showTipDialog(UiHelper.getString(R.string.tip), UiHelper.getString(R.string.logout_tip),
           isPosition -> {
@@ -363,7 +364,7 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
   @Override
   protected void onDestroy() {
     super.onDestroy();
-    if (updateAppHelper != null){
+    if (updateAppHelper != null) {
       updateAppHelper.clear();
     }
   }

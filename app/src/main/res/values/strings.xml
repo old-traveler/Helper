@@ -64,7 +64,7 @@
   <string name="school_calendar">School Calendar</string>
   <string name="library_url">http://218.75.197.122:8989/opac/weixin/account/service/index</string>
   <string name="library_title">Library</string>
-  <string name="about_us">仅供学习交流使用</string>
+  <string name="about_us">当前版本%s\n仅供学习交流使用</string>
   <string name="logout_tip">注销后需要重新登陆\n是否继续?</string>
   <string name="course_detail">Course Detail</string>
   <string name="load_fail_tip">加载失败,点击重试</string>
