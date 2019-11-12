@@ -32,7 +32,7 @@
   <string name="apk_name">helper.apk</string>
   <string name="input_name">输入姓名</string>
 
-  <string name="default_info_bg">https://raw.githubusercontent.com/old-traveler/Helper/master/img/default_image</string>
+  <string name="default_info_bg">https://raw.githubusercontent.com/old-traveler/Helper/master/img/default_image.png</string>
   <string name="user_info_desc_default">这家伙太懒了，什么也没留下</string>
   <string name="user_info">User Info</string>
   <string name="my_publish">My Publish</string>
