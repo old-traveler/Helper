@@ -9,13 +9,20 @@ greendao {
   targetGenDir 'src/main/java'
 }
 
+def password = ''
+
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+password = properties.getProperty("KEY_PASSWORD")
+
 android {
   signingConfigs {
     release {
-      storeFile file('/Users/heyucheng/workspace/Untitled')
-      storePassword "hyc6832"
-      keyAlias = 'hyc'
-      keyPassword "hyc6832"
+      storeFile file(RELEASE_STORE_FILE)
+      keyAlias = RELEASE_KEY_ALIAS
+      keyPassword password
+      storePassword password
+
     }
   }
   compileSdkVersion 28
