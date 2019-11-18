@@ -264,7 +264,7 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
       WebActivity.startWebBrowsing(this, R.string.library_url, R.string.library_title);
     } else if (item.getItemId() == R.id.item_about) {
       showConfirmDialog(String.format(UiHelper.getString(R.string.about_us),
-          ConfigureHelper.getVersionName(this)));
+          ConfigureHelper.getVersionName()));
     } else if (item.getItemId() == R.id.item_logout) {
       showTipDialog(UiHelper.getString(R.string.tip), UiHelper.getString(R.string.logout_tip),
           isPosition -> {
@@ -332,7 +332,7 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(updateApkBean -> {
-          if (ConfigureHelper.getVersionCode(this) < updateApkBean.getVersion_code()) {
+          if (ConfigureHelper.getVersionCode() < updateApkBean.getVersion_code()) {
             showTipDialog("版本更新", "发现新版本，是否更新?", isPosition -> {
               if (isPosition) {
                 startUpdate(updateApkBean.getApk_url());

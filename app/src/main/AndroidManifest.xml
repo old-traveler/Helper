@@ -26,7 +26,7 @@
     android:supportsRtl="true"
     android:theme="@style/AppTheme"
     tools:ignore="GoogleAppIndexingWarning,UnusedAttribute">
-    <activity android:name=".activity.WebUrlCollectActivity"></activity>
+    <activity android:name=".activity.WebUrlCollectActivity"/>
 
     <meta-data
       android:name="Bmob_APP_KEY"

@@ -1,9 +1,7 @@
 package com.hyc.helper.helper;
 
-import android.content.Context;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
 import android.text.TextUtils;
+import com.hyc.helper.BuildConfig;
 import com.hyc.helper.bean.ConfigureDateBean;
 
 public class ConfigureHelper {
@@ -29,29 +27,11 @@ public class ConfigureHelper {
   /**
    * get App versionCode
    */
-  public static int getVersionCode(Context context) {
-    PackageManager packageManager = context.getPackageManager();
-    PackageInfo packageInfo;
-    int versionCode = 1;
-    try {
-      packageInfo = packageManager.getPackageInfo(context.getPackageName(), 0);
-      versionCode = packageInfo.versionCode;
-    } catch (PackageManager.NameNotFoundException e) {
-      e.printStackTrace();
-    }
-    return versionCode;
+  public static int getVersionCode() {
+    return BuildConfig.VERSION_CODE;
   }
 
-  public static String getVersionName(Context context) {
-    PackageManager packageManager = context.getPackageManager();
-    PackageInfo packageInfo;
-    String versionCode = "1.0.0";
-    try {
-      packageInfo = packageManager.getPackageInfo(context.getPackageName(), 0);
-      versionCode = packageInfo.versionName;
-    } catch (PackageManager.NameNotFoundException e) {
-      e.printStackTrace();
-    }
-    return versionCode;
+  public static String getVersionName() {
+    return BuildConfig.VERSION_NAME;
   }
 }
