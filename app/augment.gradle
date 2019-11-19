@@ -1,35 +1,48 @@
-
 ext.PACKAGE_NAME = "com.hyc.helper"
 ext.LAUNCH_ACTIVITY = "com.hyc.helper.activity.SplashActivity"
 
 tasks.all {
   task ->
-    if (task.name == "assembleRelease"){
-      doLast{
+    if (task.name.startsWith("assemble") && task.name.endsWith("Release")) {
+      doLast {
         processRelease()
       }
-    } else if(task.name == "assembleDebug"){
-      doLast{
+    } else if (task.name.startsWith("assemble") && task.name.endsWith("Debug")) {
+      doLast {
         processDebug()
       }
     }
 }
 
-
-def processRelease(){
-  moveApkFile()
-  if((Boolean)getLocalProperties("RELEASE_INSTALL",false)){
-    restart(false)
+android {
+  applicationVariants.all { variant ->
+    if ("release".equalsIgnoreCase(variant.getBuildType().name)
+        && variant.getBuildType().isMinifyEnabled()) {
+      variant.assemble.doLast {
+        def mappingPath = project.getProjectDir().path + "/release"
+        copy {
+          from variant.mappingFile
+          into mappingPath
+        }
+      }
+    }
   }
-
 }
 
-def moveApkFile(){
-  def apkFile = new File(rootProject.getRootDir().absolutePath + "/app/build/outputs/apk/release/app-release.apk")
+def processRelease() {
+  moveApkFile()
+  if ((Boolean) getLocalProperties("RELEASE_INSTALL", false)) {
+    restart(false)
+  }
+}
+
+def moveApkFile() {
+  def apkFile = new File(
+      rootProject.getRootDir().absolutePath + "/app/build/outputs/apk/release/app-release.apk")
   def targetFile = new File(rootProject.getRootDir().absolutePath + "/app/release/app-release.apk")
 
-  if (apkFile.exists()){
-    if(targetFile.exists() && targetFile.delete()){
+  if (apkFile.exists()) {
+    if (targetFile.exists() && targetFile.delete()) {
       println("删除原有的apk文件")
     }
   }
@@ -39,26 +52,27 @@ def moveApkFile(){
   println("替换release apk成功")
 }
 
-def processDebug(){
+def processDebug() {
   restart(true)
 }
 
-def restart(boolean isDebug){
+def restart(boolean isDebug) {
   println("install ${isDebug ? "debug" : "release"} apk")
-  def apkPath = isDebug ? "/app/build/outputs/apk/debug/app-debug.apk" : "/app/release/app-release.apk"
+  def apkPath = isDebug ? "/app/build/outputs/apk/debug/app-debug.apk" :
+      "/app/release/app-release.apk"
   apkPath = transferPath(project.getRootDir().absolutePath + apkPath)
   def installCommand = "adb install $apkPath"
   exec {
     try {
       executable 'bash'
       args "-c", "$installCommand"
-    }catch(Exception e){
+    } catch (Exception e) {
       e.printStackTrace()
       installCommand = "adb install -t $apkPath"
       try {
         executable 'bash'
         args "-c", "$installCommand"
-      }catch(Exception e1){
+      } catch (Exception e1) {
         e1.printStackTrace()
         println("=====================install failed with exception.=========================")
         return
@@ -71,7 +85,7 @@ def restart(boolean isDebug){
     try {
       executable 'bash'
       args "-c", "$command"
-    }catch(Exception e){
+    } catch (Exception e) {
       e.printStackTrace()
       println("=====================restart failed with exception.=========================")
     }
@@ -79,7 +93,7 @@ def restart(boolean isDebug){
   println("=====================restart successfull.=========================")
 }
 
-static def transferPath(String path){
+static def transferPath(String path) {
   def file = new File(path)
   if (file.separator == "\\") {
     path = path.replace("\\", "/")
@@ -89,13 +103,13 @@ static def transferPath(String path){
   return path
 }
 
-def getLocalProperties(String key,Object defValue){
-  try{
+def getLocalProperties(String key, Object defValue) {
+  try {
     Properties properties = new Properties()
     properties.load(project.rootProject.file('local.properties').newDataInputStream())
     def value = properties.getProperty(key)
     return value
-  }catch(Exception e){
+  } catch (Exception e) {
     e.printStackTrace()
   }
   return defValue

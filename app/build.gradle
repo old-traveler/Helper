@@ -23,7 +23,6 @@ android {
       keyAlias = RELEASE_KEY_ALIAS
       keyPassword password
       storePassword password
-
     }
   }
   compileSdkVersion 28
@@ -54,6 +53,14 @@ android {
   compileOptions {
     targetCompatibility 1.8
     sourceCompatibility 1.8
+  }
+
+  flavorDimensions "default"
+
+  productFlavors {
+    Helper {
+      dimension "default"
+    }
   }
 }
 
