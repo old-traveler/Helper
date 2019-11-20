@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import com.hyc.helper.base.adapter.viewholder.BaseViewHolder;
 import com.hyc.helper.base.listener.OnItemClickListener;
+import com.hyc.helper.helper.ClickHelper;
 import com.hyc.helper.helper.LogHelper;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
@@ -68,7 +69,10 @@ public class BaseRecycleAdapter<T, V extends BaseViewHolder<T>> extends Recycler
     baseViewHolder.loadItemData(mContext, dataList.get(i), i);
     if (onItemClickListener != null) {
       baseViewHolder.setOnClickListener(v
-          -> onItemClickListener.onItemClick(dataList.get(i), v, i));
+          -> {
+        if (!ClickHelper.canClick(v)) return;
+        onItemClickListener.onItemClick(dataList.get(i), v, i);
+      });
     }
     //if (onItemLongClickListener != null) {
     //  baseViewHolder.itemView.setOnLongClickListener(v ->
