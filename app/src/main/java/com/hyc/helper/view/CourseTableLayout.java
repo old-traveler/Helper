@@ -12,7 +12,6 @@ import com.hyc.helper.R;
 import com.hyc.helper.base.util.UiHelper;
 import com.hyc.helper.bean.CourseInfoBean;
 import com.hyc.helper.bean.CourseTableItemBean;
-import com.hyc.helper.helper.ClickHelper;
 import com.hyc.helper.util.DensityUtil;
 import java.util.HashSet;
 import java.util.List;
@@ -127,7 +126,6 @@ public class CourseTableLayout extends ViewGroup implements View.OnClickListener
 
   @Override
   public void onClick(View v) {
-    if (!ClickHelper.canClick(v))return;
     if (onItemClickListener != null) {
       onItemClickListener.onItemClick(indexOfChild(v),
           ((CourseTableItemBean) v.getTag()).getInfoBean());

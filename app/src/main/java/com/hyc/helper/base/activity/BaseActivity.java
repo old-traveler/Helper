@@ -18,7 +18,6 @@ import com.hyc.helper.base.interfaces.IBaseActivity;
 import com.hyc.helper.base.listener.OnDialogClickListener;
 import com.hyc.helper.base.view.CommonDialog;
 import com.hyc.helper.base.view.LoadingDialog;
-import com.hyc.helper.helper.ClickHelper;
 import com.hyc.helper.helper.DisposableManager;
 import io.reactivex.disposables.Disposable;
 
@@ -49,7 +48,6 @@ public abstract class BaseActivity extends AppCompatActivity
   protected void onDestroy() {
     super.onDestroy();
     cancelAllDisposable();
-    ClickHelper.clearTimeOutView();
   }
 
   protected void cancelAllDisposable(){
@@ -67,7 +65,6 @@ public abstract class BaseActivity extends AppCompatActivity
 
   @Override
   public void onClick(View view) {
-    if (!ClickHelper.canClick(view)) return;
     if (view.getId() == android.R.id.home) {
       super.onBackPressed();
     }
