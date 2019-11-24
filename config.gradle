@@ -13,7 +13,7 @@ ext {
       greendao: '3.2.2',
       rxpermissions: '0.10.2',
       subsampling: '3.10.0',
-      butterknife: '8.8.1',
+      butterknife: '9.0.0',
       shinebutton: '0.2.0',
       matisse: '0.5.2-beta3',
       ucrop: '2.2.2',

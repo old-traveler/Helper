@@ -1,9 +1,11 @@
 apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 apply plugin: 'org.greenrobot.greendao'
 apply from: "augment.gradle"
 apply from: "../config.gradle"
+
+apply plugin: 'com.sloth.click'
 
 greendao {
   schemaVersion 7
@@ -63,6 +65,10 @@ android {
       dimension "default"
     }
   }
+}
+
+slothClickConfig {
+  clickHelperName = "com/hyc/helper/helper/ClickHelper"
 }
 
 dependencies {
