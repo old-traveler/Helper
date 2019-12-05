@@ -68,6 +68,7 @@ android {
 }
 
 slothClickConfig {
+  enableLife = false
   clickHelperName = "com/hyc/helper/helper/ClickHelper"
 }
 
