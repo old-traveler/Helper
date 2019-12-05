@@ -84,7 +84,7 @@ public class TimetableFragment extends BaseRequestFragment<CourseBean> implement
     String[] weeks = UiHelper.getStringArrays(R.array.weeks);
     int index = 0;
     int curDay = DateHelper.getCurDay() - 1;
-    int day[] = DateHelper.getCurDayOfWeek(week);
+    int[] day = DateHelper.getCurDayOfWeek(week);
     for (int i = 0; i < 7; i++) {
       TextView textView = new TextView(getContext());
       textView.setText(String.format(UiHelper.getString(R.string.date_tip), weeks[i], day[i]));
@@ -140,6 +140,9 @@ public class TimetableFragment extends BaseRequestFragment<CourseBean> implement
     if (needRefreshDb) {
       needRefreshDb = false;
       courseInfoBeans.addAll(courseModel.lessonsToCourse(userModel.getStudentId(), lessonsExpBean));
+      for (CourseInfoBean courseInfoBean : courseInfoBeans) {
+        courseInfoBean.setXh(userModel.getStudentId());
+      }
       courseModel.refreshLocalDb(courseInfoBeans);
     }
     refreshCourseInfo(courseInfoBeans);
