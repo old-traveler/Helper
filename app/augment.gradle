@@ -38,7 +38,7 @@ def processRelease() {
 
 def moveApkFile() {
   def apkFile = new File(
-      rootProject.getRootDir().absolutePath + "/app/build/outputs/apk/release/app-release.apk")
+      rootProject.getRootDir().absolutePath + "/app/build/outputs/apk/Helper/release/app-Helper-release.apk")
   def targetFile = new File(rootProject.getRootDir().absolutePath + "/app/release/app-release.apk")
 
   if (apkFile.exists()) {
@@ -58,7 +58,7 @@ def processDebug() {
 
 def restart(boolean isDebug) {
   println("install ${isDebug ? "debug" : "release"} apk")
-  def apkPath = isDebug ? "/app/build/outputs/apk/debug/app-debug.apk" :
+  def apkPath = isDebug ? "/app/build/outputs/apk/Helper/debug/app-Helper-debug.apk" :
       "/app/release/app-release.apk"
   apkPath = transferPath(project.getRootDir().absolutePath + apkPath)
   def installCommand = "adb install $apkPath"
