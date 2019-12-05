@@ -5,9 +5,9 @@
  flutter 版本可查看[flutter_helper](https://github.com/old-traveler/flutter_helper)
  
  [![AppVeyor](https://img.shields.io/badge/build-passing-green.svg)](https://github.com/old-traveler/Helper)&nbsp;&nbsp;
- [![Packagist](https://img.shields.io/badge/download-3.56M-red.svg)](https://raw.githubusercontent.com/old-traveler/Helper/master/app/release/app-release.apk)&nbsp;&nbsp;
+ [![Packagist](https://img.shields.io/badge/download-3.47M-red.svg)](https://raw.githubusercontent.com/old-traveler/Helper/master/app/release/app-release.apk)&nbsp;&nbsp;
  [![Packagist](https://img.shields.io/badge/API-28+-blue.svg)](https://github.com/old-traveler/Helper)&nbsp;&nbsp;
- [![Packagist](https://img.shields.io/badge/Version-1.3.0-green.svg)](https://github.com/old-traveler/Helper)&nbsp;&nbsp;
+ [![Packagist](https://img.shields.io/badge/Version-1.4.2-green.svg)](https://github.com/old-traveler/Helper)&nbsp;&nbsp;
  [![Packagist](https://img.shields.io/badge/flutter-building-yellow.svg)](https://github.com/old-traveler/flutter_helper)
  
  
@@ -129,6 +129,13 @@
 * 新增私信功能
 * 考试日期跑马灯首页显示
 * 优化升级体验
+
+### 1.4.2
+
+* 添加快速点击拦截插件
+* 升级到Gradle5.4.1
+* 替换ExpandTextView
+* 优化体验
 
 
 
