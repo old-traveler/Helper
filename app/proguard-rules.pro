@@ -58,9 +58,19 @@
 #如果有引用v4包可以添加下面这行
 -keep public class * extends android.support.v4.app.Fragment
 
+-ignorewarnings
 
-#忽略警告
--ignorewarning
+
+#GreenDao R8 配置
+-keepclassmembers class * extends org.greenrobot.greendao.AbstractDao {
+public static java.lang.String TABLENAME;
+}
+-keep class **$Properties {*;}
+
+# If you do not use SQLCipher:
+-dontwarn net.sqlcipher.database.**
+
+
 
 ##记录生成的日志数据,gradle build时在本项目根目录输出##
 #apk 包内所有 class 的内部结构

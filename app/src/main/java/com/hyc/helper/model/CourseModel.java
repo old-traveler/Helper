@@ -1,7 +1,5 @@
 package com.hyc.helper.model;
 
-import android.annotation.SuppressLint;
-import com.hyc.helper.bean.CalendarBean;
 import com.hyc.helper.bean.CourseBean;
 import com.hyc.helper.bean.CourseInfoBean;
 import com.hyc.helper.bean.LessonsExpBean;
@@ -18,9 +16,7 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 public class CourseModel {
 
