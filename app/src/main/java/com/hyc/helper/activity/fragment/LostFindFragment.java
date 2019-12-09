@@ -20,6 +20,7 @@ import com.hyc.helper.bean.LostBean;
 import com.hyc.helper.helper.Constant;
 import com.hyc.helper.model.LostGoodsModel;
 import com.hyc.helper.model.UserModel;
+import com.hyc.helper.util.parrot.InitialParam;
 import java.util.List;
 
 import static android.app.Activity.RESULT_OK;
@@ -29,6 +30,7 @@ public class LostFindFragment
 
   private LostGoodsModel lostGoodsModel = new LostGoodsModel();
   private UserModel userModel = new UserModel();
+  @InitialParam(key = Constant.USER_ID)
   private String userId;
 
   @Override
@@ -55,9 +57,6 @@ public class LostFindFragment
   @Override
   public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {
-    if (getArguments() != null) {
-      userId = getArguments().getString(Constant.USER_ID);
-    }
     return super.onCreateView(inflater, container, savedInstanceState);
   }
 
@@ -90,7 +89,7 @@ public class LostFindFragment
 
   @Override
   protected List<LostBean.GoodsBean> getData(LostBean lostBean) {
-    if (lostBean.getCurrent_page()<getCurPage()){
+    if (lostBean.getCurrent_page() < getCurPage()) {
       return null;
     }
     return lostBean.getGoods();
@@ -104,18 +103,18 @@ public class LostFindFragment
   @Override
   public void onItemClick(LostBean.GoodsBean itemData, View view, int position) {
     super.onItemClick(itemData, view, position);
-    if (R.id.tv_delete == view.getId()){
-      deleteLostItem(itemData.getId(),position);
-    }else {
+    if (R.id.tv_delete == view.getId()) {
+      deleteLostItem(itemData.getId(), position);
+    } else {
       Bundle bundle = new Bundle();
-      bundle.putSerializable("lost",itemData);
-      goToOtherActivity(LostFindDetailActivity.class,bundle,false);
+      bundle.putSerializable("lost", itemData);
+      goToOtherActivity(LostFindDetailActivity.class, bundle, false);
     }
   }
 
-  private void deleteLostItem(String id,int position) {
+  private void deleteLostItem(String id, int position) {
     showLoadingView();
-    addDisposable(lostGoodsModel.deleteLost(userModel.getCurUserInfo(),id)
+    addDisposable(lostGoodsModel.deleteLost(userModel.getCurUserInfo(), id)
         .subscribe(baseRequestBean -> {
           getRecycleAdapter().removeItemFormList(position);
           closeLoadingView();
@@ -132,5 +131,4 @@ public class LostFindFragment
       refresh();
     }
   }
-
 }

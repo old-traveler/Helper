@@ -48,6 +48,7 @@ import com.hyc.helper.model.UserModel;
 import com.hyc.helper.util.DensityUtil;
 import com.hyc.helper.util.RxBus;
 import com.hyc.helper.util.ThreadMode;
+import com.hyc.helper.util.parrot.InitialParam;
 import com.hyc.helper.view.ChatLinearLayoutManager;
 import com.hyc.helper.view.ChatSpacesItemDecoration;
 import com.hyc.helper.view.EmojiItemDecoration;
@@ -90,6 +91,7 @@ public class ChatActivity extends BaseActivity
   LinearLayout rootView;
   @BindView(R.id.voiceView)
   VoiceRecordView voiceRecordView;
+  @InitialParam(key = Constant.CHAT_INTENT_KEY)
   private BmobIMConversation conversation;
   private ChatAdapter adapter;
   private Disposable disposable;
@@ -110,7 +112,7 @@ public class ChatActivity extends BaseActivity
   @Override
   public void initViewWithIntentData(Bundle bundle) {
     ButterKnife.bind(this);
-    initConversation(bundle);
+    initConversation();
     setToolBarTitle(conversation.getConversationTitle());
     initChatRecyclerView();
     initEmojiLayout();
@@ -149,10 +151,9 @@ public class ChatActivity extends BaseActivity
     rvMoreEmoji.setAdapter(emojiAdapter);
   }
 
-  private void initConversation(Bundle bundle) {
+  private void initConversation() {
     userId = String.valueOf(userModel.getCurUserInfo().getData().getUser_id());
     info = userModel.getIMUserInfo();
-    conversation = (BmobIMConversation) bundle.getSerializable(Constant.CHAT_INTENT_KEY);
     conversation = BmobIMConversation.obtain(BmobIMClient.getInstance(), conversation);
   }
 

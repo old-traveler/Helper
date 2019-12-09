@@ -32,6 +32,7 @@ import com.hyc.helper.model.StatementModel;
 import com.hyc.helper.model.UserModel;
 import com.hyc.helper.util.RxBus;
 import com.hyc.helper.util.ThreadMode;
+import com.hyc.helper.util.parrot.InitialParam;
 import java.util.List;
 
 import static android.app.Activity.RESULT_OK;
@@ -43,6 +44,7 @@ public class StatementFragment extends
   @BindView(R.id.cv_comment)
   CardView cvComment;
   Unbinder unbinder;
+  @InitialParam(key = Constant.USER_ID)
   private String userId;
   private int position;
   private UserModel userModel = new UserModel();
@@ -59,9 +61,6 @@ public class StatementFragment extends
   @Override
   public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {
-    if (getArguments() != null) {
-      userId = getArguments().getString(Constant.USER_ID);
-    }
     return super.onCreateView(inflater, container, savedInstanceState);
   }
 

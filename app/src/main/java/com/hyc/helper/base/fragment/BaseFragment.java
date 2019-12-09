@@ -10,9 +10,8 @@ import android.widget.EditText;
 import com.hyc.helper.base.activity.BaseActivity;
 import com.hyc.helper.base.interfaces.IBaseFragment;
 import com.hyc.helper.helper.DisposableManager;
+import com.hyc.helper.util.parrot.Parrot;
 import io.reactivex.disposables.Disposable;
-import java.util.ArrayList;
-import java.util.List;
 
 public abstract class BaseFragment extends Fragment implements View.OnClickListener, IBaseFragment {
 
@@ -24,6 +23,9 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     mBaseActivity = (BaseActivity) getActivity();
+    if (getArguments() != null) {
+      Parrot.INSTANCE.initParam(getArguments(), this);
+    }
   }
 
   @Override
@@ -41,14 +43,14 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
     cancelAllDisposable();
   }
 
-  protected void cancelAllDisposable(){
-    if (disposableManager != null){
+  protected void cancelAllDisposable() {
+    if (disposableManager != null) {
       disposableManager.cancelAllDisposable();
     }
   }
 
-  public void addDisposable(Disposable disposable){
-    if (disposableManager == null){
+  public void addDisposable(Disposable disposable) {
+    if (disposableManager == null) {
       disposableManager = new DisposableManager();
     }
     disposableManager.addDisposable(disposable);

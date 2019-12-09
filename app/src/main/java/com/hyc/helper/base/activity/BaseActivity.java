@@ -19,6 +19,7 @@ import com.hyc.helper.base.listener.OnDialogClickListener;
 import com.hyc.helper.base.view.CommonDialog;
 import com.hyc.helper.base.view.LoadingDialog;
 import com.hyc.helper.helper.DisposableManager;
+import com.hyc.helper.util.parrot.Parrot;
 import io.reactivex.disposables.Disposable;
 
 public abstract class BaseActivity extends AppCompatActivity
@@ -39,7 +40,11 @@ public abstract class BaseActivity extends AppCompatActivity
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(getContentViewId());
-    initViewWithIntentData(getIntent().getExtras());
+    Bundle bundle = getIntent().getExtras();
+    if(bundle != null){
+      Parrot.INSTANCE.initParam(bundle,this);
+    }
+    initViewWithIntentData(bundle);
   }
 
   protected abstract int getContentViewId();
@@ -50,14 +55,14 @@ public abstract class BaseActivity extends AppCompatActivity
     cancelAllDisposable();
   }
 
-  protected void cancelAllDisposable(){
-    if (disposableManager != null){
+  protected void cancelAllDisposable() {
+    if (disposableManager != null) {
       disposableManager.cancelAllDisposable();
     }
   }
 
-  public void addDisposable(Disposable disposable){
-    if (disposableManager == null){
+  public void addDisposable(Disposable disposable) {
+    if (disposableManager == null) {
       disposableManager = new DisposableManager();
     }
     disposableManager.addDisposable(disposable);
@@ -72,13 +77,13 @@ public abstract class BaseActivity extends AppCompatActivity
 
   @Override
   public void goToOtherActivity(Class<?> cls, boolean isFinish) {
-    goToOtherActivity(cls,null,isFinish);
+    goToOtherActivity(cls, null, isFinish);
   }
 
   @Override
   public void goToOtherActivity(Class<?> cls, Bundle bundle, boolean isFinish) {
     Intent intent = new Intent(this, cls);
-    if (bundle != null){
+    if (bundle != null) {
       intent.putExtras(bundle);
     }
     startActivity(intent);
@@ -88,20 +93,20 @@ public abstract class BaseActivity extends AppCompatActivity
   @Override
   public void goToOtherActivityForResult(Class<?> cls, Bundle bundle, int requestCode) {
     Intent intent = new Intent(this, cls);
-    if (null != bundle){
+    if (null != bundle) {
       intent.putExtras(bundle);
     }
     startActivityForResult(intent, requestCode);
   }
 
   public void goToOtherActivityForResult(Class<?> cls, int requestCode) {
-    goToOtherActivityForResult(cls,null,requestCode);
+    goToOtherActivityForResult(cls, null, requestCode);
   }
 
   @Override
   public void backForResult(Class<?> cls, Bundle bundle, int resultCode) {
     Intent intent = new Intent(this, cls);
-    if (null != bundle){
+    if (null != bundle) {
       intent.putExtras(bundle);
     }
     setResult(resultCode, intent);
@@ -109,7 +114,7 @@ public abstract class BaseActivity extends AppCompatActivity
   }
 
   public void backForResult(Class<?> cls, int resultCode) {
-    backForResult(cls,null,resultCode);
+    backForResult(cls, null, resultCode);
   }
 
   public void setToolBar() {
@@ -273,13 +278,11 @@ public abstract class BaseActivity extends AppCompatActivity
 
   @Override
   public boolean onOptionsItemSelected(MenuItem item) {
-    switch (item.getItemId()) {
-      case android.R.id.home:
-        super.onBackPressed();
-        return true;
-      default:
-        return super.onOptionsItemSelected(item);
+    if (item.getItemId() == android.R.id.home) {
+      super.onBackPressed();
+      return true;
     }
+    return super.onOptionsItemSelected(item);
   }
 
   @Override
@@ -312,9 +315,10 @@ public abstract class BaseActivity extends AppCompatActivity
     return screenHeight - rect.bottom != 0;
   }
 
-  public int getStatusHeight(){
+  public int getStatusHeight() {
     int height = 0;
-    int resourceId = getApplicationContext().getResources().getIdentifier("status_bar_height", "dimen", "android");
+    int resourceId = getApplicationContext().getResources()
+        .getIdentifier("status_bar_height", "dimen", "android");
     if (resourceId > 0) {
       height = getApplicationContext().getResources().getDimensionPixelSize(resourceId);
     }

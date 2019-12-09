@@ -11,8 +11,13 @@ import com.hyc.helper.activity.fragment.StatementFragment;
 import com.hyc.helper.base.activity.BaseActivity;
 import com.hyc.helper.base.fragment.BaseFragment;
 import com.hyc.helper.helper.Constant;
+import com.hyc.helper.util.parrot.InitialParam;
 
 public class PersonalPublishActivity extends BaseActivity {
+  @InitialParam(key = Constant.USER_ID)
+  private String userId;
+  @InitialParam
+  private String type;
 
   @Override
   protected int getContentViewId() {
@@ -33,8 +38,7 @@ public class PersonalPublishActivity extends BaseActivity {
     super.onCreate(savedInstanceState);
     if (savedInstanceState == null && getIntent().getExtras() != null) {
       BaseFragment baseFragment = null;
-      String userId = getIntent().getExtras().getString(Constant.USER_ID);
-      switch (getIntent().getExtras().getString(Constant.TYPE,"")){
+      switch (type){
         case Constant.TYPE_LOST:
           baseFragment = LostFindFragment.newInstance(userId);
           break;

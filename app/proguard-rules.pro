@@ -367,3 +367,7 @@ public static java.lang.String TABLENAME;
     public void onEvent*(**);
     void onEvent*(**);
 }
+
+-keepclasseswithmembernames class * {
+    @com.hyc.helper.util.parrot.* <fields>;
+}

@@ -27,6 +27,7 @@ import com.hyc.helper.helper.ImageRequestHelper;
 import com.hyc.helper.im.ChatActivity;
 import com.hyc.helper.im.ConnectManager;
 import com.hyc.helper.model.UserModel;
+import com.hyc.helper.util.parrot.InitialParam;
 import org.greenrobot.greendao.annotation.NotNull;
 
 public class UserInfoActivity extends BaseRequestActivity<UserInfoBean> {
@@ -39,10 +40,16 @@ public class UserInfoActivity extends BaseRequestActivity<UserInfoBean> {
   TextView tvInfoDesc;
   @BindView(R.id.cv_info_portrait)
   ImageView cvInfoPortrait;
+  @InitialParam(key = Constant.USER_HEAD_URL)
   private String headUrl;
+  @InitialParam(key = Constant.USER_ID)
   private String userId;
   private UserModel userModel = new UserModel();
   private BmobIMUserInfo info;
+  @InitialParam(key = Constant.USER_NAME)
+  private String userName;
+  @InitialParam(key = Constant.USER_BIO)
+  private String userBio;
 
   @Override
   protected int getContentViewId() {
@@ -90,21 +97,19 @@ public class UserInfoActivity extends BaseRequestActivity<UserInfoBean> {
   public void initViewWithIntentData(@NotNull Bundle bundle) {
     ButterKnife.bind(this);
     setToolBarTitle(R.string.user_info);
-    userId = bundle.getString(Constant.USER_ID);
     ImageRequestHelper.loadOtherImage(this, UiHelper.getString(R.string.default_info_bg), ivInfoBg);
-    if (TextUtils.isEmpty(bundle.getString(Constant.USER_HEAD_URL))) {
+    if (TextUtils.isEmpty(headUrl)) {
       startRequestApi();
     } else {
       info = new BmobIMUserInfo();
       info.setUserId(userId);
-      info.setAvatar(bundle.getString(Constant.USER_HEAD_URL));
-      info.setName(bundle.getString(Constant.USER_NAME));
-      tvInfoName.setText(bundle.getString(Constant.USER_NAME));
-      ImageRequestHelper.loadHeadImage(this, bundle.getString(Constant.USER_HEAD_URL),
+      info.setAvatar(headUrl);
+      info.setName(userName);
+      tvInfoName.setText(userName);
+      ImageRequestHelper.loadHeadImage(this, headUrl,
           cvInfoPortrait);
-      headUrl = bundle.getString(Constant.USER_HEAD_URL);
-      if (!TextUtils.isEmpty(bundle.getString(Constant.USER_BIO))) {
-        tvInfoDesc.setText(bundle.getString(Constant.USER_BIO));
+      if (!TextUtils.isEmpty(userBio)) {
+        tvInfoDesc.setText(userBio);
       }
     }
   }

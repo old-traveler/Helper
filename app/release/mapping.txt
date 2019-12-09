@@ -1,7 +1,7 @@
 # compiler: R8
 # compiler_version: 1.5.68
 # min_api: 21
-# pg_map_id: 80fd1f3
+# pg_map_id: 54b6cf3
 android.arch.core.executor.ArchTaskExecutor -> a.a.a.a.a:
     android.arch.core.executor.ArchTaskExecutor sInstance -> c
     android.arch.core.executor.TaskExecutor mDelegate -> a
@@ -16311,7 +16311,6 @@ com.hyc.helper.activity.SchoolCalendarActivity$1 -> com.hyc.helper.activity.Scho
 com.hyc.helper.activity.SchoolCalendarActivity_ViewBinding -> com.hyc.helper.activity.SchoolCalendarActivity_ViewBinding:
     com.hyc.helper.activity.SchoolCalendarActivity target -> a
 com.hyc.helper.activity.SecondGoodsDetailActivity -> com.hyc.helper.activity.SecondGoodsDetailActivity:
-    java.lang.String goodsId -> y
     com.hyc.helper.model.UserModel userModel -> w
     com.hyc.helper.model.SecondGoodsModel secondGoodsModel -> x
     void requestDataFromApi() -> D
@@ -16376,10 +16375,8 @@ com.hyc.helper.activity.SplashActivity -> com.hyc.helper.activity.SplashActivity
 com.hyc.helper.activity.SplashActivity$SplashHandler -> com.hyc.helper.activity.SplashActivity$a:
     java.lang.ref.WeakReference weakReference -> a
 com.hyc.helper.activity.UserInfoActivity -> com.hyc.helper.activity.UserInfoActivity:
-    java.lang.String headUrl -> w
-    java.lang.String userId -> x
-    com.hyc.helper.model.UserModel userModel -> y
-    cn.bmob.newim.bean.BmobIMUserInfo info -> z
+    com.hyc.helper.model.UserModel userModel -> w
+    cn.bmob.newim.bean.BmobIMUserInfo info -> x
     boolean isOnCreateRequest() -> C
     void requestDataFromApi() -> D
     void gotoChatActivity() -> I
@@ -16408,11 +16405,9 @@ com.hyc.helper.activity.UserInfoActivity_ViewBinding$3 -> com.hyc.helper.activit
 com.hyc.helper.activity.UserInfoActivity_ViewBinding$4 -> com.hyc.helper.activity.UserInfoActivity_ViewBinding$d:
     com.hyc.helper.activity.UserInfoActivity val$target -> a
 com.hyc.helper.activity.WebActivity -> com.hyc.helper.activity.WebActivity:
-    java.lang.String toolBarTitle -> v
+    android.webkit.WebChromeClient webChromeClient -> v
     android.support.design.widget.BottomSheetDialog sheetDialog -> t
-    android.webkit.WebChromeClient webChromeClient -> x
-    java.lang.String mainUrl -> u
-    android.webkit.WebViewClient webViewClient -> w
+    android.webkit.WebViewClient webViewClient -> u
     void showBottomView() -> B
     void initViewWithIntentData(android.os.Bundle) -> a
     void lambda$onClick$0(java.lang.Boolean) -> a
@@ -16465,7 +16460,6 @@ com.hyc.helper.activity.fragment.-$$Lambda$_EcFki0Kp49Q1zbPJPxkNCnLScQ -> com.hy
 com.hyc.helper.activity.fragment.LostFindFragment -> com.hyc.helper.activity.fragment.LostFindFragment:
     com.hyc.helper.model.UserModel userModel -> k0
     com.hyc.helper.model.LostGoodsModel lostGoodsModel -> j0
-    java.lang.String userId -> l0
     void deleteLostItem(java.lang.String,int) -> a
     java.util.List getData(com.hyc.helper.bean.BaseRequestBean) -> a
     java.util.List getData(com.hyc.helper.bean.LostBean) -> a
@@ -16487,7 +16481,6 @@ com.hyc.helper.activity.fragment.LostFindFragment -> com.hyc.helper.activity.fra
 com.hyc.helper.activity.fragment.SecondHandFragment -> com.hyc.helper.activity.fragment.SecondHandFragment:
     com.hyc.helper.model.UserModel userModel -> k0
     com.hyc.helper.model.SecondGoodsModel model -> j0
-    java.lang.String userId -> l0
     void deleteGoods(java.lang.String,int) -> a
     java.util.List getData(com.hyc.helper.bean.BaseRequestBean) -> a
     java.util.List getData(com.hyc.helper.bean.SecondHandBean) -> a
@@ -16507,11 +16500,10 @@ com.hyc.helper.activity.fragment.SecondHandFragment -> com.hyc.helper.activity.f
     int getRefreshLayoutId() -> t0
     com.hyc.helper.base.adapter.BaseRecycleAdapter setRecycleAdapter() -> v0
 com.hyc.helper.activity.fragment.StatementFragment -> com.hyc.helper.activity.fragment.StatementFragment:
-    com.hyc.helper.model.UserModel userModel -> m0
-    com.hyc.helper.model.StatementModel statementModel -> n0
+    com.hyc.helper.model.UserModel userModel -> l0
     butterknife.Unbinder unbinder -> j0
-    int position -> l0
-    java.lang.String userId -> k0
+    com.hyc.helper.model.StatementModel statementModel -> m0
+    int position -> k0
     void onDestroyView() -> R
     void onStart() -> V
     void onStop() -> W
@@ -17272,27 +17264,27 @@ com.hyc.helper.im.-$$Lambda$ConversationActivity$gC9bmsAs3TcFgJ_3muppCHzUcVs -> 
     com.hyc.helper.im.ConversationActivity f$0 -> a
     void onItemClick(java.lang.Object,android.view.View,int) -> a
 com.hyc.helper.im.ChatActivity -> com.hyc.helper.im.ChatActivity:
-    com.hyc.helper.base.adapter.BaseRecycleAdapter emojiAdapter -> w
-    boolean isSetHeight -> y
-    int keyHeight -> z
-    boolean needShowMoreLayout -> E
-    boolean isKeyShow -> x
-    io.reactivex.disposables.Disposable disposable -> v
-    com.hyc.helper.adapter.ChatAdapter adapter -> u
-    com.hyc.helper.model.UserModel userModel -> A
-    java.lang.String userId -> B
-    cn.bmob.newim.bean.BmobIMUserInfo info -> C
-    cn.bmob.newim.bean.BmobIMConversation conversation -> t
-    boolean isEmoji -> D
+    cn.bmob.newim.bean.BmobIMUserInfo info -> B
+    com.hyc.helper.model.UserModel userModel -> z
+    com.hyc.helper.base.adapter.BaseRecycleAdapter emojiAdapter -> v
+    int keyHeight -> y
+    boolean isKeyShow -> w
+    java.lang.String userId -> A
+    boolean isSetHeight -> x
+    com.hyc.helper.adapter.ChatAdapter adapter -> t
+    io.reactivex.disposables.Disposable disposable -> u
+    boolean isEmoji -> C
+    boolean needShowMoreLayout -> D
     void scrollBottom() -> B
     void showMoreLayout() -> C
     void dispose() -> D
     void initChatRecyclerView() -> E
-    void initEmojiLayout() -> F
-    void initVoice() -> G
-    void sendTxtMessage() -> H
-    void showEmojiLayout() -> I
-    void showVoiceLayout() -> J
+    void initConversation() -> F
+    void initEmojiLayout() -> G
+    void initVoice() -> H
+    void sendTxtMessage() -> I
+    void showEmojiLayout() -> J
+    void showVoiceLayout() -> K
     boolean access$000(com.hyc.helper.im.ChatActivity) -> a
     com.hyc.helper.adapter.ChatAdapter access$102(com.hyc.helper.im.ChatActivity,com.hyc.helper.adapter.ChatAdapter) -> a
     void goToPictureBrowsing(cn.bmob.newim.bean.BmobIMMessage) -> a
@@ -17307,7 +17299,6 @@ com.hyc.helper.im.ChatActivity -> com.hyc.helper.im.ChatActivity:
     void onNext(com.hyc.helper.bean.LocalImageBean) -> a
     com.hyc.helper.adapter.ChatAdapter access$100(com.hyc.helper.im.ChatActivity) -> b
     void clickLocalImage(com.hyc.helper.bean.LocalImageBean) -> b
-    void initConversation(android.os.Bundle) -> b
     void lambda$showVoiceLayout$2(java.lang.Boolean) -> b
     java.lang.String access$200(com.hyc.helper.im.ChatActivity) -> c
     void compressImageAndSend(java.lang.String) -> c
@@ -17615,6 +17606,30 @@ com.hyc.helper.util.Sha1Utils -> com.hyc.helper.g.i:
     java.lang.String getEnc(java.lang.String,java.lang.String,com.hyc.helper.bean.UserBean,java.lang.String) -> a
     java.lang.String getEnv(com.hyc.helper.bean.UserBean) -> a
     java.lang.String shaEncrypt(java.lang.String) -> a
+com.hyc.helper.util.parrot.InitialClassParam -> com.hyc.helper.g.j.a:
+com.hyc.helper.util.parrot.InitialParam -> com.hyc.helper.g.j.b:
+com.hyc.helper.util.parrot.ParamName -> com.hyc.helper.g.j.c:
+    java.util.List fieldNames -> b
+    java.lang.String key -> a
+    java.lang.String belongToSet(java.util.Set) -> a
+com.hyc.helper.util.parrot.Parrot -> com.hyc.helper.g.j.d:
+    com.google.gson.Gson mGson -> a
+    com.hyc.helper.util.parrot.Parrot INSTANCE -> b
+    com.hyc.helper.util.parrot.InitialClassParam getInitialClassParam(java.lang.reflect.Field) -> a
+    java.lang.Object getJsonObject(java.lang.String,java.lang.reflect.Field) -> a
+    void initParam(android.os.Bundle,java.lang.Object) -> a
+    void initParamInternal(android.os.Bundle,java.lang.Object,boolean) -> a
+    void initParamInternal$default(com.hyc.helper.util.parrot.Parrot,android.os.Bundle,java.lang.Object,boolean,int,java.lang.Object) -> a
+    void invokeDouble(java.lang.Object,java.lang.reflect.Field,java.lang.Object) -> a
+    java.lang.Object getParamInstance(java.lang.reflect.Field) -> b
+    void invokeField(java.lang.Object,java.lang.reflect.Field,java.lang.Object) -> b
+    com.hyc.helper.util.parrot.ParamName getParamName(java.lang.reflect.Field) -> c
+    void invokeFloat(java.lang.Object,java.lang.reflect.Field,java.lang.Object) -> c
+    void invokeInt(java.lang.Object,java.lang.reflect.Field,java.lang.Object) -> d
+    void invokeJsonObject(java.lang.Object,java.lang.reflect.Field,java.lang.Object) -> e
+    void invokeLong(java.lang.Object,java.lang.reflect.Field,java.lang.Object) -> f
+    void invokeObject(java.lang.Object,java.lang.reflect.Field,java.lang.Object) -> g
+    void invokeString(java.lang.Object,java.lang.reflect.Field,java.lang.Object) -> h
 com.hyc.helper.view.ChatLinearLayoutManager -> com.hyc.helper.view.ChatLinearLayoutManager:
     boolean isScrollEnabled -> H
     boolean canScrollVertically() -> b
@@ -20257,6 +20272,47 @@ it.sephiroth.android.library.imagezoom.graphics.FastBitmapDrawable -> it.sephiro
 it.sephiroth.android.library.imagezoom.graphics.IBitmapDrawable -> it.sephiroth.android.library.imagezoom.a.b:
 it.sephiroth.android.library.imagezoom.utils.IDisposable -> it.sephiroth.android.library.imagezoom.b.a:
 kotlin.Function -> kotlin.a:
+kotlin.collections.AbstractCollection -> kotlin.collections.AbstractCollection:
+    int getSize() -> a
+kotlin.collections.ArraysKt__ArraysJVMKt -> kotlin.collections.a:
+kotlin.collections.ArraysKt__ArraysKt -> kotlin.collections.b:
+kotlin.collections.ArraysKt___ArraysJvmKt -> kotlin.collections.c:
+    java.util.List asList(java.lang.Object[]) -> a
+kotlin.collections.ArraysUtilJVM -> kotlin.collections.d:
+    java.util.List asList(java.lang.Object[]) -> a
+kotlin.collections.CollectionsKt -> kotlin.collections.e:
+    boolean addAll(java.util.Collection,java.lang.Object[]) -> a
+    kotlin.sequences.Sequence asSequence(java.lang.Iterable) -> a
+    kotlin.ranges.IntRange getIndices(java.util.Collection) -> a
+    java.util.List listOf(java.lang.Object) -> a
+    boolean retainAll(java.lang.Iterable,kotlin.jvm.functions.Function1) -> a
+kotlin.collections.CollectionsKt__CollectionsJVMKt -> kotlin.collections.f:
+    java.util.List listOf(java.lang.Object) -> a
+kotlin.collections.CollectionsKt__CollectionsKt -> kotlin.collections.g:
+    kotlin.ranges.IntRange getIndices(java.util.Collection) -> a
+kotlin.collections.CollectionsKt__IterablesKt -> kotlin.collections.h:
+kotlin.collections.CollectionsKt__IteratorsJVMKt -> kotlin.collections.i:
+kotlin.collections.CollectionsKt__IteratorsKt -> kotlin.collections.j:
+kotlin.collections.CollectionsKt__MutableCollectionsJVMKt -> kotlin.collections.k:
+kotlin.collections.CollectionsKt__MutableCollectionsKt -> kotlin.collections.l:
+    boolean addAll(java.util.Collection,java.lang.Object[]) -> a
+    boolean filterInPlace$CollectionsKt__MutableCollectionsKt(java.lang.Iterable,kotlin.jvm.functions.Function1,boolean) -> a
+    boolean retainAll(java.lang.Iterable,kotlin.jvm.functions.Function1) -> a
+kotlin.collections.CollectionsKt__ReversedViewsKt -> kotlin.collections.m:
+kotlin.collections.CollectionsKt___CollectionsJvmKt -> kotlin.collections.n:
+kotlin.collections.CollectionsKt___CollectionsKt -> kotlin.collections.o:
+    kotlin.sequences.Sequence asSequence(java.lang.Iterable) -> a
+    java.lang.Appendable joinTo(java.lang.Iterable,java.lang.Appendable,java.lang.CharSequence,java.lang.CharSequence,java.lang.CharSequence,int,java.lang.CharSequence,kotlin.jvm.functions.Function1) -> a
+    java.lang.String joinToString(java.lang.Iterable,java.lang.CharSequence,java.lang.CharSequence,java.lang.CharSequence,int,java.lang.CharSequence,kotlin.jvm.functions.Function1) -> a
+    java.lang.String joinToString$default(java.lang.Iterable,java.lang.CharSequence,java.lang.CharSequence,java.lang.CharSequence,int,java.lang.CharSequence,kotlin.jvm.functions.Function1,int,java.lang.Object) -> a
+kotlin.collections.CollectionsKt___CollectionsKt$asSequence$$inlined$Sequence$1 -> kotlin.collections.o$a:
+    java.lang.Iterable $this_asSequence$inlined -> a
+kotlin.collections.IntIterator -> kotlin.collections.p:
+    int nextInt() -> a
+kotlin.internal.ProgressionUtilKt -> kotlin.b.a:
+    int differenceModulo(int,int,int) -> a
+    int mod(int,int) -> a
+    int getProgressionLastElement(int,int,int) -> b
 kotlin.jvm.JvmClassMappingKt -> kotlin.jvm.a:
     java.lang.Class getJavaObjectType(kotlin.reflect.KClass) -> a
 kotlin.jvm.functions.Function0 -> kotlin.jvm.b.a:
@@ -20271,40 +20327,76 @@ kotlin.jvm.internal.ClassBasedDeclarationContainer -> kotlin.jvm.internal.a:
 kotlin.jvm.internal.ClassReference -> kotlin.jvm.internal.b:
     java.lang.Class jClass -> a
     java.lang.Class getJClass() -> a
-kotlin.jvm.internal.DefaultConstructorMarker -> kotlin.jvm.internal.c:
-kotlin.jvm.internal.FunctionBase -> kotlin.jvm.internal.d:
-kotlin.jvm.internal.Intrinsics -> kotlin.jvm.internal.e:
+kotlin.jvm.internal.CollectionToArray -> kotlin.jvm.internal.c:
+    java.lang.Object[] EMPTY -> a
+    java.lang.Object[] toArray(java.util.Collection) -> a
+    java.lang.Object[] toArray(java.util.Collection,java.lang.Object[]) -> a
+kotlin.jvm.internal.DefaultConstructorMarker -> kotlin.jvm.internal.d:
+kotlin.jvm.internal.FunctionBase -> kotlin.jvm.internal.e:
+kotlin.jvm.internal.Intrinsics -> kotlin.jvm.internal.f:
     boolean areEqual(java.lang.Object,java.lang.Object) -> a
     void checkExpressionValueIsNotNull(java.lang.Object,java.lang.String) -> a
     java.lang.Throwable sanitizeStackTrace(java.lang.Throwable) -> a
     java.lang.Throwable sanitizeStackTrace(java.lang.Throwable,java.lang.String) -> a
+    void throwNpe() -> a
     void throwParameterIsNullException(java.lang.String) -> a
     void checkParameterIsNotNull(java.lang.Object,java.lang.String) -> b
     void throwUninitializedProperty(java.lang.String) -> b
     void throwUninitializedPropertyAccessException(java.lang.String) -> c
-kotlin.jvm.internal.Reflection -> kotlin.jvm.internal.f:
+kotlin.jvm.internal.Reflection -> kotlin.jvm.internal.g:
     kotlin.jvm.internal.ReflectionFactory factory -> a
+    kotlin.reflect.KFunction function(kotlin.jvm.internal.FunctionReference) -> a
     kotlin.reflect.KClass getOrCreateKotlinClass(java.lang.Class) -> a
     kotlin.reflect.KMutableProperty1 mutableProperty1(kotlin.jvm.internal.MutablePropertyReference1) -> a
     kotlin.reflect.KProperty1 property1(kotlin.jvm.internal.PropertyReference1) -> a
     java.lang.String renderLambdaToString(kotlin.jvm.internal.Lambda) -> a
-kotlin.jvm.internal.ReflectionFactory -> kotlin.jvm.internal.g:
+kotlin.jvm.internal.ReflectionFactory -> kotlin.jvm.internal.h:
+    kotlin.reflect.KFunction function(kotlin.jvm.internal.FunctionReference) -> a
     kotlin.reflect.KClass getOrCreateKotlinClass(java.lang.Class) -> a
     kotlin.reflect.KMutableProperty1 mutableProperty1(kotlin.jvm.internal.MutablePropertyReference1) -> a
     kotlin.reflect.KProperty1 property1(kotlin.jvm.internal.PropertyReference1) -> a
     java.lang.String renderLambdaToString(kotlin.jvm.internal.FunctionBase) -> a
     java.lang.String renderLambdaToString(kotlin.jvm.internal.Lambda) -> a
-kotlin.properties.Delegates -> kotlin.b.a:
+kotlin.jvm.internal.markers.KMappedMarker -> kotlin.jvm.internal.i.a:
+kotlin.properties.Delegates -> kotlin.c.a:
     kotlin.properties.Delegates INSTANCE -> a
-kotlin.properties.ObservableProperty -> kotlin.b.b:
+kotlin.properties.ObservableProperty -> kotlin.c.b:
     java.lang.Object value -> a
     void afterChange(kotlin.reflect.KProperty,java.lang.Object,java.lang.Object) -> a
     java.lang.Object getValue(java.lang.Object,kotlin.reflect.KProperty) -> a
     void setValue(java.lang.Object,kotlin.reflect.KProperty,java.lang.Object) -> a
     boolean beforeChange(kotlin.reflect.KProperty,java.lang.Object,java.lang.Object) -> b
-kotlin.properties.ReadWriteProperty -> kotlin.b.c:
+kotlin.properties.ReadWriteProperty -> kotlin.c.c:
     java.lang.Object getValue(java.lang.Object,kotlin.reflect.KProperty) -> a
     void setValue(java.lang.Object,kotlin.reflect.KProperty,java.lang.Object) -> a
+kotlin.ranges.ClosedRange -> kotlin.d.a:
+kotlin.ranges.IntProgression -> kotlin.d.b:
+    int last -> b
+    int step -> c
+    int first -> a
+kotlin.ranges.IntProgression$Companion -> kotlin.d.b$a:
+kotlin.ranges.IntProgressionIterator -> kotlin.d.c:
+    int step -> d
+    boolean hasNext -> b
+    int next -> c
+    int finalElement -> a
+    int nextInt() -> a
+kotlin.ranges.IntRange -> kotlin.d.d:
+    kotlin.ranges.IntRange EMPTY -> d
+    kotlin.ranges.IntRange$Companion Companion -> f
+    java.lang.Integer getEndInclusive() -> a
+    java.lang.Integer getStart() -> b
+    kotlin.ranges.IntRange access$getEMPTY$cp() -> c
+kotlin.ranges.IntRange$Companion -> kotlin.d.d$a:
+    kotlin.ranges.IntRange getEMPTY() -> a
+kotlin.ranges.RangesKt -> kotlin.d.e:
+    int coerceAtMost(int,int) -> a
+    kotlin.ranges.IntRange until(int,int) -> b
+kotlin.ranges.RangesKt__RangesJVMKt -> kotlin.d.f:
+kotlin.ranges.RangesKt__RangesKt -> kotlin.d.g:
+kotlin.ranges.RangesKt___RangesKt -> kotlin.d.h:
+    int coerceAtMost(int,int) -> a
+    kotlin.ranges.IntRange until(int,int) -> b
 kotlin.reflect.KAnnotatedElement -> kotlin.reflect.a:
 kotlin.reflect.KCallable -> kotlin.reflect.b:
 kotlin.reflect.KClass -> kotlin.reflect.c:
@@ -20323,6 +20415,99 @@ kotlin.reflect.KProperty1$Getter -> kotlin.reflect.j$a:
 kotlin.reflect.KType -> kotlin.reflect.k:
 kotlin.reflect.KVisibility -> kotlin.reflect.KVisibility:
     kotlin.reflect.KVisibility[] $VALUES -> a
+kotlin.sequences.GeneratorSequence -> kotlin.e.a:
+    kotlin.jvm.functions.Function0 getInitialValue -> a
+    kotlin.jvm.functions.Function1 getNextValue -> b
+    kotlin.jvm.functions.Function0 access$getGetInitialValue$p(kotlin.sequences.GeneratorSequence) -> a
+    kotlin.jvm.functions.Function1 access$getGetNextValue$p(kotlin.sequences.GeneratorSequence) -> b
+kotlin.sequences.GeneratorSequence$iterator$1 -> kotlin.e.a$a:
+    kotlin.sequences.GeneratorSequence this$0 -> c
+    java.lang.Object nextItem -> a
+    int nextState -> b
+    void calcNext() -> a
+kotlin.sequences.Sequence -> kotlin.e.b:
+kotlin.sequences.SequencesKt -> kotlin.e.c:
+    kotlin.sequences.Sequence generateSequence(kotlin.jvm.functions.Function0,kotlin.jvm.functions.Function1) -> a
+    kotlin.sequences.Sequence map(kotlin.sequences.Sequence,kotlin.jvm.functions.Function1) -> a
+kotlin.sequences.SequencesKt__SequenceBuilderKt -> kotlin.e.d:
+kotlin.sequences.SequencesKt__SequencesJVMKt -> kotlin.e.e:
+kotlin.sequences.SequencesKt__SequencesKt -> kotlin.e.f:
+    kotlin.sequences.Sequence generateSequence(kotlin.jvm.functions.Function0,kotlin.jvm.functions.Function1) -> a
+kotlin.sequences.SequencesKt___SequencesJvmKt -> kotlin.e.g:
+kotlin.sequences.SequencesKt___SequencesKt -> kotlin.e.h:
+    kotlin.sequences.Sequence map(kotlin.sequences.Sequence,kotlin.jvm.functions.Function1) -> a
+kotlin.sequences.TransformingSequence -> kotlin.e.i:
+    kotlin.sequences.Sequence sequence -> a
+    kotlin.jvm.functions.Function1 transformer -> b
+    kotlin.sequences.Sequence access$getSequence$p(kotlin.sequences.TransformingSequence) -> a
+    kotlin.jvm.functions.Function1 access$getTransformer$p(kotlin.sequences.TransformingSequence) -> b
+kotlin.sequences.TransformingSequence$iterator$1 -> kotlin.e.i$a:
+    kotlin.sequences.TransformingSequence this$0 -> b
+    java.util.Iterator iterator -> a
+kotlin.text.CharsKt__CharJVMKt -> kotlin.text.a:
+    int checkRadix(int) -> a
+    int digitOf(char,int) -> a
+kotlin.text.FlagEnum -> kotlin.text.b:
+kotlin.text.MatchGroup -> kotlin.text.c:
+    kotlin.ranges.IntRange range -> b
+    java.lang.String value -> a
+kotlin.text.MatchGroupCollection -> kotlin.text.d:
+kotlin.text.MatchNamedGroupCollection -> kotlin.text.e:
+kotlin.text.MatchResult -> kotlin.text.f:
+    kotlin.ranges.IntRange getRange() -> a
+kotlin.text.MatcherMatchResult -> kotlin.text.MatcherMatchResult:
+    java.util.regex.Matcher matcher -> a
+    java.lang.CharSequence input -> b
+    java.util.regex.MatchResult access$getMatchResult$p(kotlin.text.MatcherMatchResult) -> a
+    kotlin.ranges.IntRange getRange() -> a
+    java.util.regex.MatchResult getMatchResult() -> b
+kotlin.text.MatcherMatchResult$groups$1 -> kotlin.text.MatcherMatchResult$groups$1:
+    kotlin.text.MatcherMatchResult this$0 -> a
+    boolean contains(kotlin.text.MatchGroup) -> a
+    int getSize() -> a
+kotlin.text.Regex$Companion -> kotlin.text.Regex$a:
+    int access$ensureUnicodeCase(kotlin.text.Regex$Companion,int) -> a
+    int ensureUnicodeCase(int) -> a
+kotlin.text.Regex$Serialized$Companion -> kotlin.text.Regex$Serialized$a:
+kotlin.text.RegexKt -> kotlin.text.g:
+    kotlin.text.MatchResult access$findNext(java.util.regex.Matcher,int,java.lang.CharSequence) -> a
+    kotlin.text.MatchResult access$matchEntire(java.util.regex.Matcher,java.lang.CharSequence) -> a
+    kotlin.ranges.IntRange access$range(java.util.regex.MatchResult) -> a
+    kotlin.ranges.IntRange access$range(java.util.regex.MatchResult,int) -> a
+    int access$toInt(java.lang.Iterable) -> a
+    kotlin.text.MatchResult findNext(java.util.regex.Matcher,int,java.lang.CharSequence) -> b
+    kotlin.text.MatchResult matchEntire(java.util.regex.Matcher,java.lang.CharSequence) -> b
+    kotlin.ranges.IntRange range(java.util.regex.MatchResult) -> b
+    kotlin.ranges.IntRange range(java.util.regex.MatchResult,int) -> b
+    int toInt(java.lang.Iterable) -> b
+kotlin.text.RegexOption -> kotlin.text.RegexOption:
+    kotlin.text.RegexOption[] $VALUES -> a
+kotlin.text.ScreenFloatValueRegEx -> kotlin.text.h:
+    kotlin.text.Regex value -> a
+kotlin.text.StringsKt -> kotlin.text.i:
+    void appendElement(java.lang.Appendable,java.lang.Object,kotlin.jvm.functions.Function1) -> a
+    java.lang.Double toDoubleOrNull(java.lang.String) -> a
+    java.lang.Float toFloatOrNull(java.lang.String) -> b
+    java.lang.Integer toIntOrNull(java.lang.String) -> c
+    java.lang.Long toLongOrNull(java.lang.String) -> d
+kotlin.text.StringsKt__IndentKt -> kotlin.text.j:
+kotlin.text.StringsKt__RegexExtensionsJVMKt -> kotlin.text.k:
+kotlin.text.StringsKt__RegexExtensionsKt -> kotlin.text.l:
+kotlin.text.StringsKt__StringBuilderJVMKt -> kotlin.text.m:
+kotlin.text.StringsKt__StringBuilderKt -> kotlin.text.n:
+    void appendElement(java.lang.Appendable,java.lang.Object,kotlin.jvm.functions.Function1) -> a
+kotlin.text.StringsKt__StringNumberConversionsJVMKt -> kotlin.text.o:
+    java.lang.Double toDoubleOrNull(java.lang.String) -> a
+    java.lang.Float toFloatOrNull(java.lang.String) -> b
+kotlin.text.StringsKt__StringNumberConversionsKt -> kotlin.text.p:
+    java.lang.Integer toIntOrNull(java.lang.String,int) -> a
+    java.lang.Long toLongOrNull(java.lang.String,int) -> b
+    java.lang.Integer toIntOrNull(java.lang.String) -> c
+    java.lang.Long toLongOrNull(java.lang.String) -> d
+kotlin.text.StringsKt__StringsJVMKt -> kotlin.text.q:
+kotlin.text.StringsKt__StringsKt -> kotlin.text.r:
+kotlin.text.StringsKt___StringsJvmKt -> kotlin.text.s:
+kotlin.text.StringsKt___StringsKt -> kotlin.text.t:
 okio.AsyncTimeout -> okio.a:
 okio.AsyncTimeout$1 -> okio.a$a:
     okio.AsyncTimeout this$0 -> b

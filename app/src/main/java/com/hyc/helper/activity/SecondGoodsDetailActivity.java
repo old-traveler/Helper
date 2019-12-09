@@ -23,6 +23,7 @@ import com.hyc.helper.helper.DisposableManager;
 import com.hyc.helper.helper.ImageRequestHelper;
 import com.hyc.helper.model.SecondGoodsModel;
 import com.hyc.helper.model.UserModel;
+import com.hyc.helper.util.parrot.InitialParam;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,7 +42,7 @@ public class SecondGoodsDetailActivity extends BaseRequestActivity<GoodsDetailBe
   TextView tvContent;
   @BindView(R.id.rv_info)
   RecyclerView rvInfo;
-
+  @InitialParam
   private String goodsId;
 
   @Override
@@ -53,7 +54,6 @@ public class SecondGoodsDetailActivity extends BaseRequestActivity<GoodsDetailBe
   public void initViewWithIntentData(Bundle bundle) {
     ButterKnife.bind(this);
     setToolBar(R.id.toolbar);
-    goodsId = bundle.getString("goodsId");
   }
 
   @Override

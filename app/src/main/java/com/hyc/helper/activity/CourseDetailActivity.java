@@ -15,6 +15,7 @@ import com.hyc.helper.base.activity.BaseActivity;
 import com.hyc.helper.base.adapter.BaseRecycleAdapter;
 import com.hyc.helper.bean.CourseInfoBean;
 import com.hyc.helper.bean.InfoEntity;
+import com.hyc.helper.util.parrot.InitialParam;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +25,8 @@ public class CourseDetailActivity extends BaseActivity {
   RecyclerView rvDate;
   @BindView(R.id.rv_course_info)
   RecyclerView rvCourseInfo;
+  @InitialParam
+  private CourseInfoBean courseInfoBean;
 
   @Override
   protected int getContentViewId() {
@@ -32,7 +35,7 @@ public class CourseDetailActivity extends BaseActivity {
 
   public static void startCourseDetail(Context context, @NonNull CourseInfoBean courseInfoBean) {
     Bundle bundle = new Bundle();
-    bundle.putSerializable("data", courseInfoBean);
+    bundle.putSerializable("courseInfoBean", courseInfoBean);
     Intent intent = new Intent(context, CourseDetailActivity.class);
     intent.putExtras(bundle);
     context.startActivity(intent);
@@ -42,10 +45,9 @@ public class CourseDetailActivity extends BaseActivity {
   public void initViewWithIntentData(Bundle bundle) {
     ButterKnife.bind(this);
     setToolBarTitle(R.string.course_detail);
-    CourseInfoBean bean = (CourseInfoBean) bundle.getSerializable("data");
-    initCourseDateInfo(bean);
-    if (bean != null){
-      initCourseInfo(bean);
+    initCourseDateInfo(courseInfoBean);
+    if (courseInfoBean != null){
+      initCourseInfo(courseInfoBean);
     }
   }
 

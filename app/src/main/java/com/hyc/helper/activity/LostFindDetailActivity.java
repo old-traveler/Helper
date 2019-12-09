@@ -26,6 +26,7 @@ import com.hyc.helper.bean.LostBean;
 import com.hyc.helper.helper.DisposableManager;
 import com.hyc.helper.helper.ImageRequestHelper;
 import com.hyc.helper.util.DensityUtil;
+import com.hyc.helper.util.parrot.InitialParam;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,12 +46,12 @@ public class LostFindDetailActivity extends BaseActivity {
   RecyclerView rvInfo;
   @BindView(R.id.ll_info)
   LinearLayout llInfo;
-  @BindView(R.id.tv_fail_tip)
-  TextView tvFailTip;
   @BindView(R.id.fl_head)
   FrameLayout flHead;
   @BindView(R.id.hzl_detail)
   HeadZoomLayout hzlDetail;
+  @InitialParam(key = "lost")
+  private LostBean.GoodsBean goodsBean;
 
   @Override
   protected int getContentViewId() {
@@ -61,7 +62,6 @@ public class LostFindDetailActivity extends BaseActivity {
   public void initViewWithIntentData(Bundle bundle) {
     ButterKnife.bind(this);
     setToolBar();
-    LostBean.GoodsBean goodsBean = (LostBean.GoodsBean) bundle.getSerializable("lost");
     if (goodsBean != null) {
       initImageBrowsing(goodsBean.getPics());
       initLostFindInfo(goodsBean);

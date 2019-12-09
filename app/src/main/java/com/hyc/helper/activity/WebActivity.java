@@ -5,12 +5,10 @@ import android.app.AlertDialog;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.BottomSheetDialog;
-import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -25,15 +23,12 @@ import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import com.hyc.helper.HelperApplication;
 import com.hyc.helper.R;
 import com.hyc.helper.base.activity.BaseActivity;
 import com.hyc.helper.base.util.ToastHelper;
 import com.hyc.helper.base.util.UiHelper;
 import com.hyc.helper.helper.DbInsertHelper;
-import io.reactivex.functions.Consumer;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import com.hyc.helper.util.parrot.InitialParam;
 
 public class WebActivity extends BaseActivity {
 
@@ -42,8 +37,9 @@ public class WebActivity extends BaseActivity {
   @BindView(R.id.web_view)
   WebView webView;
   private BottomSheetDialog sheetDialog;
+  @InitialParam(key = "url")
   private String mainUrl;
-
+  @InitialParam(key = "title")
   public String toolBarTitle;
 
   @Override
@@ -73,9 +69,8 @@ public class WebActivity extends BaseActivity {
   @Override
   public void initViewWithIntentData(Bundle bundle) {
     ButterKnife.bind(this);
-    setToolBarTitle(bundle.getString("title"));
-    webView.loadUrl(bundle.getString("url"));
-    mainUrl = bundle.getString("url");
+    setToolBarTitle(toolBarTitle);
+    webView.loadUrl(mainUrl);
     webView.addJavascriptInterface(this, "android");
     webView.setWebChromeClient(webChromeClient);
     webView.setWebViewClient(webViewClient);
@@ -121,9 +116,7 @@ public class WebActivity extends BaseActivity {
       case R.id.fl_collect:
         addDisposable(
             DbInsertHelper.insertCollectUrl(webView.getTitle(), webView.getUrl()).subscribe(
-                aBoolean -> {
-                  ToastHelper.toast("已收藏");
-                }));
+                aBoolean -> ToastHelper.toast("已收藏")));
         sheetDialog.dismiss();
         break;
       case R.id.fl_copy:
