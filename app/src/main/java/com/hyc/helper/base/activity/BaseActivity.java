@@ -42,7 +42,7 @@ public abstract class BaseActivity extends AppCompatActivity
     setContentView(getContentViewId());
     Bundle bundle = getIntent().getExtras();
     if(bundle != null){
-      Parrot.INSTANCE.initParam(bundle,this);
+      Parrot.initParam(bundle,this);
     }
     initViewWithIntentData(bundle);
   }

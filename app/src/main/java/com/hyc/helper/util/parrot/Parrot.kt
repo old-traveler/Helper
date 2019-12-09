@@ -17,6 +17,7 @@ object Parrot {
   private const val tag = "Parrot"
   private val mGson = Gson()
 
+  @JvmStatic
   fun initParam(bundle: Bundle, any: Any) {
     initParamInternal(bundle, any)
   }

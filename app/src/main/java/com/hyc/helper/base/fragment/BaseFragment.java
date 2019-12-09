@@ -24,7 +24,7 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
     super.onCreate(savedInstanceState);
     mBaseActivity = (BaseActivity) getActivity();
     if (getArguments() != null) {
-      Parrot.INSTANCE.initParam(getArguments(), this);
+      Parrot.initParam(getArguments(), this);
     }
   }
 
