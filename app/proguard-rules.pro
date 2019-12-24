@@ -371,3 +371,7 @@ public static java.lang.String TABLENAME;
 -keepclasseswithmembernames class * {
     @com.hyc.helper.util.parrot.* <fields>;
 }
+
+-keepclasseswithmembernames class * {
+    @com.hyc.cuckoo_lib.* <methods>;
+}

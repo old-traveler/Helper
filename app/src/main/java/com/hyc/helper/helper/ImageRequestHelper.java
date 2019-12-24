@@ -1,5 +1,6 @@
 package com.hyc.helper.helper;
 
+import android.Manifest;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -11,8 +12,8 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
+import com.hyc.cuckoo_lib.CuckooNeed;
 import com.hyc.helper.R;
-import com.hyc.helper.base.util.UiHelper;
 import com.hyc.helper.model.ImageModel;
 import io.reactivex.disposables.Disposable;
 import java.io.File;
@@ -106,6 +107,7 @@ public class ImageRequestHelper {
     loadHeadImage(context, url, imageView);
   }
 
+  @CuckooNeed({ Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE })
   public static void loadImageAsFile(Context context, String url, SimpleTarget<File> simpleTarget) {
     if (url.endsWith("?")) {
       url = url.substring(0, url.length() - 2);

@@ -1,7 +1,7 @@
 # compiler: R8
 # compiler_version: 1.5.68
 # min_api: 21
-# pg_map_id: 54b6cf3
+# pg_map_id: c49bf79
 android.arch.core.executor.ArchTaskExecutor -> a.a.a.a.a:
     android.arch.core.executor.ArchTaskExecutor sInstance -> c
     android.arch.core.executor.TaskExecutor mDelegate -> a
@@ -15866,6 +15866,30 @@ com.github.library.bubbleview.BubbleTextView -> com.github.library.bubbleview.Bu
     void setUpPadding() -> b
 com.github.library.bubbleview.BubbleTextView$1 -> com.github.library.bubbleview.BubbleTextView$a:
     int[] $SwitchMap$com$github$library$bubbleview$BubbleDrawable$ArrowLocation -> a
+com.hyc.cuckoo_lib.CuckooLifecycleCallback -> com.hyc.cuckoo_lib.a:
+    android.app.Activity curActivity -> a
+    android.app.Activity getCurActivity() -> a
+com.hyc.cuckoo_lib.CuckooPermission -> com.hyc.cuckoo_lib.CuckooPermission:
+    java.util.Map mPermissionMap -> a
+    android.app.Application mApplication -> c
+    com.hyc.cuckoo_lib.PermissionApplicant mPermissionApplicant -> d
+    com.hyc.cuckoo_lib.CuckooLifecycleCallback lifecycleCallback -> b
+    com.hyc.cuckoo_lib.CuckooPermission INSTANCE -> f
+    com.hyc.cuckoo_lib.OnPermissionRefuseListener mDefaultRefuseListener -> e
+    void access$dispatchPermissionRefuse(com.hyc.cuckoo_lib.CuckooPermission,java.lang.Object,java.lang.String,java.util.List,java.util.List) -> a
+    java.util.Map access$getMPermissionMap$p(com.hyc.cuckoo_lib.CuckooPermission) -> a
+    void access$invokeExecute(com.hyc.cuckoo_lib.CuckooPermission,java.lang.Object,java.lang.String,java.util.List) -> a
+    void dispatchPermissionRefuse(java.lang.Object,java.lang.String,java.util.List,java.util.List) -> a
+    java.util.List getPermissions(java.lang.String) -> a
+    boolean hasPermission(java.util.List) -> a
+    void init(android.app.Application,com.hyc.cuckoo_lib.PermissionApplicant,com.hyc.cuckoo_lib.OnPermissionRefuseListener) -> a
+    boolean initPermission(java.lang.String,java.lang.Object,java.lang.String,java.util.List) -> a
+    void invokeExecute(java.lang.Object,java.lang.String,java.util.List) -> a
+com.hyc.cuckoo_lib.OnPermissionRefuseListener -> com.hyc.cuckoo_lib.b:
+    boolean onPermissionRefuse(android.support.v4.app.FragmentActivity,java.lang.String,java.util.List,java.util.List) -> a
+com.hyc.cuckoo_lib.PermissionApplicant -> com.hyc.cuckoo_lib.c:
+    boolean hasPermission(java.util.List) -> a
+    void requestPermission(android.app.Activity,java.util.List,kotlin.jvm.functions.Function2) -> a
 com.hyc.headzoomlayout.HeadZoomLayout -> com.hyc.headzoomlayout.HeadZoomLayout:
     boolean mReturningToStart -> o
     float mTotalDragDistance -> i
@@ -15927,110 +15951,99 @@ com.hyc.helper.R$styleable -> com.hyc.helper.a:
 com.hyc.helper.activity.-$$Lambda$9nTxQBOsUrY2mOHMdEb9Tb_hnEM -> com.hyc.helper.activity.a:
     com.hyc.helper.activity.MainActivity f$0 -> a
     boolean onNavigationItemSelected(android.view.MenuItem) -> a
-com.hyc.helper.activity.-$$Lambda$LosePublishActivity$hd4mrNan5e2TmV7wGI94ZKNTpZw -> com.hyc.helper.activity.b:
-    com.hyc.helper.activity.LosePublishActivity f$0 -> a
-com.hyc.helper.activity.-$$Lambda$LosePublishActivity$qkGKMebmSuZGRKAqnfwqFw55X1s -> com.hyc.helper.activity.c:
+com.hyc.helper.activity.-$$Lambda$LosePublishActivity$4T8nGRkNC5QpMkRST8C40VSVnsY -> com.hyc.helper.activity.b:
     com.hyc.helper.activity.LosePublishActivity f$0 -> a
     void onItemClick(java.lang.Object,android.view.View,int) -> a
-com.hyc.helper.activity.-$$Lambda$LostFindDetailActivity$ViewPagerAdapter$uvtolGd4n_U9mbwIuOaFtgf5hL0 -> com.hyc.helper.activity.d:
+com.hyc.helper.activity.-$$Lambda$LostFindDetailActivity$ViewPagerAdapter$uvtolGd4n_U9mbwIuOaFtgf5hL0 -> com.hyc.helper.activity.c:
     com.hyc.helper.activity.LostFindDetailActivity$ViewPagerAdapter f$0 -> a
     int f$1 -> b
-com.hyc.helper.activity.-$$Lambda$MainActivity$4l8X0b7-fEXwztw9U0J93gAgSZA -> com.hyc.helper.activity.e:
+com.hyc.helper.activity.-$$Lambda$MainActivity$4l8X0b7-fEXwztw9U0J93gAgSZA -> com.hyc.helper.activity.d:
     java.util.List f$1 -> b
     com.hyc.helper.activity.MainActivity f$0 -> a
-com.hyc.helper.activity.-$$Lambda$MainActivity$J76gPjLUmRb_levI-YtnBIA7Ksw -> com.hyc.helper.activity.f:
+com.hyc.helper.activity.-$$Lambda$MainActivity$J76gPjLUmRb_levI-YtnBIA7Ksw -> com.hyc.helper.activity.e:
     com.hyc.helper.activity.MainActivity f$0 -> a
     void onDialogItemClick(boolean) -> a
-com.hyc.helper.activity.-$$Lambda$MainActivity$JULOLrxR-a7kDx4ZZXECSfezx9M -> com.hyc.helper.activity.g:
+com.hyc.helper.activity.-$$Lambda$MainActivity$JULOLrxR-a7kDx4ZZXECSfezx9M -> com.hyc.helper.activity.f:
     com.hyc.helper.activity.-$$Lambda$MainActivity$JULOLrxR-a7kDx4ZZXECSfezx9M INSTANCE -> a
-com.hyc.helper.activity.-$$Lambda$MainActivity$KLqY6u0kUKycLrgEMNsq_iPDrmA -> com.hyc.helper.activity.h:
+com.hyc.helper.activity.-$$Lambda$MainActivity$KLqY6u0kUKycLrgEMNsq_iPDrmA -> com.hyc.helper.activity.g:
     java.util.List f$1 -> b
     com.hyc.helper.activity.MainActivity f$0 -> a
-com.hyc.helper.activity.-$$Lambda$MainActivity$N_KI_FeyhWW1M7y-HMHrdsTUw-Q -> com.hyc.helper.activity.i:
+com.hyc.helper.activity.-$$Lambda$MainActivity$N_KI_FeyhWW1M7y-HMHrdsTUw-Q -> com.hyc.helper.activity.h:
     com.hyc.helper.activity.MainActivity f$0 -> a
-com.hyc.helper.activity.-$$Lambda$MainActivity$SQ5MNKQQOrocNI6eEHoLUnFGnpk -> com.hyc.helper.activity.j:
+com.hyc.helper.activity.-$$Lambda$MainActivity$SQ5MNKQQOrocNI6eEHoLUnFGnpk -> com.hyc.helper.activity.i:
     com.hyc.helper.activity.MainActivity f$0 -> a
-com.hyc.helper.activity.-$$Lambda$MainActivity$W6epY_OW2agAI918xMzLJS5N1OU -> com.hyc.helper.activity.k:
+com.hyc.helper.activity.-$$Lambda$MainActivity$W6epY_OW2agAI918xMzLJS5N1OU -> com.hyc.helper.activity.j:
     com.hyc.helper.activity.MainActivity f$0 -> a
-com.hyc.helper.activity.-$$Lambda$MainActivity$_RPn8uOJFFWwzYVa2a3663U5rAA -> com.hyc.helper.activity.l:
+com.hyc.helper.activity.-$$Lambda$MainActivity$_RPn8uOJFFWwzYVa2a3663U5rAA -> com.hyc.helper.activity.k:
     com.hyc.helper.activity.MainActivity f$0 -> a
-com.hyc.helper.activity.-$$Lambda$MainActivity$gBAZoWnj4rBPXj5JaMl8e4ONOCk -> com.hyc.helper.activity.m:
-    java.lang.String f$1 -> b
+com.hyc.helper.activity.-$$Lambda$MainActivity$gFslmQ-3IyRQxRPvASJxWSLjTbw -> com.hyc.helper.activity.l:
     com.hyc.helper.activity.MainActivity f$0 -> a
-com.hyc.helper.activity.-$$Lambda$MainActivity$gFslmQ-3IyRQxRPvASJxWSLjTbw -> com.hyc.helper.activity.n:
-    com.hyc.helper.activity.MainActivity f$0 -> a
-com.hyc.helper.activity.-$$Lambda$MainActivity$yamKhFgFpMmRnfQ4v-j_IBBbil8 -> com.hyc.helper.activity.o:
+com.hyc.helper.activity.-$$Lambda$MainActivity$yamKhFgFpMmRnfQ4v-j_IBBbil8 -> com.hyc.helper.activity.m:
     com.hyc.helper.bean.UpdateApkBean f$1 -> b
     com.hyc.helper.activity.MainActivity f$0 -> a
     void onDialogItemClick(boolean) -> a
-com.hyc.helper.activity.-$$Lambda$PersonalActivity$8H2QI7QoqfLVwNBGlUdkBmBuCBA -> com.hyc.helper.activity.p:
+com.hyc.helper.activity.-$$Lambda$PersonalActivity$1PAtpJD6XQ2UAhL1EtSzOavnf0w -> com.hyc.helper.activity.n:
     com.hyc.helper.activity.PersonalActivity f$0 -> a
     java.lang.String f$1 -> b
-com.hyc.helper.activity.-$$Lambda$PersonalActivity$eRuO5U41eyyR8VcvxKKx8lelOXs -> com.hyc.helper.activity.q:
+com.hyc.helper.activity.-$$Lambda$PersonalActivity$Zt1p5JMbimyzILgjt-xsQo7FPdg -> com.hyc.helper.activity.o:
     com.hyc.helper.activity.PersonalActivity f$0 -> a
-com.hyc.helper.activity.-$$Lambda$PersonalActivity$miKxgayeHCa0swFQczmOWUGGg70 -> com.hyc.helper.activity.r:
-    com.hyc.helper.activity.PersonalActivity f$0 -> a
-com.hyc.helper.activity.-$$Lambda$PersonalActivity$nOh5IaqNibf-RVs7Mq-iDdfVxvA -> com.hyc.helper.activity.s:
+com.hyc.helper.activity.-$$Lambda$PersonalActivity$dIyvYEZgZxdiU4od8bg8PmggEA4 -> com.hyc.helper.activity.p:
     com.hyc.helper.activity.PersonalActivity f$0 -> a
     java.lang.String f$1 -> b
-com.hyc.helper.activity.-$$Lambda$PersonalActivity$tkcrKUuCJcrWA9XkymfawCOhUjg -> com.hyc.helper.activity.t:
+com.hyc.helper.activity.-$$Lambda$PersonalActivity$tkcrKUuCJcrWA9XkymfawCOhUjg -> com.hyc.helper.activity.q:
     com.hyc.helper.activity.PersonalActivity f$0 -> a
-com.hyc.helper.activity.-$$Lambda$PersonalActivity$yPnmFh49hWqr9fVVezp5s0lyzvU -> com.hyc.helper.activity.u:
+com.hyc.helper.activity.-$$Lambda$PersonalActivity$udDpqmof0_8-5DsNyuumqvRKkA4 -> com.hyc.helper.activity.r:
     com.hyc.helper.activity.PersonalActivity f$0 -> a
-com.hyc.helper.activity.-$$Lambda$PictureBrowsingActivity$Dm04emUSvhdG41TTX1LIJjJEUwU -> com.hyc.helper.activity.v:
+com.hyc.helper.activity.-$$Lambda$PictureBrowsingActivity$Dm04emUSvhdG41TTX1LIJjJEUwU -> com.hyc.helper.activity.s:
     int f$1 -> b
     com.hyc.helper.activity.PictureBrowsingActivity f$0 -> a
-com.hyc.helper.activity.-$$Lambda$PictureBrowsingActivity$ViewPagerAdapter$BeqBIxxzUcVTDt2MpZz2-G-MQfk -> com.hyc.helper.activity.w:
+com.hyc.helper.activity.-$$Lambda$PictureBrowsingActivity$ViewPagerAdapter$BeqBIxxzUcVTDt2MpZz2-G-MQfk -> com.hyc.helper.activity.t:
     android.widget.TextView f$1 -> b
     com.hyc.helper.activity.PictureBrowsingActivity$ViewPagerAdapter f$0 -> a
     int f$4 -> f
     android.widget.ProgressBar f$5 -> g
     com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView f$3 -> d
     android.widget.ImageView f$2 -> c
-com.hyc.helper.activity.-$$Lambda$PictureBrowsingActivity$ViewPagerAdapter$GJ36ACgxP7qSbb_gE9FSIOTDCZY -> com.hyc.helper.activity.x:
+com.hyc.helper.activity.-$$Lambda$PictureBrowsingActivity$ViewPagerAdapter$GJ36ACgxP7qSbb_gE9FSIOTDCZY -> com.hyc.helper.activity.u:
     android.widget.TextView f$1 -> b
     android.widget.ProgressBar f$2 -> c
     com.hyc.helper.activity.PictureBrowsingActivity$ViewPagerAdapter f$0 -> a
     int f$5 -> g
     android.widget.ImageView f$3 -> d
     com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView f$4 -> f
-com.hyc.helper.activity.-$$Lambda$PictureBrowsingActivity$ViewPagerAdapter$cVstW3peP2FPMbtJ-4OniXdt0Ds -> com.hyc.helper.activity.y:
+com.hyc.helper.activity.-$$Lambda$PictureBrowsingActivity$ViewPagerAdapter$cVstW3peP2FPMbtJ-4OniXdt0Ds -> com.hyc.helper.activity.v:
     com.hyc.helper.activity.PictureBrowsingActivity$ViewPagerAdapter f$0 -> a
     int f$1 -> b
-com.hyc.helper.activity.-$$Lambda$PictureBrowsingActivity$ViewPagerAdapter$kwJCYjGBJWc8l8StnRg62nkU8tM -> com.hyc.helper.activity.z:
+com.hyc.helper.activity.-$$Lambda$PictureBrowsingActivity$ViewPagerAdapter$kwJCYjGBJWc8l8StnRg62nkU8tM -> com.hyc.helper.activity.w:
     android.widget.ProgressBar f$1 -> b
     com.hyc.helper.activity.PictureBrowsingActivity$ViewPagerAdapter f$0 -> a
     int f$4 -> f
     com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView f$3 -> d
     android.widget.ImageView f$2 -> c
-com.hyc.helper.activity.-$$Lambda$PictureBrowsingActivity$ViewPagerAdapter$kwmmEOLqZWuysXs95g8hxBFnMzA -> com.hyc.helper.activity.a0:
+com.hyc.helper.activity.-$$Lambda$PictureBrowsingActivity$ViewPagerAdapter$kwmmEOLqZWuysXs95g8hxBFnMzA -> com.hyc.helper.activity.x:
     com.hyc.helper.activity.PictureBrowsingActivity$ViewPagerAdapter f$0 -> a
-com.hyc.helper.activity.-$$Lambda$PictureBrowsingActivity$ViewPagerAdapter$zL0IJ07KSTlE0QmDO65C7hkGPXA -> com.hyc.helper.activity.b0:
+com.hyc.helper.activity.-$$Lambda$PictureBrowsingActivity$ViewPagerAdapter$zL0IJ07KSTlE0QmDO65C7hkGPXA -> com.hyc.helper.activity.y:
     com.hyc.helper.activity.PictureBrowsingActivity$ViewPagerAdapter f$0 -> a
     int f$1 -> b
-com.hyc.helper.activity.-$$Lambda$PictureBrowsingActivity$ViewPagerAdapter$zWCw0lgbUpFqMgpkc76Xwj4VAio -> com.hyc.helper.activity.c0:
+com.hyc.helper.activity.-$$Lambda$PictureBrowsingActivity$ViewPagerAdapter$zWCw0lgbUpFqMgpkc76Xwj4VAio -> com.hyc.helper.activity.z:
     com.hyc.helper.activity.PictureBrowsingActivity$ViewPagerAdapter f$0 -> a
-com.hyc.helper.activity.-$$Lambda$PictureBrowsingActivity$Z7QrSFd3ZZqIqECoKPQQi8QP2dI -> com.hyc.helper.activity.d0:
+com.hyc.helper.activity.-$$Lambda$PictureBrowsingActivity$Z7QrSFd3ZZqIqECoKPQQi8QP2dI -> com.hyc.helper.activity.a0:
     int f$1 -> b
     com.hyc.helper.activity.PictureBrowsingActivity f$0 -> a
-com.hyc.helper.activity.-$$Lambda$PublishStatementActivity$61wGwVUeWvSt9EHrUyz5TQzLAFI -> com.hyc.helper.activity.e0:
-    com.hyc.helper.activity.PublishStatementActivity f$0 -> a
-com.hyc.helper.activity.-$$Lambda$PublishStatementActivity$iWq1_p5UP62NpVllGwh_j_UYVJ0 -> com.hyc.helper.activity.f0:
+com.hyc.helper.activity.-$$Lambda$PublishStatementActivity$iWq1_p5UP62NpVllGwh_j_UYVJ0 -> com.hyc.helper.activity.b0:
     com.hyc.helper.activity.PublishStatementActivity f$0 -> a
     void onItemClick(java.lang.Object,android.view.View,int) -> a
-com.hyc.helper.activity.-$$Lambda$SecondGoodsDetailActivity$ViewPagerAdapter$AstUG8_bW2gfXmyseLwPYOVv97g -> com.hyc.helper.activity.g0:
+com.hyc.helper.activity.-$$Lambda$SecondGoodsDetailActivity$ViewPagerAdapter$AstUG8_bW2gfXmyseLwPYOVv97g -> com.hyc.helper.activity.c0:
     com.hyc.helper.activity.SecondGoodsDetailActivity$ViewPagerAdapter f$0 -> a
     int f$1 -> b
-com.hyc.helper.activity.-$$Lambda$SecondMarketPublishActivity$2VyMOD5u-Eg0at-xK4YzrkXyEWY -> com.hyc.helper.activity.h0:
+com.hyc.helper.activity.-$$Lambda$SecondMarketPublishActivity$2VyMOD5u-Eg0at-xK4YzrkXyEWY -> com.hyc.helper.activity.d0:
     com.hyc.helper.activity.SecondMarketPublishActivity f$0 -> a
     void onItemClick(java.lang.Object,android.view.View,int) -> a
-com.hyc.helper.activity.-$$Lambda$SecondMarketPublishActivity$NrIc6TTBDH_60vzmdlQg8qzJkro -> com.hyc.helper.activity.i0:
-    com.hyc.helper.activity.SecondMarketPublishActivity f$0 -> a
-com.hyc.helper.activity.-$$Lambda$WebActivity$JLSCgGJA_1udl1LUZErc4Yu5Ey4 -> com.hyc.helper.activity.j0:
+com.hyc.helper.activity.-$$Lambda$WebActivity$JLSCgGJA_1udl1LUZErc4Yu5Ey4 -> com.hyc.helper.activity.e0:
     com.hyc.helper.activity.-$$Lambda$WebActivity$JLSCgGJA_1udl1LUZErc4Yu5Ey4 INSTANCE -> a
-com.hyc.helper.activity.-$$Lambda$WebUrlCollectActivity$f44b_24FtPs19TilnrNBhp8AYzo -> com.hyc.helper.activity.k0:
+com.hyc.helper.activity.-$$Lambda$WebUrlCollectActivity$f44b_24FtPs19TilnrNBhp8AYzo -> com.hyc.helper.activity.f0:
     com.hyc.helper.activity.WebUrlCollectActivity f$0 -> a
-com.hyc.helper.activity.-$$Lambda$WebUrlCollectActivity$xwRNqj1Pf1-kVbt3EJz7taZeXG8 -> com.hyc.helper.activity.l0:
+com.hyc.helper.activity.-$$Lambda$WebUrlCollectActivity$xwRNqj1Pf1-kVbt3EJz7taZeXG8 -> com.hyc.helper.activity.g0:
     com.hyc.helper.activity.WebUrlCollectActivity f$0 -> a
     void onItemClick(java.lang.Object,android.view.View,int) -> a
 com.hyc.helper.activity.CourseDetailActivity -> com.hyc.helper.activity.CourseDetailActivity:
@@ -16099,11 +16112,8 @@ com.hyc.helper.activity.LosePublishActivity -> com.hyc.helper.activity.LosePubli
     boolean validationInput() -> H
     java.util.Map getRequestParams() -> I
     java.lang.String getTime() -> J
-    void goToSelectImage() -> K
-    void startSelectImage() -> L
     void initViewWithIntentData(android.os.Bundle) -> a
-    void lambda$goToSelectImage$0(java.lang.Boolean) -> a
-    void lambda$initViewWithIntentData$1(java.lang.String,android.view.View,int) -> a
+    void lambda$initViewWithIntentData$0(java.lang.String,android.view.View,int) -> a
     void onSuccessGetData(com.hyc.helper.bean.BaseRequestBean) -> b
     int getContentViewId() -> v
     int getMenuId() -> w
@@ -16156,16 +16166,13 @@ com.hyc.helper.activity.MainActivity -> com.hyc.helper.activity.MainActivity:
     void lambda$loadCalendar$1(java.util.List,com.hyc.helper.bean.ExamBean) -> a
     void lambda$loadCalendar$2(java.util.List,java.lang.Throwable) -> a
     void lambda$null$6(com.hyc.helper.bean.UpdateApkBean,boolean) -> a
-    void lambda$startUpdate$9(java.lang.String,java.lang.Boolean) -> a
     void loadAllCalendar(java.util.List) -> a
     void onTabReselected(android.support.design.widget.TabLayout$Tab) -> a
     void lambda$checkUpdate$8(java.lang.Throwable) -> b
     void lambda$onOptionsItemSelected$4(boolean) -> b
     void loadCalendar(java.util.List) -> b
     void onTabUnselected(android.support.design.widget.TabLayout$Tab) -> b
-    void downApk(java.lang.String) -> c
     void onTabSelected(android.support.design.widget.TabLayout$Tab) -> c
-    void startUpdate(java.lang.String) -> d
     int getContentViewId() -> v
 com.hyc.helper.activity.MainActivity_ViewBinding -> com.hyc.helper.activity.MainActivity_ViewBinding:
     com.hyc.helper.activity.MainActivity target -> a
@@ -16177,19 +16184,16 @@ com.hyc.helper.activity.PersonalActivity -> com.hyc.helper.activity.PersonalActi
     android.widget.ListPopupWindow publishPopupWindow -> t
     io.reactivex.disposables.Disposable disposable -> v
     void initMenuPopupWindow() -> B
-    void replaceHeadImage() -> C
-    void startSelectImage() -> D
     com.hyc.helper.model.UserModel access$000(com.hyc.helper.activity.PersonalActivity) -> a
     void access$100(com.hyc.helper.activity.PersonalActivity,com.hyc.helper.bean.UserBean$DataBean) -> a
     void initView(com.hyc.helper.bean.UserBean$DataBean) -> a
     void initViewWithIntentData(android.os.Bundle) -> a
     void lambda$initMenuPopupWindow$0(android.widget.AdapterView,android.view.View,int,long) -> a
-    void lambda$replaceHeadImage$1(java.lang.Boolean) -> a
-    void lambda$updateBio$4(java.lang.String,com.hyc.helper.bean.BaseRequestBean) -> a
-    void lambda$updateBio$5(java.lang.Throwable) -> a
+    void lambda$updateBio$3(java.lang.String,com.hyc.helper.bean.BaseRequestBean) -> a
+    void lambda$updateBio$4(java.lang.Throwable) -> a
     void startCropImage(android.net.Uri) -> a
-    void lambda$updateUsername$2(java.lang.String,com.hyc.helper.bean.BaseRequestBean) -> b
-    void lambda$updateUsername$3(java.lang.Throwable) -> b
+    void lambda$updateUsername$1(java.lang.String,com.hyc.helper.bean.BaseRequestBean) -> b
+    void lambda$updateUsername$2(java.lang.Throwable) -> b
     void uploadImage(android.net.Uri) -> b
     void updateBio(java.lang.String) -> c
     void updateUsername(java.lang.String) -> d
@@ -16229,7 +16233,7 @@ com.hyc.helper.activity.PictureBrowsingActivity -> com.hyc.helper.activity.Pictu
     void initViewWithData(android.os.Bundle) -> b
     void lambda$showMoreSelect$1(int,android.view.View) -> b
     boolean showMoreSelect(int) -> e
-com.hyc.helper.activity.PictureBrowsingActivity$1 -> com.hyc.helper.activity.m0:
+com.hyc.helper.activity.PictureBrowsingActivity$1 -> com.hyc.helper.activity.h0:
     com.hyc.helper.activity.PictureBrowsingActivity this$0 -> f
     int val$position -> d
     void onResourceReady(java.io.File,com.bumptech.glide.request.transition.Transition) -> a
@@ -16275,10 +16279,7 @@ com.hyc.helper.activity.PublishStatementActivity -> com.hyc.helper.activity.Publ
     boolean isOnCreateRequest() -> C
     void requestDataFromApi() -> D
     boolean validationInput() -> H
-    void goToSelectImage() -> I
-    void startSelectImage() -> J
     void initViewWithIntentData(android.os.Bundle) -> a
-    void lambda$goToSelectImage$1(java.lang.Boolean) -> a
     void lambda$initViewWithIntentData$0(java.lang.String,android.view.View,int) -> a
     void onSuccessGetData(com.hyc.helper.bean.BaseRequestBean) -> b
     int getContentViewId() -> v
@@ -16349,10 +16350,7 @@ com.hyc.helper.activity.SecondMarketPublishActivity -> com.hyc.helper.activity.S
     boolean validationInput() -> H
     boolean isPublishImageNotEmpty() -> I
     java.util.Map getRequestParams() -> J
-    void goToSelectImage() -> K
-    void startSelectImage() -> L
     void initViewWithIntentData(android.os.Bundle) -> a
-    void lambda$goToSelectImage$1(java.lang.Boolean) -> a
     void lambda$initViewWithIntentData$0(java.lang.String,android.view.View,int) -> a
     void onSuccessGetData(com.hyc.helper.bean.BaseRequestBean) -> b
     int getContentViewId() -> v
@@ -16836,6 +16834,16 @@ com.hyc.helper.base.view.LoadingDialog$Builder -> com.hyc.helper.d.e.b$b:
     com.hyc.helper.base.view.LoadingDialog create() -> a
     com.hyc.helper.base.view.LoadingDialog$Builder setCancelOutside(boolean) -> a
     com.hyc.helper.base.view.LoadingDialog$Builder setCancelable(boolean) -> b
+com.hyc.helper.cuckoo.PermissionRefuseListener -> com.hyc.helper.e.a:
+    java.lang.String getPermissionName(java.lang.String) -> a
+    boolean onPermissionRefuse(android.support.v4.app.FragmentActivity,java.lang.String,java.util.List,java.util.List) -> a
+com.hyc.helper.cuckoo.RxPermissionApplicant -> com.hyc.helper.e.b:
+    boolean hasPermission(java.util.List) -> a
+    void requestPermission(android.app.Activity,java.util.List,kotlin.jvm.functions.Function2) -> a
+com.hyc.helper.cuckoo.RxPermissionApplicant$requestPermission$1 -> com.hyc.helper.e.b$a:
+    java.util.List $permission -> b
+    kotlin.jvm.functions.Function2 $callback -> a
+    void accept(java.lang.Boolean) -> a
 com.hyc.helper.gen.BigImageLoadRecordBeanDao -> com.hyc.helper.gen.BigImageLoadRecordBeanDao:
     void bindValues(android.database.sqlite.SQLiteStatement,com.hyc.helper.bean.BigImageLoadRecordBean) -> a
     void bindValues(android.database.sqlite.SQLiteStatement,java.lang.Object) -> a
@@ -17123,58 +17131,57 @@ com.hyc.helper.helper.ImageRecordHelper -> com.hyc.helper.helper.i0:
     void lambda$saveCloudRecord$0(java.lang.String,com.hyc.helper.bean.ImageMessageRecord) -> a
     io.reactivex.disposables.Disposable saveCloudRecord(java.lang.String,java.lang.String) -> a
     void saveCompressRecord(java.lang.String,java.lang.String) -> b
-com.hyc.helper.helper.ImageRequestHelper -> com.hyc.helper.helper.j0:
+com.hyc.helper.helper.ImageRequestHelper -> com.hyc.helper.helper.ImageRequestHelper:
     void lambda$loadImage$0(android.content.Context,android.widget.ImageView,com.hyc.helper.bean.BigImageLoadRecordBean) -> a
     void lambda$loadImage$1(java.lang.Throwable) -> a
     void loadBigHeadImage(android.content.Context,java.lang.String,android.widget.ImageView) -> a
     void loadGifFromFile(android.content.Context,java.io.File,android.widget.ImageView) -> a
     void loadImage(android.content.Context,int,android.widget.ImageView) -> a
     void loadImage(android.content.Context,android.net.Uri,android.widget.ImageView) -> a
-    void loadImageAsFile(android.content.Context,java.lang.String,com.bumptech.glide.request.target.SimpleTarget) -> a
+    void loadOralImageAsFile(android.content.Context,java.lang.String,com.bumptech.glide.request.target.SimpleTarget) -> a
     void loadHeadImage(android.content.Context,java.lang.String,android.widget.ImageView) -> b
-    void loadOralImageAsFile(android.content.Context,java.lang.String,com.bumptech.glide.request.target.SimpleTarget) -> b
+    void loadOtherImageAsFile(android.content.Context,java.lang.String,com.bumptech.glide.request.target.SimpleTarget) -> b
     io.reactivex.disposables.Disposable loadImage(android.content.Context,java.lang.String,android.widget.ImageView) -> c
-    void loadOtherImageAsFile(android.content.Context,java.lang.String,com.bumptech.glide.request.target.SimpleTarget) -> c
     void loadImageByUrl(android.content.Context,java.lang.String,android.widget.ImageView) -> d
     void loadNotCropImage(android.content.Context,java.lang.String,android.widget.ImageView) -> e
     void loadOtherImage(android.content.Context,java.lang.String,android.widget.ImageView) -> f
-com.hyc.helper.helper.ImageRequestHelper$1 -> com.hyc.helper.helper.j0$a:
+com.hyc.helper.helper.ImageRequestHelper$1 -> com.hyc.helper.helper.ImageRequestHelper$a:
     android.widget.ImageView val$imageView -> d
     void onResourceReady(android.graphics.drawable.Drawable,com.bumptech.glide.request.transition.Transition) -> a
     void onResourceReady(java.lang.Object,com.bumptech.glide.request.transition.Transition) -> a
-com.hyc.helper.helper.IntegerConverter -> com.hyc.helper.helper.k0:
+com.hyc.helper.helper.IntegerConverter -> com.hyc.helper.helper.j0:
     java.lang.String convertToDatabaseValue(java.util.List) -> a
     java.util.List convertToEntityProperty(java.lang.String) -> a
-com.hyc.helper.helper.ListStringConverter -> com.hyc.helper.helper.l0:
+com.hyc.helper.helper.ListStringConverter -> com.hyc.helper.helper.k0:
     java.lang.String convertToDatabaseValue(java.util.List) -> a
     java.util.List convertToEntityProperty(java.lang.String) -> a
-com.hyc.helper.helper.LogHelper -> com.hyc.helper.helper.m0:
+com.hyc.helper.helper.LogHelper -> com.hyc.helper.helper.l0:
     void log(java.lang.String) -> a
-com.hyc.helper.helper.MessageHandler -> com.hyc.helper.helper.n0:
+com.hyc.helper.helper.MessageHandler -> com.hyc.helper.helper.m0:
     void dispatchMessage(cn.bmob.newim.event.MessageEvent) -> a
     cn.bmob.newim.bean.BmobIMMessage lambda$dispatchMessage$0(cn.bmob.newim.event.MessageEvent,cn.bmob.newim.event.MessageEvent) -> a
     void lambda$dispatchMessage$1(cn.bmob.newim.event.MessageEvent,cn.bmob.newim.bean.BmobIMMessage) -> a
     boolean notNeedUpdate(cn.bmob.newim.bean.BmobIMUserInfo,cn.bmob.newim.bean.BmobIMConversation) -> a
-com.hyc.helper.helper.NoFastClick -> com.hyc.helper.helper.o0:
+com.hyc.helper.helper.NoFastClick -> com.hyc.helper.helper.n0:
     boolean canClick(android.view.View,java.lang.String) -> a
-com.hyc.helper.helper.NoFastClickIdImp -> com.hyc.helper.helper.p0:
+com.hyc.helper.helper.NoFastClickIdImp -> com.hyc.helper.helper.o0:
     java.util.Map viewKeysMap -> a
     long timeDuration -> b
     boolean canClick(android.view.View,java.lang.String) -> a
     long now() -> a
-com.hyc.helper.helper.NoFastClickViewImp -> com.hyc.helper.helper.q0:
+com.hyc.helper.helper.NoFastClickViewImp -> com.hyc.helper.helper.p0:
     java.util.List viewMaps -> a
     long timeDuration -> b
     boolean canClick(android.view.View,java.lang.String) -> a
     int removeLimeOutView(android.view.View,java.lang.String) -> b
-com.hyc.helper.helper.RequestHelper -> com.hyc.helper.helper.r0:
+com.hyc.helper.helper.RequestHelper -> com.hyc.helper.helper.q0:
     com.hyc.helper.net.NetApiService getRequestApi() -> a
-com.hyc.helper.helper.SendMessageHelper -> com.hyc.helper.helper.s0:
+com.hyc.helper.helper.SendMessageHelper -> com.hyc.helper.helper.r0:
     void sendImageMessage(cn.bmob.newim.bean.BmobIMUserInfo,cn.bmob.newim.bean.BmobIMConversation,com.hyc.helper.bean.ImageMessageRecord,cn.bmob.newim.listener.MessageSendListener) -> a
     void sendImageMessage(cn.bmob.newim.bean.BmobIMUserInfo,cn.bmob.newim.bean.BmobIMConversation,java.io.File,cn.bmob.newim.listener.MessageSendListener) -> a
     void sendTxtMessage(cn.bmob.newim.bean.BmobIMUserInfo,cn.bmob.newim.bean.BmobIMConversation,java.lang.String,cn.bmob.newim.listener.MessageSendListener) -> a
     void sendVoiceMessage(cn.bmob.newim.bean.BmobIMUserInfo,cn.bmob.newim.bean.BmobIMConversation,java.lang.String,int,cn.bmob.newim.listener.MessageSendListener) -> a
-com.hyc.helper.helper.SpCacheHelper -> com.hyc.helper.helper.t0:
+com.hyc.helper.helper.SpCacheHelper -> com.hyc.helper.helper.s0:
     void deleteClassFromSp(java.lang.String) -> a
     java.lang.Object getClassFromSp(java.lang.String,java.lang.Class) -> a
     android.content.SharedPreferences$Editor getEditor() -> a
@@ -17185,7 +17192,7 @@ com.hyc.helper.helper.SpCacheHelper -> com.hyc.helper.helper.t0:
     long getLong(java.lang.String) -> b
     android.content.SharedPreferences getSharedPreferences() -> b
     java.lang.String getString(java.lang.String) -> c
-com.hyc.helper.helper.UpdateAppHelper -> com.hyc.helper.helper.u0:
+com.hyc.helper.helper.UpdateAppHelper -> com.hyc.helper.helper.t0:
     android.content.Context context -> a
     android.content.BroadcastReceiver receiver -> b
     void access$000(com.hyc.helper.helper.UpdateAppHelper,java.lang.String) -> a
@@ -17193,23 +17200,23 @@ com.hyc.helper.helper.UpdateAppHelper -> com.hyc.helper.helper.u0:
     void download(java.lang.String,java.lang.String,android.content.Context) -> a
     void installApk(java.lang.String) -> a
     void registerDownApkListener(long,java.lang.String) -> a
-com.hyc.helper.helper.UpdateAppHelper$1 -> com.hyc.helper.helper.u0$a:
+com.hyc.helper.helper.UpdateAppHelper$1 -> com.hyc.helper.helper.t0$a:
     com.hyc.helper.helper.UpdateAppHelper this$0 -> c
     long val$downloadId -> a
     java.lang.String val$path -> b
-com.hyc.helper.helper.UploadImageObserver -> com.hyc.helper.helper.v0:
+com.hyc.helper.helper.UploadImageObserver -> com.hyc.helper.helper.u0:
     java.util.List list -> b
     com.hyc.helper.helper.UploadImageObserver$OnUploadImageListener listener -> c
     io.reactivex.disposables.Disposable disposable -> d
     int size -> a
     java.lang.String getImageUrlString() -> a
     void onNext(com.hyc.helper.bean.ImageUploadBean) -> a
-com.hyc.helper.helper.UploadImageObserver$OnUploadImageListener -> com.hyc.helper.helper.v0$a:
+com.hyc.helper.helper.UploadImageObserver$OnUploadImageListener -> com.hyc.helper.helper.u0$a:
     void onFailure(java.lang.Throwable) -> a
     void onSuccess(java.lang.String) -> a
-com.hyc.helper.helper.ValidationHelper -> com.hyc.helper.helper.w0:
+com.hyc.helper.helper.ValidationHelper -> com.hyc.helper.helper.v0:
     boolean isNotInputEmpty(android.widget.EditText,java.lang.String) -> a
-com.hyc.helper.helper.VoicePlayer -> com.hyc.helper.helper.x0:
+com.hyc.helper.helper.VoicePlayer -> com.hyc.helper.helper.w0:
     android.media.MediaPlayer mediaPlayer -> f
     okhttp3.OkHttpClient okHttpClient -> b
     com.hyc.helper.model.ImageModel imageModel -> d
@@ -17228,39 +17235,35 @@ com.hyc.helper.helper.VoicePlayer -> com.hyc.helper.helper.x0:
     void downTheVoice(java.lang.String) -> b
     void stopPlay() -> b
     com.hyc.helper.helper.VoicePlayer getDefault() -> c
-com.hyc.helper.helper.VoicePlayer$1 -> com.hyc.helper.helper.x0$a:
+com.hyc.helper.helper.VoicePlayer$1 -> com.hyc.helper.helper.w0$a:
     com.hyc.helper.helper.VoicePlayer this$0 -> b
     java.lang.String val$url -> a
-com.hyc.helper.helper.Weak -> com.hyc.helper.helper.y0:
+com.hyc.helper.helper.Weak -> com.hyc.helper.helper.x0:
     java.lang.ref.WeakReference weakReference -> a
     java.lang.Object getValue(java.lang.Object,kotlin.reflect.KProperty) -> a
-com.hyc.helper.im.-$$Lambda$ChatActivity$-HT_MXtxlWKpogfiims3KXSzdTc -> com.hyc.helper.im.a:
-    com.hyc.helper.im.ChatActivity f$0 -> a
-    java.lang.String f$1 -> b
-com.hyc.helper.im.-$$Lambda$ChatActivity$4soOlmaJNKMFu4XjBLFBkBqIxi0 -> com.hyc.helper.im.b:
-    com.hyc.helper.im.-$$Lambda$ChatActivity$4soOlmaJNKMFu4XjBLFBkBqIxi0 INSTANCE -> a
-    boolean apply(java.lang.String) -> a
-com.hyc.helper.im.-$$Lambda$ChatActivity$874kEkMOClSlzbW_Lx-34D2hFNQ -> com.hyc.helper.im.c:
+com.hyc.helper.im.-$$Lambda$ChatActivity$874kEkMOClSlzbW_Lx-34D2hFNQ -> com.hyc.helper.im.a:
     com.hyc.helper.im.ChatActivity f$0 -> a
     void onItemClick(java.lang.Object,android.view.View,int) -> a
-com.hyc.helper.im.-$$Lambda$ChatActivity$8D1bRChJKdWixdmBxQQwQ1y2rEI -> com.hyc.helper.im.d:
-    com.hyc.helper.im.ChatActivity f$0 -> a
-com.hyc.helper.im.-$$Lambda$ChatActivity$RroFwlZ7AtzLIiVXsy4CzX5rIHo -> com.hyc.helper.im.e:
+com.hyc.helper.im.-$$Lambda$ChatActivity$SA9wLqsQ2aWXDeOgUEZDg-UOkYo -> com.hyc.helper.im.b:
+    com.hyc.helper.im.-$$Lambda$ChatActivity$SA9wLqsQ2aWXDeOgUEZDg-UOkYo INSTANCE -> a
+    boolean apply(java.lang.String) -> a
+com.hyc.helper.im.-$$Lambda$ChatActivity$Yf8eycOejNBCJK3P3Ly8r5Rziu4 -> com.hyc.helper.im.c:
     com.hyc.helper.im.ChatActivity f$0 -> a
     java.lang.String f$1 -> b
-com.hyc.helper.im.-$$Lambda$ChatActivity$vQZrejE5Mcm6EfDorCHT4jK2cPI -> com.hyc.helper.im.f:
+com.hyc.helper.im.-$$Lambda$ChatActivity$waGTuHLoXMN15KY6oTzfcGGvA5Q -> com.hyc.helper.im.d:
     com.hyc.helper.im.ChatActivity f$0 -> a
-com.hyc.helper.im.-$$Lambda$ChatActivity$zcA9iBK5oZYbEt7XkQFlvS5vyRI -> com.hyc.helper.im.g:
+    java.lang.String f$1 -> b
+com.hyc.helper.im.-$$Lambda$ChatActivity$zcA9iBK5oZYbEt7XkQFlvS5vyRI -> com.hyc.helper.im.e:
     com.hyc.helper.im.ChatActivity f$0 -> a
     void OnSendAudioMessage(int,java.lang.String) -> a
-com.hyc.helper.im.-$$Lambda$ConversationActivity$-62E3LbXiscNzcxIqmREBBE2oGU -> com.hyc.helper.im.h:
+com.hyc.helper.im.-$$Lambda$ConversationActivity$-62E3LbXiscNzcxIqmREBBE2oGU -> com.hyc.helper.im.f:
     com.hyc.helper.im.ConversationActivity f$0 -> a
-com.hyc.helper.im.-$$Lambda$ConversationActivity$58GY-KC78h9ufW_cMhqC_v2JDUU -> com.hyc.helper.im.i:
+com.hyc.helper.im.-$$Lambda$ConversationActivity$58GY-KC78h9ufW_cMhqC_v2JDUU -> com.hyc.helper.im.g:
     com.hyc.helper.im.-$$Lambda$ConversationActivity$58GY-KC78h9ufW_cMhqC_v2JDUU INSTANCE -> a
-com.hyc.helper.im.-$$Lambda$ConversationActivity$Nbg8HotJo1wetekqY5yxmqRRB_Q -> com.hyc.helper.im.j:
+com.hyc.helper.im.-$$Lambda$ConversationActivity$Nbg8HotJo1wetekqY5yxmqRRB_Q -> com.hyc.helper.im.h:
     com.hyc.helper.im.ConversationActivity f$0 -> a
     void onItemClick(java.lang.Object,android.view.View,int) -> a
-com.hyc.helper.im.-$$Lambda$ConversationActivity$gC9bmsAs3TcFgJ_3muppCHzUcVs -> com.hyc.helper.im.k:
+com.hyc.helper.im.-$$Lambda$ConversationActivity$gC9bmsAs3TcFgJ_3muppCHzUcVs -> com.hyc.helper.im.i:
     com.hyc.helper.im.ConversationActivity f$0 -> a
     void onItemClick(java.lang.Object,android.view.View,int) -> a
 com.hyc.helper.im.ChatActivity -> com.hyc.helper.im.ChatActivity:
@@ -17284,26 +17287,23 @@ com.hyc.helper.im.ChatActivity -> com.hyc.helper.im.ChatActivity:
     void initVoice() -> H
     void sendTxtMessage() -> I
     void showEmojiLayout() -> J
-    void showVoiceLayout() -> K
     boolean access$000(com.hyc.helper.im.ChatActivity) -> a
     com.hyc.helper.adapter.ChatAdapter access$102(com.hyc.helper.im.ChatActivity,com.hyc.helper.adapter.ChatAdapter) -> a
     void goToPictureBrowsing(cn.bmob.newim.bean.BmobIMMessage) -> a
     void initViewWithIntentData(android.os.Bundle) -> a
-    void lambda$clickLocalImage$4(java.lang.String,com.hyc.helper.bean.ImageMessageRecord) -> a
-    void lambda$clickLocalImage$5(java.lang.String,java.lang.Throwable) -> a
+    void lambda$clickLocalImage$2(java.lang.String,com.hyc.helper.bean.ImageMessageRecord) -> a
+    void lambda$clickLocalImage$3(java.lang.String,java.lang.Throwable) -> a
     void lambda$initViewWithIntentData$0(com.hyc.helper.bean.LocalImageBean,android.view.View,int) -> a
     void lambda$initVoice$1(int,java.lang.String) -> a
-    void lambda$showMoreLayout$3(java.lang.Boolean) -> a
     void loadMessages(cn.bmob.newim.bean.BmobIMMessage,int) -> a
     void onChatMessageClick(android.view.View,int,cn.bmob.newim.bean.BmobIMMessage) -> a
     void onNext(com.hyc.helper.bean.LocalImageBean) -> a
     com.hyc.helper.adapter.ChatAdapter access$100(com.hyc.helper.im.ChatActivity) -> b
     void clickLocalImage(com.hyc.helper.bean.LocalImageBean) -> b
-    void lambda$showVoiceLayout$2(java.lang.Boolean) -> b
     java.lang.String access$200(com.hyc.helper.im.ChatActivity) -> c
     void compressImageAndSend(java.lang.String) -> c
     cn.bmob.newim.bean.BmobIMConversation access$300(com.hyc.helper.im.ChatActivity) -> d
-    boolean lambda$compressImageAndSend$6(java.lang.String) -> d
+    boolean lambda$compressImageAndSend$4(java.lang.String) -> d
     void onRefresh() -> f
     void setMoreLayoutHeight(int) -> h
     int getContentViewId() -> v
@@ -17330,14 +17330,14 @@ com.hyc.helper.im.ChatActivity_ViewBinding$2 -> com.hyc.helper.im.ChatActivity_V
     com.hyc.helper.im.ChatActivity val$target -> a
 com.hyc.helper.im.ChatActivity_ViewBinding$3 -> com.hyc.helper.im.ChatActivity_ViewBinding$c:
     com.hyc.helper.im.ChatActivity val$target -> a
-com.hyc.helper.im.ConnectManager -> com.hyc.helper.im.l:
+com.hyc.helper.im.ConnectManager -> com.hyc.helper.im.j:
     boolean isConnecting -> a
     com.hyc.helper.im.ConnectManager connectManager -> b
     boolean access$002(com.hyc.helper.im.ConnectManager,boolean) -> a
     void connect() -> a
     cn.bmob.newim.core.ConnectionStatus getCurrentStatus() -> b
     com.hyc.helper.im.ConnectManager getDefault() -> c
-com.hyc.helper.im.ConnectManager$1 -> com.hyc.helper.im.l$a:
+com.hyc.helper.im.ConnectManager$1 -> com.hyc.helper.im.j$a:
     com.hyc.helper.im.ConnectManager this$0 -> a
 com.hyc.helper.im.ConversationActivity -> com.hyc.helper.im.ConversationActivity:
     com.hyc.helper.base.adapter.BaseRecycleAdapter adapter -> t
@@ -17367,50 +17367,50 @@ com.hyc.helper.im.ConversationActivity$2 -> com.hyc.helper.im.ConversationActivi
     int[] $SwitchMap$cn$bmob$newim$core$ConnectionStatus -> a
 com.hyc.helper.im.ConversationActivity_ViewBinding -> com.hyc.helper.im.ConversationActivity_ViewBinding:
     com.hyc.helper.im.ConversationActivity target -> a
-com.hyc.helper.im.ResendMessageListener -> com.hyc.helper.im.m:
+com.hyc.helper.im.ResendMessageListener -> com.hyc.helper.im.k:
     com.hyc.helper.adapter.ChatAdapter chatAdapter -> a
-com.hyc.helper.model.-$$Lambda$CourseModel$HY9RrgI4_LVoatJUhD03Dy-BcvE -> com.hyc.helper.e.a:
+com.hyc.helper.model.-$$Lambda$CourseModel$HY9RrgI4_LVoatJUhD03Dy-BcvE -> com.hyc.helper.f.a:
     java.util.List f$1 -> b
     com.hyc.helper.model.CourseModel f$0 -> a
-com.hyc.helper.model.-$$Lambda$CourseModel$RHEO_BVjM1Hc3J-nG363WHxo8OY -> com.hyc.helper.e.b:
+com.hyc.helper.model.-$$Lambda$CourseModel$RHEO_BVjM1Hc3J-nG363WHxo8OY -> com.hyc.helper.f.b:
     com.hyc.helper.model.-$$Lambda$CourseModel$RHEO_BVjM1Hc3J-nG363WHxo8OY INSTANCE -> a
-com.hyc.helper.model.-$$Lambda$ExamModel$4V_P7FKR4FaSXlnfGuv0mEjQHAE -> com.hyc.helper.e.c:
+com.hyc.helper.model.-$$Lambda$ExamModel$4V_P7FKR4FaSXlnfGuv0mEjQHAE -> com.hyc.helper.f.c:
     java.util.List f$1 -> b
     com.hyc.helper.model.ExamModel f$0 -> a
-com.hyc.helper.model.-$$Lambda$ExamModel$WB3u4qsq8JlMDVXTSt4UcBzEEVs -> com.hyc.helper.e.d:
+com.hyc.helper.model.-$$Lambda$ExamModel$WB3u4qsq8JlMDVXTSt4UcBzEEVs -> com.hyc.helper.f.d:
     com.hyc.helper.model.-$$Lambda$ExamModel$WB3u4qsq8JlMDVXTSt4UcBzEEVs INSTANCE -> a
-com.hyc.helper.model.-$$Lambda$GradeModel$5xtzObRvVBOL3Rzgq1vWGzwDzLU -> com.hyc.helper.e.e:
+com.hyc.helper.model.-$$Lambda$GradeModel$5xtzObRvVBOL3Rzgq1vWGzwDzLU -> com.hyc.helper.f.e:
     com.hyc.helper.model.-$$Lambda$GradeModel$5xtzObRvVBOL3Rzgq1vWGzwDzLU INSTANCE -> a
-com.hyc.helper.model.-$$Lambda$GradeModel$HYRfvT8aqHTlc9muAKcBOGp-wwY -> com.hyc.helper.e.f:
+com.hyc.helper.model.-$$Lambda$GradeModel$HYRfvT8aqHTlc9muAKcBOGp-wwY -> com.hyc.helper.f.f:
     java.util.List f$1 -> b
     com.hyc.helper.model.GradeModel f$0 -> a
-com.hyc.helper.model.-$$Lambda$LostGoodsModel$bxEUVja4sJtGnXdpAPq0f7c07Ck -> com.hyc.helper.e.g:
+com.hyc.helper.model.-$$Lambda$LostGoodsModel$bxEUVja4sJtGnXdpAPq0f7c07Ck -> com.hyc.helper.f.g:
     io.reactivex.Observer f$0 -> a
-com.hyc.helper.model.-$$Lambda$LostGoodsModel$nTa4NGUvJEde5ko24eeYtqw-XyU -> com.hyc.helper.e.h:
+com.hyc.helper.model.-$$Lambda$LostGoodsModel$nTa4NGUvJEde5ko24eeYtqw-XyU -> com.hyc.helper.f.h:
     com.hyc.helper.helper.UploadImageObserver f$1 -> b
     com.hyc.helper.bean.UserBean f$0 -> a
-com.hyc.helper.model.-$$Lambda$LostGoodsModel$oFufreuKmfCpUtF1edPeFzrDxo8 -> com.hyc.helper.e.i:
+com.hyc.helper.model.-$$Lambda$LostGoodsModel$oFufreuKmfCpUtF1edPeFzrDxo8 -> com.hyc.helper.f.i:
     com.hyc.helper.model.-$$Lambda$LostGoodsModel$oFufreuKmfCpUtF1edPeFzrDxo8 INSTANCE -> a
     boolean apply(java.lang.String) -> a
-com.hyc.helper.model.-$$Lambda$SecondGoodsModel$Fm08QAC1jEjNCQYIiT_X53u8RaM -> com.hyc.helper.e.j:
+com.hyc.helper.model.-$$Lambda$SecondGoodsModel$Fm08QAC1jEjNCQYIiT_X53u8RaM -> com.hyc.helper.f.j:
     com.hyc.helper.helper.UploadImageObserver f$1 -> b
     com.hyc.helper.bean.UserBean f$0 -> a
-com.hyc.helper.model.-$$Lambda$SecondGoodsModel$Hm-JxK21yAswdgee4hkph9EkC-c -> com.hyc.helper.e.k:
+com.hyc.helper.model.-$$Lambda$SecondGoodsModel$Hm-JxK21yAswdgee4hkph9EkC-c -> com.hyc.helper.f.k:
     com.hyc.helper.model.-$$Lambda$SecondGoodsModel$Hm-JxK21yAswdgee4hkph9EkC-c INSTANCE -> a
     boolean apply(java.lang.String) -> a
-com.hyc.helper.model.-$$Lambda$SecondGoodsModel$dW9Ylm8Skxv1nPtQLmj0hXm2jwI -> com.hyc.helper.e.l:
+com.hyc.helper.model.-$$Lambda$SecondGoodsModel$dW9Ylm8Skxv1nPtQLmj0hXm2jwI -> com.hyc.helper.f.l:
     io.reactivex.Observer f$0 -> a
-com.hyc.helper.model.-$$Lambda$StatementModel$BBxm9rIrKuyTCC4cyncEOLiGVyk -> com.hyc.helper.e.m:
+com.hyc.helper.model.-$$Lambda$StatementModel$BBxm9rIrKuyTCC4cyncEOLiGVyk -> com.hyc.helper.f.m:
     com.hyc.helper.helper.UploadImageObserver f$1 -> b
     com.hyc.helper.bean.UserBean f$0 -> a
-com.hyc.helper.model.-$$Lambda$StatementModel$GLT8qvMz9hUVb_Ge-zXoDdAtJ3I -> com.hyc.helper.e.n:
+com.hyc.helper.model.-$$Lambda$StatementModel$GLT8qvMz9hUVb_Ge-zXoDdAtJ3I -> com.hyc.helper.f.n:
     io.reactivex.Observer f$0 -> a
-com.hyc.helper.model.-$$Lambda$StatementModel$QONwyH23RxXPhz6uzjptqXEe_DE -> com.hyc.helper.e.o:
+com.hyc.helper.model.-$$Lambda$StatementModel$QONwyH23RxXPhz6uzjptqXEe_DE -> com.hyc.helper.f.o:
     com.hyc.helper.model.-$$Lambda$StatementModel$QONwyH23RxXPhz6uzjptqXEe_DE INSTANCE -> a
     boolean apply(java.lang.String) -> a
-com.hyc.helper.model.-$$Lambda$fiv1oMYNmojwWizSGWGQ9JgXpQE -> com.hyc.helper.e.p:
+com.hyc.helper.model.-$$Lambda$fiv1oMYNmojwWizSGWGQ9JgXpQE -> com.hyc.helper.f.p:
     io.reactivex.Observer f$0 -> a
-com.hyc.helper.model.CourseModel -> com.hyc.helper.e.q:
+com.hyc.helper.model.CourseModel -> com.hyc.helper.f.q:
     io.reactivex.disposables.Disposable clearLocalDb() -> a
     void getCourseFromApi(com.hyc.helper.bean.UserBean,io.reactivex.Observer) -> a
     io.reactivex.Observable getCourseFromCache(java.lang.String) -> a
@@ -17421,7 +17421,7 @@ com.hyc.helper.model.CourseModel -> com.hyc.helper.e.q:
     void lambda$refreshLocalDb$1(java.util.List,java.lang.Boolean) -> a
     java.util.List lessonsToCourse(java.lang.String,com.hyc.helper.bean.LessonsExpBean) -> a
     io.reactivex.disposables.Disposable refreshLocalDb(java.util.List) -> b
-com.hyc.helper.model.ExamModel -> com.hyc.helper.e.r:
+com.hyc.helper.model.ExamModel -> com.hyc.helper.f.r:
     io.reactivex.disposables.Disposable deleteExamInfoFromCache() -> a
     void getExam(com.hyc.helper.bean.UserBean,io.reactivex.Observer) -> a
     void getExamInfoFromCache(io.reactivex.Observer) -> a
@@ -17431,7 +17431,7 @@ com.hyc.helper.model.ExamModel -> com.hyc.helper.e.r:
     java.util.List toCalendar(com.hyc.helper.bean.ExamBean) -> a
     io.reactivex.Observable getExamInfoFromCache() -> b
     io.reactivex.disposables.Disposable insertExamIntoDb(java.util.List) -> b
-com.hyc.helper.model.GradeModel -> com.hyc.helper.e.s:
+com.hyc.helper.model.GradeModel -> com.hyc.helper.f.s:
     io.reactivex.disposables.Disposable deleteGradeInfoFromCache() -> a
     void getGradeFromApi(com.hyc.helper.bean.UserBean,io.reactivex.Observer) -> a
     void getGradeInfoFromCache(io.reactivex.Observer) -> a
@@ -17439,10 +17439,10 @@ com.hyc.helper.model.GradeModel -> com.hyc.helper.e.s:
     void lambda$refreshLocalDb$1(java.util.List,java.lang.Boolean) -> a
     io.reactivex.disposables.Disposable refreshLocalDb(java.util.List) -> a
     io.reactivex.disposables.Disposable insertGradeIntoDb(java.util.List) -> b
-com.hyc.helper.model.ImageModel -> com.hyc.helper.e.t:
+com.hyc.helper.model.ImageModel -> com.hyc.helper.f.t:
     io.reactivex.disposables.Disposable getBigImageLoadRecord(java.lang.String,io.reactivex.functions.Consumer,io.reactivex.functions.Consumer) -> a
     void saveBigImageLoadRecord(com.hyc.helper.bean.BigImageLoadRecordBean) -> a
-com.hyc.helper.model.LostGoodsModel -> com.hyc.helper.e.u:
+com.hyc.helper.model.LostGoodsModel -> com.hyc.helper.f.u:
     void access$000(com.hyc.helper.model.LostGoodsModel,com.hyc.helper.bean.UserBean,java.util.Map,java.lang.String,io.reactivex.Observer) -> a
     io.reactivex.Observable deleteLost(com.hyc.helper.bean.UserBean,java.lang.String) -> a
     void getAllLostGoods(int,io.reactivex.Observer) -> a
@@ -17452,16 +17452,16 @@ com.hyc.helper.model.LostGoodsModel -> com.hyc.helper.e.u:
     void lambda$publishLost$2(com.hyc.helper.bean.UserBean,com.hyc.helper.helper.UploadImageObserver,java.util.List) -> a
     void publishLost(com.hyc.helper.bean.UserBean,java.util.Map,java.lang.String,io.reactivex.Observer) -> a
     void publishLost(com.hyc.helper.bean.UserBean,java.util.Map,java.util.List,io.reactivex.Observer) -> a
-com.hyc.helper.model.LostGoodsModel$1 -> com.hyc.helper.e.u$a:
+com.hyc.helper.model.LostGoodsModel$1 -> com.hyc.helper.f.u$a:
     java.util.Map val$map -> b
     com.hyc.helper.model.LostGoodsModel this$0 -> d
     com.hyc.helper.bean.UserBean val$userBean -> a
     io.reactivex.Observer val$observer -> c
     void onFailure(java.lang.Throwable) -> a
     void onSuccess(java.lang.String) -> a
-com.hyc.helper.model.PowerModel -> com.hyc.helper.e.v:
+com.hyc.helper.model.PowerModel -> com.hyc.helper.f.v:
     void queryPowerInfo(java.lang.String,java.lang.String,java.lang.String,com.hyc.helper.bean.UserBean$DataBean,java.lang.String,io.reactivex.Observer) -> a
-com.hyc.helper.model.SecondGoodsModel -> com.hyc.helper.e.w:
+com.hyc.helper.model.SecondGoodsModel -> com.hyc.helper.f.w:
     void access$000(com.hyc.helper.model.SecondGoodsModel,com.hyc.helper.bean.UserBean,java.util.Map,java.lang.String,io.reactivex.Observer) -> a
     io.reactivex.Observable deleteGoods(com.hyc.helper.bean.UserBean,java.lang.String) -> a
     void getGoodsDetailInfo(com.hyc.helper.bean.UserBean,java.lang.String,io.reactivex.Observer) -> a
@@ -17472,14 +17472,14 @@ com.hyc.helper.model.SecondGoodsModel -> com.hyc.helper.e.w:
     void lambda$publishMarketGoods$2(com.hyc.helper.bean.UserBean,com.hyc.helper.helper.UploadImageObserver,java.util.List) -> a
     void publishMarketGoods(com.hyc.helper.bean.UserBean,java.util.Map,java.lang.String,io.reactivex.Observer) -> a
     void publishMarketGoods(com.hyc.helper.bean.UserBean,java.util.Map,java.util.List,io.reactivex.Observer) -> a
-com.hyc.helper.model.SecondGoodsModel$1 -> com.hyc.helper.e.w$a:
+com.hyc.helper.model.SecondGoodsModel$1 -> com.hyc.helper.f.w$a:
     java.util.Map val$map -> b
     com.hyc.helper.model.SecondGoodsModel this$0 -> d
     com.hyc.helper.bean.UserBean val$userBean -> a
     io.reactivex.Observer val$observer -> c
     void onFailure(java.lang.Throwable) -> a
     void onSuccess(java.lang.String) -> a
-com.hyc.helper.model.StatementModel -> com.hyc.helper.e.x:
+com.hyc.helper.model.StatementModel -> com.hyc.helper.f.x:
     void access$000(com.hyc.helper.model.StatementModel,com.hyc.helper.bean.UserBean,java.lang.String,java.lang.String,io.reactivex.Observer) -> a
     io.reactivex.disposables.Disposable commentStatement(java.lang.String,java.lang.String,java.lang.String,java.lang.String,io.reactivex.functions.Consumer) -> a
     io.reactivex.Observable deleteStatement(com.hyc.helper.bean.UserBean,java.lang.String) -> a
@@ -17492,14 +17492,14 @@ com.hyc.helper.model.StatementModel -> com.hyc.helper.e.x:
     void publishStatement(com.hyc.helper.bean.UserBean,java.lang.String,java.lang.String,io.reactivex.Observer) -> a
     void publishStatement(com.hyc.helper.bean.UserBean,java.lang.String,java.util.List,io.reactivex.Observer) -> a
     io.reactivex.disposables.Disposable likeStatement(com.hyc.helper.bean.UserBean,java.lang.String) -> b
-com.hyc.helper.model.StatementModel$1 -> com.hyc.helper.e.x$a:
+com.hyc.helper.model.StatementModel$1 -> com.hyc.helper.f.x$a:
     com.hyc.helper.model.StatementModel this$0 -> d
     com.hyc.helper.bean.UserBean val$userBean -> a
     java.lang.String val$content -> b
     io.reactivex.Observer val$observer -> c
     void onFailure(java.lang.Throwable) -> a
     void onSuccess(java.lang.String) -> a
-com.hyc.helper.model.UserModel -> com.hyc.helper.e.y:
+com.hyc.helper.model.UserModel -> com.hyc.helper.f.y:
     java.lang.ref.WeakReference curUserBean -> a
     void cacheUserInfo(com.hyc.helper.bean.UserBean) -> a
     void findUserInfoById(com.hyc.helper.bean.UserBean,java.lang.String,io.reactivex.Observer) -> a
@@ -17515,7 +17515,7 @@ com.hyc.helper.model.UserModel -> com.hyc.helper.e.y:
     void updateLocalUserHeadImage(java.lang.String) -> c
     void logout() -> d
     void updateLocalUsername(java.lang.String) -> d
-com.hyc.helper.net.NetApiService -> com.hyc.helper.f.a:
+com.hyc.helper.net.NetApiService -> com.hyc.helper.g.a:
     io.reactivex.Observable commentStatement(java.lang.String,java.lang.String,java.lang.String,java.lang.String) -> a
     io.reactivex.Observable createLoses(java.lang.String,java.lang.String,java.util.Map) -> a
     io.reactivex.Observable getExam(java.lang.String,java.lang.String) -> a
@@ -17545,7 +17545,7 @@ com.hyc.helper.net.NetApiService -> com.hyc.helper.f.a:
     io.reactivex.Observable updateUserBio(java.lang.String,java.lang.String,java.lang.String) -> f
     io.reactivex.Observable getGoodsDetailInfo(java.lang.String,java.lang.String,java.lang.String) -> g
     io.reactivex.Observable findUserbyUserId(java.lang.String,java.lang.String,java.lang.String) -> h
-com.hyc.helper.net.RetrofitClient -> com.hyc.helper.f.b:
+com.hyc.helper.net.RetrofitClient -> com.hyc.helper.g.b:
     okhttp3.OkHttpClient okHttpClient -> a
     com.hyc.helper.net.RetrofitClient mInstance -> c
     java.util.HashMap retrofitPool -> b
@@ -17553,16 +17553,16 @@ com.hyc.helper.net.RetrofitClient -> com.hyc.helper.f.b:
     retrofit2.Retrofit getNewRetrofit(java.lang.String) -> a
     retrofit2.Retrofit getRetrofit(java.lang.String) -> b
     void initOkHttpClient() -> b
-com.hyc.helper.util.-$$Lambda$AudioRecordManager$Si2GOuEOb2vE8wbnFWJwQ9MzVPs -> com.hyc.helper.g.a:
+com.hyc.helper.util.-$$Lambda$AudioRecordManager$Si2GOuEOb2vE8wbnFWJwQ9MzVPs -> com.hyc.helper.h.a:
     com.hyc.helper.util.AudioRecordManager f$0 -> a
-com.hyc.helper.util.-$$Lambda$RxBus$BjY8HDiJnvN6PxfkP0KO0EMsOVQ -> com.hyc.helper.g.b:
+com.hyc.helper.util.-$$Lambda$RxBus$BjY8HDiJnvN6PxfkP0KO0EMsOVQ -> com.hyc.helper.h.b:
     com.hyc.helper.util.-$$Lambda$RxBus$BjY8HDiJnvN6PxfkP0KO0EMsOVQ INSTANCE -> a
-com.hyc.helper.util.-$$Lambda$RxBus$KnbOwRXoROA_YtViRr2Nq4vmNc4 -> com.hyc.helper.g.c:
+com.hyc.helper.util.-$$Lambda$RxBus$KnbOwRXoROA_YtViRr2Nq4vmNc4 -> com.hyc.helper.h.c:
     com.hyc.helper.bean.MessageEvent f$1 -> b
     java.lang.Object f$0 -> a
-com.hyc.helper.util.-$$Lambda$RxBus$fG83PEMROHhBxaPSfpIO_26IbmU -> com.hyc.helper.g.d:
+com.hyc.helper.util.-$$Lambda$RxBus$fG83PEMROHhBxaPSfpIO_26IbmU -> com.hyc.helper.h.d:
     com.hyc.helper.util.-$$Lambda$RxBus$fG83PEMROHhBxaPSfpIO_26IbmU INSTANCE -> a
-com.hyc.helper.util.AudioRecordManager -> com.hyc.helper.g.e:
+com.hyc.helper.util.AudioRecordManager -> com.hyc.helper.h.e:
     android.media.MediaRecorder mMediaRecorder -> c
     android.os.Handler mHandler -> f
     com.hyc.helper.util.AudioRecordManager$OnAudioStatusUpdateListener audioStatusUpdateListener -> d
@@ -17576,19 +17576,19 @@ com.hyc.helper.util.AudioRecordManager -> com.hyc.helper.g.e:
     void startRecord() -> b
     void stopRecord() -> c
     void updateMicStatus() -> d
-com.hyc.helper.util.AudioRecordManager$OnAudioStatusUpdateListener -> com.hyc.helper.g.e$a:
+com.hyc.helper.util.AudioRecordManager$OnAudioStatusUpdateListener -> com.hyc.helper.h.e$a:
     void onStop(java.lang.String,int) -> a
     void onUpdate(int,int) -> a
-com.hyc.helper.util.DensityUtil -> com.hyc.helper.g.f:
+com.hyc.helper.util.DensityUtil -> com.hyc.helper.h.f:
     int dip2px(float) -> a
     int getScreenHeight() -> a
     int getScreenWidth() -> b
-com.hyc.helper.util.Glide4Engine -> com.hyc.helper.g.g:
+com.hyc.helper.util.Glide4Engine -> com.hyc.helper.h.g:
     void loadGifImage(android.content.Context,int,int,android.widget.ImageView,android.net.Uri) -> a
     void loadThumbnail(android.content.Context,int,android.graphics.drawable.Drawable,android.widget.ImageView,android.net.Uri) -> a
     void loadGifThumbnail(android.content.Context,int,android.graphics.drawable.Drawable,android.widget.ImageView,android.net.Uri) -> b
     void loadImage(android.content.Context,int,int,android.widget.ImageView,android.net.Uri) -> b
-com.hyc.helper.util.RxBus -> com.hyc.helper.g.h:
+com.hyc.helper.util.RxBus -> com.hyc.helper.h.h:
     com.hyc.helper.util.RxBus rxBus -> b
     java.util.HashMap subscribeMap -> a
     io.reactivex.disposables.Disposable dispathMessage(java.lang.Object,com.hyc.helper.bean.MessageEvent) -> a
@@ -17601,18 +17601,18 @@ com.hyc.helper.util.RxBus -> com.hyc.helper.g.h:
     void unregister(java.lang.Object) -> b
     com.hyc.helper.annotation.Subscribe getSubscribe(java.lang.Object) -> c
     void lambda$dispathMessage$1(java.lang.Object) -> d
-com.hyc.helper.util.Sha1Utils -> com.hyc.helper.g.i:
+com.hyc.helper.util.Sha1Utils -> com.hyc.helper.h.i:
     java.lang.String bytes2Hex(byte[]) -> a
     java.lang.String getEnc(java.lang.String,java.lang.String,com.hyc.helper.bean.UserBean,java.lang.String) -> a
     java.lang.String getEnv(com.hyc.helper.bean.UserBean) -> a
     java.lang.String shaEncrypt(java.lang.String) -> a
-com.hyc.helper.util.parrot.InitialClassParam -> com.hyc.helper.g.j.a:
-com.hyc.helper.util.parrot.InitialParam -> com.hyc.helper.g.j.b:
-com.hyc.helper.util.parrot.ParamName -> com.hyc.helper.g.j.c:
+com.hyc.helper.util.parrot.InitialClassParam -> com.hyc.helper.h.j.a:
+com.hyc.helper.util.parrot.InitialParam -> com.hyc.helper.h.j.b:
+com.hyc.helper.util.parrot.ParamName -> com.hyc.helper.h.j.c:
     java.util.List fieldNames -> b
     java.lang.String key -> a
     java.lang.String belongToSet(java.util.Set) -> a
-com.hyc.helper.util.parrot.Parrot -> com.hyc.helper.g.j.d:
+com.hyc.helper.util.parrot.Parrot -> com.hyc.helper.h.j.d:
     com.google.gson.Gson mGson -> a
     com.hyc.helper.util.parrot.Parrot INSTANCE -> b
     com.hyc.helper.util.parrot.InitialClassParam getInitialClassParam(java.lang.reflect.Field) -> a
@@ -20272,44 +20272,58 @@ it.sephiroth.android.library.imagezoom.graphics.FastBitmapDrawable -> it.sephiro
 it.sephiroth.android.library.imagezoom.graphics.IBitmapDrawable -> it.sephiroth.android.library.imagezoom.a.b:
 it.sephiroth.android.library.imagezoom.utils.IDisposable -> it.sephiroth.android.library.imagezoom.b.a:
 kotlin.Function -> kotlin.a:
+kotlin.TuplesKt -> kotlin.b:
+    kotlin.Pair to(java.lang.Object,java.lang.Object) -> a
+kotlin.Unit -> kotlin.c:
+    kotlin.Unit INSTANCE -> a
+kotlin._Assertions -> kotlin.d:
+    boolean ENABLED -> a
 kotlin.collections.AbstractCollection -> kotlin.collections.AbstractCollection:
     int getSize() -> a
-kotlin.collections.ArraysKt__ArraysJVMKt -> kotlin.collections.a:
-kotlin.collections.ArraysKt__ArraysKt -> kotlin.collections.b:
-kotlin.collections.ArraysKt___ArraysJvmKt -> kotlin.collections.c:
+kotlin.collections.ArraysKt -> kotlin.collections.a:
     java.util.List asList(java.lang.Object[]) -> a
-kotlin.collections.ArraysUtilJVM -> kotlin.collections.d:
+kotlin.collections.ArraysKt__ArraysJVMKt -> kotlin.collections.b:
+kotlin.collections.ArraysKt__ArraysKt -> kotlin.collections.c:
+kotlin.collections.ArraysKt___ArraysJvmKt -> kotlin.collections.d:
     java.util.List asList(java.lang.Object[]) -> a
-kotlin.collections.CollectionsKt -> kotlin.collections.e:
+kotlin.collections.ArraysKt___ArraysKt -> kotlin.collections.e:
+kotlin.collections.ArraysUtilJVM -> kotlin.collections.f:
+    java.util.List asList(java.lang.Object[]) -> a
+kotlin.collections.CollectionsKt -> kotlin.collections.g:
     boolean addAll(java.util.Collection,java.lang.Object[]) -> a
     kotlin.sequences.Sequence asSequence(java.lang.Iterable) -> a
+    int collectionSizeOrDefault(java.lang.Iterable,int) -> a
     kotlin.ranges.IntRange getIndices(java.util.Collection) -> a
     java.util.List listOf(java.lang.Object) -> a
     boolean retainAll(java.lang.Iterable,kotlin.jvm.functions.Function1) -> a
-kotlin.collections.CollectionsKt__CollectionsJVMKt -> kotlin.collections.f:
+    java.lang.Object single(java.lang.Iterable) -> b
+kotlin.collections.CollectionsKt__CollectionsJVMKt -> kotlin.collections.h:
     java.util.List listOf(java.lang.Object) -> a
-kotlin.collections.CollectionsKt__CollectionsKt -> kotlin.collections.g:
+kotlin.collections.CollectionsKt__CollectionsKt -> kotlin.collections.i:
     kotlin.ranges.IntRange getIndices(java.util.Collection) -> a
-kotlin.collections.CollectionsKt__IterablesKt -> kotlin.collections.h:
-kotlin.collections.CollectionsKt__IteratorsJVMKt -> kotlin.collections.i:
-kotlin.collections.CollectionsKt__IteratorsKt -> kotlin.collections.j:
-kotlin.collections.CollectionsKt__MutableCollectionsJVMKt -> kotlin.collections.k:
-kotlin.collections.CollectionsKt__MutableCollectionsKt -> kotlin.collections.l:
+kotlin.collections.CollectionsKt__IterablesKt -> kotlin.collections.j:
+    int collectionSizeOrDefault(java.lang.Iterable,int) -> a
+kotlin.collections.CollectionsKt__IteratorsJVMKt -> kotlin.collections.k:
+kotlin.collections.CollectionsKt__IteratorsKt -> kotlin.collections.l:
+kotlin.collections.CollectionsKt__MutableCollectionsJVMKt -> kotlin.collections.m:
+kotlin.collections.CollectionsKt__MutableCollectionsKt -> kotlin.collections.n:
     boolean addAll(java.util.Collection,java.lang.Object[]) -> a
     boolean filterInPlace$CollectionsKt__MutableCollectionsKt(java.lang.Iterable,kotlin.jvm.functions.Function1,boolean) -> a
     boolean retainAll(java.lang.Iterable,kotlin.jvm.functions.Function1) -> a
-kotlin.collections.CollectionsKt__ReversedViewsKt -> kotlin.collections.m:
-kotlin.collections.CollectionsKt___CollectionsJvmKt -> kotlin.collections.n:
-kotlin.collections.CollectionsKt___CollectionsKt -> kotlin.collections.o:
+kotlin.collections.CollectionsKt__ReversedViewsKt -> kotlin.collections.o:
+kotlin.collections.CollectionsKt___CollectionsJvmKt -> kotlin.collections.p:
+kotlin.collections.CollectionsKt___CollectionsKt -> kotlin.collections.q:
     kotlin.sequences.Sequence asSequence(java.lang.Iterable) -> a
     java.lang.Appendable joinTo(java.lang.Iterable,java.lang.Appendable,java.lang.CharSequence,java.lang.CharSequence,java.lang.CharSequence,int,java.lang.CharSequence,kotlin.jvm.functions.Function1) -> a
     java.lang.String joinToString(java.lang.Iterable,java.lang.CharSequence,java.lang.CharSequence,java.lang.CharSequence,int,java.lang.CharSequence,kotlin.jvm.functions.Function1) -> a
     java.lang.String joinToString$default(java.lang.Iterable,java.lang.CharSequence,java.lang.CharSequence,java.lang.CharSequence,int,java.lang.CharSequence,kotlin.jvm.functions.Function1,int,java.lang.Object) -> a
-kotlin.collections.CollectionsKt___CollectionsKt$asSequence$$inlined$Sequence$1 -> kotlin.collections.o$a:
+    java.lang.Object single(java.util.List) -> a
+    java.lang.Object single(java.lang.Iterable) -> b
+kotlin.collections.CollectionsKt___CollectionsKt$asSequence$$inlined$Sequence$1 -> kotlin.collections.q$a:
     java.lang.Iterable $this_asSequence$inlined -> a
-kotlin.collections.IntIterator -> kotlin.collections.p:
+kotlin.collections.IntIterator -> kotlin.collections.r:
     int nextInt() -> a
-kotlin.internal.ProgressionUtilKt -> kotlin.b.a:
+kotlin.internal.ProgressionUtilKt -> kotlin.e.a:
     int differenceModulo(int,int,int) -> a
     int mod(int,int) -> a
     int getProgressionLastElement(int,int,int) -> b
@@ -20358,45 +20372,54 @@ kotlin.jvm.internal.ReflectionFactory -> kotlin.jvm.internal.h:
     java.lang.String renderLambdaToString(kotlin.jvm.internal.FunctionBase) -> a
     java.lang.String renderLambdaToString(kotlin.jvm.internal.Lambda) -> a
 kotlin.jvm.internal.markers.KMappedMarker -> kotlin.jvm.internal.i.a:
-kotlin.properties.Delegates -> kotlin.c.a:
+kotlin.properties.Delegates -> kotlin.f.a:
     kotlin.properties.Delegates INSTANCE -> a
-kotlin.properties.ObservableProperty -> kotlin.c.b:
+kotlin.properties.ObservableProperty -> kotlin.f.b:
     java.lang.Object value -> a
     void afterChange(kotlin.reflect.KProperty,java.lang.Object,java.lang.Object) -> a
     java.lang.Object getValue(java.lang.Object,kotlin.reflect.KProperty) -> a
     void setValue(java.lang.Object,kotlin.reflect.KProperty,java.lang.Object) -> a
     boolean beforeChange(kotlin.reflect.KProperty,java.lang.Object,java.lang.Object) -> b
-kotlin.properties.ReadWriteProperty -> kotlin.c.c:
+kotlin.properties.ReadWriteProperty -> kotlin.f.c:
     java.lang.Object getValue(java.lang.Object,kotlin.reflect.KProperty) -> a
     void setValue(java.lang.Object,kotlin.reflect.KProperty,java.lang.Object) -> a
-kotlin.ranges.ClosedRange -> kotlin.d.a:
-kotlin.ranges.IntProgression -> kotlin.d.b:
+kotlin.ranges.ClosedRange -> kotlin.g.a:
+kotlin.ranges.IntProgression -> kotlin.g.b:
+    kotlin.ranges.IntProgression$Companion Companion -> d
     int last -> b
     int step -> c
     int first -> a
-kotlin.ranges.IntProgression$Companion -> kotlin.d.b$a:
-kotlin.ranges.IntProgressionIterator -> kotlin.d.c:
+    int getStep() -> a
+kotlin.ranges.IntProgression$Companion -> kotlin.g.b$a:
+    kotlin.ranges.IntProgression fromClosedRange(int,int,int) -> a
+kotlin.ranges.IntProgressionIterator -> kotlin.g.c:
     int step -> d
     boolean hasNext -> b
     int next -> c
     int finalElement -> a
     int nextInt() -> a
-kotlin.ranges.IntRange -> kotlin.d.d:
-    kotlin.ranges.IntRange EMPTY -> d
-    kotlin.ranges.IntRange$Companion Companion -> f
-    java.lang.Integer getEndInclusive() -> a
-    java.lang.Integer getStart() -> b
-    kotlin.ranges.IntRange access$getEMPTY$cp() -> c
-kotlin.ranges.IntRange$Companion -> kotlin.d.d$a:
+kotlin.ranges.IntRange -> kotlin.g.d:
+    kotlin.ranges.IntRange EMPTY -> f
+    kotlin.ranges.IntRange$Companion Companion -> g
+    java.lang.Integer getEndInclusive() -> b
+    java.lang.Integer getStart() -> c
+    kotlin.ranges.IntRange access$getEMPTY$cp() -> d
+kotlin.ranges.IntRange$Companion -> kotlin.g.d$a:
     kotlin.ranges.IntRange getEMPTY() -> a
-kotlin.ranges.RangesKt -> kotlin.d.e:
-    int coerceAtMost(int,int) -> a
-    kotlin.ranges.IntRange until(int,int) -> b
-kotlin.ranges.RangesKt__RangesJVMKt -> kotlin.d.f:
-kotlin.ranges.RangesKt__RangesKt -> kotlin.d.g:
-kotlin.ranges.RangesKt___RangesKt -> kotlin.d.h:
-    int coerceAtMost(int,int) -> a
-    kotlin.ranges.IntRange until(int,int) -> b
+kotlin.ranges.RangesKt -> kotlin.g.e:
+    int coerceAtLeast(int,int) -> a
+    int coerceIn(int,int,int) -> a
+    int coerceAtMost(int,int) -> b
+    kotlin.ranges.IntProgression downTo(int,int) -> c
+    kotlin.ranges.IntRange until(int,int) -> d
+kotlin.ranges.RangesKt__RangesJVMKt -> kotlin.g.f:
+kotlin.ranges.RangesKt__RangesKt -> kotlin.g.g:
+kotlin.ranges.RangesKt___RangesKt -> kotlin.g.h:
+    int coerceAtLeast(int,int) -> a
+    int coerceIn(int,int,int) -> a
+    int coerceAtMost(int,int) -> b
+    kotlin.ranges.IntProgression downTo(int,int) -> c
+    kotlin.ranges.IntRange until(int,int) -> d
 kotlin.reflect.KAnnotatedElement -> kotlin.reflect.a:
 kotlin.reflect.KCallable -> kotlin.reflect.b:
 kotlin.reflect.KClass -> kotlin.reflect.c:
@@ -20415,45 +20438,68 @@ kotlin.reflect.KProperty1$Getter -> kotlin.reflect.j$a:
 kotlin.reflect.KType -> kotlin.reflect.k:
 kotlin.reflect.KVisibility -> kotlin.reflect.KVisibility:
     kotlin.reflect.KVisibility[] $VALUES -> a
-kotlin.sequences.GeneratorSequence -> kotlin.e.a:
+kotlin.sequences.GeneratorSequence -> kotlin.h.a:
     kotlin.jvm.functions.Function0 getInitialValue -> a
     kotlin.jvm.functions.Function1 getNextValue -> b
     kotlin.jvm.functions.Function0 access$getGetInitialValue$p(kotlin.sequences.GeneratorSequence) -> a
     kotlin.jvm.functions.Function1 access$getGetNextValue$p(kotlin.sequences.GeneratorSequence) -> b
-kotlin.sequences.GeneratorSequence$iterator$1 -> kotlin.e.a$a:
+kotlin.sequences.GeneratorSequence$iterator$1 -> kotlin.h.a$a:
     kotlin.sequences.GeneratorSequence this$0 -> c
     java.lang.Object nextItem -> a
     int nextState -> b
     void calcNext() -> a
-kotlin.sequences.Sequence -> kotlin.e.b:
-kotlin.sequences.SequencesKt -> kotlin.e.c:
+kotlin.sequences.Sequence -> kotlin.h.b:
+kotlin.sequences.SequencesKt -> kotlin.h.c:
+    java.lang.Iterable asIterable(kotlin.sequences.Sequence) -> a
     kotlin.sequences.Sequence generateSequence(kotlin.jvm.functions.Function0,kotlin.jvm.functions.Function1) -> a
     kotlin.sequences.Sequence map(kotlin.sequences.Sequence,kotlin.jvm.functions.Function1) -> a
-kotlin.sequences.SequencesKt__SequenceBuilderKt -> kotlin.e.d:
-kotlin.sequences.SequencesKt__SequencesJVMKt -> kotlin.e.e:
-kotlin.sequences.SequencesKt__SequencesKt -> kotlin.e.f:
+kotlin.sequences.SequencesKt__SequenceBuilderKt -> kotlin.h.d:
+kotlin.sequences.SequencesKt__SequencesJVMKt -> kotlin.h.e:
+kotlin.sequences.SequencesKt__SequencesKt -> kotlin.h.f:
     kotlin.sequences.Sequence generateSequence(kotlin.jvm.functions.Function0,kotlin.jvm.functions.Function1) -> a
-kotlin.sequences.SequencesKt___SequencesJvmKt -> kotlin.e.g:
-kotlin.sequences.SequencesKt___SequencesKt -> kotlin.e.h:
+kotlin.sequences.SequencesKt___SequencesJvmKt -> kotlin.h.g:
+kotlin.sequences.SequencesKt___SequencesKt -> kotlin.h.h:
+    java.lang.Iterable asIterable(kotlin.sequences.Sequence) -> a
     kotlin.sequences.Sequence map(kotlin.sequences.Sequence,kotlin.jvm.functions.Function1) -> a
-kotlin.sequences.TransformingSequence -> kotlin.e.i:
+kotlin.sequences.SequencesKt___SequencesKt$asIterable$$inlined$Iterable$1 -> kotlin.h.h$a:
+    kotlin.sequences.Sequence $this_asIterable$inlined -> a
+kotlin.sequences.TransformingSequence -> kotlin.h.i:
     kotlin.sequences.Sequence sequence -> a
     kotlin.jvm.functions.Function1 transformer -> b
     kotlin.sequences.Sequence access$getSequence$p(kotlin.sequences.TransformingSequence) -> a
     kotlin.jvm.functions.Function1 access$getTransformer$p(kotlin.sequences.TransformingSequence) -> b
-kotlin.sequences.TransformingSequence$iterator$1 -> kotlin.e.i$a:
+kotlin.sequences.TransformingSequence$iterator$1 -> kotlin.h.i$a:
     kotlin.sequences.TransformingSequence this$0 -> b
     java.util.Iterator iterator -> a
 kotlin.text.CharsKt__CharJVMKt -> kotlin.text.a:
     int checkRadix(int) -> a
     int digitOf(char,int) -> a
-kotlin.text.FlagEnum -> kotlin.text.b:
-kotlin.text.MatchGroup -> kotlin.text.c:
+kotlin.text.CharsKt__CharKt -> kotlin.text.b:
+    boolean equals(char,char,boolean) -> a
+kotlin.text.DelimitedRangesSequence -> kotlin.text.c:
+    java.lang.CharSequence input -> a
+    int startIndex -> b
+    int limit -> c
+    kotlin.jvm.functions.Function2 getNextMatch -> d
+    kotlin.jvm.functions.Function2 access$getGetNextMatch$p(kotlin.text.DelimitedRangesSequence) -> a
+    java.lang.CharSequence access$getInput$p(kotlin.text.DelimitedRangesSequence) -> b
+    int access$getLimit$p(kotlin.text.DelimitedRangesSequence) -> c
+    int access$getStartIndex$p(kotlin.text.DelimitedRangesSequence) -> d
+kotlin.text.DelimitedRangesSequence$iterator$1 -> kotlin.text.c$a:
+    kotlin.ranges.IntRange nextItem -> d
+    int counter -> f
+    kotlin.text.DelimitedRangesSequence this$0 -> g
+    int currentStartIndex -> b
+    int nextSearchIndex -> c
+    int nextState -> a
+    void calcNext() -> a
+kotlin.text.FlagEnum -> kotlin.text.d:
+kotlin.text.MatchGroup -> kotlin.text.e:
     kotlin.ranges.IntRange range -> b
     java.lang.String value -> a
-kotlin.text.MatchGroupCollection -> kotlin.text.d:
-kotlin.text.MatchNamedGroupCollection -> kotlin.text.e:
-kotlin.text.MatchResult -> kotlin.text.f:
+kotlin.text.MatchGroupCollection -> kotlin.text.f:
+kotlin.text.MatchNamedGroupCollection -> kotlin.text.g:
+kotlin.text.MatchResult -> kotlin.text.h:
     kotlin.ranges.IntRange getRange() -> a
 kotlin.text.MatcherMatchResult -> kotlin.text.MatcherMatchResult:
     java.util.regex.Matcher matcher -> a
@@ -20469,7 +20515,7 @@ kotlin.text.Regex$Companion -> kotlin.text.Regex$a:
     int access$ensureUnicodeCase(kotlin.text.Regex$Companion,int) -> a
     int ensureUnicodeCase(int) -> a
 kotlin.text.Regex$Serialized$Companion -> kotlin.text.Regex$Serialized$a:
-kotlin.text.RegexKt -> kotlin.text.g:
+kotlin.text.RegexKt -> kotlin.text.i:
     kotlin.text.MatchResult access$findNext(java.util.regex.Matcher,int,java.lang.CharSequence) -> a
     kotlin.text.MatchResult access$matchEntire(java.util.regex.Matcher,java.lang.CharSequence) -> a
     kotlin.ranges.IntRange access$range(java.util.regex.MatchResult) -> a
@@ -20482,32 +20528,50 @@ kotlin.text.RegexKt -> kotlin.text.g:
     int toInt(java.lang.Iterable) -> b
 kotlin.text.RegexOption -> kotlin.text.RegexOption:
     kotlin.text.RegexOption[] $VALUES -> a
-kotlin.text.ScreenFloatValueRegEx -> kotlin.text.h:
+kotlin.text.ScreenFloatValueRegEx -> kotlin.text.j:
     kotlin.text.Regex value -> a
-kotlin.text.StringsKt -> kotlin.text.i:
+kotlin.text.StringsKt -> kotlin.text.k:
     void appendElement(java.lang.Appendable,java.lang.Object,kotlin.jvm.functions.Function1) -> a
+    java.util.List split$default(java.lang.CharSequence,java.lang.String[],boolean,int,int,java.lang.Object) -> a
     java.lang.Double toDoubleOrNull(java.lang.String) -> a
     java.lang.Float toFloatOrNull(java.lang.String) -> b
     java.lang.Integer toIntOrNull(java.lang.String) -> c
     java.lang.Long toLongOrNull(java.lang.String) -> d
-kotlin.text.StringsKt__IndentKt -> kotlin.text.j:
-kotlin.text.StringsKt__RegexExtensionsJVMKt -> kotlin.text.k:
-kotlin.text.StringsKt__RegexExtensionsKt -> kotlin.text.l:
-kotlin.text.StringsKt__StringBuilderJVMKt -> kotlin.text.m:
-kotlin.text.StringsKt__StringBuilderKt -> kotlin.text.n:
+kotlin.text.StringsKt__IndentKt -> kotlin.text.l:
+kotlin.text.StringsKt__RegexExtensionsJVMKt -> kotlin.text.m:
+kotlin.text.StringsKt__RegexExtensionsKt -> kotlin.text.n:
+kotlin.text.StringsKt__StringBuilderJVMKt -> kotlin.text.o:
+kotlin.text.StringsKt__StringBuilderKt -> kotlin.text.p:
     void appendElement(java.lang.Appendable,java.lang.Object,kotlin.jvm.functions.Function1) -> a
-kotlin.text.StringsKt__StringNumberConversionsJVMKt -> kotlin.text.o:
+kotlin.text.StringsKt__StringNumberConversionsJVMKt -> kotlin.text.q:
     java.lang.Double toDoubleOrNull(java.lang.String) -> a
     java.lang.Float toFloatOrNull(java.lang.String) -> b
-kotlin.text.StringsKt__StringNumberConversionsKt -> kotlin.text.p:
+kotlin.text.StringsKt__StringNumberConversionsKt -> kotlin.text.r:
     java.lang.Integer toIntOrNull(java.lang.String,int) -> a
     java.lang.Long toLongOrNull(java.lang.String,int) -> b
     java.lang.Integer toIntOrNull(java.lang.String) -> c
     java.lang.Long toLongOrNull(java.lang.String) -> d
-kotlin.text.StringsKt__StringsJVMKt -> kotlin.text.q:
-kotlin.text.StringsKt__StringsKt -> kotlin.text.r:
-kotlin.text.StringsKt___StringsJvmKt -> kotlin.text.s:
-kotlin.text.StringsKt___StringsKt -> kotlin.text.t:
+kotlin.text.StringsKt__StringsJVMKt -> kotlin.text.s:
+    boolean regionMatches(java.lang.String,int,java.lang.String,int,int,boolean) -> a
+kotlin.text.StringsKt__StringsKt -> kotlin.text.StringsKt__StringsKt:
+    kotlin.Pair access$findAnyOf(java.lang.CharSequence,java.util.Collection,int,boolean,boolean) -> a
+    int getLastIndex(java.lang.CharSequence) -> a
+    int indexOf(java.lang.CharSequence,java.lang.String,int,boolean) -> a
+    int indexOf$StringsKt__StringsKt(java.lang.CharSequence,java.lang.CharSequence,int,int,boolean,boolean) -> a
+    int indexOf$StringsKt__StringsKt$default(java.lang.CharSequence,java.lang.CharSequence,int,int,boolean,boolean,int,java.lang.Object) -> a
+    int indexOf$default(java.lang.CharSequence,java.lang.String,int,boolean,int,java.lang.Object) -> a
+    kotlin.sequences.Sequence rangesDelimitedBy$StringsKt__StringsKt(java.lang.CharSequence,java.lang.String[],int,boolean,int) -> a
+    kotlin.sequences.Sequence rangesDelimitedBy$StringsKt__StringsKt$default(java.lang.CharSequence,java.lang.String[],int,boolean,int,int,java.lang.Object) -> a
+    boolean regionMatchesImpl(java.lang.CharSequence,int,java.lang.CharSequence,int,int,boolean) -> a
+    java.util.List split(java.lang.CharSequence,java.lang.String[],boolean,int) -> a
+    java.util.List split$StringsKt__StringsKt(java.lang.CharSequence,java.lang.String,boolean,int) -> a
+    java.util.List split$default(java.lang.CharSequence,java.lang.String[],boolean,int,int,java.lang.Object) -> a
+    java.lang.String substring(java.lang.CharSequence,kotlin.ranges.IntRange) -> a
+    kotlin.Pair findAnyOf$StringsKt__StringsKt(java.lang.CharSequence,java.util.Collection,int,boolean,boolean) -> b
+    int lastIndexOf(java.lang.CharSequence,java.lang.String,int,boolean) -> b
+    int lastIndexOf$default(java.lang.CharSequence,java.lang.String,int,boolean,int,java.lang.Object) -> b
+kotlin.text.StringsKt___StringsJvmKt -> kotlin.text.t:
+kotlin.text.StringsKt___StringsKt -> kotlin.text.u:
 okio.AsyncTimeout -> okio.a:
 okio.AsyncTimeout$1 -> okio.a$a:
     okio.AsyncTimeout this$0 -> b

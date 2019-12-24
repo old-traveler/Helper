@@ -163,7 +163,6 @@ class ExpandableLayout @JvmOverloads constructor(
       textView.maxLines = maxLine
       val curLine = (mTargetView as TextView).lineCount
       collapseHeight = getTargetViewExpandHeight(widthMeasureSpec, heightMeasureSpec, false)
-      LogHelper.log("line $curLine collapseHeight : $collapseHeight height : $height")
       textView.maxLines = Integer.MAX_VALUE
     }
     return height

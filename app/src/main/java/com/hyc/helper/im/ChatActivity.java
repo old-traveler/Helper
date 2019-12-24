@@ -27,6 +27,7 @@ import cn.bmob.newim.core.BmobIMClient;
 import cn.bmob.newim.listener.MessageSendListener;
 import cn.bmob.newim.listener.MessagesQueryListener;
 import cn.bmob.v3.exception.BmobException;
+import com.hyc.cuckoo_lib.CuckooNeed;
 import com.hyc.helper.R;
 import com.hyc.helper.activity.PictureBrowsingActivity;
 import com.hyc.helper.adapter.ChatAdapter;
@@ -205,25 +206,20 @@ public class ChatActivity extends BaseActivity
     }
   }
 
+  @CuckooNeed(Manifest.permission.RECORD_AUDIO)
   private void showVoiceLayout() {
-    RxPermissions rxPermissions = new RxPermissions(this);
-    addDisposable(rxPermissions.request(Manifest.permission.RECORD_AUDIO)
-        .subscribe(granted -> {
-          if (granted) {
-            if (flMore.getVisibility() == View.VISIBLE && voiceRecordView.getVisibility() == View.VISIBLE) {
-              flMore.setVisibility(View.GONE);
-              voiceRecordView.setVisibility(View.GONE);
-            } else {
-              rvMoreEmoji.setVisibility(View.GONE);
-              if (!isKeyShow) {
-                showMoreLayout();
-              } else {
-                needShowMoreLayout = true;
-                hideInputWindow();
-              }
-            }
-          }
-        }));
+    if (flMore.getVisibility() == View.VISIBLE && voiceRecordView.getVisibility() == View.VISIBLE) {
+      flMore.setVisibility(View.GONE);
+      voiceRecordView.setVisibility(View.GONE);
+    } else {
+      rvMoreEmoji.setVisibility(View.GONE);
+      if (!isKeyShow) {
+        showMoreLayout();
+      } else {
+        needShowMoreLayout = true;
+        hideInputWindow();
+      }
+    }
   }
 
   private boolean needShowMoreLayout = false;
@@ -243,27 +239,26 @@ public class ChatActivity extends BaseActivity
     }
   }
 
-
   public void showMoreLayout() {
-    if (!isEmoji){
+    if (!isEmoji) {
       flMore.setVisibility(View.VISIBLE);
       voiceRecordView.setVisibility(View.VISIBLE);
       return;
     }
-    RxPermissions rxPermissions = new RxPermissions(this);
-    addDisposable(rxPermissions.request(Manifest.permission.CAMERA,
-        Manifest.permission.WRITE_EXTERNAL_STORAGE)
-        .subscribe(granted -> {
-          if (granted && disposable == null) {
-            FileHelper.getLocalImages()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(this);
-          }
-          flMore.setVisibility(View.VISIBLE);
-          rvMoreEmoji.setVisibility(View.VISIBLE);
-        }));
-    dispose();
+    getLocalImages();
+  }
+
+  @CuckooNeed({Manifest.permission.CAMERA,
+      Manifest.permission.WRITE_EXTERNAL_STORAGE})
+  private void getLocalImages(){
+    if (disposable == null) {
+      FileHelper.getLocalImages()
+          .subscribeOn(Schedulers.io())
+          .observeOn(AndroidSchedulers.mainThread())
+          .subscribe(this);
+    }
+    flMore.setVisibility(View.VISIBLE);
+    rvMoreEmoji.setVisibility(View.VISIBLE);
   }
 
   private void sendTxtMessage() {
@@ -399,12 +394,12 @@ public class ChatActivity extends BaseActivity
   }
 
   @Override
-  public void onChatMessageClick(View view,int position,BmobIMMessage message) {
+  public void onChatMessageClick(View view, int position, BmobIMMessage message) {
     if (view.getId() == R.id.iv_image_left || view.getId() == R.id.iv_image_right) {
       goToPictureBrowsing(message);
-    }else if (view.getId() == R.id.iv_send_error){
+    } else if (view.getId() == R.id.iv_send_error) {
       adapter.updateMessage(message);
-      conversation.resendMessage(message,new ResendMessageListener(adapter));
+      conversation.resendMessage(message, new ResendMessageListener(adapter));
     }
   }
 

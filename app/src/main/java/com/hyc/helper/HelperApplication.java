@@ -2,21 +2,15 @@ package com.hyc.helper;
 
 import android.annotation.SuppressLint;
 import android.app.Application;
-import android.app.DownloadManager;
-import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.net.Network;
 import android.net.NetworkRequest;
-import android.net.Uri;
-import android.os.Environment;
 import cn.bmob.newim.BmobIM;
-import cn.bmob.v3.Bmob;
-import com.hyc.helper.base.util.ToastHelper;
-import com.hyc.helper.base.util.UiHelper;
+import com.hyc.cuckoo_lib.CuckooPermission;
 import com.hyc.helper.bean.MessageEvent;
+import com.hyc.helper.cuckoo.PermissionRefuseListener;
+import com.hyc.helper.cuckoo.RxPermissionApplicant;
 import com.hyc.helper.helper.Constant;
 import com.hyc.helper.helper.DaoHelper;
 import com.hyc.helper.helper.MessageHandler;
@@ -37,6 +31,7 @@ public class HelperApplication extends Application {
   public void onCreate() {
     super.onCreate();
     mContext = getApplicationContext();
+    CuckooPermission.init(this, new RxPermissionApplicant(), new PermissionRefuseListener());
     if (getApplicationInfo().packageName.equals(getMyProcessName())) {
       BmobIM.init(this);
       BmobIM.registerDefaultMessageHandler(new MessageHandler());
@@ -91,5 +86,4 @@ public class HelperApplication extends Application {
       return null;
     }
   }
-
 }

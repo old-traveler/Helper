@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.widget.EditText;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import com.hyc.cuckoo_lib.CuckooNeed;
 import com.hyc.helper.R;
 import com.hyc.helper.activity.fragment.LostFindFragment;
 import com.hyc.helper.adapter.viewholder.PublishImageViewHolder;
@@ -134,18 +135,9 @@ public class LosePublishActivity extends BaseRequestActivity<BaseRequestBean> {
     return R.layout.activity_lose_publish;
   }
 
-  private void goToSelectImage() {
-    addDisposable(new RxPermissions(this)
-        .request(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-        .subscribe(granted -> {
-          if (granted) {
-            startSelectImage();
-          } else {
-            ToastHelper.toast(R.string.camera_premission_tip);
-          }
-        }));
-  }
 
+
+  @CuckooNeed({Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE})
   private void startSelectImage() {
     int size = 5 - baseRecycleAdapter.getItemCount();
     if (size <= 0) {
@@ -178,7 +170,7 @@ public class LosePublishActivity extends BaseRequestActivity<BaseRequestBean> {
       if (view.getId() == R.id.iv_delete) {
         baseRecycleAdapter.removeItemFormList(position);
       } else {
-        goToSelectImage();
+        startSelectImage();
       }
     });
   }

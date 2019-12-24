@@ -16,6 +16,7 @@ import android.widget.EditText;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import com.hyc.cuckoo_lib.CuckooNeed;
 import com.hyc.helper.R;
 import com.hyc.helper.activity.fragment.SecondHandFragment;
 import com.hyc.helper.adapter.viewholder.PublishImageViewHolder;
@@ -147,24 +148,12 @@ public class SecondMarketPublishActivity extends BaseRequestActivity<BaseRequest
       if (view.getId() == R.id.iv_delete) {
         baseRecycleAdapter.removeItemFormList(position);
       } else {
-        goToSelectImage();
+        startSelectImage();
       }
     });
   }
 
-  @SuppressLint("CheckResult")
-  private void goToSelectImage() {
-    addDisposable(new RxPermissions(this)
-        .request(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-        .subscribe(granted -> {
-          if (granted) {
-            startSelectImage();
-          } else {
-            ToastHelper.toast(R.string.camera_premission_tip);
-          }
-        }));
-  }
-
+  @CuckooNeed({Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE})
   private void startSelectImage() {
     int size = 5 - baseRecycleAdapter.getItemCount();
     if (size <= 0) {

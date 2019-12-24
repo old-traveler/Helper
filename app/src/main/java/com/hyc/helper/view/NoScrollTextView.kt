@@ -3,7 +3,6 @@ package com.hyc.helper.view
 import android.content.Context
 import android.util.AttributeSet
 import android.widget.TextView
-import com.hyc.helper.helper.LogHelper
 
 /**
  * @author: 贺宇成
@@ -19,7 +18,6 @@ class NoScrollTextView @JvmOverloads constructor(
     if (scrollAble) {
       super.scrollTo(x, y)
     }
-    LogHelper.log("scrollable :$scrollAble")
   }
 
 }

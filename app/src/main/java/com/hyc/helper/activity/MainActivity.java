@@ -22,6 +22,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.bmob.newim.BmobIM;
 import cn.bmob.newim.bean.BmobIMMessage;
+import com.hyc.cuckoo_lib.CuckooNeed;
 import com.hyc.helper.R;
 import com.hyc.helper.activity.fragment.LostFindFragment;
 import com.hyc.helper.activity.fragment.SecondHandFragment;
@@ -335,7 +336,7 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
           if (ConfigureHelper.getVersionCode() < updateApkBean.getVersion_code()) {
             showTipDialog("版本更新", "发现新版本，是否更新?", isPosition -> {
               if (isPosition) {
-                startUpdate(updateApkBean.getApk_url());
+                downApk(updateApkBean.getApk_url());
               } else {
                 SpCacheHelper.putLong("cancel", System.currentTimeMillis());
               }
@@ -346,16 +347,7 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
         }));
   }
 
-  public void startUpdate(String url) {
-    RxPermissions rxPermissions = new RxPermissions(this);
-    addDisposable(rxPermissions.request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-        .subscribe(granted -> {
-          if (granted) {
-            downApk(url);
-          }
-        }));
-  }
-
+  @CuckooNeed(Manifest.permission.WRITE_EXTERNAL_STORAGE)
   public void downApk(String url) {
     updateAppHelper = new UpdateAppHelper();
     updateAppHelper.download(url, UiHelper.getString(R.string.apk_name), this);

@@ -16,6 +16,7 @@ import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import com.hyc.cuckoo_lib.CuckooNeed;
 import com.hyc.helper.R;
 import com.hyc.helper.base.activity.BaseActivity;
 import com.hyc.helper.base.util.ToastHelper;
@@ -134,7 +135,7 @@ public class PersonalActivity extends BaseActivity {
   public void onViewClicked(View view) {
     switch (view.getId()) {
       case R.id.iv_head:
-        replaceHeadImage();
+        startSelectImage();
         break;
       case R.id.tv_username:
         goToOtherActivityForResult(InputActivity.class, REQUEST_CODE_USERNAME);
@@ -145,18 +146,8 @@ public class PersonalActivity extends BaseActivity {
     }
   }
 
-  private void replaceHeadImage() {
-    addDisposable(new RxPermissions(this)
-        .request(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-        .subscribe(granted -> {
-          if (granted) {
-            startSelectImage();
-          } else {
-            ToastHelper.toast(R.string.camera_premission_tip);
-          }
-        }));
-  }
 
+  @CuckooNeed({Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE})
   private void startSelectImage() {
     Matisse.from(this)
         .choose(MimeType.ofAll(), false)
