@@ -2,7 +2,7 @@ package com.hyc.helper.helper;
 
 public class Constant {
 
-  public static final String DB_NAME = "helper-db";
+  static final String DB_NAME = "helper-db";
 
   public static final int REQUEST_SUCCESS = 200;
 
@@ -13,8 +13,6 @@ public class Constant {
   public static final long ONE_HOUR_TIME = 60 * 60 * 1000L;
 
   public static final String BASE_IMAGE_URL = "http://223.111.182.121:8888/";
-
-  public static final String SP_CONFIG = "configure";
 
   public static final String MSG_EXTRA = "metaData";
 

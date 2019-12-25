@@ -8,7 +8,6 @@ import com.hyc.helper.bean.ExamInfoBean;
 import com.hyc.helper.bean.GradeBean;
 import com.hyc.helper.bean.GradeInfoBean;
 import com.hyc.helper.bean.ImageMessageRecord;
-import com.hyc.helper.bean.StatementBean;
 import com.hyc.helper.bean.StatementInfoBean;
 import com.hyc.helper.bean.WebUrlBean;
 import com.hyc.helper.gen.BigImageLoadRecordBeanDao;

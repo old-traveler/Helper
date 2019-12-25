@@ -1,5 +1,6 @@
 package com.hyc.helper.util;
 
+import android.annotation.SuppressLint;
 import com.hyc.helper.bean.UserBean;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -15,8 +16,8 @@ public class Sha1Utils {
    * @return 加密之后的密文
    */
   public static String shaEncrypt(String strSrc) {
-    MessageDigest md = null;
-    String strDes = null;
+    MessageDigest md;
+    String strDes;
     byte[] bt = strSrc.getBytes();
     try {
       md = MessageDigest.getInstance("SHA-1");
@@ -35,16 +36,16 @@ public class Sha1Utils {
    * @return 16进制字符串
    */
   private static String bytes2Hex(byte[] bts) {
-    String des = "";
-    String tmp = null;
-    for (int i = 0; i < bts.length; i++) {
-      tmp = (Integer.toHexString(bts[i] & 0xFF));
+    StringBuilder des = new StringBuilder();
+    String tmp;
+    for (byte bt : bts) {
+      tmp = (Integer.toHexString(bt & 0xFF));
       if (tmp.length() == 1) {
-        des += "0";
+        des.append("0");
       }
-      des += tmp;
+      des.append(tmp);
     }
-    return des;
+    return des.toString();
   }
 
   public static String getEnc(String locate, String room, UserBean userBean, String part) {
@@ -53,7 +54,7 @@ public class Sha1Utils {
   }
 
   public static String getEnv(UserBean userBean) {
-    SimpleDateFormat format = new SimpleDateFormat("yyyy-MM");
+    @SuppressLint("SimpleDateFormat") SimpleDateFormat format = new SimpleDateFormat("yyyy-MM");
     String date = format.format(new Date(System.currentTimeMillis()));
     return shaEncrypt(
         userBean.getData().getStudentKH() + userBean.getRemember_code_app() + date);

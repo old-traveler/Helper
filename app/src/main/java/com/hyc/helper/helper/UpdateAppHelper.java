@@ -9,12 +9,8 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
 import android.support.v4.content.FileProvider;
-import android.text.TextUtils;
-import com.hyc.helper.HelperApplication;
 import com.hyc.helper.base.util.ToastHelper;
-import com.hyc.helper.bean.ConfigureDateBean;
 import java.io.File;
-import java.io.IOException;
 
 import static android.content.Context.DOWNLOAD_SERVICE;
 

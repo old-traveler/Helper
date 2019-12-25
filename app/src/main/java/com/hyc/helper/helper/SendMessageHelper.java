@@ -3,11 +3,9 @@ package com.hyc.helper.helper;
 import cn.bmob.newim.bean.BmobIMAudioMessage;
 import cn.bmob.newim.bean.BmobIMConversation;
 import cn.bmob.newim.bean.BmobIMImageMessage;
-import cn.bmob.newim.bean.BmobIMMessage;
 import cn.bmob.newim.bean.BmobIMTextMessage;
 import cn.bmob.newim.bean.BmobIMUserInfo;
 import cn.bmob.newim.listener.MessageSendListener;
-import cn.bmob.v3.exception.BmobException;
 import com.google.gson.Gson;
 import com.hyc.helper.bean.ImageMessageRecord;
 import com.hyc.helper.bean.ImageSizeBean;
@@ -17,10 +15,6 @@ import java.util.Map;
 
 public class SendMessageHelper {
 
-  public interface OnSendListener{
-    void onStartSend(BmobIMMessage bmobIMMessage);
-    void sendSuccess(BmobIMMessage bmobIMMessage);
-  }
 
   public static void sendTxtMessage(BmobIMUserInfo imUserInfo,BmobIMConversation c
       ,String content,MessageSendListener listener){

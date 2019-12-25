@@ -1,17 +1,12 @@
 package com.hyc.helper.base.util;
 
+import android.annotation.SuppressLint;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.DrawableWrapper;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomSheetDialog;
-import android.support.v4.graphics.drawable.DrawableCompat;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.style.ClickableSpan;
@@ -20,7 +15,6 @@ import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.hyc.helper.HelperApplication;
 import com.hyc.helper.R;
@@ -89,7 +83,7 @@ public class UiHelper {
     int topPx = top;
     int bottomPx = bottom;
     ViewGroup.LayoutParams params = view.getLayoutParams();
-    ViewGroup.MarginLayoutParams marginParams = null;
+    ViewGroup.MarginLayoutParams marginParams;
     //获取view的margin设置参数
     if (params instanceof ViewGroup.MarginLayoutParams) {
       marginParams = (ViewGroup.MarginLayoutParams) params;
@@ -133,7 +127,7 @@ public class UiHelper {
     if (text instanceof Spannable) {
       int end = text.length();
       Spannable sp = (Spannable) text;
-      URLSpan urls[] = sp.getSpans(0, end, URLSpan.class);
+      URLSpan[] urls = sp.getSpans(0, end, URLSpan.class);
       SpannableStringBuilder style = new SpannableStringBuilder(text);
       style.clearSpans();
       for (URLSpan urlSpan : urls) {
@@ -162,7 +156,7 @@ public class UiHelper {
 
   public static void showBottomSheetDialog(Context context, final String number) {
     BottomSheetDialog dialog = new BottomSheetDialog(context);
-    View dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_bottom, null);
+    @SuppressLint("InflateParams") View dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_bottom, null);
     TextView tvTitle = dialogView.findViewById(R.id.tv_title);
     tvTitle.setText(String.format("%s\n可能是一个电话号码或者其他联系方式，你可以", number));
     TextView tvCall = dialogView.findViewById(R.id.tv_call);
@@ -175,6 +169,7 @@ public class UiHelper {
     tvCopty.setOnClickListener(view -> {
       ClipboardManager copy =
           (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
+      assert copy != null;
       copy.setText(number);
       dialog.dismiss();
       ToastHelper.toast("已复制到剪切板");

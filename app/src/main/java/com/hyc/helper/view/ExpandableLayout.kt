@@ -14,7 +14,6 @@ import android.view.animation.Transformation
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.hyc.helper.R.styleable
-import com.hyc.helper.helper.LogHelper
 import kotlin.properties.Delegates
 import kotlin.reflect.KProperty
 
@@ -64,13 +63,13 @@ class ExpandableLayout @JvmOverloads constructor(
     const val STATE_EXPAND = 2
   }
 
-  public fun setExpandState(state: Int) {
+  fun setExpandState(state: Int) {
     if (!isAnimation) {
       mCurState = state
     }
   }
 
-  public fun setEnableCollapseAfterExpand(enable: Boolean) {
+  fun setEnableCollapseAfterExpand(enable: Boolean) {
     this.enableCollapseAfterExpand = enable
     isEnabled = true
     this.requestLayout()
@@ -82,14 +81,14 @@ class ExpandableLayout @JvmOverloads constructor(
     }
   }
 
-  public fun updateState(sparseArray: SparseIntArray, position: Int) {
+  fun updateState(sparseArray: SparseIntArray, position: Int) {
     this.sparseArray = sparseArray
     this.position = position
     updateStateNow(sparseArray.get(position, STATE_COLLAPSE))
 
   }
 
-  public fun updateStateNow(state: Int) {
+  fun updateStateNow(state: Int) {
     val old = hasAnimation
     hasAnimation = false
     setExpandState(state)
@@ -100,7 +99,7 @@ class ExpandableLayout @JvmOverloads constructor(
     sparseArray?.put(position, state)
   }
 
-  public fun getExpandState(): Int {
+  fun getExpandState(): Int {
     return this.mCurState
   }
 
@@ -124,7 +123,7 @@ class ExpandableLayout @JvmOverloads constructor(
       (this.mTargetView.layoutParams as? LayoutParams?).let {
         it?.height = when (mCurState) {
           STATE_COLLAPSE -> minOf(collapseHeight.toInt(), expandHeight.toInt())
-          STATE_EXPAND -> android.view.ViewGroup.LayoutParams.WRAP_CONTENT
+          STATE_EXPAND -> ViewGroup.LayoutParams.WRAP_CONTENT
           else -> it?.height
         }
       }
@@ -161,7 +160,6 @@ class ExpandableLayout @JvmOverloads constructor(
     if (mTargetView is TextView && maxLine > 0 && (mTargetView as TextView).lineCount >= maxLine && measureText) {
       val textView = mTargetView as TextView
       textView.maxLines = maxLine
-      val curLine = (mTargetView as TextView).lineCount
       collapseHeight = getTargetViewExpandHeight(widthMeasureSpec, heightMeasureSpec, false)
       textView.maxLines = Integer.MAX_VALUE
     }

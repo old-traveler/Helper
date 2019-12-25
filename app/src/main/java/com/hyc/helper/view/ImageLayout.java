@@ -11,8 +11,6 @@ import com.hyc.helper.R;
 import com.hyc.helper.helper.DisposableManager;
 import com.hyc.helper.util.DensityUtil;
 import com.hyc.helper.helper.ImageRequestHelper;
-import io.reactivex.disposables.Disposable;
-import java.util.ArrayList;
 import java.util.List;
 
 public class ImageLayout extends ViewGroup implements View.OnClickListener {

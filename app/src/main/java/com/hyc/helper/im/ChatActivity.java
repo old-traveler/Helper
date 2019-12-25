@@ -54,7 +54,6 @@ import com.hyc.helper.view.ChatLinearLayoutManager;
 import com.hyc.helper.view.ChatSpacesItemDecoration;
 import com.hyc.helper.view.EmojiItemDecoration;
 import com.hyc.helper.view.VoiceRecordView;
-import com.tbruyelle.rxpermissions2.RxPermissions;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;

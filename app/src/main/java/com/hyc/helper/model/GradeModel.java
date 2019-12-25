@@ -1,7 +1,5 @@
 package com.hyc.helper.model;
 
-import com.hyc.helper.bean.ExamBean;
-import com.hyc.helper.bean.ExamInfoBean;
 import com.hyc.helper.bean.GradeBean;
 import com.hyc.helper.bean.GradeInfoBean;
 import com.hyc.helper.bean.UserBean;

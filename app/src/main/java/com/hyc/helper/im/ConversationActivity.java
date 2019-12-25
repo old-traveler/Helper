@@ -10,14 +10,11 @@ import android.support.v7.widget.SearchView;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.bmob.newim.BmobIM;
 import cn.bmob.newim.bean.BmobIMConversation;
 import cn.bmob.newim.core.ConnectionStatus;
-import cn.bmob.newim.listener.ConversationListener;
-import cn.bmob.v3.exception.BmobException;
 import com.hyc.helper.R;
 import com.hyc.helper.activity.UserInfoActivity;
 import com.hyc.helper.adapter.viewholder.MessageViewHolder;
@@ -25,7 +22,6 @@ import com.hyc.helper.adapter.viewholder.SearchPeopleViewHolder;
 import com.hyc.helper.annotation.Subscribe;
 import com.hyc.helper.base.activity.BaseActivity;
 import com.hyc.helper.base.adapter.BaseRecycleAdapter;
-import com.hyc.helper.base.listener.OnItemClickListener;
 import com.hyc.helper.base.util.ToastHelper;
 import com.hyc.helper.base.util.UiHelper;
 import com.hyc.helper.bean.FindPeopleBean;
@@ -103,14 +99,18 @@ public class ConversationActivity extends BaseActivity implements OnRefreshListe
       Constant.EventType.CHANGE_CONNECT, Constant.EventType.NET_AVAILABLE,Constant.EventType.IM_MESSAGE
   })
   public void onEvent(MessageEvent<ConnectionStatus> event) {
-    if (event.getType().equals(Constant.EventType.CHANGE_CONNECT)) {
-      loadConversation(event.getData());
-    } else if (event.getType().equals(Constant.EventType.NET_AVAILABLE)) {
-      if (ConnectManager.getDefault().getCurrentStatus().equals(ConnectionStatus.DISCONNECT)) {
-        sflConversation.autoRefresh();
-      }
-    }else if (event.getType().equals(Constant.EventType.IM_MESSAGE)){
-      adapter.setDataList(BmobIM.getInstance().loadAllConversation());
+    switch (event.getType()) {
+      case Constant.EventType.CHANGE_CONNECT:
+        loadConversation(event.getData());
+        break;
+      case Constant.EventType.NET_AVAILABLE:
+        if (ConnectManager.getDefault().getCurrentStatus().equals(ConnectionStatus.DISCONNECT)) {
+          sflConversation.autoRefresh();
+        }
+        break;
+      case Constant.EventType.IM_MESSAGE:
+        adapter.setDataList(BmobIM.getInstance().loadAllConversation());
+        break;
     }
   }
 

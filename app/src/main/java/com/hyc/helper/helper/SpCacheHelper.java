@@ -20,12 +20,12 @@ public class SpCacheHelper {
   public static void putClassIntoSp(String key, Object object) {
     Observable.create(emitter -> {
       String json = new Gson().toJson(object);
-      getEditor().putString(key, json).commit();
+      getEditor().putString(key, json).apply();
     }).subscribeOn(Schedulers.io()).subscribe();
   }
 
-  public static void deleteClassFromSp(String key){
-    getEditor().clear().commit();
+  public static void deleteClassFromSp(){
+    getEditor().clear().apply();
   }
 
   public static <T> T getClassFromSp(String key, Class<T> cls) {
@@ -38,15 +38,15 @@ public class SpCacheHelper {
   }
 
   public static void putBoolean(String key, boolean data) {
-    getEditor().putBoolean(key, data).commit();
+    getEditor().putBoolean(key, data).apply();
   }
 
   public static void putString(String key, String data) {
-    getEditor().putString(key, data).commit();
+    getEditor().putString(key, data).apply();
   }
 
   public static void putLong(String key, long data){
-    getEditor().putLong(key,data).commit();
+    getEditor().putLong(key,data).apply();
   }
 
   public static long getLong(String key){

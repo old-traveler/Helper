@@ -9,6 +9,11 @@ import android.support.v4.app.FragmentActivity
  */
 interface OnPermissionRefuseListener {
 
-  fun onPermissionRefuse(activity: FragmentActivity?,methodName: String, grant: List<String>, refuse: List<String>?): Boolean
+  fun onPermissionRefuse(
+    activity: FragmentActivity?,
+    methodName: String,
+    grant: List<String>,
+    refuse: List<String>?
+  ): Boolean
 
 }

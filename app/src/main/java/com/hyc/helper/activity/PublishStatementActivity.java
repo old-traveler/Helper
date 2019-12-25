@@ -27,7 +27,6 @@ import com.hyc.helper.bean.UserBean;
 import com.hyc.helper.model.StatementModel;
 import com.hyc.helper.model.UserModel;
 import com.hyc.helper.util.Glide4Engine;
-import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.zhihu.matisse.Matisse;
 import com.zhihu.matisse.MimeType;
 import java.util.ArrayList;

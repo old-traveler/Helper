@@ -68,9 +68,7 @@ public class BaseRecycleAdapter<T, V extends BaseViewHolder<T>> extends Recycler
     baseViewHolder.loadItemData(mContext, dataList.get(i), i);
     if (onItemClickListener != null) {
       baseViewHolder.setOnClickListener(v
-          -> {
-        onItemClickListener.onItemClick(dataList.get(i), v, i);
-      });
+          -> onItemClickListener.onItemClick(dataList.get(i), v, i));
     }
     //if (onItemLongClickListener != null) {
     //  baseViewHolder.itemView.setOnLongClickListener(v ->

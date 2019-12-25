@@ -9,7 +9,6 @@ import cn.bmob.newim.bean.BmobIMMessage;
 import com.hyc.helper.R;
 import com.hyc.helper.activity.UserInfoActivity;
 import com.hyc.helper.base.adapter.viewholder.BaseViewHolder;
-import com.hyc.helper.helper.SendMessageHelper;
 import com.hyc.helper.model.UserModel;
 
 public abstract class BaseMessageViewHolder extends BaseViewHolder<BmobIMMessage> {

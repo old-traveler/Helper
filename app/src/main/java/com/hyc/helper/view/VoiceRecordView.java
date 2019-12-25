@@ -41,9 +41,7 @@ public class VoiceRecordView extends View implements AudioRecordManager.OnAudioS
     if (time >= BmobRecordManager.MAX_RECORD_TIME){
       recordManager.stopRecord();
     }
-    for (int i = 0; i < volumes.length - 1; i++) {
-      volumes[i] = volumes[i + 1];
-    }
+    if (volumes.length - 1 >= 0) System.arraycopy(volumes, 1, volumes, 0, volumes.length - 1);
     recordTime = time;
     volumes[volumes.length - 1] = volume;
     invalidate();
@@ -192,8 +190,8 @@ public class VoiceRecordView extends View implements AudioRecordManager.OnAudioS
   }
 
   private boolean isCenter(MotionEvent event) {
-    float distanceX = event.getX() - getWidth() / 2;
-    float distanceY = event.getY() - getHeight() / 2;
+    float distanceX = event.getX() - (getWidth() >> 1);
+    float distanceY = event.getY() - (getHeight() >> 1);
     double distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
     return distance <= radius;
   }

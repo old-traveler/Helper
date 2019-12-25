@@ -3,7 +3,6 @@ package com.hyc.helper.adapter.viewholder;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 import cn.bmob.newim.bean.BmobIMMessage;
 import com.hyc.helper.R;

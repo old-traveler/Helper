@@ -28,7 +28,6 @@ import com.hyc.helper.helper.UploadImageObserver;
 import com.hyc.helper.model.UserModel;
 import com.hyc.helper.util.DensityUtil;
 import com.hyc.helper.util.Glide4Engine;
-import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.yalantis.ucrop.UCrop;
 import com.yalantis.ucrop.UCropActivity;
 import com.zhihu.matisse.Matisse;

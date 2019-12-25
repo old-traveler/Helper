@@ -2,7 +2,6 @@ package com.hyc.helper.activity;
 
 import android.app.Activity;
 import android.app.ActivityOptions;
-import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
@@ -22,7 +21,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.davemorrissey.labs.subscaleview.ImageSource;
@@ -247,6 +245,7 @@ public class PictureBrowsingActivity extends AppCompatActivity implements View.O
         ClipboardManager copy =
             (ClipboardManager) PictureBrowsingActivity.this.getSystemService(
                 Context.CLIPBOARD_SERVICE);
+        assert copy != null;
         copy.setText(Constant.BASE_IMAGE_URL + imagesUrl.get(position).replace("_thumb", ""));
         sheetDialog.dismiss();
         ToastHelper.toast("已复制到剪切板");

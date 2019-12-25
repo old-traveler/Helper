@@ -74,15 +74,11 @@ public class FileHelper {
       if (cursor != null && cursor.moveToFirst()) {
         do {
           pictureInfo.setThumbnailPath(cursor.getString(1));
-          if (pictureInfo != null) {
-            emitter.onNext(pictureInfo);
-          }
+          emitter.onNext(pictureInfo);
         } while (cursor.moveToNext());
         cursor.close();
       } else {
-        if (pictureInfo != null) {
-          emitter.onNext(pictureInfo);
-        }
+        emitter.onNext(pictureInfo);
       }
     }
     emitter.onComplete();
@@ -159,7 +155,7 @@ public class FileHelper {
   public static void copy(Context context,File source,String name) {
     File target =
         new File(String.format(UiHelper.getString(R.string.save_image_name),name));
-    boolean isCreateSuccess = true;
+    boolean isCreateSuccess;
     if (!target.exists()){
       try {
         target.getParentFile().mkdirs();

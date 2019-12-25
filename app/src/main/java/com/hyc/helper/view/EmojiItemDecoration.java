@@ -3,6 +3,7 @@ package com.hyc.helper.view;
 import android.graphics.Rect;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import org.jetbrains.annotations.NotNull;
 
 public class EmojiItemDecoration extends RecyclerView.ItemDecoration {
   private int space;
@@ -14,8 +15,8 @@ public class EmojiItemDecoration extends RecyclerView.ItemDecoration {
   }
 
   @Override
-  public void getItemOffsets(Rect outRect, View view,
-      RecyclerView parent, RecyclerView.State state) {
+  public void getItemOffsets(Rect outRect, @NotNull View view,
+      RecyclerView parent, @NotNull RecyclerView.State state) {
     outRect.top = space;
     outRect.left = space;
     int index = parent.getChildAdapterPosition(view);

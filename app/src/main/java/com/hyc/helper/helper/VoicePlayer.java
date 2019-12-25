@@ -2,7 +2,6 @@ package com.hyc.helper.helper;
 
 import android.media.MediaPlayer;
 import android.os.Environment;
-import com.hyc.helper.base.util.ToastHelper;
 import com.hyc.helper.bean.BigImageLoadRecordBean;
 import com.hyc.helper.model.ImageModel;
 import java.io.File;

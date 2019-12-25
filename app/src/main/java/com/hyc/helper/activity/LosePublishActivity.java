@@ -28,7 +28,6 @@ import com.hyc.helper.helper.ValidationHelper;
 import com.hyc.helper.model.LostGoodsModel;
 import com.hyc.helper.model.UserModel;
 import com.hyc.helper.util.Glide4Engine;
-import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.zhihu.matisse.Matisse;
 import com.zhihu.matisse.MimeType;
 import java.util.ArrayList;

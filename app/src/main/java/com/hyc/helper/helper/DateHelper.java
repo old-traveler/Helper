@@ -30,7 +30,7 @@ public class DateHelper {
     }
     long schoolTime = getBeginSchoolTime();
     long curWeekTime = schoolTime + (week - 1) * 7 * Constant.ONE_DAY_TIME;
-    SimpleDateFormat format = new SimpleDateFormat("dd");
+    @SuppressLint("SimpleDateFormat") SimpleDateFormat format = new SimpleDateFormat("dd");
     int[] date = new int[8];
     date[7] = new Date(curWeekTime).getMonth() + 1;
     for (int i = 0; i < 7; i++) {
@@ -53,8 +53,7 @@ public class DateHelper {
 
   public static int getCurMonth() {
     Calendar c = Calendar.getInstance();
-    int month = c.get(Calendar.MONTH) + 1;
-    return month;
+    return c.get(Calendar.MONTH) + 1;
   }
 
   @SuppressLint("DefaultLocale")

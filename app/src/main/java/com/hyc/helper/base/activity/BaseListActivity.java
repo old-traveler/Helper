@@ -72,7 +72,7 @@ public abstract class BaseListActivity<T, B extends BaseRequestBean, VH extends 
   }
 
   protected void initRecyclerView() {
-    RecyclerView recyclerView = findViewById(getRecycleViewId());
+    recyclerView = findViewById(getRecycleViewId());
     mRefreshLayout = findViewById(getRefreshLayoutId());
     adapter = setRecycleAdapter();
     adapter.setOnItemClickListener(this);

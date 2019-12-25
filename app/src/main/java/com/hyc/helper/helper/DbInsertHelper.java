@@ -8,8 +8,6 @@ import com.hyc.helper.bean.ImageMessageRecord;
 import com.hyc.helper.bean.StatementInfoBean;
 import com.hyc.helper.bean.WebUrlBean;
 import io.reactivex.Observable;
-import io.reactivex.ObservableEmitter;
-import io.reactivex.ObservableOnSubscribe;
 import java.util.List;
 
 public class DbInsertHelper {

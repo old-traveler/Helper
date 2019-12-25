@@ -8970,7 +8970,7 @@ com.bumptech.glide.disklrucache.DiskLruCache$Editor
     public void set(int,java.lang.String)
 android.support.slidingpanelayout.R$dimen
 com.github.bubbleview.R$attr
-com.hyc.helper.helper.FastClick
+com.hyc.helper.annotation.FastClick
 com.hyc.helper.activity.UserInfoActivity_ViewBinding
     public void <init>(com.hyc.helper.activity.UserInfoActivity)
 kotlin.sequences.DistinctSequence

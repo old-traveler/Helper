@@ -52,7 +52,6 @@ import com.hyc.helper.model.UserModel;
 import com.hyc.helper.util.RxBus;
 import com.hyc.helper.util.ThreadMode;
 import com.hyc.helper.view.MarqueeTextView;
-import com.tbruyelle.rxpermissions2.RxPermissions;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 import java.util.ArrayList;

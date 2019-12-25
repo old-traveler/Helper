@@ -59,7 +59,7 @@ public class ImageRightViewHolder extends BaseMessageViewHolder {
   }
 
   private ImageSizeBean getImageSize(String josn) {
-    ImageSizeBean imageSizeBean = null;
+    ImageSizeBean imageSizeBean;
     try {
       JSONObject object = new JSONObject(josn);
       int width = object.getInt("width");

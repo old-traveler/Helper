@@ -23,7 +23,7 @@ import java.util.List;
 public class ChatAdapter extends RecyclerView.Adapter{
 
 
-  List<BmobIMMessage> messages;
+  private List<BmobIMMessage> messages;
 
   private Context context;
 
@@ -79,12 +79,7 @@ public class ChatAdapter extends RecyclerView.Adapter{
     baseViewHolder.loadItemData(context,messages.get(i),i);
     if (viewHolder instanceof BaseMessageViewHolder){
       BaseMessageViewHolder messageViewHolder = (BaseMessageViewHolder) viewHolder;
-      messageViewHolder.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-          onItemClick(view,i);
-        }
-      });
+      messageViewHolder.setOnClickListener(view -> onItemClick(view,i));
     }
   }
 

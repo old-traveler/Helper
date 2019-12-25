@@ -1,6 +1,5 @@
 package com.hyc.helper.helper;
 
-import android.annotation.SuppressLint;
 import com.hyc.helper.bean.ImageMessageRecord;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;

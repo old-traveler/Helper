@@ -110,7 +110,7 @@ public class UserModel {
   }
 
   public void logout() {
-    SpCacheHelper.deleteClassFromSp("user");
+    SpCacheHelper.deleteClassFromSp();
     curUserBean = new WeakReference<>(null);
     BmobIM.getInstance().disConnect();
     BmobUser.logOut();
