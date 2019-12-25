@@ -10,6 +10,8 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/cuckoo-lib" />
+            <option value="$PROJECT_DIR$/flutter_ui" />
+            <option value="$PROJECT_DIR$/flutter_ui/.android/Flutter" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

@@ -1,1 +1,8 @@
 include ':app', ':cuckoo-lib'
+setBinding(new Binding([gradle: this]))
+evaluate(new File(
+    settingsDir.parentFile,
+    'Helper/flutter_ui/.android/include_flutter.groovy'
+))
+
+include ':flutter_ui'
