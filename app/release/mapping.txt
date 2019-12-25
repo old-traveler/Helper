@@ -1,7 +1,7 @@
 # compiler: R8
 # compiler_version: 1.5.68
 # min_api: 21
-# pg_map_id: c49bf79
+# pg_map_id: aaccd45
 android.arch.core.executor.ArchTaskExecutor -> a.a.a.a.a:
     android.arch.core.executor.ArchTaskExecutor sInstance -> c
     android.arch.core.executor.TaskExecutor mDelegate -> a
@@ -16055,10 +16055,10 @@ com.hyc.helper.activity.CourseDetailActivity -> com.hyc.helper.activity.CourseDe
 com.hyc.helper.activity.CourseDetailActivity_ViewBinding -> com.hyc.helper.activity.CourseDetailActivity_ViewBinding:
     com.hyc.helper.activity.CourseDetailActivity target -> a
 com.hyc.helper.activity.ExamActivity -> com.hyc.helper.activity.ExamActivity:
-    com.hyc.helper.model.UserModel userModel -> A
-    boolean isFirst -> B
-    com.hyc.helper.model.ExamModel examModel -> z
-    boolean isNeedFresh -> C
+    com.hyc.helper.model.ExamModel examModel -> A
+    com.hyc.helper.model.UserModel userModel -> B
+    boolean isFirst -> C
+    boolean isNeedFresh -> D
     int getRecycleViewId() -> D
     int getRefreshLayoutId() -> E
     com.hyc.helper.base.adapter.BaseRecycleAdapter setRecycleAdapter() -> G
@@ -16070,10 +16070,10 @@ com.hyc.helper.activity.ExamActivity -> com.hyc.helper.activity.ExamActivity:
     void requestListData(int) -> h
     int getContentViewId() -> v
 com.hyc.helper.activity.GradeActivity -> com.hyc.helper.activity.GradeActivity:
-    com.hyc.helper.model.GradeModel gradeModel -> z
-    com.hyc.helper.model.UserModel userModel -> A
-    boolean isFirst -> B
-    boolean isNeedFresh -> C
+    com.hyc.helper.model.GradeModel gradeModel -> A
+    com.hyc.helper.model.UserModel userModel -> B
+    boolean isFirst -> C
+    boolean isNeedFresh -> D
     int getRecycleViewId() -> D
     int getRefreshLayoutId() -> E
     com.hyc.helper.base.adapter.BaseRecycleAdapter setRecycleAdapter() -> G
@@ -16561,14 +16561,17 @@ com.hyc.helper.activity.fragment.TimetableFragment -> com.hyc.helper.activity.fr
     void initLeftTip() -> s0
 com.hyc.helper.activity.fragment.TimetableFragment_ViewBinding -> com.hyc.helper.activity.fragment.TimetableFragment_ViewBinding:
     com.hyc.helper.activity.fragment.TimetableFragment target -> a
-com.hyc.helper.adapter.ChatAdapter -> com.hyc.helper.b.a:
+com.hyc.helper.adapter.-$$Lambda$ChatAdapter$686ZkQXkR35kJOrkv9dtjUpyL2k -> com.hyc.helper.b.a:
+    com.hyc.helper.adapter.ChatAdapter f$0 -> a
+    int f$1 -> b
+com.hyc.helper.adapter.ChatAdapter -> com.hyc.helper.b.b:
     java.util.List messages -> c
     com.hyc.helper.adapter.ChatAdapter$OnChatMessageClickListener onChatMessageClick -> f
     android.content.Context context -> d
     java.lang.String userId -> e
-    void access$000(com.hyc.helper.adapter.ChatAdapter,android.view.View,int) -> a
     int getItemCount() -> a
     void insertMessages(java.util.List) -> a
+    void lambda$onBindViewHolder$0(int,android.view.View) -> a
     void onItemClick(android.view.View,int) -> a
     void sendNewMessage(cn.bmob.newim.bean.BmobIMMessage) -> a
     void setOnChatMessageClickListener(com.hyc.helper.adapter.ChatAdapter$OnChatMessageClickListener) -> a
@@ -16580,18 +16583,15 @@ com.hyc.helper.adapter.ChatAdapter -> com.hyc.helper.b.a:
     void onViewRecycled(android.support.v7.widget.RecyclerView$ViewHolder) -> d
     java.util.List getData() -> e
     cn.bmob.newim.bean.BmobIMMessage getFirstMessage() -> f
-com.hyc.helper.adapter.ChatAdapter$1 -> com.hyc.helper.b.a$a:
-    com.hyc.helper.adapter.ChatAdapter this$0 -> b
-    int val$i -> a
-com.hyc.helper.adapter.ChatAdapter$OnChatMessageClickListener -> com.hyc.helper.b.a$b:
+com.hyc.helper.adapter.ChatAdapter$OnChatMessageClickListener -> com.hyc.helper.b.b$a:
     void onChatMessageClick(android.view.View,int,cn.bmob.newim.bean.BmobIMMessage) -> a
-com.hyc.helper.adapter.StatementAdapter -> com.hyc.helper.b.b:
+com.hyc.helper.adapter.StatementAdapter -> com.hyc.helper.b.c:
     android.util.SparseIntArray sparseIntArray -> h
     void onBindViewHolder(com.hyc.helper.adapter.viewholder.StatementViewHolder,int) -> a
     void onBindViewHolder(com.hyc.helper.base.adapter.viewholder.BaseViewHolder,int) -> a
     void onBindViewHolder(android.support.v7.widget.RecyclerView$ViewHolder,int) -> b
     void setDataList(java.util.List) -> b
-com.hyc.helper.adapter.TechFragmentPageAdapter -> com.hyc.helper.b.c:
+com.hyc.helper.adapter.TechFragmentPageAdapter -> com.hyc.helper.b.d:
     java.util.List fragmentList -> f
     int getCount() -> a
     com.hyc.helper.base.fragment.BaseFragment getFragmentList(java.lang.Class,int) -> a
@@ -16634,12 +16634,13 @@ com.hyc.helper.base.activity.BaseActivity -> com.hyc.helper.base.activity.BaseAc
     void hideInputWindow() -> y
     void setToolBar() -> z
 com.hyc.helper.base.activity.BaseListActivity -> com.hyc.helper.base.activity.BaseListActivity:
-    com.hyc.helper.base.adapter.BaseRecycleAdapter adapter -> x
-    boolean enableLoadMore -> y
-    int pageStart -> v
-    int page -> w
+    com.hyc.helper.base.adapter.BaseRecycleAdapter adapter -> y
+    android.support.v7.widget.RecyclerView recyclerView -> u
+    boolean enableLoadMore -> z
+    int page -> x
+    int pageStart -> w
     io.reactivex.disposables.Disposable disposable -> t
-    com.scwang.smartrefresh.layout.SmartRefreshLayout mRefreshLayout -> u
+    com.scwang.smartrefresh.layout.SmartRefreshLayout mRefreshLayout -> v
     void dispose() -> B
     android.support.v7.widget.RecyclerView$LayoutManager getLayoutManager() -> C
     int getRecycleViewId() -> D
@@ -17062,11 +17063,9 @@ com.hyc.helper.helper.ConfigureHelper -> com.hyc.helper.helper.z:
     java.lang.String getVersionName() -> c
     void initSchoolDate() -> d
 com.hyc.helper.helper.DaoHelper -> com.hyc.helper.helper.a0:
-    com.hyc.helper.helper.DaoHelper instance -> e
-    android.database.sqlite.SQLiteDatabase db -> b
-    com.hyc.helper.gen.DaoMaster$DevOpenHelper mHelper -> a
-    com.hyc.helper.gen.DaoSession mDaoSession -> d
-    com.hyc.helper.gen.DaoMaster mDaoMaster -> c
+    android.database.sqlite.SQLiteDatabase db -> a
+    com.hyc.helper.helper.DaoHelper instance -> c
+    com.hyc.helper.gen.DaoSession mDaoSession -> b
     com.hyc.helper.gen.DaoSession getDaoSession() -> a
     com.hyc.helper.helper.DaoHelper getDefault() -> b
 com.hyc.helper.helper.DateHelper -> com.hyc.helper.helper.b0:
@@ -17182,16 +17181,16 @@ com.hyc.helper.helper.SendMessageHelper -> com.hyc.helper.helper.r0:
     void sendTxtMessage(cn.bmob.newim.bean.BmobIMUserInfo,cn.bmob.newim.bean.BmobIMConversation,java.lang.String,cn.bmob.newim.listener.MessageSendListener) -> a
     void sendVoiceMessage(cn.bmob.newim.bean.BmobIMUserInfo,cn.bmob.newim.bean.BmobIMConversation,java.lang.String,int,cn.bmob.newim.listener.MessageSendListener) -> a
 com.hyc.helper.helper.SpCacheHelper -> com.hyc.helper.helper.s0:
-    void deleteClassFromSp(java.lang.String) -> a
+    void deleteClassFromSp() -> a
     java.lang.Object getClassFromSp(java.lang.String,java.lang.Class) -> a
-    android.content.SharedPreferences$Editor getEditor() -> a
+    long getLong(java.lang.String) -> a
     void lambda$putClassIntoSp$0(java.lang.Object,java.lang.String,io.reactivex.ObservableEmitter) -> a
     void putClassIntoSp(java.lang.String,java.lang.Object) -> a
     void putLong(java.lang.String,long) -> a
     void putString(java.lang.String,java.lang.String) -> a
-    long getLong(java.lang.String) -> b
-    android.content.SharedPreferences getSharedPreferences() -> b
-    java.lang.String getString(java.lang.String) -> c
+    android.content.SharedPreferences$Editor getEditor() -> b
+    java.lang.String getString(java.lang.String) -> b
+    android.content.SharedPreferences getSharedPreferences() -> c
 com.hyc.helper.helper.UpdateAppHelper -> com.hyc.helper.helper.t0:
     android.content.Context context -> a
     android.content.BroadcastReceiver receiver -> b
