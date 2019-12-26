@@ -110,6 +110,7 @@ dependencies {
   implementation depsLibs.kotlin
   annotationProcessor depsLibs.butterknife_compiler
   implementation project(path: ':cuckoo-lib')
+  implementation project(':flutter')
 }
 repositories {
   mavenCentral()

@@ -100,7 +100,6 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
 
   @Override
   public void onTabSelected(TabLayout.Tab tab) {
-
   }
 
   @Override
@@ -124,6 +123,7 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
     initViewPager();
     initCalendar();
     checkUpdate();
+    goToOtherActivity(com.hyc.helper.activity.flutter.PersonalActivity.class,false);
   }
 
   private void initCalendar() {

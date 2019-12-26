@@ -1,7 +1,6 @@
 package com.hyc.helper;
 
 import android.annotation.SuppressLint;
-import android.app.Application;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.Network;
@@ -16,11 +15,12 @@ import com.hyc.helper.helper.DaoHelper;
 import com.hyc.helper.helper.MessageHandler;
 import com.hyc.helper.im.ConnectManager;
 import com.hyc.helper.util.RxBus;
+import io.flutter.app.FlutterApplication;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 
-public class HelperApplication extends Application {
+public class HelperApplication extends FlutterApplication {
 
   @SuppressLint("StaticFieldLeak")
   private static Context mContext;

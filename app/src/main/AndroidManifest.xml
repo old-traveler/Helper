@@ -80,6 +80,7 @@
       android:theme="@style/fullScreenTheme" />
     <activity android:name=".activity.SecondMarketPublishActivity" />
     <activity android:name=".activity.LosePublishActivity" />
+    <activity android:name=".activity.flutter.PersonalActivity" />
 
     <receiver android:name="cn.bmob.newim.core.ConnectChangeReceiver">
       <intent-filter>
