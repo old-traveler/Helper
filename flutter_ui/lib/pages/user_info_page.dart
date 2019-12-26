@@ -57,33 +57,47 @@ class UserInfoState<UserInfoPage> extends BaseInteractiveState {
         alignment: Alignment.topLeft,
         children: <Widget>[
           Container(
-            height: 100,
-            padding: EdgeInsets.only(left: 20),
-            alignment: Alignment.centerLeft,
-            child: ClipOval(
-              child: Image.network(
-                "http://223.111.182.121:8888/" + userData.headPicThumb,
-                width: 65,
-                height: 65,
-              ),
-            ),
-          ),
+              height: 100,
+              padding: EdgeInsets.only(left: 20),
+              alignment: Alignment.centerLeft,
+              child: GestureDetector(
+                child: ClipOval(
+                  child: Image.network(
+                    "http://223.111.182.121:8888/" + userData.headPicThumb,
+                    width: 65,
+                    height: 65,
+                  ),
+                ),
+                onTap: () {
+                  _sendCommend("startSelectImage");
+                },
+              )),
           Positioned(
             top: 25,
             left: 100,
-            child: Text(
-                userData.username.isEmpty
-                    ? userData.trueName
-                    : userData.username,
-                style: TextStyle(fontSize: 20),
-                textDirection: TextDirection.ltr),
+            child: GestureDetector(
+              child: Text(
+                  userData.username.isEmpty
+                      ? userData.trueName
+                      : userData.username,
+                  style: TextStyle(fontSize: 20),
+                  textDirection: TextDirection.ltr),
+              onTap: () {
+                _sendCommend("updateUsername");
+              },
+            ),
           ),
           Positioned(
             top: 57,
             left: 100,
-            child: Text(userData.bio.isEmpty ? "暂无签名" : userData.bio,
-                style: TextStyle(fontSize: 14, color: Colors.grey),
-                textDirection: TextDirection.ltr),
+            child: GestureDetector(
+              child: Text(userData.bio.isEmpty ? "暂无签名" : userData.bio,
+                  style: TextStyle(fontSize: 14, color: Colors.grey),
+                  textDirection: TextDirection.ltr),
+              onTap: () {
+                _sendCommend("updateBio");
+              },
+            ),
           )
         ],
       ),
@@ -106,8 +120,16 @@ class UserInfoState<UserInfoPage> extends BaseInteractiveState {
         ));
   }
 
+  _sendCommend(String commend) async {
+    basicChannel.send(commend);
+  }
+
   @override
   Future<String> handlerMessage(String message) async {
+    if (message == "refresh") {
+      _fetchData();
+      return '';
+    }
     return "UserInfoState";
   }
 }

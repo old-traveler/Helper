@@ -24,6 +24,7 @@ import cn.bmob.newim.BmobIM;
 import cn.bmob.newim.bean.BmobIMMessage;
 import com.hyc.cuckoo_lib.CuckooNeed;
 import com.hyc.helper.R;
+import com.hyc.helper.activity.flutter.PersonalActivity;
 import com.hyc.helper.activity.fragment.LostFindFragment;
 import com.hyc.helper.activity.fragment.SecondHandFragment;
 import com.hyc.helper.activity.fragment.StatementFragment;
@@ -123,7 +124,6 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
     initViewPager();
     initCalendar();
     checkUpdate();
-    goToOtherActivity(com.hyc.helper.activity.flutter.PersonalActivity.class,false);
   }
 
   private void initCalendar() {

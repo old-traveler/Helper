@@ -1,7 +1,7 @@
 # compiler: R8
 # compiler_version: 1.5.68
 # min_api: 21
-# pg_map_id: aaccd45
+# pg_map_id: cf6e30e
 android.arch.core.executor.ArchTaskExecutor -> a.a.a.a.a:
     android.arch.core.executor.ArchTaskExecutor sInstance -> c
     android.arch.core.executor.TaskExecutor mDelegate -> a
@@ -111,7 +111,6 @@ android.arch.lifecycle.Lifecycle$State -> android.arch.lifecycle.Lifecycle$State
     android.arch.lifecycle.Lifecycle$State[] $VALUES -> a
 android.arch.lifecycle.LifecycleObserver -> android.arch.lifecycle.c:
 android.arch.lifecycle.LifecycleOwner -> android.arch.lifecycle.d:
-    android.arch.lifecycle.Lifecycle getLifecycle() -> a
 android.arch.lifecycle.LifecycleRegistry -> android.arch.lifecycle.e:
     android.arch.core.internal.FastSafeIterableMap mObserverMap -> a
     android.arch.lifecycle.Lifecycle$State mState -> b
@@ -145,7 +144,6 @@ android.arch.lifecycle.LifecycleRegistry$ObserverWithState -> android.arch.lifec
     android.arch.lifecycle.GenericLifecycleObserver mLifecycleObserver -> b
     void dispatchEvent(android.arch.lifecycle.LifecycleOwner,android.arch.lifecycle.Lifecycle$Event) -> a
 android.arch.lifecycle.LifecycleRegistryOwner -> android.arch.lifecycle.f:
-    android.arch.lifecycle.LifecycleRegistry getLifecycle() -> a
 android.arch.lifecycle.Lifecycling -> android.arch.lifecycle.g:
     java.util.Map sCallbackCache -> a
     java.util.Map sClassToAdapters -> b
@@ -222,9 +220,7 @@ android.arch.lifecycle.ReportFragment -> android.arch.lifecycle.ReportFragment:
     void dispatchResume(android.arch.lifecycle.ReportFragment$ActivityInitializationListener) -> b
     void dispatchStart(android.arch.lifecycle.ReportFragment$ActivityInitializationListener) -> c
 android.arch.lifecycle.ReportFragment$ActivityInitializationListener -> android.arch.lifecycle.ReportFragment$a:
-    void onStart() -> a
-    void onCreate() -> b
-    void onResume() -> c
+    void onCreate() -> a
 android.arch.lifecycle.SingleGeneratedAdapterObserver -> android.arch.lifecycle.SingleGeneratedAdapterObserver:
     android.arch.lifecycle.GeneratedAdapter mGeneratedAdapter -> a
     void onStateChanged(android.arch.lifecycle.LifecycleOwner,android.arch.lifecycle.Lifecycle$Event) -> a
@@ -243,7 +239,6 @@ android.arch.lifecycle.ViewModelStore -> android.arch.lifecycle.n:
     android.arch.lifecycle.ViewModel get(java.lang.String) -> a
     void put(java.lang.String,android.arch.lifecycle.ViewModel) -> a
 android.arch.lifecycle.ViewModelStoreOwner -> android.arch.lifecycle.o:
-    android.arch.lifecycle.ViewModelStore getViewModelStore() -> c
 android.support.compat.R$attr -> a.b.a.a:
 android.support.compat.R$dimen -> a.b.a.b:
 android.support.compat.R$id -> a.b.a.c:
@@ -1625,7 +1620,7 @@ android.support.design.widget.BottomSheetDialog$4 -> android.support.design.widg
     void onSlide(android.view.View,float) -> a
     void onStateChanged(android.view.View,int) -> a
 android.support.design.widget.BottomSheetDialogFragment -> android.support.design.widget.BottomSheetDialogFragment:
-    android.app.Dialog onCreateDialog(android.os.Bundle) -> n
+    android.app.Dialog onCreateDialog(android.os.Bundle) -> a
 android.support.design.widget.CheckableImageButton -> android.support.design.widget.CheckableImageButton:
     int[] DRAWABLE_STATE_CHECKED -> d
     boolean checked -> c
@@ -3824,8 +3819,14 @@ android.support.v4.app.ActivityCompat -> android.support.v4.app.a:
     void finishAffinity(android.app.Activity) -> a
     android.support.v4.app.ActivityCompat$PermissionCompatDelegate getPermissionCompatDelegate() -> a
     void requestPermissions(android.app.Activity,java.lang.String[],int) -> a
+    void setEnterSharedElementCallback(android.app.Activity,android.support.v4.app.SharedElementCallback) -> a
     boolean shouldShowRequestPermissionRationale(android.app.Activity,java.lang.String) -> a
     void startActivityForResult(android.app.Activity,android.content.Intent,int,android.os.Bundle) -> a
+    void startIntentSenderForResult(android.app.Activity,android.content.IntentSender,int,android.content.Intent,int,int,int,android.os.Bundle) -> a
+    void finishAfterTransition(android.app.Activity) -> b
+    void setExitSharedElementCallback(android.app.Activity,android.support.v4.app.SharedElementCallback) -> b
+    void postponeEnterTransition(android.app.Activity) -> c
+    void startPostponedEnterTransition(android.app.Activity) -> d
 android.support.v4.app.ActivityCompat$1 -> android.support.v4.app.a$a:
     java.lang.String[] val$permissions -> a
     int val$requestCode -> c
@@ -3835,7 +3836,9 @@ android.support.v4.app.ActivityCompat$PermissionCompatDelegate -> android.suppor
     boolean onActivityResult(android.app.Activity,int,int,android.content.Intent) -> a
     boolean requestPermissions(android.app.Activity,java.lang.String[],int) -> a
 android.support.v4.app.ActivityCompat$RequestPermissionsRequestCodeValidator -> android.support.v4.app.a$d:
-    void validateRequestPermissionsRequestCode(int) -> c
+android.support.v4.app.ActivityCompat$SharedElementCallback21Impl -> android.support.v4.app.a$e:
+    android.support.v4.app.SharedElementCallback mCallback -> a
+android.support.v4.app.ActivityCompat$SharedElementCallback21Impl$1 -> android.support.v4.app.a$e$a:
 android.support.v4.app.AppOpsManagerCompat -> android.support.v4.app.b:
     int noteProxyOpNoThrow(android.content.Context,java.lang.String,java.lang.String) -> a
     java.lang.String permissionToOp(java.lang.String) -> a
@@ -3927,202 +3930,20 @@ android.support.v4.app.CoreComponentFactory -> android.support.v4.app.CoreCompon
 android.support.v4.app.CoreComponentFactory$CompatWrapped -> android.support.v4.app.CoreComponentFactory$a:
     java.lang.Object getWrapper() -> a
 android.support.v4.app.DialogFragment -> android.support.v4.app.DialogFragment:
-    int mBackStackId -> d0
-    boolean mViewDestroyed -> f0
-    int mTheme -> a0
-    boolean mDismissed -> g0
-    int mStyle -> Z
-    boolean mCancelable -> b0
-    android.app.Dialog mDialog -> e0
-    boolean mShowsDialog -> c0
-    boolean mShownByMe -> h0
-    void onDestroyView() -> R
-    void onDetach() -> S
-    void onStart() -> V
-    void onStop() -> W
-    void onAttach(android.content.Context) -> a
+    android.app.Dialog mDialog -> g
+    boolean mDismissed -> i
+    boolean mShownByMe -> j
+    int mBackStackId -> f
+    boolean mViewDestroyed -> h
+    int mTheme -> b
+    boolean mCancelable -> c
+    int mStyle -> a
+    boolean mShowsDialog -> d
+    void dismissInternal(boolean) -> a
+    android.app.Dialog onCreateDialog(android.os.Bundle) -> a
     void setupDialog(android.app.Dialog,int) -> a
     void show(android.support.v4.app.FragmentManager,java.lang.String) -> a
-    void onActivityCreated(android.os.Bundle) -> b
-    void onCreate(android.os.Bundle) -> c
-    android.view.LayoutInflater onGetLayoutInflater(android.os.Bundle) -> d
-    void onSaveInstanceState(android.os.Bundle) -> e
-    int getTheme() -> i0
-    void dismissInternal(boolean) -> j
-    android.app.Dialog onCreateDialog(android.os.Bundle) -> n
-android.support.v4.app.Fragment -> android.support.v4.app.Fragment:
-    boolean mRemoving -> m
-    android.support.v4.app.Fragment$AnimationInfo mAnimationInfo -> N
-    boolean mHiddenChanged -> P
-    boolean mDeferStart -> L
-    android.arch.lifecycle.MutableLiveData mViewLifecycleOwnerLiveData -> W
-    android.support.v4.app.FragmentHostCallback mHost -> t
-    boolean mPerformedCreateView -> q
-    android.view.View mView -> J
-    android.arch.lifecycle.LifecycleRegistry mViewLifecycleRegistry -> U
-    int mFragmentId -> y
-    boolean mMenuVisible -> G
-    android.arch.lifecycle.LifecycleOwner mViewLifecycleOwner -> V
-    boolean mDetached -> C
-    boolean mUserVisibleHint -> M
-    boolean mFromLayout -> n
-    android.os.Bundle mSavedFragmentState -> b
-    android.support.v4.app.FragmentManagerImpl mFragmentManager -> s
-    int mState -> a
-    android.support.v4.app.Fragment mParentFragment -> x
-    java.lang.Object USE_DEFAULT_TRANSITION -> Y
-    android.util.SparseArray mSavedViewState -> c
-    int mContainerId -> z
-    android.arch.lifecycle.LifecycleRegistry mLifecycleRegistry -> T
-    android.arch.lifecycle.ViewModelStore mViewModelStore -> w
-    boolean mCalled -> H
-    int mBackStackNesting -> r
-    boolean mRetainInstance -> D
-    boolean mInLayout -> o
-    int mTargetIndex -> j
-    int mIndex -> f
-    android.support.v4.util.SimpleArrayMap sClassMap -> X
-    boolean mRetaining -> E
-    android.view.ViewGroup mContainer -> I
-    java.lang.String mWho -> g
-    android.support.v4.app.Fragment mTarget -> i
-    boolean mIsNewlyAdded -> O
-    boolean mRestored -> p
-    int mTargetRequestCode -> k
-    boolean mAdded -> l
-    android.support.v4.app.FragmentManagerImpl mChildFragmentManager -> u
-    android.os.Bundle mArguments -> h
-    android.support.v4.app.FragmentManagerNonConfig mChildNonConfig -> v
-    boolean mIsCreated -> S
-    android.view.View mInnerView -> K
-    android.view.LayoutInflater mLayoutInflater -> R
-    boolean mHasMenu -> F
-    java.lang.String mTag -> A
-    float mPostponedAlpha -> Q
-    java.lang.Boolean mSavedUserVisibleHint -> d
-    boolean mHidden -> B
-    java.lang.Object getSharedElementEnterTransition() -> A
-    java.lang.Object getSharedElementReturnTransition() -> B
-    int getStateAfterAnimating() -> C
-    boolean getUserVisibleHint() -> D
-    android.view.View getView() -> E
-    void initState() -> F
-    void instantiateChildFragmentManager() -> G
-    boolean isAdded() -> H
-    boolean isDetached() -> I
-    boolean isHidden() -> J
-    boolean isHideReplaced() -> K
-    boolean isInBackStack() -> L
-    boolean isPostponed() -> M
-    boolean isStateSaved() -> N
-    void noteStateNotSaved() -> O
-    void onDestroy() -> P
-    void onDestroyOptionsMenu() -> Q
-    void onDestroyView() -> R
-    void onDetach() -> S
-    void onPause() -> T
-    void onResume() -> U
-    void onStart() -> V
-    void onStop() -> W
-    android.support.v4.app.FragmentManager peekChildFragmentManager() -> X
-    void performDestroy() -> Y
-    void performDestroyView() -> Z
-    void dump(java.lang.String,java.io.FileDescriptor,java.io.PrintWriter,java.lang.String[]) -> a
-    android.support.v4.app.Fragment findFragmentByWho(java.lang.String) -> a
-    android.view.LayoutInflater getLayoutInflater(android.os.Bundle) -> a
-    android.arch.lifecycle.Lifecycle getLifecycle() -> a
-    java.lang.String getString(int) -> a
-    android.support.v4.app.Fragment instantiate(android.content.Context,java.lang.String,android.os.Bundle) -> a
-    boolean isSupportFragmentClass(android.content.Context,java.lang.String) -> a
-    void onActivityResult(int,int,android.content.Intent) -> a
-    void onAttach(android.app.Activity) -> a
-    void onAttach(android.content.Context) -> a
-    void onAttachFragment(android.support.v4.app.Fragment) -> a
-    boolean onContextItemSelected(android.view.MenuItem) -> a
-    android.view.animation.Animation onCreateAnimation(int,boolean,int) -> a
-    void onCreateOptionsMenu(android.view.Menu,android.view.MenuInflater) -> a
-    android.view.View onCreateView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle) -> a
-    void onHiddenChanged(boolean) -> a
-    void onInflate(android.app.Activity,android.util.AttributeSet,android.os.Bundle) -> a
-    void onInflate(android.content.Context,android.util.AttributeSet,android.os.Bundle) -> a
-    void onOptionsMenuClosed(android.view.Menu) -> a
-    void onRequestPermissionsResult(int,java.lang.String[],int[]) -> a
-    void onViewCreated(android.view.View,android.os.Bundle) -> a
-    void performConfigurationChanged(android.content.res.Configuration) -> a
-    void requestPermissions(java.lang.String[],int) -> a
-    void setAnimatingAway(android.view.View) -> a
-    void setAnimator(android.animation.Animator) -> a
-    void setIndex(int,android.support.v4.app.Fragment) -> a
-    void setNextTransition(int,int) -> a
-    void setOnStartEnterTransitionListener(android.support.v4.app.Fragment$OnStartEnterTransitionListener) -> a
-    void startActivity(android.content.Intent) -> a
-    void startActivity(android.content.Intent,android.os.Bundle) -> a
-    void startActivityForResult(android.content.Intent,int) -> a
-    void startActivityForResult(android.content.Intent,int,android.os.Bundle) -> a
-    void performDetach() -> a0
-    void onActivityCreated(android.os.Bundle) -> b
-    android.animation.Animator onCreateAnimator(int,boolean,int) -> b
-    void onMultiWindowModeChanged(boolean) -> b
-    boolean onOptionsItemSelected(android.view.MenuItem) -> b
-    void onPrepareOptionsMenu(android.view.Menu) -> b
-    boolean performCreateOptionsMenu(android.view.Menu,android.view.MenuInflater) -> b
-    void performCreateView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle) -> b
-    void setNextAnim(int) -> b
-    boolean shouldShowRequestPermissionRationale(java.lang.String) -> b
-    void performLowMemory() -> b0
-    android.arch.lifecycle.ViewModelStore getViewModelStore() -> c
-    void onCreate(android.os.Bundle) -> c
-    void onPictureInPictureModeChanged(boolean) -> c
-    boolean performContextItemSelected(android.view.MenuItem) -> c
-    void performOptionsMenuClosed(android.view.Menu) -> c
-    void setStateAfterAnimating(int) -> c
-    void performPause() -> c0
-    android.view.LayoutInflater onGetLayoutInflater(android.os.Bundle) -> d
-    void performMultiWindowModeChanged(boolean) -> d
-    boolean performOptionsItemSelected(android.view.MenuItem) -> d
-    boolean performPrepareOptionsMenu(android.view.Menu) -> d
-    void performResume() -> d0
-    void callStartTransitionListener() -> e
-    void onSaveInstanceState(android.os.Bundle) -> e
-    void performPictureInPictureModeChanged(boolean) -> e
-    void performStart() -> e0
-    android.support.v4.app.FragmentActivity getActivity() -> f
-    void onViewStateRestored(android.os.Bundle) -> f
-    void setHideReplaced(boolean) -> f
-    void performStop() -> f0
-    boolean getAllowEnterTransitionOverlap() -> g
-    void performActivityCreated(android.os.Bundle) -> g
-    void setMenuVisibility(boolean) -> g
-    android.content.Context requireContext() -> g0
-    boolean getAllowReturnTransitionOverlap() -> h
-    void performCreate(android.os.Bundle) -> h
-    void setRetainInstance(boolean) -> h
-    void startPostponedEnterTransition() -> h0
-    android.view.View getAnimatingAway() -> i
-    android.view.LayoutInflater performGetLayoutInflater(android.os.Bundle) -> i
-    void setUserVisibleHint(boolean) -> i
-    android.support.v4.app.Fragment$AnimationInfo ensureAnimationInfo() -> i0
-    android.animation.Animator getAnimator() -> j
-    void performSaveInstanceState(android.os.Bundle) -> j
-    android.os.Bundle getArguments() -> k
-    void restoreChildFragmentState(android.os.Bundle) -> k
-    android.support.v4.app.FragmentManager getChildFragmentManager() -> l
-    void restoreViewState(android.os.Bundle) -> l
-    android.content.Context getContext() -> m
-    void setArguments(android.os.Bundle) -> m
-    java.lang.Object getEnterTransition() -> n
-    android.support.v4.app.SharedElementCallback getEnterTransitionCallback() -> o
-    java.lang.Object getExitTransition() -> p
-    android.support.v4.app.SharedElementCallback getExitTransitionCallback() -> q
-    android.support.v4.app.FragmentManager getFragmentManager() -> r
-    android.view.LayoutInflater getLayoutInflater() -> s
-    int getNextAnim() -> t
-    int getNextTransition() -> u
-    int getNextTransitionStyle() -> v
-    android.support.v4.app.Fragment getParentFragment() -> w
-    java.lang.Object getReenterTransition() -> x
-    android.content.res.Resources getResources() -> y
-    java.lang.Object getReturnTransition() -> z
+    int getTheme() -> c
 android.support.v4.app.Fragment$1 -> android.support.v4.app.Fragment$a:
     android.support.v4.app.Fragment this$0 -> a
 android.support.v4.app.Fragment$2 -> android.support.v4.app.Fragment$b:
@@ -4132,7 +3953,6 @@ android.support.v4.app.Fragment$2 -> android.support.v4.app.Fragment$b:
     boolean onHasView() -> a
 android.support.v4.app.Fragment$3 -> android.support.v4.app.Fragment$c:
     android.support.v4.app.Fragment this$0 -> a
-    android.arch.lifecycle.Lifecycle getLifecycle() -> a
 android.support.v4.app.Fragment$AnimationInfo -> android.support.v4.app.Fragment$d:
     java.lang.Object mReenterTransition -> j
     java.lang.Object mSharedElementEnterTransition -> k
@@ -4159,35 +3979,6 @@ android.support.v4.app.Fragment$OnStartEnterTransitionListener -> android.suppor
 android.support.v4.app.Fragment$SavedState -> android.support.v4.app.Fragment$SavedState:
     android.os.Bundle mState -> a
 android.support.v4.app.Fragment$SavedState$1 -> android.support.v4.app.Fragment$SavedState$a:
-android.support.v4.app.FragmentActivity -> android.support.v4.app.FragmentActivity:
-    int mNextCandidateRequestIndex -> l
-    boolean mRequestedPermissionsFromFragment -> i
-    android.os.Handler mHandler -> b
-    boolean mStartedIntentSenderFromFragment -> j
-    boolean mStartedActivityFromFragment -> k
-    boolean mCreated -> f
-    boolean mResumed -> g
-    android.support.v4.app.FragmentController mFragments -> c
-    boolean mStopped -> h
-    android.support.v4.util.SparseArrayCompat mPendingFragmentActivityResults -> m
-    android.arch.lifecycle.ViewModelStore mViewModelStore -> d
-    android.view.View dispatchFragmentsOnCreateView(android.view.View,java.lang.String,android.content.Context,android.util.AttributeSet) -> a
-    android.arch.lifecycle.Lifecycle getLifecycle() -> a
-    boolean markState(android.support.v4.app.FragmentManager,android.arch.lifecycle.Lifecycle$State) -> a
-    void onAttachFragment(android.support.v4.app.Fragment) -> a
-    boolean onPrepareOptionsPanel(android.view.View,android.view.Menu) -> a
-    void requestPermissionsFromFragment(android.support.v4.app.Fragment,java.lang.String[],int) -> a
-    void startActivityFromFragment(android.support.v4.app.Fragment,android.content.Intent,int,android.os.Bundle) -> a
-    int allocateRequestIndex(android.support.v4.app.Fragment) -> b
-    android.arch.lifecycle.ViewModelStore getViewModelStore() -> c
-    void validateRequestPermissionsRequestCode(int) -> c
-    void checkForValidRequestCode(int) -> d
-    android.support.v4.app.FragmentManager getSupportFragmentManager() -> k
-    android.support.v4.app.LoaderManager getSupportLoaderManager() -> l
-    void onResumeFragments() -> m
-    java.lang.Object onRetainCustomNonConfigurationInstance() -> n
-    void supportInvalidateOptionsMenu() -> o
-    void markFragmentsCreated() -> p
 android.support.v4.app.FragmentActivity$1 -> android.support.v4.app.FragmentActivity$a:
     android.support.v4.app.FragmentActivity this$0 -> a
 android.support.v4.app.FragmentActivity$HostCallbacks -> android.support.v4.app.FragmentActivity$b:
@@ -4199,14 +3990,18 @@ android.support.v4.app.FragmentActivity$HostCallbacks -> android.support.v4.app.
     void onRequestPermissionsFromFragment(android.support.v4.app.Fragment,java.lang.String[],int) -> a
     boolean onShouldShowRequestPermissionRationale(java.lang.String) -> a
     void onStartActivityFromFragment(android.support.v4.app.Fragment,android.content.Intent,int,android.os.Bundle) -> a
+    void onStartIntentSenderFromFragment(android.support.v4.app.Fragment,android.content.IntentSender,int,android.content.Intent,int,int,int,android.os.Bundle) -> a
     boolean onShouldSaveFragmentState(android.support.v4.app.Fragment) -> b
-    android.view.LayoutInflater onGetLayoutInflater() -> f
-    int onGetWindowAnimations() -> g
-    boolean onHasWindowAnimations() -> h
-    void onSupportInvalidateOptionsMenu() -> i
+    android.support.v4.app.FragmentActivity onGetHost() -> f
+    java.lang.Object onGetHost() -> f
+    android.view.LayoutInflater onGetLayoutInflater() -> g
+    int onGetWindowAnimations() -> h
+    boolean onHasWindowAnimations() -> i
+    void onSupportInvalidateOptionsMenu() -> j
 android.support.v4.app.FragmentActivity$NonConfigurationInstances -> android.support.v4.app.FragmentActivity$c:
-    android.arch.lifecycle.ViewModelStore viewModelStore -> a
-    android.support.v4.app.FragmentManagerNonConfig fragments -> b
+    android.arch.lifecycle.ViewModelStore viewModelStore -> b
+    android.support.v4.app.FragmentManagerNonConfig fragments -> c
+    java.lang.Object custom -> a
 android.support.v4.app.FragmentContainer -> android.support.v4.app.e:
     android.support.v4.app.Fragment instantiate(android.content.Context,java.lang.String,android.os.Bundle) -> a
     android.view.View onFindViewById(int) -> a
@@ -4249,15 +4044,17 @@ android.support.v4.app.FragmentHostCallback -> android.support.v4.app.g:
     void onRequestPermissionsFromFragment(android.support.v4.app.Fragment,java.lang.String[],int) -> a
     boolean onShouldShowRequestPermissionRationale(java.lang.String) -> a
     void onStartActivityFromFragment(android.support.v4.app.Fragment,android.content.Intent,int,android.os.Bundle) -> a
+    void onStartIntentSenderFromFragment(android.support.v4.app.Fragment,android.content.IntentSender,int,android.content.Intent,int,int,int,android.os.Bundle) -> a
     android.app.Activity getActivity() -> b
     boolean onShouldSaveFragmentState(android.support.v4.app.Fragment) -> b
     android.content.Context getContext() -> c
     android.support.v4.app.FragmentManagerImpl getFragmentManagerImpl() -> d
     android.os.Handler getHandler() -> e
-    android.view.LayoutInflater onGetLayoutInflater() -> f
-    int onGetWindowAnimations() -> g
-    boolean onHasWindowAnimations() -> h
-    void onSupportInvalidateOptionsMenu() -> i
+    java.lang.Object onGetHost() -> f
+    android.view.LayoutInflater onGetLayoutInflater() -> g
+    int onGetWindowAnimations() -> h
+    boolean onHasWindowAnimations() -> i
+    void onSupportInvalidateOptionsMenu() -> j
 android.support.v4.app.FragmentManager -> android.support.v4.app.h:
     android.support.v4.app.FragmentTransaction beginTransaction() -> a
     void dump(java.lang.String,java.io.FileDescriptor,java.io.PrintWriter,java.lang.String[]) -> a
@@ -4772,24 +4569,21 @@ android.support.v4.app.JobIntentService$WorkEnqueuer -> android.support.v4.app.J
     void serviceProcessingStarted() -> b
     void serviceStartReceived() -> c
 android.support.v4.app.ListFragment -> android.support.v4.app.ListFragment:
-    android.view.View mListContainer -> h0
-    android.view.View mProgressContainer -> g0
-    android.view.View mEmptyView -> e0
-    android.widget.ListView mList -> d0
-    java.lang.CharSequence mEmptyText -> i0
-    android.widget.AdapterView$OnItemClickListener mOnClickListener -> b0
-    android.widget.TextView mStandardEmptyView -> f0
-    android.os.Handler mHandler -> Z
-    android.widget.ListAdapter mAdapter -> c0
-    boolean mListShown -> j0
-    java.lang.Runnable mRequestFocus -> a0
-    void onDestroyView() -> R
-    android.view.View onCreateView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle) -> a
+    android.view.View mProgressContainer -> i
+    android.widget.ListAdapter mAdapter -> d
+    java.lang.Runnable mRequestFocus -> b
+    android.view.View mListContainer -> j
+    android.os.Handler mHandler -> a
+    boolean mListShown -> l
+    android.widget.AdapterView$OnItemClickListener mOnClickListener -> c
+    android.widget.TextView mStandardEmptyView -> h
+    android.widget.ListView mList -> f
+    android.view.View mEmptyView -> g
+    java.lang.CharSequence mEmptyText -> k
     void onListItemClick(android.widget.ListView,android.view.View,int,long) -> a
-    void onViewCreated(android.view.View,android.os.Bundle) -> a
     void setListAdapter(android.widget.ListAdapter) -> a
     void setListShown(boolean,boolean) -> a
-    void ensureList() -> i0
+    void ensureList() -> c
 android.support.v4.app.ListFragment$1 -> android.support.v4.app.ListFragment$a:
     android.support.v4.app.ListFragment this$0 -> a
 android.support.v4.app.ListFragment$2 -> android.support.v4.app.ListFragment$b:
@@ -4988,13 +4782,15 @@ android.support.v4.app.RemoteInput -> android.support.v4.app.x:
     android.app.RemoteInput[] fromCompat(android.support.v4.app.RemoteInput[]) -> a
     java.lang.String getResultKey() -> a
 android.support.v4.app.SharedElementCallback -> android.support.v4.app.y:
+    android.os.Parcelable onCaptureSharedElementSnapshot(android.view.View,android.graphics.Matrix,android.graphics.RectF) -> a
+    android.view.View onCreateSnapshotView(android.content.Context,android.os.Parcelable) -> a
     void onMapSharedElements(java.util.List,java.util.Map) -> a
+    void onRejectSharedElements(java.util.List) -> a
     void onSharedElementEnd(java.util.List,java.util.List,java.util.List) -> a
+    void onSharedElementsArrived(java.util.List,java.util.List,android.support.v4.app.SharedElementCallback$OnSharedElementsReadyListener) -> a
     void onSharedElementStart(java.util.List,java.util.List,java.util.List) -> b
-android.support.v4.app.SupportActivity -> android.support.v4.app.SupportActivity:
-    android.arch.lifecycle.LifecycleRegistry mLifecycleRegistry -> a
-    android.arch.lifecycle.Lifecycle getLifecycle() -> a
-    boolean superDispatchKeyEvent(android.view.KeyEvent) -> a
+android.support.v4.app.SharedElementCallback$OnSharedElementsReadyListener -> android.support.v4.app.y$a:
+android.support.v4.app.SupportActivity$ExtraData -> android.support.v4.app.SupportActivity$a:
 android.support.v4.app.TaskStackBuilder -> android.support.v4.app.z:
     android.content.Context mSourceContext -> b
     java.util.ArrayList mIntents -> a
@@ -5005,7 +4801,7 @@ android.support.v4.app.TaskStackBuilder -> android.support.v4.app.z:
     void startActivities() -> a
     void startActivities(android.os.Bundle) -> a
 android.support.v4.app.TaskStackBuilder$SupportParentable -> android.support.v4.app.z$a:
-    android.content.Intent getSupportParentActivityIntent() -> g
+    android.content.Intent getSupportParentActivityIntent() -> e
 android.support.v4.content.AsyncTaskLoader -> android.support.v4.content.a:
     android.os.Handler mHandler -> o
     long mLastLoadCompleteTime -> n
@@ -5685,15 +5481,15 @@ android.support.v4.media.MediaBrowserServiceCompat$ConnectionRecord$1 -> android
     android.support.v4.media.MediaBrowserServiceCompat$ConnectionRecord this$1 -> a
 android.support.v4.media.MediaBrowserServiceCompat$MediaBrowserServiceImpl -> android.support.v4.media.MediaBrowserServiceCompat$g:
     android.os.IBinder onBind(android.content.Intent) -> a
-    void onCreate() -> b
+    void onCreate() -> a
 android.support.v4.media.MediaBrowserServiceCompat$MediaBrowserServiceImplApi21 -> android.support.v4.media.MediaBrowserServiceCompat$h:
     java.util.List mRootExtrasList -> a
     android.support.v4.media.MediaBrowserServiceCompat this$0 -> d
     android.os.Messenger mMessenger -> c
     java.lang.Object mServiceObj -> b
     android.os.IBinder onBind(android.content.Intent) -> a
+    void onCreate() -> a
     android.support.v4.media.MediaBrowserServiceCompatApi21$BrowserRoot onGetRoot(java.lang.String,int,android.os.Bundle) -> a
-    void onCreate() -> b
     void onLoadChildren(java.lang.String,android.support.v4.media.MediaBrowserServiceCompatApi21$ResultWrapper) -> b
 android.support.v4.media.MediaBrowserServiceCompat$MediaBrowserServiceImplApi21$2 -> android.support.v4.media.MediaBrowserServiceCompat$h$a:
     android.support.v4.media.MediaBrowserServiceCompatApi21$ResultWrapper val$resultWrapper -> f
@@ -5701,16 +5497,16 @@ android.support.v4.media.MediaBrowserServiceCompat$MediaBrowserServiceImplApi21$
     void onResultSent(java.util.List) -> a
 android.support.v4.media.MediaBrowserServiceCompat$MediaBrowserServiceImplApi23 -> android.support.v4.media.MediaBrowserServiceCompat$i:
     android.support.v4.media.MediaBrowserServiceCompat this$0 -> e
+    void onCreate() -> a
     void onLoadItem(java.lang.String,android.support.v4.media.MediaBrowserServiceCompatApi21$ResultWrapper) -> a
-    void onCreate() -> b
 android.support.v4.media.MediaBrowserServiceCompat$MediaBrowserServiceImplApi23$1 -> android.support.v4.media.MediaBrowserServiceCompat$i$a:
     android.support.v4.media.MediaBrowserServiceCompatApi21$ResultWrapper val$resultWrapper -> f
     void onResultSent(android.support.v4.media.MediaBrowserCompat$MediaItem) -> a
     void onResultSent(java.lang.Object) -> a
 android.support.v4.media.MediaBrowserServiceCompat$MediaBrowserServiceImplApi26 -> android.support.v4.media.MediaBrowserServiceCompat$j:
     android.support.v4.media.MediaBrowserServiceCompat this$0 -> f
+    void onCreate() -> a
     void onLoadChildren(java.lang.String,android.support.v4.media.MediaBrowserServiceCompatApi26$ResultWrapper,android.os.Bundle) -> a
-    void onCreate() -> b
 android.support.v4.media.MediaBrowserServiceCompat$MediaBrowserServiceImplApi26$1 -> android.support.v4.media.MediaBrowserServiceCompat$j$a:
     android.support.v4.media.MediaBrowserServiceCompatApi26$ResultWrapper val$resultWrapper -> f
     void onResultSent(java.lang.Object) -> a
@@ -5719,7 +5515,7 @@ android.support.v4.media.MediaBrowserServiceCompat$MediaBrowserServiceImplBase -
     android.os.Messenger mMessenger -> a
     android.support.v4.media.MediaBrowserServiceCompat this$0 -> b
     android.os.IBinder onBind(android.content.Intent) -> a
-    void onCreate() -> b
+    void onCreate() -> a
 android.support.v4.media.MediaBrowserServiceCompat$Result -> android.support.v4.media.MediaBrowserServiceCompat$l:
     java.lang.Object mDebug -> a
     int mFlags -> e
@@ -6589,7 +6385,6 @@ android.support.v4.view.KeyEventDispatcher -> android.support.v4.view.d:
     boolean dispatchKeyEvent(android.support.v4.view.KeyEventDispatcher$Component,android.view.View,android.view.Window$Callback,android.view.KeyEvent) -> a
     android.content.DialogInterface$OnKeyListener getDialogKeyListenerPre28(android.app.Dialog) -> a
 android.support.v4.view.KeyEventDispatcher$Component -> android.support.v4.view.d$a:
-    boolean superDispatchKeyEvent(android.view.KeyEvent) -> a
 android.support.v4.view.LayoutInflaterCompat -> android.support.v4.view.e:
     java.lang.reflect.Field sLayoutInflaterFactory2Field -> a
     boolean sCheckedField -> b
@@ -7871,7 +7666,7 @@ android.support.v4.widget.SwipeRefreshLayout$8 -> android.support.v4.widget.Swip
 android.support.v4.widget.SwipeRefreshLayout$OnChildScrollUpCallback -> android.support.v4.widget.SwipeRefreshLayout$i:
     boolean canChildScrollUp(android.support.v4.widget.SwipeRefreshLayout,android.view.View) -> a
 android.support.v4.widget.SwipeRefreshLayout$OnRefreshListener -> android.support.v4.widget.SwipeRefreshLayout$j:
-    void onRefresh() -> f
+    void onRefresh() -> d
 android.support.v4.widget.TextViewCompat -> android.support.v4.widget.q:
     java.lang.reflect.Field sMaxModeField -> c
     java.lang.reflect.Field sMaximumField -> a
@@ -8201,9 +7996,9 @@ android.support.v7.app.AlertDialog$Builder -> android.support.v7.app.b$a:
     android.content.Context getContext() -> b
     android.support.v7.app.AlertDialog$Builder setTitle(java.lang.CharSequence) -> b
 android.support.v7.app.AppCompatActivity -> android.support.v7.app.AppCompatActivity:
-    int mThemeId -> o
-    android.support.v7.app.AppCompatDelegate mDelegate -> n
-    android.content.res.Resources mResources -> p
+    android.support.v7.app.AppCompatDelegate mDelegate -> a
+    int mThemeId -> b
+    android.content.res.Resources mResources -> c
     void onCreateSupportNavigateUpTaskStack(android.support.v4.app.TaskStackBuilder) -> a
     void onSupportActionModeFinished(android.support.v7.view.ActionMode) -> a
     android.support.v7.view.ActionMode onWindowStartingSupportActionMode(android.support.v7.view.ActionMode$Callback) -> a
@@ -8213,12 +8008,11 @@ android.support.v7.app.AppCompatActivity -> android.support.v7.app.AppCompatActi
     void onPrepareSupportNavigateUpTaskStack(android.support.v4.app.TaskStackBuilder) -> b
     void onSupportActionModeStarted(android.support.v7.view.ActionMode) -> b
     boolean supportShouldUpRecreateTask(android.content.Intent) -> b
-    android.content.Intent getSupportParentActivityIntent() -> g
-    void supportInvalidateOptionsMenu() -> o
-    android.support.v7.app.AppCompatDelegate getDelegate() -> p
-    android.support.v7.app.ActionBar getSupportActionBar() -> q
-    void onSupportContentChanged() -> r
-    boolean onSupportNavigateUp() -> s
+    android.content.Intent getSupportParentActivityIntent() -> e
+    android.support.v7.app.AppCompatDelegate getDelegate() -> i
+    android.support.v7.app.ActionBar getSupportActionBar() -> j
+    void onSupportContentChanged() -> k
+    boolean onSupportNavigateUp() -> l
 android.support.v7.app.AppCompatCallback -> android.support.v7.app.c:
     void onSupportActionModeFinished(android.support.v7.view.ActionMode) -> a
     android.support.v7.view.ActionMode onWindowStartingSupportActionMode(android.support.v7.view.ActionMode$Callback) -> a
@@ -8470,10 +8264,9 @@ android.support.v7.app.AppCompatDialog -> android.support.v7.app.e:
     void onSupportActionModeStarted(android.support.v7.view.ActionMode) -> b
 android.support.v7.app.AppCompatDialog$1 -> android.support.v7.app.e$a:
     android.support.v7.app.AppCompatDialog this$0 -> a
-    boolean superDispatchKeyEvent(android.view.KeyEvent) -> a
 android.support.v7.app.AppCompatDialogFragment -> android.support.v7.app.AppCompatDialogFragment:
+    android.app.Dialog onCreateDialog(android.os.Bundle) -> a
     void setupDialog(android.app.Dialog,int) -> a
-    android.app.Dialog onCreateDialog(android.os.Bundle) -> n
 android.support.v7.app.AppCompatViewInflater$DeclaredOnClickListener -> android.support.v7.app.AppCompatViewInflater$a:
     android.view.View mHostView -> a
     java.lang.reflect.Method mResolvedMethod -> c
@@ -9152,16 +8945,15 @@ android.support.v7.view.menu.CascadingMenuPopup -> android.support.v7.view.menu.
     void setForceShowIcon(boolean) -> b
     void setHorizontalOffset(int) -> b
     int findIndexOfAddedMenu(android.support.v7.view.menu.MenuBuilder) -> c
+    android.widget.ListView getListView() -> c
     void setShowTitle(boolean) -> c
     void setVerticalOffset(int) -> c
-    void show() -> c
-    android.widget.ListView getListView() -> d
     int getNextMenuPosition(int) -> d
+    boolean isShowing() -> d
     void showMenu(android.support.v7.view.menu.MenuBuilder) -> d
-    boolean isShowing() -> e
-    boolean closeMenuOnSubMenuOpened() -> f
-    android.support.v7.widget.MenuPopupWindow createPopupWindow() -> h
-    int getInitialMenuPosition() -> i
+    boolean closeMenuOnSubMenuOpened() -> e
+    android.support.v7.widget.MenuPopupWindow createPopupWindow() -> g
+    int getInitialMenuPosition() -> h
 android.support.v7.view.menu.CascadingMenuPopup$1 -> android.support.v7.view.menu.e$a:
     android.support.v7.view.menu.CascadingMenuPopup this$0 -> a
 android.support.v7.view.menu.CascadingMenuPopup$2 -> android.support.v7.view.menu.e$b:
@@ -9457,8 +9249,8 @@ android.support.v7.view.menu.MenuPopup -> android.support.v7.view.menu.n:
     boolean shouldPreserveIconSpacing(android.support.v7.view.menu.MenuBuilder) -> b
     void setShowTitle(boolean) -> c
     void setVerticalOffset(int) -> c
-    boolean closeMenuOnSubMenuOpened() -> f
-    android.graphics.Rect getEpicenterBounds() -> g
+    boolean closeMenuOnSubMenuOpened() -> e
+    android.graphics.Rect getEpicenterBounds() -> f
 android.support.v7.view.menu.MenuPopupHelper -> android.support.v7.view.menu.o:
     android.content.Context mContext -> a
     android.support.v7.view.menu.MenuPresenter$Callback mPresenterCallback -> i
@@ -9513,9 +9305,8 @@ android.support.v7.view.menu.MenuWrapperFactory -> android.support.v7.view.menu.
     android.view.SubMenu wrapSupportSubMenu(android.content.Context,android.support.v4.internal.view.SupportSubMenu) -> a
 android.support.v7.view.menu.MenuWrapperICS -> android.support.v7.view.menu.s:
 android.support.v7.view.menu.ShowableListMenu -> android.support.v7.view.menu.t:
-    void show() -> c
-    android.widget.ListView getListView() -> d
-    boolean isShowing() -> e
+    android.widget.ListView getListView() -> c
+    boolean isShowing() -> d
 android.support.v7.view.menu.StandardMenuPopup -> android.support.v7.view.menu.u:
     android.content.Context mContext -> b
     android.widget.PopupWindow$OnDismissListener mOnDismissListener -> m
@@ -9551,12 +9342,11 @@ android.support.v7.view.menu.StandardMenuPopup -> android.support.v7.view.menu.u
     android.os.Parcelable onSaveInstanceState() -> b
     void setForceShowIcon(boolean) -> b
     void setHorizontalOffset(int) -> b
+    android.widget.ListView getListView() -> c
     void setShowTitle(boolean) -> c
     void setVerticalOffset(int) -> c
-    void show() -> c
-    android.widget.ListView getListView() -> d
-    boolean isShowing() -> e
-    boolean tryShow() -> h
+    boolean isShowing() -> d
+    boolean tryShow() -> g
 android.support.v7.view.menu.StandardMenuPopup$1 -> android.support.v7.view.menu.u$a:
     android.support.v7.view.menu.StandardMenuPopup this$0 -> a
 android.support.v7.view.menu.StandardMenuPopup$2 -> android.support.v7.view.menu.u$b:
@@ -10173,9 +9963,8 @@ android.support.v7.widget.AppCompatSpinner$DropdownPopup -> android.support.v7.w
     void setAdapter(android.widget.ListAdapter) -> a
     void setPromptText(java.lang.CharSequence) -> a
     boolean isVisibleToUser(android.view.View) -> c
-    void show() -> c
-    void computeContentWidth() -> l
-    java.lang.CharSequence getHintText() -> m
+    void computeContentWidth() -> k
+    java.lang.CharSequence getHintText() -> l
 android.support.v7.widget.AppCompatSpinner$DropdownPopup$1 -> android.support.v7.widget.AppCompatSpinner$c$a:
     android.support.v7.widget.AppCompatSpinner$DropdownPopup this$1 -> a
 android.support.v7.widget.AppCompatSpinner$DropdownPopup$2 -> android.support.v7.widget.AppCompatSpinner$c$b:
@@ -10444,13 +10233,12 @@ android.support.v7.widget.DecorToolbar -> android.support.v7.widget.v:
     boolean canShowOverflowMenu() -> e
     void dismissPopupMenus() -> f
     android.view.ViewGroup getViewGroup() -> g
-    android.content.Context getContext() -> h
-    boolean hasExpandedActionView() -> i
-    int getDisplayOptions() -> j
-    android.view.Menu getMenu() -> k
-    int getNavigationMode() -> l
-    void initProgress() -> m
-    void initIndeterminateProgress() -> n
+    boolean hasExpandedActionView() -> h
+    int getDisplayOptions() -> i
+    android.view.Menu getMenu() -> j
+    int getNavigationMode() -> k
+    void initProgress() -> l
+    void initIndeterminateProgress() -> m
 android.support.v7.widget.DefaultItemAnimator -> android.support.v7.widget.w:
     java.util.ArrayList mAddAnimations -> o
     java.util.ArrayList mChangesList -> n
@@ -11018,26 +10806,25 @@ android.support.v7.widget.ListPopupWindow -> android.support.v7.widget.ListPopup
     void setAnchorView(android.view.View) -> b
     void setContentWidth(int) -> b
     void setOverlapAnchor(boolean) -> b
+    android.widget.ListView getListView() -> c
     void setDropDownGravity(int) -> c
     void setPopupClipToScreenEnabled(boolean) -> c
-    void show() -> c
-    android.widget.ListView getListView() -> d
+    boolean isShowing() -> d
     void setHeight(int) -> d
-    boolean isShowing() -> e
+    android.graphics.drawable.Drawable getBackground() -> e
     void setHorizontalOffset(int) -> e
-    android.graphics.drawable.Drawable getBackground() -> f
+    int getHorizontalOffset() -> f
     void setInputMethodMode(int) -> f
-    int getHorizontalOffset() -> g
+    int getVerticalOffset() -> g
     void setPromptPosition(int) -> g
-    int getVerticalOffset() -> h
+    int getWidth() -> h
     void setSelection(int) -> h
-    int getWidth() -> i
+    boolean isInputMethodNotNeeded() -> i
     void setVerticalOffset(int) -> i
-    boolean isInputMethodNotNeeded() -> j
+    boolean isModal() -> j
     void setWidth(int) -> j
-    boolean isModal() -> k
-    int buildDropDown() -> l
-    void removePromptView() -> m
+    int buildDropDown() -> k
+    void removePromptView() -> l
 android.support.v7.widget.ListPopupWindow$1 -> android.support.v7.widget.ListPopupWindow$a:
     android.support.v7.widget.ListPopupWindow this$0 -> k
     android.support.v7.view.menu.ShowableListMenu getPopup() -> a
@@ -12615,17 +12402,16 @@ android.support.v7.widget.ToolbarWidgetWrapper -> android.support.v7.widget.w0:
     void setNavigationContentDescription(int) -> e
     void dismissPopupMenus() -> f
     android.view.ViewGroup getViewGroup() -> g
-    android.content.Context getContext() -> h
-    boolean hasExpandedActionView() -> i
-    int getDisplayOptions() -> j
-    android.view.Menu getMenu() -> k
-    int getNavigationMode() -> l
-    void initProgress() -> m
-    void initIndeterminateProgress() -> n
-    int detectDisplayOptions() -> o
-    void updateHomeAccessibility() -> p
-    void updateNavigationIcon() -> q
-    void updateToolbarLogo() -> r
+    boolean hasExpandedActionView() -> h
+    int getDisplayOptions() -> i
+    android.view.Menu getMenu() -> j
+    int getNavigationMode() -> k
+    void initProgress() -> l
+    void initIndeterminateProgress() -> m
+    int detectDisplayOptions() -> n
+    void updateHomeAccessibility() -> o
+    void updateNavigationIcon() -> p
+    void updateToolbarLogo() -> q
 android.support.v7.widget.ToolbarWidgetWrapper$1 -> android.support.v7.widget.w0$a:
     android.support.v7.widget.ToolbarWidgetWrapper this$0 -> b
     android.support.v7.view.menu.ActionMenuItem mNavItem -> a
@@ -12970,26 +12756,23 @@ com.bumptech.glide.RequestManager -> com.bumptech.glide.h:
     com.bumptech.glide.manager.Lifecycle lifecycle -> c
     android.os.Handler mainHandler -> i
     com.bumptech.glide.RequestBuilder as(java.lang.Class) -> a
+    com.bumptech.glide.RequestBuilder asBitmap() -> a
     void clear(com.bumptech.glide.request.target.Target) -> a
     com.bumptech.glide.RequestBuilder load(android.net.Uri) -> a
     com.bumptech.glide.RequestBuilder load(java.io.File) -> a
     com.bumptech.glide.RequestBuilder load(java.lang.Integer) -> a
     com.bumptech.glide.RequestBuilder load(java.lang.String) -> a
-    void onStart() -> a
     void setRequestOptions(com.bumptech.glide.request.RequestOptions) -> a
     void track(com.bumptech.glide.request.target.Target,com.bumptech.glide.request.Request) -> a
+    com.bumptech.glide.RequestBuilder asDrawable() -> b
     com.bumptech.glide.TransitionOptions getDefaultTransitionOptions(java.lang.Class) -> b
-    void onStop() -> b
     boolean untrack(com.bumptech.glide.request.target.Target) -> b
-    void onDestroy() -> c
+    com.bumptech.glide.RequestBuilder asFile() -> c
     void untrackOrDelegate(com.bumptech.glide.request.target.Target) -> c
-    com.bumptech.glide.RequestBuilder asBitmap() -> d
-    com.bumptech.glide.RequestBuilder asDrawable() -> e
-    com.bumptech.glide.RequestBuilder asFile() -> f
-    com.bumptech.glide.RequestBuilder asGif() -> g
-    com.bumptech.glide.request.RequestOptions getDefaultRequestOptions() -> h
-    void pauseRequests() -> i
-    void resumeRequests() -> j
+    com.bumptech.glide.RequestBuilder asGif() -> d
+    com.bumptech.glide.request.RequestOptions getDefaultRequestOptions() -> e
+    void pauseRequests() -> f
+    void resumeRequests() -> g
 com.bumptech.glide.RequestManager$1 -> com.bumptech.glide.h$a:
     com.bumptech.glide.RequestManager this$0 -> a
 com.bumptech.glide.RequestManager$2 -> com.bumptech.glide.h$b:
@@ -15035,9 +14818,9 @@ com.bumptech.glide.load.resource.gif.GifFrameLoader$DelayTarget -> com.bumptech.
     long targetTime -> g
     int index -> f
     android.graphics.Bitmap resource -> h
+    android.graphics.Bitmap getResource() -> a
     void onResourceReady(android.graphics.Bitmap,com.bumptech.glide.request.transition.Transition) -> a
     void onResourceReady(java.lang.Object,com.bumptech.glide.request.transition.Transition) -> a
-    android.graphics.Bitmap getResource() -> d
 com.bumptech.glide.load.resource.gif.GifFrameLoader$FrameCallback -> com.bumptech.glide.load.k.f.g$b:
     void onFrameReady() -> a
 com.bumptech.glide.load.resource.gif.GifFrameLoader$FrameLoaderCallback -> com.bumptech.glide.load.k.f.g$c:
@@ -15117,11 +14900,8 @@ com.bumptech.glide.manager.DefaultConnectivityMonitor -> com.bumptech.glide.mana
     boolean isConnected -> c
     boolean isRegistered -> d
     boolean isConnected(android.content.Context) -> a
-    void onStart() -> a
-    void onStop() -> b
-    void onDestroy() -> c
-    void register() -> d
-    void unregister() -> e
+    void register() -> a
+    void unregister() -> b
 com.bumptech.glide.manager.DefaultConnectivityMonitor$1 -> com.bumptech.glide.manager.e$a:
     com.bumptech.glide.manager.DefaultConnectivityMonitor this$0 -> a
 com.bumptech.glide.manager.DefaultConnectivityMonitorFactory -> com.bumptech.glide.manager.f:
@@ -15131,13 +14911,7 @@ com.bumptech.glide.manager.Lifecycle -> com.bumptech.glide.manager.h:
     void addListener(com.bumptech.glide.manager.LifecycleListener) -> a
     void removeListener(com.bumptech.glide.manager.LifecycleListener) -> b
 com.bumptech.glide.manager.LifecycleListener -> com.bumptech.glide.manager.i:
-    void onStart() -> a
-    void onStop() -> b
-    void onDestroy() -> c
 com.bumptech.glide.manager.NullConnectivityMonitor -> com.bumptech.glide.manager.j:
-    void onStart() -> a
-    void onStop() -> b
-    void onDestroy() -> c
 com.bumptech.glide.manager.RequestManagerFragment -> com.bumptech.glide.manager.RequestManagerFragment:
     com.bumptech.glide.RequestManager requestManager -> d
     java.util.Set childRequestManagerFragments -> c
@@ -15193,38 +14967,30 @@ com.bumptech.glide.manager.RequestTracker -> com.bumptech.glide.manager.m:
     void restartRequests() -> c
     void resumeRequests() -> d
 com.bumptech.glide.manager.SupportRequestManagerFragment -> com.bumptech.glide.manager.SupportRequestManagerFragment:
-    com.bumptech.glide.manager.ActivityFragmentLifecycle lifecycle -> Z
-    java.util.Set childRequestManagerFragments -> b0
-    com.bumptech.glide.RequestManager requestManager -> d0
-    com.bumptech.glide.manager.SupportRequestManagerFragment rootRequestManagerFragment -> c0
-    com.bumptech.glide.manager.RequestManagerTreeNode requestManagerTreeNode -> a0
-    android.support.v4.app.Fragment parentFragmentHint -> e0
-    void onDestroy() -> P
-    void onDetach() -> S
-    void onStart() -> V
-    void onStop() -> W
+    java.util.Set childRequestManagerFragments -> c
+    com.bumptech.glide.manager.SupportRequestManagerFragment rootRequestManagerFragment -> d
+    com.bumptech.glide.manager.RequestManagerTreeNode requestManagerTreeNode -> b
+    com.bumptech.glide.manager.ActivityFragmentLifecycle lifecycle -> a
+    com.bumptech.glide.RequestManager requestManager -> f
+    android.support.v4.app.Fragment parentFragmentHint -> g
     void addChildRequestManagerFragment(com.bumptech.glide.manager.SupportRequestManagerFragment) -> a
-    void onAttach(android.content.Context) -> a
     void registerFragmentWithRoot(android.support.v4.app.FragmentActivity) -> a
+    void setParentFragmentHint(android.support.v4.app.Fragment) -> a
     void setRequestManager(com.bumptech.glide.RequestManager) -> a
     void removeChildRequestManagerFragment(com.bumptech.glide.manager.SupportRequestManagerFragment) -> b
-    void setParentFragmentHint(android.support.v4.app.Fragment) -> b
-    com.bumptech.glide.manager.ActivityFragmentLifecycle getGlideLifecycle() -> i0
-    com.bumptech.glide.RequestManager getRequestManager() -> j0
-    com.bumptech.glide.manager.RequestManagerTreeNode getRequestManagerTreeNode() -> k0
-    android.support.v4.app.Fragment getParentFragmentUsingHint() -> l0
-    void unregisterFragmentWithRoot() -> m0
+    com.bumptech.glide.manager.ActivityFragmentLifecycle getGlideLifecycle() -> c
+    com.bumptech.glide.RequestManager getRequestManager() -> d
+    com.bumptech.glide.manager.RequestManagerTreeNode getRequestManagerTreeNode() -> e
+    android.support.v4.app.Fragment getParentFragmentUsingHint() -> f
+    void unregisterFragmentWithRoot() -> g
 com.bumptech.glide.manager.SupportRequestManagerFragment$SupportFragmentRequestManagerTreeNode -> com.bumptech.glide.manager.SupportRequestManagerFragment$a:
     com.bumptech.glide.manager.SupportRequestManagerFragment this$0 -> a
 com.bumptech.glide.manager.TargetTracker -> com.bumptech.glide.manager.n:
     java.util.Set targets -> a
-    void onStart() -> a
+    void clear() -> a
     void track(com.bumptech.glide.request.target.Target) -> a
-    void onStop() -> b
+    java.util.List getAll() -> b
     void untrack(com.bumptech.glide.request.target.Target) -> b
-    void onDestroy() -> c
-    void clear() -> d
-    java.util.List getAll() -> e
 com.bumptech.glide.module.AppGlideModule -> com.bumptech.glide.l.a:
     void applyOptions(android.content.Context,com.bumptech.glide.GlideBuilder) -> a
     boolean isManifestParsingEnabled() -> a
@@ -15501,11 +15267,8 @@ com.bumptech.glide.request.ThumbnailRequestCoordinator -> com.bumptech.glide.req
 com.bumptech.glide.request.target.BaseTarget -> com.bumptech.glide.request.h.a:
     com.bumptech.glide.request.Request request -> a
     void onLoadFailed(android.graphics.drawable.Drawable) -> a
-    void onStart() -> a
     void setRequest(com.bumptech.glide.request.Request) -> a
     void onLoadStarted(android.graphics.drawable.Drawable) -> b
-    void onStop() -> b
-    void onDestroy() -> c
     void onLoadCleared(android.graphics.drawable.Drawable) -> c
 com.bumptech.glide.request.target.BitmapImageViewTarget -> com.bumptech.glide.request.h.b:
     void setResource(android.graphics.Bitmap) -> a
@@ -15517,11 +15280,9 @@ com.bumptech.glide.request.target.ImageViewTarget -> com.bumptech.glide.request.
     android.graphics.drawable.Animatable animatable -> i
     void onLoadFailed(android.graphics.drawable.Drawable) -> a
     void onResourceReady(java.lang.Object,com.bumptech.glide.request.transition.Transition) -> a
-    void onStart() -> a
     void setResource(java.lang.Object) -> a
     void maybeUpdateAnimatable(java.lang.Object) -> b
     void onLoadStarted(android.graphics.drawable.Drawable) -> b
-    void onStop() -> b
     void onLoadCleared(android.graphics.drawable.Drawable) -> c
     void setResourceInternal(java.lang.Object) -> c
     void setDrawable(android.graphics.drawable.Drawable) -> d
@@ -15549,15 +15310,15 @@ com.bumptech.glide.request.target.ViewTarget -> com.bumptech.glide.request.h.i:
     boolean isAttachStateListenerAdded -> g
     android.view.View view -> b
     android.view.View$OnAttachStateChangeListener attachStateListener -> d
+    java.lang.Object getTag() -> a
     void removeCallback(com.bumptech.glide.request.target.SizeReadyCallback) -> a
     void setRequest(com.bumptech.glide.request.Request) -> a
     void setTag(java.lang.Object) -> a
     void getSize(com.bumptech.glide.request.target.SizeReadyCallback) -> b
+    void maybeAddAttachStateListener() -> b
     void onLoadStarted(android.graphics.drawable.Drawable) -> b
+    void maybeRemoveAttachStateListener() -> c
     void onLoadCleared(android.graphics.drawable.Drawable) -> c
-    java.lang.Object getTag() -> d
-    void maybeAddAttachStateListener() -> e
-    void maybeRemoveAttachStateListener() -> f
 com.bumptech.glide.request.target.ViewTarget$SizeDeterminer -> com.bumptech.glide.request.h.i$a:
     java.util.List cbs -> b
     java.lang.Integer maxDisplayLength -> e
@@ -16051,79 +15812,79 @@ com.hyc.helper.activity.CourseDetailActivity -> com.hyc.helper.activity.CourseDe
     void initViewWithIntentData(android.os.Bundle) -> a
     void startCourseDetail(android.content.Context,com.hyc.helper.bean.CourseInfoBean) -> a
     void initCourseInfo(com.hyc.helper.bean.CourseInfoBean) -> b
-    int getContentViewId() -> v
+    int getContentViewId() -> o
 com.hyc.helper.activity.CourseDetailActivity_ViewBinding -> com.hyc.helper.activity.CourseDetailActivity_ViewBinding:
     com.hyc.helper.activity.CourseDetailActivity target -> a
 com.hyc.helper.activity.ExamActivity -> com.hyc.helper.activity.ExamActivity:
-    com.hyc.helper.model.ExamModel examModel -> A
-    com.hyc.helper.model.UserModel userModel -> B
-    boolean isFirst -> C
-    boolean isNeedFresh -> D
-    int getRecycleViewId() -> D
-    int getRefreshLayoutId() -> E
-    com.hyc.helper.base.adapter.BaseRecycleAdapter setRecycleAdapter() -> G
+    com.hyc.helper.model.ExamModel examModel -> o
+    boolean isFirst -> q
+    boolean isNeedFresh -> r
+    com.hyc.helper.model.UserModel userModel -> p
     java.util.List getData(com.hyc.helper.bean.BaseRequestBean) -> a
     java.util.List getData(com.hyc.helper.bean.ExamBean) -> a
     void initViewWithIntentData(android.os.Bundle) -> a
     void onNext(com.hyc.helper.bean.BaseRequestBean) -> b
     void onNext(com.hyc.helper.bean.ExamBean) -> b
-    void requestListData(int) -> h
-    int getContentViewId() -> v
+    void requestListData(int) -> f
+    int getContentViewId() -> o
+    int getRecycleViewId() -> w
+    int getRefreshLayoutId() -> x
+    com.hyc.helper.base.adapter.BaseRecycleAdapter setRecycleAdapter() -> z
 com.hyc.helper.activity.GradeActivity -> com.hyc.helper.activity.GradeActivity:
-    com.hyc.helper.model.GradeModel gradeModel -> A
-    com.hyc.helper.model.UserModel userModel -> B
-    boolean isFirst -> C
-    boolean isNeedFresh -> D
-    int getRecycleViewId() -> D
-    int getRefreshLayoutId() -> E
-    com.hyc.helper.base.adapter.BaseRecycleAdapter setRecycleAdapter() -> G
+    com.hyc.helper.model.GradeModel gradeModel -> o
+    boolean isFirst -> q
+    boolean isNeedFresh -> r
+    com.hyc.helper.model.UserModel userModel -> p
     java.util.List getData(com.hyc.helper.bean.BaseRequestBean) -> a
     java.util.List getData(com.hyc.helper.bean.GradeBean) -> a
     void initViewWithIntentData(android.os.Bundle) -> a
-    void requestListData(int) -> h
-    int getContentViewId() -> v
+    void requestListData(int) -> f
+    int getContentViewId() -> o
+    int getRecycleViewId() -> w
+    int getRefreshLayoutId() -> x
+    com.hyc.helper.base.adapter.BaseRecycleAdapter setRecycleAdapter() -> z
 com.hyc.helper.activity.InputActivity -> com.hyc.helper.activity.InputActivity:
     void initViewWithIntentData(android.os.Bundle) -> a
-    int getContentViewId() -> v
-    int getMenuId() -> w
+    int getContentViewId() -> o
+    int getMenuId() -> p
 com.hyc.helper.activity.InputActivity_ViewBinding -> com.hyc.helper.activity.InputActivity_ViewBinding:
     com.hyc.helper.activity.InputActivity target -> a
 com.hyc.helper.activity.LoginActivity -> com.hyc.helper.activity.LoginActivity:
-    butterknife.Unbinder unbinder -> w
-    com.hyc.helper.model.UserModel userModel -> x
-    boolean isOnCreateRequest() -> C
-    void requestDataFromApi() -> D
-    boolean validationInput() -> H
+    butterknife.Unbinder unbinder -> k
+    com.hyc.helper.model.UserModel userModel -> l
+    boolean validationInput() -> A
     void initViewWithIntentData(android.os.Bundle) -> a
     void onSuccessGetData(com.hyc.helper.bean.UserBean) -> a
     void onSuccessGetData(com.hyc.helper.bean.BaseRequestBean) -> b
-    int getContentViewId() -> v
-    int getMenuId() -> w
+    int getContentViewId() -> o
+    int getMenuId() -> p
+    boolean isOnCreateRequest() -> v
+    void requestDataFromApi() -> w
 com.hyc.helper.activity.LoginActivity_ViewBinding -> com.hyc.helper.activity.LoginActivity_ViewBinding:
     com.hyc.helper.activity.LoginActivity target -> a
 com.hyc.helper.activity.LosePublishActivity -> com.hyc.helper.activity.LosePublishActivity:
-    com.hyc.helper.model.LostGoodsModel lostGoodsModel -> z
-    com.hyc.helper.base.adapter.BaseRecycleAdapter baseRecycleAdapter -> y
-    int REQUEST_CODE_CHOOSE -> x
-    boolean isFind -> w
-    com.hyc.helper.model.UserModel userModel -> A
-    boolean isOnCreateRequest() -> C
-    void requestDataFromApi() -> D
-    boolean validationInput() -> H
-    java.util.Map getRequestParams() -> I
-    java.lang.String getTime() -> J
+    int REQUEST_CODE_CHOOSE -> l
+    boolean isFind -> k
+    com.hyc.helper.model.LostGoodsModel lostGoodsModel -> n
+    com.hyc.helper.base.adapter.BaseRecycleAdapter baseRecycleAdapter -> m
+    com.hyc.helper.model.UserModel userModel -> o
+    boolean validationInput() -> A
+    java.util.Map getRequestParams() -> B
+    java.lang.String getTime() -> C
     void initViewWithIntentData(android.os.Bundle) -> a
     void lambda$initViewWithIntentData$0(java.lang.String,android.view.View,int) -> a
     void onSuccessGetData(com.hyc.helper.bean.BaseRequestBean) -> b
-    int getContentViewId() -> v
-    int getMenuId() -> w
+    int getContentViewId() -> o
+    int getMenuId() -> p
+    boolean isOnCreateRequest() -> v
+    void requestDataFromApi() -> w
 com.hyc.helper.activity.LosePublishActivity_ViewBinding -> com.hyc.helper.activity.LosePublishActivity_ViewBinding:
     com.hyc.helper.activity.LosePublishActivity target -> a
 com.hyc.helper.activity.LostFindDetailActivity -> com.hyc.helper.activity.LostFindDetailActivity:
     void initImageBrowsing(java.util.List) -> a
     void initLostFindInfo(com.hyc.helper.bean.LostBean$GoodsBean) -> a
     void initViewWithIntentData(android.os.Bundle) -> a
-    int getContentViewId() -> v
+    int getContentViewId() -> o
 com.hyc.helper.activity.LostFindDetailActivity$1 -> com.hyc.helper.activity.LostFindDetailActivity$a:
     java.util.List val$pic -> a
     com.hyc.helper.activity.LostFindDetailActivity this$0 -> b
@@ -16142,21 +15903,15 @@ com.hyc.helper.activity.LostFindDetailActivity$ViewPagerAdapter -> com.hyc.helpe
 com.hyc.helper.activity.LostFindDetailActivity_ViewBinding -> com.hyc.helper.activity.LostFindDetailActivity_ViewBinding:
     com.hyc.helper.activity.LostFindDetailActivity target -> a
 com.hyc.helper.activity.MainActivity -> com.hyc.helper.activity.MainActivity:
-    android.view.MenuItem selectWeek -> v
-    com.hyc.helper.model.UserModel userModel -> y
-    android.view.MenuItem messageTip -> x
-    com.hyc.helper.helper.UpdateAppHelper updateAppHelper -> z
-    android.widget.ListPopupWindow weekListPopWindow -> u
-    com.hyc.helper.model.ExamModel examModel -> w
-    com.hyc.helper.adapter.TechFragmentPageAdapter adapter -> t
-    void checkUpdate() -> B
-    void initCalendar() -> C
-    void initLeftView() -> D
-    void initListPopView() -> E
-    void initTabLayout() -> F
-    void initViewPager() -> G
-    void loadMessageTip() -> H
-    void refreshUserInfo() -> I
+    android.view.MenuItem selectWeek -> j
+    com.hyc.helper.adapter.TechFragmentPageAdapter adapter -> h
+    android.view.MenuItem messageTip -> l
+    com.hyc.helper.helper.UpdateAppHelper updateAppHelper -> n
+    com.hyc.helper.model.ExamModel examModel -> k
+    com.hyc.helper.model.UserModel userModel -> m
+    android.widget.ListPopupWindow weekListPopWindow -> i
+    void loadMessageTip() -> A
+    void refreshUserInfo() -> B
     void initViewWithIntentData(android.os.Bundle) -> a
     void lambda$SQ5MNKQQOrocNI6eEHoLUnFGnpk(com.hyc.helper.activity.MainActivity,java.util.List) -> a
     void lambda$checkUpdate$7(com.hyc.helper.bean.UpdateApkBean) -> a
@@ -16173,17 +15928,22 @@ com.hyc.helper.activity.MainActivity -> com.hyc.helper.activity.MainActivity:
     void loadCalendar(java.util.List) -> b
     void onTabUnselected(android.support.design.widget.TabLayout$Tab) -> b
     void onTabSelected(android.support.design.widget.TabLayout$Tab) -> c
-    int getContentViewId() -> v
+    int getContentViewId() -> o
+    void checkUpdate() -> u
+    void initCalendar() -> v
+    void initLeftView() -> w
+    void initListPopView() -> x
+    void initTabLayout() -> y
+    void initViewPager() -> z
 com.hyc.helper.activity.MainActivity_ViewBinding -> com.hyc.helper.activity.MainActivity_ViewBinding:
     com.hyc.helper.activity.MainActivity target -> a
 com.hyc.helper.activity.PersonalActivity -> com.hyc.helper.activity.PersonalActivity:
-    com.hyc.helper.model.UserModel userModel -> u
-    int REQUEST_CODE_USERNAME -> x
-    int REQUEST_CODE_BIO -> y
-    int REQUEST_CODE_CHOOSE -> w
-    android.widget.ListPopupWindow publishPopupWindow -> t
-    io.reactivex.disposables.Disposable disposable -> v
-    void initMenuPopupWindow() -> B
+    int REQUEST_CODE_USERNAME -> l
+    int REQUEST_CODE_BIO -> m
+    com.hyc.helper.model.UserModel userModel -> i
+    int REQUEST_CODE_CHOOSE -> k
+    io.reactivex.disposables.Disposable disposable -> j
+    android.widget.ListPopupWindow publishPopupWindow -> h
     com.hyc.helper.model.UserModel access$000(com.hyc.helper.activity.PersonalActivity) -> a
     void access$100(com.hyc.helper.activity.PersonalActivity,com.hyc.helper.bean.UserBean$DataBean) -> a
     void initView(com.hyc.helper.bean.UserBean$DataBean) -> a
@@ -16197,17 +15957,18 @@ com.hyc.helper.activity.PersonalActivity -> com.hyc.helper.activity.PersonalActi
     void uploadImage(android.net.Uri) -> b
     void updateBio(java.lang.String) -> c
     void updateUsername(java.lang.String) -> d
-    int getContentViewId() -> v
-    int getMenuId() -> w
+    int getContentViewId() -> o
+    int getMenuId() -> p
+    void initMenuPopupWindow() -> u
 com.hyc.helper.activity.PersonalActivity$1 -> com.hyc.helper.activity.PersonalActivity$a:
     com.hyc.helper.activity.PersonalActivity this$0 -> a
     void onFailure(java.lang.Throwable) -> a
     void onSuccess(java.lang.String) -> a
 com.hyc.helper.activity.PersonalActivity_ViewBinding -> com.hyc.helper.activity.PersonalActivity_ViewBinding:
     com.hyc.helper.activity.PersonalActivity target -> a
-    android.view.View view7f0901a0 -> c
-    android.view.View view7f0900c0 -> b
-    android.view.View view7f090173 -> d
+    android.view.View view7f0901a1 -> c
+    android.view.View view7f0900c1 -> b
+    android.view.View view7f090174 -> d
 com.hyc.helper.activity.PersonalActivity_ViewBinding$1 -> com.hyc.helper.activity.PersonalActivity_ViewBinding$a:
     com.hyc.helper.activity.PersonalActivity val$target -> a
 com.hyc.helper.activity.PersonalActivity_ViewBinding$2 -> com.hyc.helper.activity.PersonalActivity_ViewBinding$b:
@@ -16217,13 +15978,13 @@ com.hyc.helper.activity.PersonalActivity_ViewBinding$3 -> com.hyc.helper.activit
 com.hyc.helper.activity.PersonalPublishActivity -> com.hyc.helper.activity.PersonalPublishActivity:
     void goToPersonalPublishActivity(android.content.Context,java.lang.String,java.lang.String) -> a
     void initViewWithIntentData(android.os.Bundle) -> a
-    void loadFragment(android.support.v4.app.Fragment) -> b
-    int getContentViewId() -> v
+    void loadFragment(android.support.v4.app.Fragment) -> a
+    int getContentViewId() -> o
 com.hyc.helper.activity.PictureBrowsingActivity -> com.hyc.helper.activity.PictureBrowsingActivity:
-    java.util.List imagesUrl -> r
-    com.hyc.helper.model.ImageModel imageModel -> s
-    android.support.design.widget.BottomSheetDialog sheetDialog -> t
-    android.support.v4.view.ViewPager viewPager -> q
+    java.util.List imagesUrl -> f
+    com.hyc.helper.model.ImageModel imageModel -> g
+    android.support.design.widget.BottomSheetDialog sheetDialog -> h
+    android.support.v4.view.ViewPager viewPager -> d
     java.util.List access$000(com.hyc.helper.activity.PictureBrowsingActivity) -> a
     boolean access$300(com.hyc.helper.activity.PictureBrowsingActivity,int) -> a
     void goToPictureBrowsingActivity(android.content.Context,int,java.util.ArrayList) -> a
@@ -16232,7 +15993,7 @@ com.hyc.helper.activity.PictureBrowsingActivity -> com.hyc.helper.activity.Pictu
     com.hyc.helper.model.ImageModel access$200(com.hyc.helper.activity.PictureBrowsingActivity) -> b
     void initViewWithData(android.os.Bundle) -> b
     void lambda$showMoreSelect$1(int,android.view.View) -> b
-    boolean showMoreSelect(int) -> e
+    boolean showMoreSelect(int) -> c
 com.hyc.helper.activity.PictureBrowsingActivity$1 -> com.hyc.helper.activity.h0:
     com.hyc.helper.activity.PictureBrowsingActivity this$0 -> f
     int val$position -> d
@@ -16271,31 +16032,31 @@ com.hyc.helper.activity.PictureBrowsingActivity$ViewPagerAdapter$2 -> com.hyc.he
     void onResourceReady(java.io.File,com.bumptech.glide.request.transition.Transition) -> a
     void onResourceReady(java.lang.Object,com.bumptech.glide.request.transition.Transition) -> a
 com.hyc.helper.activity.PublishStatementActivity -> com.hyc.helper.activity.PublishStatementActivity:
-    com.hyc.helper.base.adapter.BaseRecycleAdapter baseRecycleAdapter -> x
-    com.hyc.helper.model.StatementModel statementModel -> A
-    com.hyc.helper.model.UserModel userModel -> z
-    butterknife.Unbinder unbinder -> w
-    int REQUEST_CODE_CHOOSE -> y
-    boolean isOnCreateRequest() -> C
-    void requestDataFromApi() -> D
-    boolean validationInput() -> H
+    butterknife.Unbinder unbinder -> k
+    int REQUEST_CODE_CHOOSE -> m
+    com.hyc.helper.model.StatementModel statementModel -> o
+    com.hyc.helper.model.UserModel userModel -> n
+    com.hyc.helper.base.adapter.BaseRecycleAdapter baseRecycleAdapter -> l
+    boolean validationInput() -> A
     void initViewWithIntentData(android.os.Bundle) -> a
     void lambda$initViewWithIntentData$0(java.lang.String,android.view.View,int) -> a
     void onSuccessGetData(com.hyc.helper.bean.BaseRequestBean) -> b
-    int getContentViewId() -> v
-    int getMenuId() -> w
+    int getContentViewId() -> o
+    int getMenuId() -> p
+    boolean isOnCreateRequest() -> v
+    void requestDataFromApi() -> w
 com.hyc.helper.activity.PublishStatementActivity_ViewBinding -> com.hyc.helper.activity.PublishStatementActivity_ViewBinding:
     com.hyc.helper.activity.PublishStatementActivity target -> a
 com.hyc.helper.activity.QueryPowerActivity -> com.hyc.helper.activity.QueryPowerActivity:
-    com.hyc.helper.model.UserModel userModel -> x
-    com.hyc.helper.model.PowerModel powerModel -> w
-    boolean isOnCreateRequest() -> C
-    void requestDataFromApi() -> D
-    boolean validationInput() -> H
+    com.hyc.helper.model.UserModel userModel -> l
+    com.hyc.helper.model.PowerModel powerModel -> k
+    boolean validationInput() -> A
     void initViewWithIntentData(android.os.Bundle) -> a
     void onSuccessGetData(com.hyc.helper.bean.PowerBean) -> a
     void onSuccessGetData(com.hyc.helper.bean.BaseRequestBean) -> b
-    int getContentViewId() -> v
+    int getContentViewId() -> o
+    boolean isOnCreateRequest() -> v
+    void requestDataFromApi() -> w
 com.hyc.helper.activity.QueryPowerActivity_ViewBinding -> com.hyc.helper.activity.QueryPowerActivity_ViewBinding:
     com.hyc.helper.activity.QueryPowerActivity target -> a
     android.view.View view7f090039 -> b
@@ -16304,7 +16065,7 @@ com.hyc.helper.activity.QueryPowerActivity_ViewBinding$1 -> com.hyc.helper.activ
 com.hyc.helper.activity.SchoolCalendarActivity -> com.hyc.helper.activity.SchoolCalendarActivity:
     void initViewWithIntentData(android.os.Bundle) -> a
     void loadImage(java.io.File) -> a
-    int getContentViewId() -> v
+    int getContentViewId() -> o
 com.hyc.helper.activity.SchoolCalendarActivity$1 -> com.hyc.helper.activity.SchoolCalendarActivity$a:
     com.hyc.helper.activity.SchoolCalendarActivity this$0 -> d
     void onResourceReady(java.io.File,com.bumptech.glide.request.transition.Transition) -> a
@@ -16312,15 +16073,15 @@ com.hyc.helper.activity.SchoolCalendarActivity$1 -> com.hyc.helper.activity.Scho
 com.hyc.helper.activity.SchoolCalendarActivity_ViewBinding -> com.hyc.helper.activity.SchoolCalendarActivity_ViewBinding:
     com.hyc.helper.activity.SchoolCalendarActivity target -> a
 com.hyc.helper.activity.SecondGoodsDetailActivity -> com.hyc.helper.activity.SecondGoodsDetailActivity:
-    com.hyc.helper.model.UserModel userModel -> w
-    com.hyc.helper.model.SecondGoodsModel secondGoodsModel -> x
-    void requestDataFromApi() -> D
+    com.hyc.helper.model.SecondGoodsModel secondGoodsModel -> l
+    com.hyc.helper.model.UserModel userModel -> k
     void initGoodsInfo(com.hyc.helper.bean.GoodsDetailBean$DataBean) -> a
     void initImageBrowsing(java.util.List) -> a
     void initViewWithIntentData(android.os.Bundle) -> a
     void onSuccessGetData(com.hyc.helper.bean.GoodsDetailBean) -> a
     void onSuccessGetData(com.hyc.helper.bean.BaseRequestBean) -> b
-    int getContentViewId() -> v
+    int getContentViewId() -> o
+    void requestDataFromApi() -> w
 com.hyc.helper.activity.SecondGoodsDetailActivity$1 -> com.hyc.helper.activity.SecondGoodsDetailActivity$a:
     java.util.List val$pic -> a
     com.hyc.helper.activity.SecondGoodsDetailActivity this$0 -> b
@@ -16339,53 +16100,53 @@ com.hyc.helper.activity.SecondGoodsDetailActivity$ViewPagerAdapter -> com.hyc.he
 com.hyc.helper.activity.SecondGoodsDetailActivity_ViewBinding -> com.hyc.helper.activity.SecondGoodsDetailActivity_ViewBinding:
     com.hyc.helper.activity.SecondGoodsDetailActivity target -> a
 com.hyc.helper.activity.SecondMarketPublishActivity -> com.hyc.helper.activity.SecondMarketPublishActivity:
-    butterknife.Unbinder unbinder -> x
-    int REQUEST_CODE_CHOOSE -> y
-    boolean isSell -> w
-    com.hyc.helper.base.adapter.BaseRecycleAdapter baseRecycleAdapter -> B
-    com.hyc.helper.model.UserModel userModel -> A
-    com.hyc.helper.model.SecondGoodsModel secondGoodsModel -> z
-    boolean isOnCreateRequest() -> C
-    void requestDataFromApi() -> D
-    boolean validationInput() -> H
-    boolean isPublishImageNotEmpty() -> I
-    java.util.Map getRequestParams() -> J
+    butterknife.Unbinder unbinder -> l
+    int REQUEST_CODE_CHOOSE -> m
+    com.hyc.helper.model.SecondGoodsModel secondGoodsModel -> n
+    boolean isSell -> k
+    com.hyc.helper.base.adapter.BaseRecycleAdapter baseRecycleAdapter -> p
+    com.hyc.helper.model.UserModel userModel -> o
+    boolean validationInput() -> A
+    boolean isPublishImageNotEmpty() -> B
+    java.util.Map getRequestParams() -> C
     void initViewWithIntentData(android.os.Bundle) -> a
     void lambda$initViewWithIntentData$0(java.lang.String,android.view.View,int) -> a
     void onSuccessGetData(com.hyc.helper.bean.BaseRequestBean) -> b
-    int getContentViewId() -> v
-    int getMenuId() -> w
+    int getContentViewId() -> o
+    int getMenuId() -> p
+    boolean isOnCreateRequest() -> v
+    void requestDataFromApi() -> w
 com.hyc.helper.activity.SecondMarketPublishActivity_ViewBinding -> com.hyc.helper.activity.SecondMarketPublishActivity_ViewBinding:
     com.hyc.helper.activity.SecondMarketPublishActivity target -> a
 com.hyc.helper.activity.SplashActivity -> com.hyc.helper.activity.SplashActivity:
-    android.os.Handler handler -> w
-    android.os.Message message -> x
-    void showLoadingView() -> A
-    void requestDataFromApi() -> D
-    boolean needUpdateDate() -> I
+    android.os.Message message -> l
+    android.os.Handler handler -> k
+    boolean needUpdateDate() -> B
     void goToNextActivity(com.hyc.helper.bean.ConfigureDateBean) -> a
     void initViewWithIntentData(android.os.Bundle) -> a
     void onFailGetData(java.lang.Throwable) -> a
     void onSuccessGetData(com.hyc.helper.bean.BaseRequestBean) -> b
     void onSuccessGetData(com.hyc.helper.bean.ConfigureDateBean) -> b
-    void closeLoadingView() -> u
-    int getContentViewId() -> v
+    void closeLoadingView() -> n
+    int getContentViewId() -> o
+    void showLoadingView() -> t
+    void requestDataFromApi() -> w
 com.hyc.helper.activity.SplashActivity$SplashHandler -> com.hyc.helper.activity.SplashActivity$a:
     java.lang.ref.WeakReference weakReference -> a
 com.hyc.helper.activity.UserInfoActivity -> com.hyc.helper.activity.UserInfoActivity:
-    com.hyc.helper.model.UserModel userModel -> w
-    cn.bmob.newim.bean.BmobIMUserInfo info -> x
-    boolean isOnCreateRequest() -> C
-    void requestDataFromApi() -> D
-    void gotoChatActivity() -> I
+    cn.bmob.newim.bean.BmobIMUserInfo info -> l
+    com.hyc.helper.model.UserModel userModel -> k
+    void gotoChatActivity() -> B
     void goToUserInfoActivity(android.content.Context,java.lang.String) -> a
     void goToUserInfoActivity(android.content.Context,java.lang.String,java.lang.String,java.lang.String,java.lang.String) -> a
     void initViewWithIntentData(android.os.Bundle) -> a
     void onSuccessGetData(com.hyc.helper.bean.UserInfoBean) -> a
     void onSuccessGetData(com.hyc.helper.bean.BaseRequestBean) -> b
     void goToPersonalPublishActivity(java.lang.String) -> c
-    int getContentViewId() -> v
-    int getMenuId() -> w
+    int getContentViewId() -> o
+    int getMenuId() -> p
+    boolean isOnCreateRequest() -> v
+    void requestDataFromApi() -> w
 com.hyc.helper.activity.UserInfoActivity$1 -> com.hyc.helper.activity.UserInfoActivity$a:
     com.hyc.helper.activity.UserInfoActivity this$0 -> a
 com.hyc.helper.activity.UserInfoActivity_ViewBinding -> com.hyc.helper.activity.UserInfoActivity_ViewBinding:
@@ -16403,16 +16164,16 @@ com.hyc.helper.activity.UserInfoActivity_ViewBinding$3 -> com.hyc.helper.activit
 com.hyc.helper.activity.UserInfoActivity_ViewBinding$4 -> com.hyc.helper.activity.UserInfoActivity_ViewBinding$d:
     com.hyc.helper.activity.UserInfoActivity val$target -> a
 com.hyc.helper.activity.WebActivity -> com.hyc.helper.activity.WebActivity:
-    android.webkit.WebChromeClient webChromeClient -> v
-    android.support.design.widget.BottomSheetDialog sheetDialog -> t
-    android.webkit.WebViewClient webViewClient -> u
-    void showBottomView() -> B
+    android.webkit.WebChromeClient webChromeClient -> j
+    android.webkit.WebViewClient webViewClient -> i
+    android.support.design.widget.BottomSheetDialog sheetDialog -> h
     void initViewWithIntentData(android.os.Bundle) -> a
     void lambda$onClick$0(java.lang.Boolean) -> a
     void startWebBrowsing(android.content.Context,int,int) -> a
     void startWebBrowsing(android.content.Context,java.lang.String,java.lang.String) -> a
-    int getContentViewId() -> v
-    int getMenuId() -> w
+    int getContentViewId() -> o
+    int getMenuId() -> p
+    void showBottomView() -> u
 com.hyc.helper.activity.WebActivity$1 -> com.hyc.helper.activity.WebActivity$a:
     com.hyc.helper.activity.WebActivity this$0 -> a
 com.hyc.helper.activity.WebActivity$2 -> com.hyc.helper.activity.WebActivity$b:
@@ -16420,11 +16181,57 @@ com.hyc.helper.activity.WebActivity$2 -> com.hyc.helper.activity.WebActivity$b:
 com.hyc.helper.activity.WebActivity_ViewBinding -> com.hyc.helper.activity.WebActivity_ViewBinding:
     com.hyc.helper.activity.WebActivity target -> a
 com.hyc.helper.activity.WebUrlCollectActivity -> com.hyc.helper.activity.WebUrlCollectActivity:
-    com.hyc.helper.base.adapter.BaseRecycleAdapter adapter -> t
+    com.hyc.helper.base.adapter.BaseRecycleAdapter adapter -> h
     void initViewWithIntentData(android.os.Bundle) -> a
     void lambda$initViewWithIntentData$0(com.hyc.helper.bean.WebUrlBean,android.view.View,int) -> a
     void lambda$initViewWithIntentData$1(java.util.List) -> a
-    int getContentViewId() -> v
+    int getContentViewId() -> o
+com.hyc.helper.activity.flutter.BaseFlutterActivity -> com.hyc.helper.activity.flutter.BaseFlutterActivity:
+    io.flutter.embedding.android.FlutterFragment flutterFragment -> h
+    io.flutter.plugin.common.BasicMessageChannel channel -> i
+    void initViewWithIntentData(android.os.Bundle) -> a
+    void onMessage(java.lang.String,io.flutter.plugin.common.BasicMessageChannel$Reply) -> a
+    void setToolBarTitle(java.lang.String) -> a
+    int getContentViewId() -> o
+    io.flutter.plugin.common.BasicMessageChannel getChannel() -> u
+    java.lang.String getFlutterRouter() -> v
+    void registerPlugin() -> w
+com.hyc.helper.activity.flutter.PersonalActivity -> com.hyc.helper.activity.flutter.PersonalActivity:
+    int REQUEST_CODE_BIO -> l
+    android.widget.ListPopupWindow publishPopupWindow -> m
+    int REQUEST_CODE_CHOOSE -> j
+    int REQUEST_CODE_USERNAME -> k
+    com.hyc.helper.model.UserModel userModel -> n
+    android.widget.ListPopupWindow access$getPublishPopupWindow$p(com.hyc.helper.activity.flutter.PersonalActivity) -> a
+    void onMessage(java.lang.String,io.flutter.plugin.common.BasicMessageChannel$Reply) -> a
+    void startCropImage(android.net.Uri) -> a
+    com.hyc.helper.model.UserModel access$getUserModel$p(com.hyc.helper.activity.flutter.PersonalActivity) -> b
+    void uploadImage(android.net.Uri) -> b
+    void updateBio(java.lang.String) -> c
+    void updateUsername(java.lang.String) -> d
+    int getMenuId() -> p
+    java.lang.String getFlutterRouter() -> v
+    void initMenuPopupWindow() -> w
+com.hyc.helper.activity.flutter.PersonalActivity$initMenuPopupWindow$1 -> com.hyc.helper.activity.flutter.PersonalActivity$a:
+    com.hyc.helper.activity.flutter.PersonalActivity this$0 -> a
+com.hyc.helper.activity.flutter.PersonalActivity$updateBio$1 -> com.hyc.helper.activity.flutter.PersonalActivity$b:
+    com.hyc.helper.activity.flutter.PersonalActivity this$0 -> a
+    java.lang.String $input -> b
+    void accept(com.hyc.helper.bean.BaseRequestBean) -> a
+com.hyc.helper.activity.flutter.PersonalActivity$updateBio$2 -> com.hyc.helper.activity.flutter.PersonalActivity$c:
+    com.hyc.helper.activity.flutter.PersonalActivity this$0 -> a
+    void accept(java.lang.Throwable) -> a
+com.hyc.helper.activity.flutter.PersonalActivity$updateUsername$1 -> com.hyc.helper.activity.flutter.PersonalActivity$d:
+    com.hyc.helper.activity.flutter.PersonalActivity this$0 -> a
+    java.lang.String $input -> b
+    void accept(com.hyc.helper.bean.BaseRequestBean) -> a
+com.hyc.helper.activity.flutter.PersonalActivity$updateUsername$2 -> com.hyc.helper.activity.flutter.PersonalActivity$e:
+    com.hyc.helper.activity.flutter.PersonalActivity this$0 -> a
+    void accept(java.lang.Throwable) -> a
+com.hyc.helper.activity.flutter.PersonalActivity$uploadImage$1 -> com.hyc.helper.activity.flutter.PersonalActivity$f:
+    com.hyc.helper.activity.flutter.PersonalActivity this$0 -> a
+    void onFailure(java.lang.Throwable) -> a
+    void onSuccess(java.lang.String) -> a
 com.hyc.helper.activity.fragment.-$$Lambda$LostFindFragment$DTlhhsj1nj6SD17h4tXTHUdCPGM -> com.hyc.helper.activity.fragment.a:
     com.hyc.helper.activity.fragment.LostFindFragment f$0 -> a
     int f$1 -> b
@@ -16456,75 +16263,66 @@ com.hyc.helper.activity.fragment.-$$Lambda$TimetableFragment$Zyalb6wA3aWQ-jiHMX2
 com.hyc.helper.activity.fragment.-$$Lambda$_EcFki0Kp49Q1zbPJPxkNCnLScQ -> com.hyc.helper.activity.fragment.l:
     com.hyc.helper.activity.fragment.TimetableFragment f$0 -> a
 com.hyc.helper.activity.fragment.LostFindFragment -> com.hyc.helper.activity.fragment.LostFindFragment:
-    com.hyc.helper.model.UserModel userModel -> k0
-    com.hyc.helper.model.LostGoodsModel lostGoodsModel -> j0
+    com.hyc.helper.model.UserModel userModel -> m
+    com.hyc.helper.model.LostGoodsModel lostGoodsModel -> l
     void deleteLostItem(java.lang.String,int) -> a
     java.util.List getData(com.hyc.helper.bean.BaseRequestBean) -> a
     java.util.List getData(com.hyc.helper.bean.LostBean) -> a
+    void initLayoutView(android.view.View) -> a
     void lambda$deleteLostItem$1(int,com.hyc.helper.bean.BaseRequestBean) -> a
     void lambda$deleteLostItem$2(java.lang.Throwable) -> a
-    void onActivityResult(int,int,android.content.Intent) -> a
-    android.view.View onCreateView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle) -> a
+    com.hyc.helper.activity.fragment.LostFindFragment newInstance(java.lang.String) -> a
     void onItemClick(com.hyc.helper.bean.LostBean$GoodsBean,android.view.View,int) -> a
     void onItemClick(java.lang.Object,android.view.View,int) -> a
-    void initLayoutView(android.view.View) -> b
-    void initRecyclerView(android.view.View) -> c
-    com.hyc.helper.activity.fragment.LostFindFragment newInstance(java.lang.String) -> c
-    void lambda$initLayoutView$0(android.view.View) -> d
-    void requestListData(int) -> d
-    int getLayoutId() -> k0
-    int getRecycleViewId() -> r0
-    int getRefreshLayoutId() -> t0
-    com.hyc.helper.base.adapter.BaseRecycleAdapter setRecycleAdapter() -> v0
+    void requestListData(int) -> a
+    void initRecyclerView(android.view.View) -> b
+    void lambda$initLayoutView$0(android.view.View) -> c
+    int getLayoutId() -> e
+    int getRecycleViewId() -> l
+    int getRefreshLayoutId() -> n
+    com.hyc.helper.base.adapter.BaseRecycleAdapter setRecycleAdapter() -> p
 com.hyc.helper.activity.fragment.SecondHandFragment -> com.hyc.helper.activity.fragment.SecondHandFragment:
-    com.hyc.helper.model.UserModel userModel -> k0
-    com.hyc.helper.model.SecondGoodsModel model -> j0
+    com.hyc.helper.model.SecondGoodsModel model -> l
+    com.hyc.helper.model.UserModel userModel -> m
     void deleteGoods(java.lang.String,int) -> a
     java.util.List getData(com.hyc.helper.bean.BaseRequestBean) -> a
     java.util.List getData(com.hyc.helper.bean.SecondHandBean) -> a
+    void initLayoutView(android.view.View) -> a
     void lambda$deleteGoods$1(int,com.hyc.helper.bean.BaseRequestBean) -> a
     void lambda$deleteGoods$2(java.lang.Throwable) -> a
-    void onActivityResult(int,int,android.content.Intent) -> a
-    android.view.View onCreateView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle) -> a
+    com.hyc.helper.activity.fragment.SecondHandFragment newInstance(java.lang.String) -> a
     void onItemClick(com.hyc.helper.bean.SecondHandBean$GoodsBean,android.view.View,int) -> a
     void onItemClick(java.lang.Object,android.view.View,int) -> a
-    void initLayoutView(android.view.View) -> b
-    void initRecyclerView(android.view.View) -> c
-    com.hyc.helper.activity.fragment.SecondHandFragment newInstance(java.lang.String) -> c
-    void lambda$initLayoutView$0(android.view.View) -> d
-    void requestListData(int) -> d
-    int getLayoutId() -> k0
-    int getRecycleViewId() -> r0
-    int getRefreshLayoutId() -> t0
-    com.hyc.helper.base.adapter.BaseRecycleAdapter setRecycleAdapter() -> v0
+    void requestListData(int) -> a
+    void initRecyclerView(android.view.View) -> b
+    void lambda$initLayoutView$0(android.view.View) -> c
+    int getLayoutId() -> e
+    int getRecycleViewId() -> l
+    int getRefreshLayoutId() -> n
+    com.hyc.helper.base.adapter.BaseRecycleAdapter setRecycleAdapter() -> p
 com.hyc.helper.activity.fragment.StatementFragment -> com.hyc.helper.activity.fragment.StatementFragment:
-    com.hyc.helper.model.UserModel userModel -> l0
-    butterknife.Unbinder unbinder -> j0
-    com.hyc.helper.model.StatementModel statementModel -> m0
-    int position -> k0
-    void onDestroyView() -> R
-    void onStart() -> V
-    void onStop() -> W
+    butterknife.Unbinder unbinder -> l
+    int position -> m
+    com.hyc.helper.model.StatementModel statementModel -> o
+    com.hyc.helper.model.UserModel userModel -> n
     void access$000(com.hyc.helper.activity.fragment.StatementFragment) -> a
     java.util.List getData(com.hyc.helper.bean.BaseRequestBean) -> a
     java.util.List getData(com.hyc.helper.bean.StatementBean) -> a
+    void initLayoutView(android.view.View) -> a
     void lambda$onItemClick$1(int,com.hyc.helper.bean.BaseRequestBean) -> a
     void lambda$onItemClick$2(java.lang.Throwable) -> a
     void lambda$sendComment$0(com.hyc.helper.bean.UserBean,com.hyc.helper.bean.StatementInfoBean,com.hyc.helper.bean.BaseRequestBean) -> a
-    void onActivityResult(int,int,android.content.Intent) -> a
-    android.view.View onCreateView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle) -> a
+    com.hyc.helper.activity.fragment.StatementFragment newInstance(java.lang.String) -> a
     void onItemClick(com.hyc.helper.bean.StatementInfoBean,android.view.View,int) -> a
     void onItemClick(java.lang.Object,android.view.View,int) -> a
-    void initLayoutView(android.view.View) -> b
-    com.hyc.helper.activity.fragment.StatementFragment newInstance(java.lang.String) -> c
-    void requestListData(int) -> d
-    int getLayoutId() -> k0
-    int getRecycleViewId() -> r0
-    int getRefreshLayoutId() -> t0
-    com.hyc.helper.base.adapter.BaseRecycleAdapter setRecycleAdapter() -> v0
-    void closeCommentInput() -> x0
-    void sendComment() -> y0
-    void showCommentInput() -> z0
+    void requestListData(int) -> a
+    int getLayoutId() -> e
+    int getRecycleViewId() -> l
+    int getRefreshLayoutId() -> n
+    com.hyc.helper.base.adapter.BaseRecycleAdapter setRecycleAdapter() -> p
+    void closeCommentInput() -> r
+    void sendComment() -> s
+    void showCommentInput() -> t
 com.hyc.helper.activity.fragment.StatementFragment$1 -> com.hyc.helper.activity.fragment.StatementFragment$a:
     com.hyc.helper.activity.fragment.StatementFragment this$0 -> a
     void onScrolled(android.support.v7.widget.RecyclerView,int,int) -> a
@@ -16537,28 +16335,27 @@ com.hyc.helper.activity.fragment.StatementFragment_ViewBinding$1 -> com.hyc.help
 com.hyc.helper.activity.fragment.StatementFragment_ViewBinding$2 -> com.hyc.helper.activity.fragment.StatementFragment_ViewBinding$b:
     com.hyc.helper.activity.fragment.StatementFragment val$target -> a
 com.hyc.helper.activity.fragment.TimetableFragment -> com.hyc.helper.activity.fragment.TimetableFragment:
-    com.hyc.helper.bean.LessonsExpBean lessonsExpBean -> i0
-    butterknife.Unbinder unbinder -> d0
-    boolean needRefreshDb -> g0
-    int curWeek -> h0
-    com.hyc.helper.model.UserModel userModel -> f0
-    com.hyc.helper.model.CourseModel courseModel -> e0
-    void onDestroyView() -> R
+    boolean needRefreshDb -> i
+    int curWeek -> j
+    butterknife.Unbinder unbinder -> f
+    com.hyc.helper.model.UserModel userModel -> h
+    com.hyc.helper.model.CourseModel courseModel -> g
+    com.hyc.helper.bean.LessonsExpBean lessonsExpBean -> k
     void initCurWeekText(android.widget.TextView,int) -> a
+    void initLayoutView(android.view.View) -> a
     void lambda$initLayoutView$0(int,com.hyc.helper.bean.CourseInfoBean) -> a
     void lambda$requestDataFromApi$1(com.hyc.helper.bean.LessonsExpBean) -> a
     void onRefresh(com.scwang.smartrefresh.layout.api.RefreshLayout) -> a
     void onSuccessGetData(com.hyc.helper.bean.CourseBean) -> a
     void refreshCourseInfo(java.util.List) -> a
-    void initLayoutView(android.view.View) -> b
+    void switchWeek(int) -> a
+    void initTopTitle(int) -> b
     void onSuccessGetData(com.hyc.helper.bean.BaseRequestBean) -> b
-    void switchWeek(int) -> d
-    void initTopTitle(int) -> e
-    void closeLoadingView() -> j0
-    int getLayoutId() -> k0
-    void requestDataFromApi() -> o0
-    boolean requestDataFromDb() -> p0
-    void initLeftTip() -> s0
+    void closeLoadingView() -> d
+    int getLayoutId() -> e
+    void requestDataFromApi() -> i
+    boolean requestDataFromDb() -> j
+    void initLeftTip() -> m
 com.hyc.helper.activity.fragment.TimetableFragment_ViewBinding -> com.hyc.helper.activity.fragment.TimetableFragment_ViewBinding:
     com.hyc.helper.activity.fragment.TimetableFragment target -> a
 com.hyc.helper.adapter.-$$Lambda$ChatAdapter$686ZkQXkR35kJOrkv9dtjUpyL2k -> com.hyc.helper.b.a:
@@ -16606,10 +16403,9 @@ com.hyc.helper.annotation.Subscribe -> com.hyc.helper.c.a:
 com.hyc.helper.base.activity.-$$Lambda$BaseRequestActivity$VCwgOLEpKKkGjThL_O75cBwbiwk -> com.hyc.helper.base.activity.a:
     com.hyc.helper.base.activity.BaseRequestActivity f$0 -> a
 com.hyc.helper.base.activity.BaseActivity -> com.hyc.helper.base.activity.BaseActivity:
-    com.hyc.helper.base.view.LoadingDialog loadingDialog -> q
-    com.hyc.helper.helper.DisposableManager disposableManager -> r
-    android.support.v7.widget.Toolbar mToolbar -> s
-    void showLoadingView() -> A
+    com.hyc.helper.base.view.LoadingDialog loadingDialog -> d
+    com.hyc.helper.helper.DisposableManager disposableManager -> f
+    android.support.v7.widget.Toolbar mToolbar -> g
     void addDisposable(io.reactivex.disposables.Disposable) -> a
     void backForResult(java.lang.Class,int) -> a
     void backForResult(java.lang.Class,android.os.Bundle,int) -> a
@@ -16623,33 +16419,28 @@ com.hyc.helper.base.activity.BaseActivity -> com.hyc.helper.base.activity.BaseAc
     void goToOtherActivityForResult(java.lang.Class,int) -> b
     void goToOtherActivityForResult(java.lang.Class,android.os.Bundle,int) -> b
     void showConfirmDialog(java.lang.String) -> b
-    void setStatusBarColor(int) -> e
-    void setToolBar(int) -> f
-    void setToolBarTitle(int) -> g
-    void cancelAllDisposable() -> t
-    void closeLoadingView() -> u
-    int getContentViewId() -> v
-    int getMenuId() -> w
-    int getStatusHeight() -> x
-    void hideInputWindow() -> y
-    void setToolBar() -> z
+    void setStatusBarColor(int) -> c
+    void setToolBar(int) -> d
+    void setToolBarTitle(int) -> e
+    void cancelAllDisposable() -> m
+    void closeLoadingView() -> n
+    int getContentViewId() -> o
+    int getMenuId() -> p
+    int getStatusHeight() -> q
+    void hideInputWindow() -> r
+    void setToolBar() -> s
+    void showLoadingView() -> t
 com.hyc.helper.base.activity.BaseListActivity -> com.hyc.helper.base.activity.BaseListActivity:
-    com.hyc.helper.base.adapter.BaseRecycleAdapter adapter -> y
-    android.support.v7.widget.RecyclerView recyclerView -> u
-    boolean enableLoadMore -> z
-    int page -> x
-    int pageStart -> w
-    io.reactivex.disposables.Disposable disposable -> t
-    com.scwang.smartrefresh.layout.SmartRefreshLayout mRefreshLayout -> v
-    void dispose() -> B
-    android.support.v7.widget.RecyclerView$LayoutManager getLayoutManager() -> C
-    int getRecycleViewId() -> D
-    int getRefreshLayoutId() -> E
-    void initRecyclerView() -> F
-    com.hyc.helper.base.adapter.BaseRecycleAdapter setRecycleAdapter() -> G
-    void stopRefreshing() -> H
-    void remakePage() -> I
-    void startRequest() -> J
+    boolean enableLoadMore -> n
+    int page -> l
+    int pageStart -> k
+    android.support.v7.widget.RecyclerView recyclerView -> i
+    io.reactivex.disposables.Disposable disposable -> h
+    com.scwang.smartrefresh.layout.SmartRefreshLayout mRefreshLayout -> j
+    com.hyc.helper.base.adapter.BaseRecycleAdapter adapter -> m
+    void stopRefreshing() -> A
+    void remakePage() -> B
+    void startRequest() -> C
     java.util.List getData(com.hyc.helper.bean.BaseRequestBean) -> a
     void loadMoreFinish(java.util.List) -> a
     void onItemClick(java.lang.Object,android.view.View,int) -> a
@@ -16657,22 +16448,28 @@ com.hyc.helper.base.activity.BaseListActivity -> com.hyc.helper.base.activity.Ba
     void onLoadMore(com.scwang.smartrefresh.layout.api.RefreshLayout) -> b
     void onNext(com.hyc.helper.bean.BaseRequestBean) -> b
     void setEnableLoadMore(boolean) -> b
-    void requestListData(int) -> h
+    void requestListData(int) -> f
+    void dispose() -> u
+    android.support.v7.widget.RecyclerView$LayoutManager getLayoutManager() -> v
+    int getRecycleViewId() -> w
+    int getRefreshLayoutId() -> x
+    void initRecyclerView() -> y
+    com.hyc.helper.base.adapter.BaseRecycleAdapter setRecycleAdapter() -> z
 com.hyc.helper.base.activity.BaseRequestActivity -> com.hyc.helper.base.activity.BaseRequestActivity:
-    android.widget.TextView tvLoadFail -> u
-    boolean atCreateRequest -> v
-    io.reactivex.disposables.Disposable disposable -> t
-    void dispose() -> B
-    boolean isOnCreateRequest() -> C
-    void requestDataFromApi() -> D
-    boolean requestDataFromDb() -> E
-    void startRequest() -> F
-    void startRequestApi() -> G
-    boolean validationInput() -> H
+    boolean atCreateRequest -> j
+    io.reactivex.disposables.Disposable disposable -> h
+    android.widget.TextView tvLoadFail -> i
+    boolean validationInput() -> A
     void lambda$onCreate$0(android.view.View) -> a
     void onFailGetData(java.lang.Throwable) -> a
     void onNext(com.hyc.helper.bean.BaseRequestBean) -> a
     void onSuccessGetData(com.hyc.helper.bean.BaseRequestBean) -> b
+    void dispose() -> u
+    boolean isOnCreateRequest() -> v
+    void requestDataFromApi() -> w
+    boolean requestDataFromDb() -> x
+    void startRequest() -> y
+    void startRequestApi() -> z
 com.hyc.helper.base.adapter.-$$Lambda$BaseRecycleAdapter$7SMXelltlnXSGVgbKm4Zg4CCxiw -> com.hyc.helper.d.a.a:
     com.hyc.helper.base.adapter.BaseRecycleAdapter f$0 -> a
     int f$1 -> b
@@ -16700,66 +16497,58 @@ com.hyc.helper.base.adapter.BaseRecycleAdapter -> com.hyc.helper.d.a.b:
     void removeItemFormList(int) -> g
 com.hyc.helper.base.adapter.viewholder.BaseViewHolder -> com.hyc.helper.d.a.c.a:
 com.hyc.helper.base.fragment.BaseFragment -> com.hyc.helper.base.fragment.BaseFragment:
-    com.hyc.helper.helper.DisposableManager disposableManager -> a0
-    com.hyc.helper.base.activity.BaseActivity mBaseActivity -> Z
-    void onDestroy() -> P
+    com.hyc.helper.helper.DisposableManager disposableManager -> b
+    com.hyc.helper.base.activity.BaseActivity mBaseActivity -> a
     void addDisposable(io.reactivex.disposables.Disposable) -> a
     void goToOtherActivity(java.lang.Class,android.os.Bundle,boolean) -> a
-    android.view.View onCreateView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle) -> a
+    void initLayoutView(android.view.View) -> a
     void showInputWindow(android.widget.EditText) -> a
-    void initLayoutView(android.view.View) -> b
-    void onCreate(android.os.Bundle) -> c
-    void cancelAllDisposable() -> i0
-    void closeLoadingView() -> j0
-    int getLayoutId() -> k0
-    void hideInputWindow() -> l0
-    void showLoadingView() -> m0
+    void cancelAllDisposable() -> c
+    void closeLoadingView() -> d
+    int getLayoutId() -> e
+    void hideInputWindow() -> f
+    void showLoadingView() -> g
 com.hyc.helper.base.fragment.BaseListFragment -> com.hyc.helper.base.fragment.BaseListFragment:
-    android.support.v7.widget.RecyclerView recyclerView -> c0
-    com.hyc.helper.base.adapter.BaseRecycleAdapter adapter -> g0
-    com.scwang.smartrefresh.layout.SmartRefreshLayout mRefreshLayout -> d0
-    io.reactivex.disposables.Disposable disposable -> b0
-    int page -> f0
-    int pageStart -> e0
-    boolean enableLoadMore -> h0
-    boolean isNeedLoad -> i0
-    void onDestroy() -> P
+    com.hyc.helper.base.adapter.BaseRecycleAdapter adapter -> i
+    android.support.v7.widget.RecyclerView recyclerView -> d
+    boolean enableLoadMore -> j
+    int page -> h
+    boolean isNeedLoad -> k
+    int pageStart -> g
+    io.reactivex.disposables.Disposable disposable -> c
+    com.scwang.smartrefresh.layout.SmartRefreshLayout mRefreshLayout -> f
     java.util.List getData(com.hyc.helper.bean.BaseRequestBean) -> a
+    void initLayoutView(android.view.View) -> a
     void loadMoreFinish(java.util.List) -> a
     void onItemClick(java.lang.Object,android.view.View,int) -> a
     void onRefresh(com.scwang.smartrefresh.layout.api.RefreshLayout) -> a
-    void initLayoutView(android.view.View) -> b
+    void requestListData(int) -> a
+    void initRecyclerView(android.view.View) -> b
     void onLoadMore(com.scwang.smartrefresh.layout.api.RefreshLayout) -> b
     void onNext(com.hyc.helper.bean.BaseRequestBean) -> b
-    void initRecyclerView(android.view.View) -> c
-    void requestListData(int) -> d
-    void setUserVisibleHint(boolean) -> i
-    void backToTop() -> n0
-    int getCurPage() -> o0
-    android.support.v7.widget.RecyclerView$LayoutManager getLayoutManager() -> p0
-    com.hyc.helper.base.adapter.BaseRecycleAdapter getRecycleAdapter() -> q0
-    int getRecycleViewId() -> r0
-    android.support.v7.widget.RecyclerView getRecyclerView() -> s0
-    int getRefreshLayoutId() -> t0
-    void refresh() -> u0
-    com.hyc.helper.base.adapter.BaseRecycleAdapter setRecycleAdapter() -> v0
-    void stopRefreshing() -> w0
-    void remakePage() -> x0
-    void startRequest() -> y0
+    void backToTop() -> h
+    int getCurPage() -> i
+    android.support.v7.widget.RecyclerView$LayoutManager getLayoutManager() -> j
+    com.hyc.helper.base.adapter.BaseRecycleAdapter getRecycleAdapter() -> k
+    int getRecycleViewId() -> l
+    android.support.v7.widget.RecyclerView getRecyclerView() -> m
+    int getRefreshLayoutId() -> n
+    void refresh() -> o
+    com.hyc.helper.base.adapter.BaseRecycleAdapter setRecycleAdapter() -> p
+    void stopRefreshing() -> q
+    void remakePage() -> r
+    void startRequest() -> s
 com.hyc.helper.base.fragment.BaseRequestFragment -> com.hyc.helper.base.fragment.BaseRequestFragment:
-    io.reactivex.disposables.Disposable disposable -> b0
-    boolean isNeedLoad -> c0
-    void onDestroyView() -> R
-    void onStart() -> V
-    android.view.View onCreateView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle) -> a
+    io.reactivex.disposables.Disposable disposable -> c
+    boolean isNeedLoad -> d
     void onFailGetData(java.lang.Throwable) -> a
     void onNext(com.hyc.helper.bean.BaseRequestBean) -> a
     void onSuccessGetData(com.hyc.helper.bean.BaseRequestBean) -> b
-    boolean isOnCreateRequest() -> n0
-    void requestDataFromApi() -> o0
-    boolean requestDataFromDb() -> p0
-    void startRequest() -> q0
-    boolean validationInput() -> r0
+    boolean isOnCreateRequest() -> h
+    void requestDataFromApi() -> i
+    boolean requestDataFromDb() -> j
+    void startRequest() -> k
+    boolean validationInput() -> l
 com.hyc.helper.base.interfaces.IBaseActivity -> com.hyc.helper.d.b.a:
     void initViewWithIntentData(android.os.Bundle) -> a
 com.hyc.helper.base.interfaces.IBaseFragment -> com.hyc.helper.d.b.b:
@@ -17266,26 +17055,20 @@ com.hyc.helper.im.-$$Lambda$ConversationActivity$gC9bmsAs3TcFgJ_3muppCHzUcVs -> 
     com.hyc.helper.im.ConversationActivity f$0 -> a
     void onItemClick(java.lang.Object,android.view.View,int) -> a
 com.hyc.helper.im.ChatActivity -> com.hyc.helper.im.ChatActivity:
-    cn.bmob.newim.bean.BmobIMUserInfo info -> B
-    com.hyc.helper.model.UserModel userModel -> z
-    com.hyc.helper.base.adapter.BaseRecycleAdapter emojiAdapter -> v
-    int keyHeight -> y
-    boolean isKeyShow -> w
-    java.lang.String userId -> A
-    boolean isSetHeight -> x
-    com.hyc.helper.adapter.ChatAdapter adapter -> t
-    io.reactivex.disposables.Disposable disposable -> u
-    boolean isEmoji -> C
-    boolean needShowMoreLayout -> D
-    void scrollBottom() -> B
-    void showMoreLayout() -> C
-    void dispose() -> D
-    void initChatRecyclerView() -> E
-    void initConversation() -> F
-    void initEmojiLayout() -> G
-    void initVoice() -> H
-    void sendTxtMessage() -> I
-    void showEmojiLayout() -> J
+    cn.bmob.newim.bean.BmobIMUserInfo info -> p
+    com.hyc.helper.base.adapter.BaseRecycleAdapter emojiAdapter -> j
+    int keyHeight -> m
+    boolean isKeyShow -> k
+    boolean isSetHeight -> l
+    com.hyc.helper.adapter.ChatAdapter adapter -> h
+    com.hyc.helper.model.UserModel userModel -> n
+    java.lang.String userId -> o
+    io.reactivex.disposables.Disposable disposable -> i
+    boolean isEmoji -> q
+    boolean needShowMoreLayout -> r
+    void initVoice() -> A
+    void sendTxtMessage() -> B
+    void showEmojiLayout() -> C
     boolean access$000(com.hyc.helper.im.ChatActivity) -> a
     com.hyc.helper.adapter.ChatAdapter access$102(com.hyc.helper.im.ChatActivity,com.hyc.helper.adapter.ChatAdapter) -> a
     void goToPictureBrowsing(cn.bmob.newim.bean.BmobIMMessage) -> a
@@ -17303,9 +17086,15 @@ com.hyc.helper.im.ChatActivity -> com.hyc.helper.im.ChatActivity:
     void compressImageAndSend(java.lang.String) -> c
     cn.bmob.newim.bean.BmobIMConversation access$300(com.hyc.helper.im.ChatActivity) -> d
     boolean lambda$compressImageAndSend$4(java.lang.String) -> d
-    void onRefresh() -> f
-    void setMoreLayoutHeight(int) -> h
-    int getContentViewId() -> v
+    void onRefresh() -> d
+    void setMoreLayoutHeight(int) -> f
+    int getContentViewId() -> o
+    void scrollBottom() -> u
+    void showMoreLayout() -> v
+    void dispose() -> w
+    void initChatRecyclerView() -> x
+    void initConversation() -> y
+    void initEmojiLayout() -> z
 com.hyc.helper.im.ChatActivity$1 -> com.hyc.helper.im.ChatActivity$a:
     com.hyc.helper.im.ChatActivity this$0 -> a
     void onScrolled(android.support.v7.widget.RecyclerView,int,int) -> a
@@ -17314,14 +17103,13 @@ com.hyc.helper.im.ChatActivity$2 -> com.hyc.helper.im.ChatActivity$b:
 com.hyc.helper.im.ChatActivity$3 -> com.hyc.helper.im.ChatActivity$c:
     com.hyc.helper.im.ChatActivity this$0 -> b
     java.lang.String val$originalPath -> a
-    void onStart() -> a
     void onSuccess(java.io.File) -> a
 com.hyc.helper.im.ChatActivity$SendMessageListener -> com.hyc.helper.im.ChatActivity$d:
     java.lang.ref.WeakReference recyclerView -> a
 com.hyc.helper.im.ChatActivity_ViewBinding -> com.hyc.helper.im.ChatActivity_ViewBinding:
     com.hyc.helper.im.ChatActivity target -> a
-    android.view.View view7f0900bf -> c
-    android.view.View view7f0900cd -> b
+    android.view.View view7f0900c0 -> c
+    android.view.View view7f0900ce -> b
     android.view.View view7f09003a -> d
 com.hyc.helper.im.ChatActivity_ViewBinding$1 -> com.hyc.helper.im.ChatActivity_ViewBinding$a:
     com.hyc.helper.im.ChatActivity val$target -> a
@@ -17339,12 +17127,10 @@ com.hyc.helper.im.ConnectManager -> com.hyc.helper.im.j:
 com.hyc.helper.im.ConnectManager$1 -> com.hyc.helper.im.j$a:
     com.hyc.helper.im.ConnectManager this$0 -> a
 com.hyc.helper.im.ConversationActivity -> com.hyc.helper.im.ConversationActivity:
-    com.hyc.helper.base.adapter.BaseRecycleAdapter adapter -> t
-    com.hyc.helper.base.adapter.BaseRecycleAdapter searchAdapter -> v
-    com.hyc.helper.model.UserModel userModel -> w
-    java.lang.String searchUsername -> u
-    void initSearchList() -> B
-    void stopRefreshing() -> C
+    com.hyc.helper.base.adapter.BaseRecycleAdapter adapter -> h
+    java.lang.String searchUsername -> i
+    com.hyc.helper.base.adapter.BaseRecycleAdapter searchAdapter -> j
+    com.hyc.helper.model.UserModel userModel -> k
     java.lang.String access$002(com.hyc.helper.im.ConversationActivity,java.lang.String) -> a
     com.hyc.helper.base.adapter.BaseRecycleAdapter access$200(com.hyc.helper.im.ConversationActivity) -> a
     void initSearchView(android.support.v7.widget.SearchView) -> a
@@ -17357,7 +17143,9 @@ com.hyc.helper.im.ConversationActivity -> com.hyc.helper.im.ConversationActivity
     void onRefresh(com.scwang.smartrefresh.layout.api.RefreshLayout) -> a
     void access$100(com.hyc.helper.im.ConversationActivity,java.lang.String) -> b
     void requestInfoFromApi(java.lang.String) -> c
-    int getContentViewId() -> v
+    int getContentViewId() -> o
+    void initSearchList() -> u
+    void stopRefreshing() -> v
 com.hyc.helper.im.ConversationActivity$1 -> com.hyc.helper.im.ConversationActivity$a:
     com.hyc.helper.im.ConversationActivity this$0 -> a
     boolean onQueryTextChange(java.lang.String) -> a
@@ -19110,18 +18898,16 @@ com.tbruyelle.rxpermissions2.RxPermissions$5 -> com.tbruyelle.rxpermissions2.b$c
     java.lang.String[] val$permissions -> a
 com.tbruyelle.rxpermissions2.RxPermissions$Lazy -> com.tbruyelle.rxpermissions2.b$d:
 com.tbruyelle.rxpermissions2.RxPermissionsFragment -> com.tbruyelle.rxpermissions2.RxPermissionsFragment:
-    boolean mLogging -> a0
-    java.util.Map mSubjects -> Z
-    void onRequestPermissionsResult(int,java.lang.String[],int[]) -> a
+    java.util.Map mSubjects -> a
+    boolean mLogging -> b
+    boolean containsByPermission(java.lang.String) -> a
     void onRequestPermissionsResult(java.lang.String[],int[],boolean[]) -> a
     void requestPermissions(java.lang.String[]) -> a
     void setSubjectForPermission(java.lang.String,io.reactivex.subjects.PublishSubject) -> a
-    boolean containsByPermission(java.lang.String) -> c
-    void onCreate(android.os.Bundle) -> c
-    io.reactivex.subjects.PublishSubject getSubjectByPermission(java.lang.String) -> d
-    boolean isGranted(java.lang.String) -> e
-    boolean isRevoked(java.lang.String) -> f
-    void log(java.lang.String) -> g
+    io.reactivex.subjects.PublishSubject getSubjectByPermission(java.lang.String) -> b
+    boolean isGranted(java.lang.String) -> c
+    boolean isRevoked(java.lang.String) -> d
+    void log(java.lang.String) -> e
 com.yalantis.ucrop.R$color -> com.yalantis.ucrop.a:
 com.yalantis.ucrop.R$dimen -> com.yalantis.ucrop.b:
 com.yalantis.ucrop.R$drawable -> com.yalantis.ucrop.c:
@@ -19149,38 +18935,36 @@ com.yalantis.ucrop.UCrop$Options -> com.yalantis.ucrop.i$a:
     void withMaxResultSize(int,int) -> a
     void setToolbarColor(int) -> b
 com.yalantis.ucrop.UCropActivity -> com.yalantis.ucrop.UCropActivity:
-    android.graphics.Bitmap$CompressFormat mCompressFormat -> O
-    android.view.ViewGroup mWrapperStateAspectRatio -> E
-    int mLogoColor -> y
-    android.view.ViewGroup mWrapperStateScale -> G
-    android.view.View mBlockingView -> N
-    com.yalantis.ucrop.view.TransformImageView$TransformImageListener mImageListener -> R
-    int mToolbarCancelDrawable -> w
-    android.view.ViewGroup mLayoutRotate -> I
-    com.yalantis.ucrop.view.GestureCropImageView mGestureCropImageView -> C
-    int mToolbarWidgetColor -> u
-    int[] mAllowedGestures -> Q
-    android.view.View$OnClickListener mStateClickListener -> S
-    boolean mShowLoader -> A
-    int mStatusBarColor -> s
-    android.widget.TextView mTextViewScalePercent -> M
-    int mCompressQuality -> P
-    java.util.List mCropAspectRatioViews -> K
-    com.yalantis.ucrop.view.OverlayView mOverlayView -> D
-    android.graphics.Bitmap$CompressFormat DEFAULT_COMPRESS_FORMAT -> T
-    java.lang.String mToolbarTitle -> q
-    com.yalantis.ucrop.view.UCropView mUCropView -> B
-    android.view.ViewGroup mWrapperStateRotate -> F
-    boolean mShowBottomControls -> z
-    int mToolbarCropDrawable -> x
-    android.view.ViewGroup mLayoutAspectRatio -> H
-    int mRootViewBackgroundColor -> v
-    android.view.ViewGroup mLayoutScale -> J
-    int mActiveWidgetColor -> t
-    int mToolbarColor -> r
-    android.widget.TextView mTextViewRotateAngle -> L
-    void setupScaleWidget() -> A
-    void setupStatesWrapper() -> B
+    com.yalantis.ucrop.view.UCropView mUCropView -> p
+    int mToolbarCropDrawable -> l
+    boolean mShowLoader -> o
+    android.view.ViewGroup mWrapperStateAspectRatio -> s
+    int mRootViewBackgroundColor -> j
+    android.view.ViewGroup mWrapperStateScale -> u
+    int mActiveWidgetColor -> h
+    android.view.ViewGroup mLayoutRotate -> w
+    int mToolbarColor -> f
+    android.widget.TextView mTextViewRotateAngle -> z
+    android.graphics.Bitmap$CompressFormat DEFAULT_COMPRESS_FORMAT -> H
+    android.widget.TextView mTextViewScalePercent -> A
+    int[] mAllowedGestures -> E
+    android.view.View mBlockingView -> B
+    boolean mShowBottomControls -> n
+    android.view.ViewGroup mWrapperStateRotate -> t
+    int mLogoColor -> m
+    com.yalantis.ucrop.view.TransformImageView$TransformImageListener mImageListener -> F
+    android.view.ViewGroup mLayoutAspectRatio -> v
+    int mToolbarCancelDrawable -> k
+    android.view.ViewGroup mLayoutScale -> x
+    int mToolbarWidgetColor -> i
+    com.yalantis.ucrop.view.GestureCropImageView mGestureCropImageView -> q
+    int mStatusBarColor -> g
+    java.util.List mCropAspectRatioViews -> y
+    int mCompressQuality -> D
+    android.view.View$OnClickListener mStateClickListener -> G
+    com.yalantis.ucrop.view.OverlayView mOverlayView -> r
+    android.graphics.Bitmap$CompressFormat mCompressFormat -> C
+    java.lang.String mToolbarTitle -> d
     void access$000(com.yalantis.ucrop.UCropActivity,float) -> a
     com.yalantis.ucrop.view.UCropView access$200(com.yalantis.ucrop.UCropActivity) -> a
     boolean access$402(com.yalantis.ucrop.UCropActivity,boolean) -> a
@@ -19194,22 +18978,24 @@ com.yalantis.ucrop.UCropActivity -> com.yalantis.ucrop.UCropActivity:
     void setScaleText(float) -> b
     com.yalantis.ucrop.view.GestureCropImageView access$500(com.yalantis.ucrop.UCropActivity) -> c
     void processOptions(android.content.Intent) -> c
+    void rotateByAngle(int) -> c
     java.util.List access$600(com.yalantis.ucrop.UCropActivity) -> d
+    void setAllowedGestures(int) -> d
     void setImageData(android.content.Intent) -> d
     void access$700(com.yalantis.ucrop.UCropActivity) -> e
-    void rotateByAngle(int) -> e
+    void setStatusBarColor(int) -> e
     void setupAspectRatioWidget(android.content.Intent) -> e
-    void setAllowedGestures(int) -> f
+    void setWidgetState(int) -> f
     void setupViews(android.content.Intent) -> f
-    void setStatusBarColor(int) -> g
-    void setWidgetState(int) -> h
-    void cropAndSaveImage() -> t
-    void addBlockingView() -> u
-    void initiateRootViews() -> v
-    void resetRotation() -> w
-    void setInitialState() -> x
-    void setupAppBar() -> y
-    void setupRotateWidget() -> z
+    void cropAndSaveImage() -> m
+    void addBlockingView() -> n
+    void initiateRootViews() -> o
+    void resetRotation() -> p
+    void setInitialState() -> q
+    void setupAppBar() -> r
+    void setupRotateWidget() -> s
+    void setupScaleWidget() -> t
+    void setupStatesWrapper() -> u
 com.yalantis.ucrop.UCropActivity$1 -> com.yalantis.ucrop.UCropActivity$a:
     com.yalantis.ucrop.UCropActivity this$0 -> a
     void onLoadComplete() -> a
@@ -19239,57 +19025,55 @@ com.yalantis.ucrop.UCropActivity$8 -> com.yalantis.ucrop.UCropActivity$h:
     void onBitmapCropped(android.net.Uri,int,int,int,int) -> a
     void onCropFailure(java.lang.Throwable) -> a
 com.yalantis.ucrop.UCropFragment -> com.yalantis.ucrop.UCropFragment:
-    boolean mShowBottomControls -> d0
-    int mLogoColor -> c0
-    int mRootViewBackgroundColor -> b0
-    com.yalantis.ucrop.view.GestureCropImageView mGestureCropImageView -> f0
-    com.yalantis.ucrop.view.OverlayView mOverlayView -> g0
-    int mActiveWidgetColor -> a0
-    com.yalantis.ucrop.view.UCropView mUCropView -> e0
-    android.view.View mBlockingView -> q0
-    com.yalantis.ucrop.view.TransformImageView$TransformImageListener mImageListener -> s0
-    android.view.ViewGroup mLayoutScale -> m0
-    com.yalantis.ucrop.UCropFragmentCallback callback -> Z
-    int[] mAllowedGestures -> r0
-    java.util.List mCropAspectRatioViews -> n0
-    android.widget.TextView mTextViewScalePercent -> p0
-    android.view.ViewGroup mLayoutRotate -> l0
-    android.widget.TextView mTextViewRotateAngle -> o0
-    android.view.ViewGroup mLayoutAspectRatio -> k0
-    android.view.ViewGroup mWrapperStateScale -> j0
-    android.view.ViewGroup mWrapperStateRotate -> i0
-    android.view.ViewGroup mWrapperStateAspectRatio -> h0
-    android.view.View$OnClickListener mStateClickListener -> t0
-    android.graphics.Bitmap$CompressFormat DEFAULT_COMPRESS_FORMAT -> u0
+    com.yalantis.ucrop.view.OverlayView mOverlayView -> i
+    com.yalantis.ucrop.view.GestureCropImageView mGestureCropImageView -> h
+    java.util.List mCropAspectRatioViews -> p
+    android.widget.TextView mTextViewRotateAngle -> q
+    android.graphics.Bitmap$CompressFormat DEFAULT_COMPRESS_FORMAT -> w
+    android.widget.TextView mTextViewScalePercent -> r
+    int[] mAllowedGestures -> t
+    int mLogoColor -> d
+    android.view.View mBlockingView -> s
+    int mActiveWidgetColor -> b
+    int mRootViewBackgroundColor -> c
+    com.yalantis.ucrop.view.TransformImageView$TransformImageListener mImageListener -> u
+    com.yalantis.ucrop.UCropFragmentCallback callback -> a
+    android.view.ViewGroup mWrapperStateAspectRatio -> j
+    boolean mShowBottomControls -> f
+    com.yalantis.ucrop.view.UCropView mUCropView -> g
+    android.view.ViewGroup mWrapperStateScale -> l
+    android.view.ViewGroup mWrapperStateRotate -> k
+    android.view.ViewGroup mLayoutRotate -> n
+    android.view.View$OnClickListener mStateClickListener -> v
+    android.view.ViewGroup mLayoutAspectRatio -> m
+    android.view.ViewGroup mLayoutScale -> o
     void access$000(com.yalantis.ucrop.UCropFragment,float) -> a
     com.yalantis.ucrop.view.UCropView access$200(com.yalantis.ucrop.UCropFragment) -> a
     void access$800(com.yalantis.ucrop.UCropFragment,int) -> a
+    void addBlockingView(android.view.View) -> a
     com.yalantis.ucrop.UCropFragment$UCropResult getError(java.lang.Throwable) -> a
-    void onAttach(android.content.Context) -> a
-    android.view.View onCreateView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle) -> a
+    void processOptions(android.os.Bundle) -> a
+    void rotateByAngle(int) -> a
     void setAngleText(float) -> a
     void setupAspectRatioWidget(android.os.Bundle,android.view.View) -> a
+    void setupViews(android.view.View,android.os.Bundle) -> a
     void access$100(com.yalantis.ucrop.UCropFragment,float) -> b
     android.view.View access$300(com.yalantis.ucrop.UCropFragment) -> b
     void access$900(com.yalantis.ucrop.UCropFragment,int) -> b
-    void addBlockingView(android.view.View) -> b
+    void initiateRootViews(android.view.View) -> b
+    void setAllowedGestures(int) -> b
+    void setImageData(android.os.Bundle) -> b
     void setScaleText(float) -> b
-    void setupViews(android.view.View,android.os.Bundle) -> b
     com.yalantis.ucrop.UCropFragmentCallback access$400(com.yalantis.ucrop.UCropFragment) -> c
-    void initiateRootViews(android.view.View) -> c
+    void resetRotation() -> c
+    void setWidgetState(int) -> c
+    void setupRotateWidget(android.view.View) -> c
     com.yalantis.ucrop.view.GestureCropImageView access$500(com.yalantis.ucrop.UCropFragment) -> d
-    void rotateByAngle(int) -> d
-    void setupRotateWidget(android.view.View) -> d
+    void setInitialState() -> d
+    void setupScaleWidget(android.view.View) -> d
     java.util.List access$600(com.yalantis.ucrop.UCropFragment) -> e
-    void setAllowedGestures(int) -> e
-    void setupScaleWidget(android.view.View) -> e
+    void setupStatesWrapper(android.view.View) -> e
     void access$700(com.yalantis.ucrop.UCropFragment) -> f
-    void setWidgetState(int) -> f
-    void setupStatesWrapper(android.view.View) -> f
-    void resetRotation() -> i0
-    void setInitialState() -> j0
-    void processOptions(android.os.Bundle) -> n
-    void setImageData(android.os.Bundle) -> o
 com.yalantis.ucrop.UCropFragment$1 -> com.yalantis.ucrop.UCropFragment$a:
     com.yalantis.ucrop.UCropFragment this$0 -> a
     void onLoadComplete() -> a
@@ -19826,7 +19610,7 @@ com.zhihu.matisse.internal.model.AlbumCollection -> com.zhihu.matisse.m.b.a:
     void onDestroy() -> c
 com.zhihu.matisse.internal.model.AlbumCollection$AlbumCallbacks -> com.zhihu.matisse.m.b.a$a:
     void onAlbumLoad(android.database.Cursor) -> b
-    void onAlbumReset() -> e
+    void onAlbumReset() -> c
 com.zhihu.matisse.internal.model.AlbumMediaCollection -> com.zhihu.matisse.m.b.b:
     com.zhihu.matisse.internal.model.AlbumMediaCollection$AlbumMediaCallbacks mCallbacks -> c
     java.lang.ref.WeakReference mContext -> a
@@ -19841,7 +19625,7 @@ com.zhihu.matisse.internal.model.AlbumMediaCollection -> com.zhihu.matisse.m.b.b
     void onLoaderReset(android.support.v4.content.Loader) -> a
 com.zhihu.matisse.internal.model.AlbumMediaCollection$AlbumMediaCallbacks -> com.zhihu.matisse.m.b.b$a:
     void onAlbumMediaLoad(android.database.Cursor) -> a
-    void onAlbumMediaReset() -> b
+    void onAlbumMediaReset() -> a
 com.zhihu.matisse.internal.model.SelectedItemCollection -> com.zhihu.matisse.m.b.c:
     android.content.Context mContext -> a
     java.util.Set mItems -> b
@@ -19864,26 +19648,26 @@ com.zhihu.matisse.internal.model.SelectedItemCollection -> com.zhihu.matisse.m.b
     int currentMaxSelectable() -> g
     void refineCollectionType() -> h
 com.zhihu.matisse.internal.ui.AlbumPreviewActivity -> com.zhihu.matisse.internal.ui.AlbumPreviewActivity:
-    com.zhihu.matisse.internal.model.AlbumMediaCollection mCollection -> F
-    boolean mIsAlreadySetPosition -> G
+    com.zhihu.matisse.internal.model.AlbumMediaCollection mCollection -> t
+    boolean mIsAlreadySetPosition -> u
     void onAlbumMediaLoad(android.database.Cursor) -> a
-    void onAlbumMediaReset() -> b
+    void onAlbumMediaReset() -> a
 com.zhihu.matisse.internal.ui.BasePreviewActivity -> com.zhihu.matisse.internal.ui.BasePreviewActivity:
-    android.widget.TextView mButtonApply -> w
-    android.widget.TextView mButtonBack -> v
-    com.zhihu.matisse.internal.ui.widget.CheckRadioView mOriginal -> A
-    android.widget.TextView mSize -> x
-    android.widget.FrameLayout mTopToolbar -> D
-    android.widget.FrameLayout mBottomToolbar -> C
-    com.zhihu.matisse.internal.model.SelectedItemCollection mSelectedCollection -> q
-    int mPreviousPos -> y
-    com.zhihu.matisse.internal.entity.SelectionSpec mSpec -> r
-    android.widget.LinearLayout mOriginalLayout -> z
-    boolean mIsToolbarHide -> E
-    android.support.v4.view.ViewPager mPager -> s
-    com.zhihu.matisse.internal.ui.widget.CheckView mCheckView -> u
-    com.zhihu.matisse.internal.ui.adapter.PreviewPagerAdapter mAdapter -> t
-    boolean mOriginalEnable -> B
+    int mPreviousPos -> m
+    boolean mOriginalEnable -> p
+    com.zhihu.matisse.internal.model.SelectedItemCollection mSelectedCollection -> d
+    com.zhihu.matisse.internal.entity.SelectionSpec mSpec -> f
+    android.support.v4.view.ViewPager mPager -> g
+    com.zhihu.matisse.internal.ui.widget.CheckView mCheckView -> i
+    boolean mIsToolbarHide -> s
+    com.zhihu.matisse.internal.ui.adapter.PreviewPagerAdapter mAdapter -> h
+    android.widget.LinearLayout mOriginalLayout -> n
+    android.widget.TextView mButtonApply -> k
+    com.zhihu.matisse.internal.ui.widget.CheckRadioView mOriginal -> o
+    android.widget.TextView mButtonBack -> j
+    android.widget.FrameLayout mTopToolbar -> r
+    android.widget.TextView mSize -> l
+    android.widget.FrameLayout mBottomToolbar -> q
     boolean access$000(com.zhihu.matisse.internal.ui.BasePreviewActivity,com.zhihu.matisse.internal.entity.Item) -> a
     void access$100(com.zhihu.matisse.internal.ui.BasePreviewActivity) -> a
     void onPageScrollStateChanged(int) -> a
@@ -19894,43 +19678,34 @@ com.zhihu.matisse.internal.ui.BasePreviewActivity -> com.zhihu.matisse.internal.
     void onPageSelected(int) -> b
     void sendBackResult(boolean) -> b
     com.zhihu.matisse.internal.ui.widget.CheckRadioView access$300(com.zhihu.matisse.internal.ui.BasePreviewActivity) -> c
-    void onClick() -> h
-    int countOverMaxSize() -> t
-    void updateApplyButton() -> u
-    void updateOriginalState() -> v
+    void onClick() -> f
+    int countOverMaxSize() -> m
+    void updateApplyButton() -> n
+    void updateOriginalState() -> o
 com.zhihu.matisse.internal.ui.BasePreviewActivity$1 -> com.zhihu.matisse.internal.ui.BasePreviewActivity$a:
     com.zhihu.matisse.internal.ui.BasePreviewActivity this$0 -> a
 com.zhihu.matisse.internal.ui.BasePreviewActivity$2 -> com.zhihu.matisse.internal.ui.BasePreviewActivity$b:
     com.zhihu.matisse.internal.ui.BasePreviewActivity this$0 -> a
 com.zhihu.matisse.internal.ui.MediaSelectionFragment -> com.zhihu.matisse.internal.ui.MediaSelectionFragment:
-    android.support.v7.widget.RecyclerView mRecyclerView -> a0
-    com.zhihu.matisse.internal.ui.adapter.AlbumMediaAdapter$CheckStateListener mCheckStateListener -> d0
-    com.zhihu.matisse.internal.ui.adapter.AlbumMediaAdapter mAdapter -> b0
-    com.zhihu.matisse.internal.ui.adapter.AlbumMediaAdapter$OnMediaClickListener mOnMediaClickListener -> e0
-    com.zhihu.matisse.internal.ui.MediaSelectionFragment$SelectionProvider mSelectionProvider -> c0
-    com.zhihu.matisse.internal.model.AlbumMediaCollection mAlbumMediaCollection -> Z
-    void onDestroyView() -> R
+    com.zhihu.matisse.internal.ui.adapter.AlbumMediaAdapter mAdapter -> c
+    android.support.v7.widget.RecyclerView mRecyclerView -> b
+    com.zhihu.matisse.internal.ui.MediaSelectionFragment$SelectionProvider mSelectionProvider -> d
+    com.zhihu.matisse.internal.ui.adapter.AlbumMediaAdapter$OnMediaClickListener mOnMediaClickListener -> g
+    com.zhihu.matisse.internal.model.AlbumMediaCollection mAlbumMediaCollection -> a
+    com.zhihu.matisse.internal.ui.adapter.AlbumMediaAdapter$CheckStateListener mCheckStateListener -> f
     com.zhihu.matisse.internal.ui.MediaSelectionFragment newInstance(com.zhihu.matisse.internal.entity.Album) -> a
     void onAlbumMediaLoad(android.database.Cursor) -> a
-    void onAttach(android.content.Context) -> a
-    android.view.View onCreateView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle) -> a
+    void onAlbumMediaReset() -> a
     void onMediaClick(com.zhihu.matisse.internal.entity.Album,com.zhihu.matisse.internal.entity.Item,int) -> a
-    void onViewCreated(android.view.View,android.os.Bundle) -> a
-    void onActivityCreated(android.os.Bundle) -> b
-    void onAlbumMediaReset() -> b
-    void onUpdate() -> d
-    void refreshMediaGrid() -> i0
+    void onUpdate() -> b
+    void refreshMediaGrid() -> c
 com.zhihu.matisse.internal.ui.MediaSelectionFragment$SelectionProvider -> com.zhihu.matisse.internal.ui.MediaSelectionFragment$a:
-    com.zhihu.matisse.internal.model.SelectedItemCollection provideSelectedItemCollection() -> i
+    com.zhihu.matisse.internal.model.SelectedItemCollection provideSelectedItemCollection() -> g
 com.zhihu.matisse.internal.ui.PreviewItemFragment -> com.zhihu.matisse.internal.ui.PreviewItemFragment:
-    com.zhihu.matisse.listener.OnFragmentInteractionListener mListener -> Z
-    void onDetach() -> S
+    com.zhihu.matisse.listener.OnFragmentInteractionListener mListener -> a
     com.zhihu.matisse.listener.OnFragmentInteractionListener access$000(com.zhihu.matisse.internal.ui.PreviewItemFragment) -> a
     com.zhihu.matisse.internal.ui.PreviewItemFragment newInstance(com.zhihu.matisse.internal.entity.Item) -> a
-    void onAttach(android.content.Context) -> a
-    android.view.View onCreateView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle) -> a
-    void onViewCreated(android.view.View,android.os.Bundle) -> a
-    void resetView() -> i0
+    void resetView() -> c
 com.zhihu.matisse.internal.ui.PreviewItemFragment$1 -> com.zhihu.matisse.internal.ui.PreviewItemFragment$a:
     com.zhihu.matisse.internal.entity.Item val$item -> a
     com.zhihu.matisse.internal.ui.PreviewItemFragment this$0 -> b
@@ -19961,14 +19736,14 @@ com.zhihu.matisse.internal.ui.adapter.AlbumMediaAdapter$CaptureViewHolder -> com
     android.widget.TextView mHint -> a
     android.widget.TextView access$000(com.zhihu.matisse.internal.ui.adapter.AlbumMediaAdapter$CaptureViewHolder) -> a
 com.zhihu.matisse.internal.ui.adapter.AlbumMediaAdapter$CheckStateListener -> com.zhihu.matisse.internal.ui.a.a$c:
-    void onUpdate() -> d
+    void onUpdate() -> b
 com.zhihu.matisse.internal.ui.adapter.AlbumMediaAdapter$MediaViewHolder -> com.zhihu.matisse.internal.ui.a.a$d:
     com.zhihu.matisse.internal.ui.widget.MediaGrid mMediaGrid -> a
     com.zhihu.matisse.internal.ui.widget.MediaGrid access$100(com.zhihu.matisse.internal.ui.adapter.AlbumMediaAdapter$MediaViewHolder) -> a
 com.zhihu.matisse.internal.ui.adapter.AlbumMediaAdapter$OnMediaClickListener -> com.zhihu.matisse.internal.ui.a.a$e:
     void onMediaClick(com.zhihu.matisse.internal.entity.Album,com.zhihu.matisse.internal.entity.Item,int) -> a
 com.zhihu.matisse.internal.ui.adapter.AlbumMediaAdapter$OnPhotoCapture -> com.zhihu.matisse.internal.ui.a.a$f:
-    void capture() -> j
+    void capture() -> h
 com.zhihu.matisse.internal.ui.adapter.AlbumsAdapter -> com.zhihu.matisse.internal.ui.a.b:
     android.graphics.drawable.Drawable mPlaceholder -> a
 com.zhihu.matisse.internal.ui.adapter.PreviewPagerAdapter -> com.zhihu.matisse.internal.ui.a.c:
@@ -20034,7 +19809,7 @@ com.zhihu.matisse.internal.ui.widget.CheckView -> com.zhihu.matisse.internal.ui.
     void initTextPaint() -> c
 com.zhihu.matisse.internal.ui.widget.IncapableDialog -> com.zhihu.matisse.internal.ui.widget.IncapableDialog:
     com.zhihu.matisse.internal.ui.widget.IncapableDialog newInstance(java.lang.String,java.lang.String) -> a
-    android.app.Dialog onCreateDialog(android.os.Bundle) -> n
+    android.app.Dialog onCreateDialog(android.os.Bundle) -> a
 com.zhihu.matisse.internal.ui.widget.IncapableDialog$1 -> com.zhihu.matisse.internal.ui.widget.IncapableDialog$a:
 com.zhihu.matisse.internal.ui.widget.MediaGrid -> com.zhihu.matisse.internal.ui.widget.MediaGrid:
     com.zhihu.matisse.internal.ui.widget.MediaGrid$PreBindInfo mPreBindInfo -> g
@@ -20107,43 +19882,70 @@ com.zhihu.matisse.internal.utils.UIUtils -> com.zhihu.matisse.m.c.f:
 com.zhihu.matisse.listener.OnCheckedListener -> com.zhihu.matisse.n.a:
     void onCheck(boolean) -> a
 com.zhihu.matisse.listener.OnFragmentInteractionListener -> com.zhihu.matisse.n.b:
-    void onClick() -> h
+    void onClick() -> f
 com.zhihu.matisse.listener.OnSelectedListener -> com.zhihu.matisse.n.c:
     void onSelected(java.util.List,java.util.List) -> a
 com.zhihu.matisse.ui.MatisseActivity -> com.zhihu.matisse.ui.MatisseActivity:
-    android.view.View mContainer -> y
-    android.widget.LinearLayout mOriginalLayout -> A
-    android.view.View mEmptyView -> z
-    android.widget.TextView mButtonPreview -> w
-    com.zhihu.matisse.internal.ui.widget.AlbumsSpinner mAlbumsSpinner -> u
-    android.widget.TextView mButtonApply -> x
-    com.zhihu.matisse.internal.ui.widget.CheckRadioView mOriginal -> B
-    com.zhihu.matisse.internal.model.AlbumCollection mAlbumCollection -> q
-    com.zhihu.matisse.internal.utils.MediaStoreCompat mMediaStoreCompat -> r
-    com.zhihu.matisse.internal.ui.adapter.AlbumsAdapter mAlbumsAdapter -> v
-    com.zhihu.matisse.internal.model.SelectedItemCollection mSelectedCollection -> s
-    com.zhihu.matisse.internal.entity.SelectionSpec mSpec -> t
-    boolean mOriginalEnable -> C
+    com.zhihu.matisse.internal.utils.MediaStoreCompat mMediaStoreCompat -> f
+    com.zhihu.matisse.internal.ui.adapter.AlbumsAdapter mAlbumsAdapter -> j
+    com.zhihu.matisse.internal.model.SelectedItemCollection mSelectedCollection -> g
+    boolean mOriginalEnable -> q
+    com.zhihu.matisse.internal.entity.SelectionSpec mSpec -> h
+    android.widget.LinearLayout mOriginalLayout -> o
+    android.view.View mContainer -> m
+    android.view.View mEmptyView -> n
+    android.widget.TextView mButtonPreview -> k
+    com.zhihu.matisse.internal.model.AlbumCollection mAlbumCollection -> d
+    com.zhihu.matisse.internal.ui.widget.CheckRadioView mOriginal -> p
+    com.zhihu.matisse.internal.ui.widget.AlbumsSpinner mAlbumsSpinner -> i
+    android.widget.TextView mButtonApply -> l
     com.zhihu.matisse.internal.model.AlbumCollection access$000(com.zhihu.matisse.ui.MatisseActivity) -> a
     void access$200(com.zhihu.matisse.ui.MatisseActivity,com.zhihu.matisse.internal.entity.Album) -> a
     void onAlbumSelected(com.zhihu.matisse.internal.entity.Album) -> a
     void onMediaClick(com.zhihu.matisse.internal.entity.Album,com.zhihu.matisse.internal.entity.Item,int) -> a
     com.zhihu.matisse.internal.ui.widget.AlbumsSpinner access$100(com.zhihu.matisse.ui.MatisseActivity) -> b
     void onAlbumLoad(android.database.Cursor) -> b
-    void onUpdate() -> d
-    void onAlbumReset() -> e
-    com.zhihu.matisse.internal.model.SelectedItemCollection provideSelectedItemCollection() -> i
-    void capture() -> j
-    int countOverMaxSize() -> t
-    void updateBottomToolbar() -> u
-    void updateOriginalState() -> v
+    void onUpdate() -> b
+    void onAlbumReset() -> c
+    com.zhihu.matisse.internal.model.SelectedItemCollection provideSelectedItemCollection() -> g
+    void capture() -> h
+    int countOverMaxSize() -> m
+    void updateBottomToolbar() -> n
+    void updateOriginalState() -> o
 com.zhihu.matisse.ui.MatisseActivity$1 -> com.zhihu.matisse.ui.MatisseActivity$a:
     com.zhihu.matisse.ui.MatisseActivity this$0 -> b
     android.database.Cursor val$cursor -> a
-it.sephiroth.android.library.easing.Cubic -> c.a.a.a.a.a:
+io.flutter.embedding.android.SplashScreen$-CC -> io.flutter.embedding.android.a:
+    boolean io.flutter.embedding.android.SplashScreen.doesSplashViewRememberItsTransition() -> $default$doesSplashViewRememberItsTransition
+    android.os.Bundle io.flutter.embedding.android.SplashScreen.saveSplashScreenState() -> $default$saveSplashScreenState
+io.flutter.plugin.platform.-$$Lambda$PlatformViewsController$1$yCLpCrkCk5PKTxnfIMt18jB15HI -> io.flutter.plugin.platform.a:
+    io.flutter.embedding.engine.systemchannels.PlatformViewsChannel$PlatformViewCreationRequest f$1 -> b
+    io.flutter.plugin.platform.PlatformViewsController$1 f$0 -> a
+io.flutter.plugin.platform.PlatformView$-CC -> io.flutter.plugin.platform.b:
+    void io.flutter.plugin.platform.PlatformView.onFlutterViewAttached(android.view.View) -> $default$onFlutterViewAttached
+    void io.flutter.plugin.platform.PlatformView.onFlutterViewDetached() -> $default$onFlutterViewDetached
+    void io.flutter.plugin.platform.PlatformView.onInputConnectionLocked() -> $default$onInputConnectionLocked
+    void io.flutter.plugin.platform.PlatformView.onInputConnectionUnlocked() -> $default$onInputConnectionUnlocked
+io.flutter.plugin.platform.PlatformViewsController$1 -> io.flutter.plugin.platform.PlatformViewsController$1:
+    void lambda$createPlatformView$0(io.flutter.embedding.engine.systemchannels.PlatformViewsChannel$PlatformViewCreationRequest,android.view.View,boolean) -> a
+io.flutter.view.-$$Lambda$AccessibilityBridge$JBDpWWlF54eN0gel8Jn1hY7yOmE -> io.flutter.view.a:
+    io.flutter.view.AccessibilityBridge$SemanticsNode f$0 -> a
+io.flutter.view.-$$Lambda$AccessibilityBridge$_xgAbWhyKyeHrMGUVUYzbSFEeBY -> io.flutter.view.b:
+    io.flutter.view.-$$Lambda$AccessibilityBridge$_xgAbWhyKyeHrMGUVUYzbSFEeBY INSTANCE -> a
+io.flutter.view.AccessibilityBridge -> io.flutter.view.AccessibilityBridge:
+    boolean lambda$shouldSetCollectionInfo$0(io.flutter.view.AccessibilityBridge$SemanticsNode,io.flutter.view.AccessibilityBridge$SemanticsNode) -> a
+    boolean lambda$shouldSetCollectionInfo$1(io.flutter.view.AccessibilityBridge$SemanticsNode) -> a
+io.github.ponnamkarthik.toast.fluttertoast.FluttertoastPlugin -> c.a.a.a.a.a:
+    android.content.Context mContext -> a
+    android.widget.Toast mToast -> b
+    float dp2px(float) -> a
+    void registerWith(io.flutter.plugin.common.PluginRegistry$Registrar) -> a
+io.github.ponnamkarthik.toast.fluttertoast.R$id -> c.a.a.a.a.b:
+io.github.ponnamkarthik.toast.fluttertoast.R$layout -> c.a.a.a.a.c:
+it.sephiroth.android.library.easing.Cubic -> d.a.a.a.a.a:
     double easeInOut(double,double,double,double) -> a
     double easeOut(double,double,double,double) -> b
-it.sephiroth.android.library.easing.Easing -> c.a.a.a.a.b:
+it.sephiroth.android.library.easing.Easing -> d.a.a.a.a.b:
     double easeInOut(double,double,double,double) -> a
     double easeOut(double,double,double,double) -> b
 it.sephiroth.android.library.imagezoom.ImageViewTouch -> it.sephiroth.android.library.imagezoom.ImageViewTouch:
@@ -21063,10 +20865,10 @@ org.greenrobot.greendao.query.WhereCondition$PropertyCondition -> org.greenrobot
     org.greenrobot.greendao.Property property -> d
     java.lang.String op -> e
     java.lang.Object checkValueForType(org.greenrobot.greendao.Property,java.lang.Object) -> a
-org.reactivestreams.Processor -> d.a.a:
-org.reactivestreams.Publisher -> d.a.b:
-org.reactivestreams.Subscriber -> d.a.c:
-org.reactivestreams.Subscription -> d.a.d:
+org.reactivestreams.Processor -> e.a.a:
+org.reactivestreams.Publisher -> e.a.b:
+org.reactivestreams.Subscriber -> e.a.c:
+org.reactivestreams.Subscription -> e.a.d:
 rx.Notification -> rx.Notification:
     rx.Notification$Kind kind -> a
     rx.Notification ON_COMPLETED -> d
@@ -22224,7 +22026,6 @@ top.zibin.luban.Luban$Builder$3 -> top.zibin.luban.d$b$c:
     android.net.Uri val$uri -> a
     java.io.InputStream open() -> a
 top.zibin.luban.OnCompressListener -> top.zibin.luban.e:
-    void onStart() -> a
     void onSuccess(java.io.File) -> a
 top.zibin.luban.OnRenameListener -> top.zibin.luban.f:
     java.lang.String rename(java.lang.String) -> a
