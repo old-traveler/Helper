@@ -1,4 +1,4 @@
-# Helper
+# Helper-Android版本
 
 
  helper是一款遵从Material Design风格设计且只服务于湖工大学子的App   
