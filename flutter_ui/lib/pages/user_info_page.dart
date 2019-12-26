@@ -1,22 +1,51 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_ui/entity/user_entity.dart';
+import 'package:flutter_ui/pages/base_page_state.dart';
 
-class UserInfoPage extends StatelessWidget {
-  final UserData userData;
+class UserInfoPage extends StatefulWidget {
+  const UserInfoPage({Key key}) : super(key: key);
 
-  const UserInfoPage({Key key, this.userData}) : super(key: key);
+  @override
+  State<StatefulWidget> createState() {
+    return UserInfoState("PersonalActivity");
+  }
+}
+
+class UserInfoState<UserInfoPage> extends BaseInteractiveState {
+  UserInfoState(String channelName) : super(channelName);
+  UserData userData;
+
+  @override
+  void initState() {
+    super.initState();
+    _fetchData();
+  }
+
+  _fetchData() async {
+    final String reply = await basicChannel.send("fetch_user_data");
+    setState(() {
+      userData = UserData.fromJson(json.decode(reply));
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        children: <Widget>[
-          _getUserInfoWidget(),
-          _getUserMoreInfoWidget(),
-        ],
-      ),
-    );
+    return userData == null
+        ? Text(
+            '',
+            textDirection: TextDirection.ltr,
+          )
+        : Container(
+            child: Column(
+              children: <Widget>[
+                _getUserInfoWidget(),
+                _getUserMoreInfoWidget(),
+              ],
+            ),
+          );
   }
 
   Widget _getUserInfoWidget() {
@@ -75,5 +104,10 @@ class UserInfoPage extends StatelessWidget {
             textDirection: TextDirection.ltr,
           ),
         ));
+  }
+
+  @override
+  Future<String> handlerMessage(String message) async {
+    return "UserInfoState";
   }
 }
