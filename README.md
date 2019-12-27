@@ -35,9 +35,9 @@
 
 ## 分支说明
 
-* master Android和Flutter混合
-* product-android Android版本
-* 其他 开发分支
+* master（Android和Flutter混合）
+* product-android（Android版本）
+* dev-XXX（开发分支）
 
 
 ## 功能介绍
