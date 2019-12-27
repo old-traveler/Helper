@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_ui/entity/user_entity.dart';
@@ -62,8 +63,9 @@ class UserInfoState<UserInfoPage> extends BaseInteractiveState {
               alignment: Alignment.centerLeft,
               child: GestureDetector(
                 child: ClipOval(
-                  child: Image.network(
-                    "http://223.111.182.121:8888/" + userData.headPicThumb,
+                  child: CachedNetworkImage(
+                    imageUrl: "http://223.111.182.121:8888/" +
+                        userData.headPicThumb,
                     width: 65,
                     height: 65,
                   ),

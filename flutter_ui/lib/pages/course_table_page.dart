@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:math';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_ui/entity/course_entity.dart';
@@ -71,8 +72,8 @@ class _CourseTablePageState<CourseTablePage> extends BaseInteractiveState {
       home: Material(
           child: Stack(
         children: <Widget>[
-          Image.network(
-            YStrings.courseBackgroundUrl,
+          CachedNetworkImage(
+            imageUrl: YStrings.courseBackgroundUrl,
             fit: BoxFit.fitHeight,
             height: 1800,
           ),
@@ -153,10 +154,13 @@ class _CourseTablePageState<CourseTablePage> extends BaseInteractiveState {
   }
 
   List<Widget> _getDateItemTip() {
-    List<String> date = CourseUtil.getCurDayOfWeek(
-        _curWeek == -1 ? CourseUtil.getCurWeek() : _curWeek);
+    var curWeek = CourseUtil.getCurWeek();
+    var week = _curWeek == -1 ? curWeek : _curWeek;
+    List<String> date =
+        CourseUtil.getCurDayOfWeek(week);
     List<Widget> widget = List(date.length);
-    int curDayIndex = CourseUtil.getCurDayInCurWeekIndex();
+    int curDayIndex =
+        curWeek == week ? CourseUtil.getCurDayInCurWeekIndex() : -1;
     for (int i = 0; i < date.length; i++) {
       widget[i] = Expanded(
         flex: 1,
@@ -165,7 +169,7 @@ class _CourseTablePageState<CourseTablePage> extends BaseInteractiveState {
             height: 35,
             decoration: i == curDayIndex
                 ? BoxDecoration(
-                    color: Color(0xC984BFDC),
+                    color: Color(0xFF96B8DE),
                     borderRadius: BorderRadius.only(
                         bottomLeft: Radius.circular(1),
                         bottomRight: Radius.circular(1)))
