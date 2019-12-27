@@ -154,4 +154,10 @@ public class CourseModel {
     }
     return list;
   }
+
+  public Observable<CourseBean> getClassCourse(String number, String code, String className) {
+    return RequestHelper.getRequestApi().getClassSchedule(number, code, className)
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread());
+  }
 }
