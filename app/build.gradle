@@ -9,7 +9,7 @@ apply plugin: 'com.sloth.click'
 apply plugin: 'com.cuckoo.plugin'
 
 greendao {
-  schemaVersion 7
+  schemaVersion 8
   daoPackage 'com.hyc.helper.gen'
   targetGenDir 'src/main/java'
 }

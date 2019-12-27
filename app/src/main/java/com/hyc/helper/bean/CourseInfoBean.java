@@ -1,5 +1,6 @@
 package com.hyc.helper.bean;
 
+import com.google.gson.annotations.SerializedName;
 import com.hyc.helper.helper.IntegerConverter;
 import java.io.Serializable;
 import java.util.List;
@@ -13,6 +14,8 @@ public class CourseInfoBean  implements Serializable,Cloneable {
   public static final long serialVersionUID = 42L;
 
 
+  @SerializedName("id")
+  private String courseId;
   private String xh;
   private String xqj;//星期几
   private String djj;//第几节
@@ -24,11 +27,11 @@ public class CourseInfoBean  implements Serializable,Cloneable {
   private String room;//教室
   @Convert(columnType = String.class, converter = IntegerConverter.class)
   private List<Integer> zs;//周数
-
-  @Generated(hash = 29831154)
-  public CourseInfoBean(String xh, String xqj, String djj, int dsz, String qsz,
-          String jsz, String name, String teacher, String room,
-          List<Integer> zs) {
+  @Generated(hash = 1280403870)
+  public CourseInfoBean(String courseId, String xh, String xqj, String djj,
+          int dsz, String qsz, String jsz, String name, String teacher,
+          String room, List<Integer> zs) {
+      this.courseId = courseId;
       this.xh = xh;
       this.xqj = xqj;
       this.djj = djj;
@@ -40,89 +43,74 @@ public class CourseInfoBean  implements Serializable,Cloneable {
       this.room = room;
       this.zs = zs;
   }
-
   @Generated(hash = 290827734)
   public CourseInfoBean() {
   }
-
+  public String getCourseId() {
+      return this.courseId;
+  }
+  public void setCourseId(String courseId) {
+      this.courseId = courseId;
+  }
   public String getXh() {
-    return xh;
+      return this.xh;
   }
-
   public void setXh(String xh) {
-    this.xh = xh;
+      this.xh = xh;
   }
-
   public String getXqj() {
-    return xqj;
+      return this.xqj;
   }
-
   public void setXqj(String xqj) {
-    this.xqj = xqj;
+      this.xqj = xqj;
   }
-
   public String getDjj() {
-    return djj;
+      return this.djj;
   }
-
   public void setDjj(String djj) {
-    this.djj = djj;
+      this.djj = djj;
   }
-
   public int getDsz() {
-    return dsz;
+      return this.dsz;
   }
-
   public void setDsz(int dsz) {
-    this.dsz = dsz;
+      this.dsz = dsz;
   }
-
   public String getQsz() {
-    return qsz;
+      return this.qsz;
   }
-
   public void setQsz(String qsz) {
-    this.qsz = qsz;
+      this.qsz = qsz;
   }
-
   public String getJsz() {
-    return jsz;
+      return this.jsz;
   }
-
   public void setJsz(String jsz) {
-    this.jsz = jsz;
+      this.jsz = jsz;
   }
-
   public String getName() {
-    return name;
+      return this.name;
   }
-
   public void setName(String name) {
-    this.name = name;
+      this.name = name;
   }
-
   public String getTeacher() {
-    return teacher;
+      return this.teacher;
   }
-
   public void setTeacher(String teacher) {
-    this.teacher = teacher;
+      this.teacher = teacher;
   }
-
   public String getRoom() {
-    return room;
+      return this.room;
   }
-
   public void setRoom(String room) {
-    this.room = room;
+      this.room = room;
   }
-
   public List<Integer> getZs() {
-    return zs;
+      return this.zs;
   }
-
   public void setZs(List<Integer> zs) {
-    this.zs = zs;
+      this.zs = zs;
   }
 
   @Override

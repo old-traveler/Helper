@@ -11,6 +11,7 @@ import android.widget.ListPopupWindow
 import com.google.gson.Gson
 import com.hyc.helper.R
 import com.hyc.helper.R.layout
+import com.hyc.helper.activity.CourseDetailActivity
 import com.hyc.helper.base.util.ToastHelper
 import com.hyc.helper.base.util.UiHelper
 import com.hyc.helper.bean.CourseBean
@@ -124,6 +125,15 @@ class ClassCourseActivity : BaseFlutterActivity() {
     super.onMessage(message, reply)
     if (message == "getClassCourse") {
       getClassCourse(reply)
+    } else if (message?.startsWith("courseDetail") == true) {
+      val id = message.substring(12)
+      mCourseBean?.data?.forEach {
+        if (it.courseId == id) {
+          CourseDetailActivity.startCourseDetail(this, it)
+          return@forEach
+        }
+      }
+      reply.reply("")
     }
   }
 

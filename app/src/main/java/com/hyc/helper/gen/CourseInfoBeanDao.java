@@ -27,16 +27,17 @@ public class CourseInfoBeanDao extends AbstractDao<CourseInfoBean, Void> {
      * Can be used for QueryBuilder and for referencing column names.
      */
     public static class Properties {
-        public final static Property Xh = new Property(0, String.class, "xh", false, "XH");
-        public final static Property Xqj = new Property(1, String.class, "xqj", false, "XQJ");
-        public final static Property Djj = new Property(2, String.class, "djj", false, "DJJ");
-        public final static Property Dsz = new Property(3, int.class, "dsz", false, "DSZ");
-        public final static Property Qsz = new Property(4, String.class, "qsz", false, "QSZ");
-        public final static Property Jsz = new Property(5, String.class, "jsz", false, "JSZ");
-        public final static Property Name = new Property(6, String.class, "name", false, "NAME");
-        public final static Property Teacher = new Property(7, String.class, "teacher", false, "TEACHER");
-        public final static Property Room = new Property(8, String.class, "room", false, "ROOM");
-        public final static Property Zs = new Property(9, String.class, "zs", false, "ZS");
+        public final static Property CourseId = new Property(0, String.class, "courseId", false, "COURSE_ID");
+        public final static Property Xh = new Property(1, String.class, "xh", false, "XH");
+        public final static Property Xqj = new Property(2, String.class, "xqj", false, "XQJ");
+        public final static Property Djj = new Property(3, String.class, "djj", false, "DJJ");
+        public final static Property Dsz = new Property(4, int.class, "dsz", false, "DSZ");
+        public final static Property Qsz = new Property(5, String.class, "qsz", false, "QSZ");
+        public final static Property Jsz = new Property(6, String.class, "jsz", false, "JSZ");
+        public final static Property Name = new Property(7, String.class, "name", false, "NAME");
+        public final static Property Teacher = new Property(8, String.class, "teacher", false, "TEACHER");
+        public final static Property Room = new Property(9, String.class, "room", false, "ROOM");
+        public final static Property Zs = new Property(10, String.class, "zs", false, "ZS");
     }
 
     private final IntegerConverter zsConverter = new IntegerConverter();
@@ -53,16 +54,17 @@ public class CourseInfoBeanDao extends AbstractDao<CourseInfoBean, Void> {
     public static void createTable(Database db, boolean ifNotExists) {
         String constraint = ifNotExists? "IF NOT EXISTS ": "";
         db.execSQL("CREATE TABLE " + constraint + "\"COURSE_INFO_BEAN\" (" + //
-                "\"XH\" TEXT," + // 0: xh
-                "\"XQJ\" TEXT," + // 1: xqj
-                "\"DJJ\" TEXT," + // 2: djj
-                "\"DSZ\" INTEGER NOT NULL ," + // 3: dsz
-                "\"QSZ\" TEXT," + // 4: qsz
-                "\"JSZ\" TEXT," + // 5: jsz
-                "\"NAME\" TEXT," + // 6: name
-                "\"TEACHER\" TEXT," + // 7: teacher
-                "\"ROOM\" TEXT," + // 8: room
-                "\"ZS\" TEXT);"); // 9: zs
+                "\"COURSE_ID\" TEXT," + // 0: courseId
+                "\"XH\" TEXT," + // 1: xh
+                "\"XQJ\" TEXT," + // 2: xqj
+                "\"DJJ\" TEXT," + // 3: djj
+                "\"DSZ\" INTEGER NOT NULL ," + // 4: dsz
+                "\"QSZ\" TEXT," + // 5: qsz
+                "\"JSZ\" TEXT," + // 6: jsz
+                "\"NAME\" TEXT," + // 7: name
+                "\"TEACHER\" TEXT," + // 8: teacher
+                "\"ROOM\" TEXT," + // 9: room
+                "\"ZS\" TEXT);"); // 10: zs
     }
 
     /** Drops the underlying database table. */
@@ -75,50 +77,55 @@ public class CourseInfoBeanDao extends AbstractDao<CourseInfoBean, Void> {
     protected final void bindValues(DatabaseStatement stmt, CourseInfoBean entity) {
         stmt.clearBindings();
  
+        String courseId = entity.getCourseId();
+        if (courseId != null) {
+            stmt.bindString(1, courseId);
+        }
+ 
         String xh = entity.getXh();
         if (xh != null) {
-            stmt.bindString(1, xh);
+            stmt.bindString(2, xh);
         }
  
         String xqj = entity.getXqj();
         if (xqj != null) {
-            stmt.bindString(2, xqj);
+            stmt.bindString(3, xqj);
         }
  
         String djj = entity.getDjj();
         if (djj != null) {
-            stmt.bindString(3, djj);
+            stmt.bindString(4, djj);
         }
-        stmt.bindLong(4, entity.getDsz());
+        stmt.bindLong(5, entity.getDsz());
  
         String qsz = entity.getQsz();
         if (qsz != null) {
-            stmt.bindString(5, qsz);
+            stmt.bindString(6, qsz);
         }
  
         String jsz = entity.getJsz();
         if (jsz != null) {
-            stmt.bindString(6, jsz);
+            stmt.bindString(7, jsz);
         }
  
         String name = entity.getName();
         if (name != null) {
-            stmt.bindString(7, name);
+            stmt.bindString(8, name);
         }
  
         String teacher = entity.getTeacher();
         if (teacher != null) {
-            stmt.bindString(8, teacher);
+            stmt.bindString(9, teacher);
         }
  
         String room = entity.getRoom();
         if (room != null) {
-            stmt.bindString(9, room);
+            stmt.bindString(10, room);
         }
  
         List zs = entity.getZs();
         if (zs != null) {
-            stmt.bindString(10, zsConverter.convertToDatabaseValue(zs));
+            stmt.bindString(11, zsConverter.convertToDatabaseValue(zs));
         }
     }
 
@@ -126,50 +133,55 @@ public class CourseInfoBeanDao extends AbstractDao<CourseInfoBean, Void> {
     protected final void bindValues(SQLiteStatement stmt, CourseInfoBean entity) {
         stmt.clearBindings();
  
+        String courseId = entity.getCourseId();
+        if (courseId != null) {
+            stmt.bindString(1, courseId);
+        }
+ 
         String xh = entity.getXh();
         if (xh != null) {
-            stmt.bindString(1, xh);
+            stmt.bindString(2, xh);
         }
  
         String xqj = entity.getXqj();
         if (xqj != null) {
-            stmt.bindString(2, xqj);
+            stmt.bindString(3, xqj);
         }
  
         String djj = entity.getDjj();
         if (djj != null) {
-            stmt.bindString(3, djj);
+            stmt.bindString(4, djj);
         }
-        stmt.bindLong(4, entity.getDsz());
+        stmt.bindLong(5, entity.getDsz());
  
         String qsz = entity.getQsz();
         if (qsz != null) {
-            stmt.bindString(5, qsz);
+            stmt.bindString(6, qsz);
         }
  
         String jsz = entity.getJsz();
         if (jsz != null) {
-            stmt.bindString(6, jsz);
+            stmt.bindString(7, jsz);
         }
  
         String name = entity.getName();
         if (name != null) {
-            stmt.bindString(7, name);
+            stmt.bindString(8, name);
         }
  
         String teacher = entity.getTeacher();
         if (teacher != null) {
-            stmt.bindString(8, teacher);
+            stmt.bindString(9, teacher);
         }
  
         String room = entity.getRoom();
         if (room != null) {
-            stmt.bindString(9, room);
+            stmt.bindString(10, room);
         }
  
         List zs = entity.getZs();
         if (zs != null) {
-            stmt.bindString(10, zsConverter.convertToDatabaseValue(zs));
+            stmt.bindString(11, zsConverter.convertToDatabaseValue(zs));
         }
     }
 
@@ -181,32 +193,34 @@ public class CourseInfoBeanDao extends AbstractDao<CourseInfoBean, Void> {
     @Override
     public CourseInfoBean readEntity(Cursor cursor, int offset) {
         CourseInfoBean entity = new CourseInfoBean( //
-            cursor.isNull(offset + 0) ? null : cursor.getString(offset + 0), // xh
-            cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // xqj
-            cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // djj
-            cursor.getInt(offset + 3), // dsz
-            cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // qsz
-            cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // jsz
-            cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6), // name
-            cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7), // teacher
-            cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8), // room
-            cursor.isNull(offset + 9) ? null : zsConverter.convertToEntityProperty(cursor.getString(offset + 9)) // zs
+            cursor.isNull(offset + 0) ? null : cursor.getString(offset + 0), // courseId
+            cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // xh
+            cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // xqj
+            cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // djj
+            cursor.getInt(offset + 4), // dsz
+            cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // qsz
+            cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6), // jsz
+            cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7), // name
+            cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8), // teacher
+            cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9), // room
+            cursor.isNull(offset + 10) ? null : zsConverter.convertToEntityProperty(cursor.getString(offset + 10)) // zs
         );
         return entity;
     }
      
     @Override
     public void readEntity(Cursor cursor, CourseInfoBean entity, int offset) {
-        entity.setXh(cursor.isNull(offset + 0) ? null : cursor.getString(offset + 0));
-        entity.setXqj(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
-        entity.setDjj(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
-        entity.setDsz(cursor.getInt(offset + 3));
-        entity.setQsz(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
-        entity.setJsz(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
-        entity.setName(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
-        entity.setTeacher(cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7));
-        entity.setRoom(cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8));
-        entity.setZs(cursor.isNull(offset + 9) ? null : zsConverter.convertToEntityProperty(cursor.getString(offset + 9)));
+        entity.setCourseId(cursor.isNull(offset + 0) ? null : cursor.getString(offset + 0));
+        entity.setXh(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
+        entity.setXqj(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
+        entity.setDjj(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
+        entity.setDsz(cursor.getInt(offset + 4));
+        entity.setQsz(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
+        entity.setJsz(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
+        entity.setName(cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7));
+        entity.setTeacher(cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8));
+        entity.setRoom(cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9));
+        entity.setZs(cursor.isNull(offset + 10) ? null : zsConverter.convertToEntityProperty(cursor.getString(offset + 10)));
      }
     
     @Override
