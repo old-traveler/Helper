@@ -17,6 +17,7 @@
   <img src="https://raw.githubusercontent.com/old-traveler/Helper/master/img/1569832762.png" width = "200" height= "200">
  </div>
  
+ 
 ## 项目结构
  
 项目使用mvc为架构。并封装base类支持全异步任务处理
@@ -31,6 +32,12 @@
 * 图片选择： [Matisse](https://github.com/zhihu/Matisse)
 * 图片压缩： [Luban](https://github.com/Curzibn/Luban)
 * 头像剪裁： [Ucrop](https://github.com/Yalantis/uCrop)
+
+## 分支说明
+
+* master Android和Flutter混合
+* product-android Android版本
+* 其他 开发分支
 
 
 ## 功能介绍
