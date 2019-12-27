@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:app="http://schemas.android.com/apk/res-auto">
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-
+  <item
+    android:icon="@drawable/ic_class_course"
+    android:id="@+id/item_class_course"
+    android:title="@string/class_course" />
 
   <item
     android:icon="@drawable/ic_power"

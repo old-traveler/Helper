@@ -2,6 +2,7 @@ package com.hyc.helper.net;
 
 import com.hyc.helper.bean.BaseRequestBean;
 import com.hyc.helper.bean.CalendarBean;
+import com.hyc.helper.bean.ClassCourseBean;
 import com.hyc.helper.bean.ConfigureDateBean;
 import com.hyc.helper.bean.CourseBean;
 import com.hyc.helper.bean.ExamBean;
@@ -268,4 +269,12 @@ public interface NetApiService {
 
   @GET("get/calendar")
   Observable<List<CalendarBean>> getCalendar();
+
+  @GET("get/classes/{number}/{code}")
+  Observable<ClassCourseBean> getClassesInfo(@Path("number") String number,
+      @Path("code") String code);
+
+  @GET("get/class_lessons/{number}/{code}/{className}")
+  Observable<CourseBean> getClassSchedule(@Path("number") String number, @Path("code") String code,
+      @Path("className") String className);
 }

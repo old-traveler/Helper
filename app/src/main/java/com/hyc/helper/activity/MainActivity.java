@@ -24,6 +24,7 @@ import cn.bmob.newim.BmobIM;
 import cn.bmob.newim.bean.BmobIMMessage;
 import com.hyc.cuckoo_lib.CuckooNeed;
 import com.hyc.helper.R;
+import com.hyc.helper.activity.flutter.ClassCourseActivity;
 import com.hyc.helper.activity.flutter.PersonalActivity;
 import com.hyc.helper.activity.fragment.LostFindFragment;
 import com.hyc.helper.activity.fragment.SecondHandFragment;
@@ -275,6 +276,8 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
           });
     } else if (item.getItemId() == R.id.item_message) {
       goToOtherActivity(ConversationActivity.class, false);
+    } else if (item.getItemId() == R.id.item_class_course){
+      goToOtherActivity(ClassCourseActivity.class, false);
     }
     return false;
   }

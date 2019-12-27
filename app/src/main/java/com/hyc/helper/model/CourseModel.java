@@ -1,5 +1,9 @@
 package com.hyc.helper.model;
 
+import android.util.Pair;
+import com.hyc.helper.R;
+import com.hyc.helper.base.util.UiHelper;
+import com.hyc.helper.bean.ClassCourseBean;
 import com.hyc.helper.bean.CourseBean;
 import com.hyc.helper.bean.CourseInfoBean;
 import com.hyc.helper.bean.LessonsExpBean;
@@ -17,6 +21,9 @@ import io.reactivex.schedulers.Schedulers;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class CourseModel {
 
@@ -34,7 +41,7 @@ public class CourseModel {
         .subscribe(observer);
   }
 
-  private Observable<CourseBean> getCourseFromCache(String studentId){
+  private Observable<CourseBean> getCourseFromCache(String studentId) {
     return DbSearchHelper.searchCourseInfo(studentId)
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread());
@@ -68,12 +75,12 @@ public class CourseModel {
         .observeOn(AndroidSchedulers.mainThread());
   }
 
-  public List<CourseInfoBean> lessonsToCourse(String studentId,LessonsExpBean lessonsExpBean) {
+  public List<CourseInfoBean> lessonsToCourse(String studentId, LessonsExpBean lessonsExpBean) {
     List<CourseInfoBean> courseInfoBeans = new ArrayList<>();
     if (lessonsExpBean.getCode() == 200) {
       HashMap<String, CourseInfoBean> hashMap = new HashMap<>();
       for (LessonsExpBean.DataBean dataBean : lessonsExpBean.getData()) {
-        String key = dataBean.getLesson()  +dataBean.getWeek() + dataBean.getReal_time();
+        String key = dataBean.getLesson() + dataBean.getWeek() + dataBean.getReal_time();
         if (hashMap.get(key) == null) {
           CourseInfoBean courseInfoBean = new CourseInfoBean();
           courseInfoBean.setRoom(dataBean.getLocate());
@@ -86,41 +93,65 @@ public class CourseModel {
           List<Integer> weeks = new ArrayList<>();
           weeks.add(Integer.valueOf(dataBean.getWeeks_no()));
           courseInfoBean.setZs(weeks);
-          hashMap.put(key,courseInfoBean);
+          hashMap.put(key, courseInfoBean);
         } else {
           hashMap.get(key).getZs().add(Integer.valueOf(dataBean.getWeeks_no()));
         }
       }
 
-      for (HashMap.Entry<String,CourseInfoBean> entry : hashMap.entrySet()) {
+      for (HashMap.Entry<String, CourseInfoBean> entry : hashMap.entrySet()) {
         CourseInfoBean courseInfoBean = entry.getValue();
         int hour = Integer.parseInt(courseInfoBean.getDjj().split(":")[0]);
-        if (hour == 8){
+        if (hour == 8) {
           courseInfoBean.setDjj("1");
-        }else if (hour == 10){
+        } else if (hour == 10) {
           courseInfoBean.setDjj("3");
-        }else if (hour == 14){
+        } else if (hour == 14) {
           courseInfoBean.setDjj("5");
-        }else if (hour == 16){
+        } else if (hour == 16) {
           courseInfoBean.setDjj("7");
-        }else if (hour == 19){
+        } else if (hour == 19) {
           courseInfoBean.setDjj("9");
-        }else {
-          throw new RuntimeException("no this time"+courseInfoBean.getDjj());
+        } else {
+          throw new RuntimeException("no this time" + courseInfoBean.getDjj());
         }
-        if (courseInfoBean.getDsz() == 4){
+        if (courseInfoBean.getDsz() == 4) {
           CourseInfoBean clone = (CourseInfoBean) courseInfoBean.clone();
-          clone.setDjj(String.valueOf(Integer.parseInt(courseInfoBean.getDjj())+2));
+          clone.setDjj(String.valueOf(Integer.parseInt(courseInfoBean.getDjj()) + 2));
           courseInfoBeans.add(clone);
         }
         courseInfoBeans.add(courseInfoBean);
-
       }
       return courseInfoBeans;
     }
     return courseInfoBeans;
   }
 
+  public Observable<List<Pair<String, List<String>>>> getClassListInfo(String number, String code) {
+    return RequestHelper.getRequestApi()
+        .getClassesInfo(number, code)
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .map(this::jsonToList);
+  }
 
-
+  private List<Pair<String, List<String>>> jsonToList(ClassCourseBean classCourseBean)
+      throws JSONException {
+    List<Pair<String, List<String>>> list = new ArrayList<>();
+    if (classCourseBean.getCode() != 200 || classCourseBean.getData() == null) return list;
+    JSONObject jsonObject = new JSONObject(classCourseBean.getData().toString());
+    String[] depLists = UiHelper.getStringArrays(R.array.depLists);
+    for (String depName : depLists) {
+      JSONArray jsonArray = jsonObject.optJSONArray(depName);
+      if (jsonArray == null || jsonArray.length() == 0) {
+        continue;
+      }
+      List<String> className = new ArrayList<>();
+      for (int i = 0; i < jsonArray.length(); i++) {
+        className.add(jsonArray.getString(i));
+      }
+      list.add(new Pair<>(depName, className));
+    }
+    return list;
+  }
 }

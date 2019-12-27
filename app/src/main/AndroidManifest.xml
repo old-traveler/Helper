@@ -81,6 +81,8 @@
     <activity android:name=".activity.SecondMarketPublishActivity" />
     <activity android:name=".activity.LosePublishActivity" />
     <activity android:name=".activity.flutter.PersonalActivity" />
+    <activity android:name=".activity.flutter.ClassCourseActivity"/>
+    <activity android:name=".activity.flutter.ClassSelectActivity"/>
 
     <receiver android:name="cn.bmob.newim.core.ConnectChangeReceiver">
       <intent-filter>

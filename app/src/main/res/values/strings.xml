@@ -39,6 +39,7 @@
   <string name="examination">考试计划</string>
   <string name="my_achievement">我的成绩</string>
   <string name="query_power">查电费</string>
+  <string name="class_course">查课表</string>
   <string name="query_power_title">Query Power</string>
   <string name="library">图书馆</string>
   <string name="school_date">校历</string>
@@ -98,6 +99,7 @@
   <string name="save_image_name">/mnt/sdcard/Pictures/HELPER_%s</string>
   <string name="register">注册</string>
   <string name="register_url">https://api.huthelper.cn/auth/register</string>
+  <string name="select_class">选择班级</string>
 
   <string-array name="weeks">
     <item>周一</item>
@@ -115,6 +117,29 @@
     <item>五\n六\n节</item>
     <item>七\n八\n节</item>
     <item>九\n十\n节</item>
+  </string-array>
+
+  <string-array name="depLists">
+    <item>交通工程学院</item>
+    <item>体育学院</item>
+    <item>冶金与材料工程学院</item>
+    <item>包装与材料工程学院</item>
+    <item>包装设计艺术学院</item>
+    <item>商学院</item>
+    <item>国际学院</item>
+    <item>土木工程学院</item>
+    <item>城市与环境学院</item>
+    <item>外国语学院</item>
+    <item>文学与新闻传播学院</item>
+    <item>机械工程学院</item>
+    <item>法学院</item>
+    <item>理学院</item>
+    <item>生命科学与化学学院</item>
+    <item>电气与信息工程学院</item>
+    <item>经济与贸易学院</item>
+    <item>计算机学院</item>
+    <item>醴陵陶瓷学院</item>
+    <item>音乐学院</item>
   </string-array>
 
   <integer-array name="course_color">

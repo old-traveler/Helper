@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto">
+
+  <item
+    app:showAsAction="ifRoom"
+    android:id="@+id/week_select"
+    android:title="" />
+
+  <item
+    app:showAsAction="ifRoom"
+    android:icon="@drawable/ic_more_info"
+    android:id="@+id/item_select_class"
+    android:title="@string/select_class"/>
+
+</menu>
