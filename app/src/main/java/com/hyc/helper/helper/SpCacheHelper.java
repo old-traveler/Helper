@@ -37,6 +37,10 @@ public class SpCacheHelper {
     }
   }
 
+  public static void removeKey(String key){
+    getEditor().remove(key).apply();
+  }
+
   public static void putBoolean(String key, boolean data) {
     getEditor().putBoolean(key, data).apply();
   }

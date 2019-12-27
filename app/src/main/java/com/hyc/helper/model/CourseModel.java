@@ -13,6 +13,7 @@ import com.hyc.helper.helper.DbInsertHelper;
 import com.hyc.helper.helper.DbSearchHelper;
 import com.hyc.helper.helper.LogHelper;
 import com.hyc.helper.helper.RequestHelper;
+import com.hyc.helper.helper.SpCacheHelper;
 import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -135,8 +136,9 @@ public class CourseModel {
         .map(this::jsonToList);
   }
 
-  private List<Pair<String, List<String>>> jsonToList(ClassCourseBean classCourseBean)
+  public List<Pair<String, List<String>>> jsonToList(ClassCourseBean classCourseBean)
       throws JSONException {
+    SpCacheHelper.putClassIntoSp("ClassCourseBean",classCourseBean);
     List<Pair<String, List<String>>> list = new ArrayList<>();
     if (classCourseBean.getCode() != 200 || classCourseBean.getData() == null) return list;
     JSONObject jsonObject = new JSONObject(classCourseBean.getData().toString());
