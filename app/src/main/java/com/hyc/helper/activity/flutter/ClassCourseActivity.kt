@@ -38,6 +38,13 @@ class ClassCourseActivity : BaseFlutterActivity() {
   private var weekListPopWindow: ListPopupWindow? = null
   private var selectWeek: MenuItem? = null
 
+  private fun selectClassName() {
+    goToOtherActivityForResult(
+      ClassSelectActivity::class.java,
+      REQUEST_SELECT_CLASS
+    )
+  }
+
   override fun getFlutterRouter(): String {
     return javaClass.simpleName
   }
@@ -52,10 +59,7 @@ class ClassCourseActivity : BaseFlutterActivity() {
 
   override fun onOptionsItemSelected(item: MenuItem?): Boolean {
     when (item?.itemId) {
-      R.id.item_select_class -> goToOtherActivityForResult(
-        ClassSelectActivity::class.java,
-        REQUEST_SELECT_CLASS
-      )
+      R.id.item_select_class -> selectClassName()
       R.id.week_select -> {
         weekListPopWindow?.anchorView = findViewById(R.id.week_select)
         weekListPopWindow?.show()
@@ -69,6 +73,9 @@ class ClassCourseActivity : BaseFlutterActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setToolBarTitle("课表查询")
+    if (mClassName.isNullOrEmpty()) {
+      selectClassName()
+    }
   }
 
   private fun initListPopView() {

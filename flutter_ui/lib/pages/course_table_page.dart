@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:math';
+import 'dart:ui';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
@@ -74,8 +75,8 @@ class _CourseTablePageState<CourseTablePage> extends BaseInteractiveState {
             children: <Widget>[
               CachedNetworkImage(
                 imageUrl: YStrings.courseBackgroundUrl,
-                fit: BoxFit.fitHeight,
-                height: 1800,
+                fit: BoxFit.fitWidth,
+                width: window.physicalSize.width,
               ),
               _courseData.length < 5
                   ? Text("")
