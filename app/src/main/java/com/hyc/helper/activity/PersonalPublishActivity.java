@@ -83,6 +83,10 @@ public class PersonalPublishActivity extends BaseActivity {
 
   @Override
   public void initViewWithIntentData(Bundle bundle) {
-    setToolBarTitle(R.string.my_publish);
+    if (type.equals(Constant.TYPE_RELATED)) {
+      setToolBarTitle(R.string.related_to_me);
+    } else {
+      setToolBarTitle(R.string.my_publish);
+    }
   }
 }
