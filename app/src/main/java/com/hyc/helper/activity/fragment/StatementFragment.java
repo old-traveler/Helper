@@ -3,6 +3,7 @@ package com.hyc.helper.activity.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -43,6 +44,8 @@ public class StatementFragment extends
   EditText etComment;
   @BindView(R.id.cv_comment)
   CardView cvComment;
+  @BindView(R.id.fb_publish_statement)
+  FloatingActionButton floatingActionButton;
   Unbinder unbinder;
   @InitialParam(key = Constant.USER_ID)
   private String userId;
@@ -83,19 +86,22 @@ public class StatementFragment extends
   protected void requestListData(int page) {
     if (TextUtils.isEmpty(userId)) {
       statementModel.getStatementByPage(page, userModel.getStudentId(), this);
-    } else {
+    } else if (!userId.equals(Constant.TYPE_RELATED)) {
       statementModel.getPersonalStatement(userModel.getStudentId(), page, userId, this);
+    } else {
+      statementModel.fetchInteractiveStatement(userModel.getStudentId(),
+          userModel.getCurUserInfo().getRemember_code_app(), page).subscribe(this);
     }
   }
 
   @Override
   protected List<StatementInfoBean> getData(StatementBean statementBean) {
-    try{
-      if (Integer.parseInt(statementBean.getCurrent_page())<getCurPage()){
+    try {
+      if (Integer.parseInt(statementBean.getCurrent_page()) < getCurPage()) {
         return null;
       }
-    }catch (Exception e){
-     return statementBean.getStatement();
+    } catch (Exception e) {
+      return statementBean.getStatement();
     }
     return statementBean.getStatement();
   }
@@ -118,6 +124,9 @@ public class StatementFragment extends
         }
       }
     });
+    if (!TextUtils.isEmpty(userId)){
+      floatingActionButton.hide();
+    }
   }
 
   private void closeCommentInput() {
@@ -168,9 +177,9 @@ public class StatementFragment extends
       showLoadingView();
       addDisposable(statementModel.deleteStatement(userModel.getCurUserInfo(), itemData.getId())
           .subscribe(baseRequestBean -> {
-            if (baseRequestBean.getCode() == 200){
+            if (baseRequestBean.getCode() == 200) {
               getRecycleAdapter().removeItemFormList(position);
-            }else {
+            } else {
               ToastHelper.toast(baseRequestBean.getCode());
             }
             closeLoadingView();
@@ -201,8 +210,8 @@ public class StatementFragment extends
     }
   }
 
-  @Subscribe(threadMode = ThreadMode.MAIN,eventType = {Constant.EventType.ORIGINAL_DOWNLOAD})
-  public void onEvent(MessageEvent event){
+  @Subscribe(threadMode = ThreadMode.MAIN, eventType = { Constant.EventType.ORIGINAL_DOWNLOAD })
+  public void onEvent(MessageEvent event) {
     getRecycleAdapter().notifyDataSetChanged();
   }
 

@@ -277,4 +277,27 @@ public interface NetApiService {
   @GET("get/class_lessons/{number}/{code}/{className}")
   Observable<CourseBean> getClassSchedule(@Path("number") String number, @Path("code") String code,
       @Path("className") String className);
+
+  /**
+   * 查询与当前用户相关的说说
+   * @param number 当前用户学号
+   * @param code 当前用户登录口令
+   * @param page 当前页数
+   * @return 与当前用户相关的说说信息
+   */
+  @GET("statement/interactive/{number}/{code}/{page}")
+  Observable<StatementBean> fetchInteractiveStatement(@Path("number") String number,
+      @Path("code") String code, @Path("page") int page);
+
+  /**
+   * 通过关键字搜索说说信息
+   * @param number 当前用户学号
+   * @param code   当前用户登录口令
+   * @param keyWord 搜索关键词
+   * @param page 当前页数
+   * @return 包含此关键字的说说信息
+   */
+  @GET("statement/search/{number}/{code}/{key_word}/{page}")
+  Observable<StatementBean> searchStatement(@Path("number") String number,
+      @Path("code") String code, @Path("key_word") String keyWord, @Path("page") int page);
 }

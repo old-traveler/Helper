@@ -38,6 +38,8 @@ public class Constant {
 
   public static final String TYPE_SECOND = "second_market";
 
+  public static final String TYPE_RELATED = "related_me";
+
   public static final String TYPE_LOST = "lost";
 
   public static final String CHAT_INTENT_KEY = "conversation";

@@ -112,4 +112,11 @@ public class StatementModel {
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread());
   }
+
+  public Observable<StatementBean> fetchInteractiveStatement(String number,String code ,int page){
+    return RequestHelper.getRequestApi()
+        .fetchInteractiveStatement(number,code,page)
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread());
+  }
 }

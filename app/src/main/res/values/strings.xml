@@ -101,6 +101,7 @@
   <string name="register_url">https://api.huthelper.cn/auth/register</string>
   <string name="select_class">选择班级</string>
   <string name="refresh">刷新</string>
+  <string name="related_to_me">与我相关</string>
 
   <string-array name="weeks">
     <item>周一</item>
