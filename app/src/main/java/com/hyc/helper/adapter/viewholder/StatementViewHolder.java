@@ -87,7 +87,14 @@ public class StatementViewHolder extends BaseViewHolder<StatementInfoBean>
         ? UiHelper.getString(R.string.default_bio) : data.getBio());
     expandableLayout.updateState(sparseIntArray, position * position);
     commentExpandableLayout.updateState(sparseIntArray, 2 * position + 1);
-    tvContent.setText(data.getContent().trim());
+    String content = data.getContent().trim();
+    if (TextUtils.isEmpty(content)) {
+      tvContent.setText(null);
+      tvContent.setVisibility(View.GONE);
+    } else {
+      tvContent.setVisibility(View.VISIBLE);
+      tvContent.setText(data.getContent().trim());
+    }
     LogHelper.log(tvContent.getText().toString());
     tvFrom.setText(data.getDep_name());
     tvLikeCount.setText(data.getLikes());
