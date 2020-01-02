@@ -4,9 +4,11 @@ import android.annotation.SuppressLint;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomSheetDialog;
+import android.support.v4.graphics.drawable.DrawableCompat;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.style.ClickableSpan;
@@ -185,5 +187,10 @@ public class UiHelper {
     if (spannableStringBuilder != null){
       textView.setText(spannableStringBuilder);
     }
+  }
+
+  public static Drawable tintDrawable(Drawable drawable, int color) {
+    DrawableCompat.setTint(drawable, color);
+    return drawable;
   }
 }

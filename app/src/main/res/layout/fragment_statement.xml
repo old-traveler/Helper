@@ -60,6 +60,15 @@
     app:fab_addButtonColorPressed="@color/colorPrimaryPress">
 
     <com.getbase.floatingactionbutton.FloatingActionButton
+      android:id="@+id/fb_type"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      app:fab_colorNormal="@color/colorPrimary"
+      app:fab_colorPressed="@color/colorPrimaryPress"
+      app:fab_icon="@drawable/ic_fire"
+      app:fab_size="mini" />
+
+    <com.getbase.floatingactionbutton.FloatingActionButton
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       app:fab_colorNormal="@color/colorPrimary"

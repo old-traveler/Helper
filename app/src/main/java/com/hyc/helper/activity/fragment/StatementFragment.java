@@ -1,6 +1,7 @@
 package com.hyc.helper.activity.fragment;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
@@ -24,6 +25,7 @@ import com.hyc.helper.annotation.Subscribe;
 import com.hyc.helper.base.adapter.BaseRecycleAdapter;
 import com.hyc.helper.base.fragment.BaseListFragment;
 import com.hyc.helper.base.util.ToastHelper;
+import com.hyc.helper.base.util.UiHelper;
 import com.hyc.helper.bean.CommentInfoBean;
 import com.hyc.helper.bean.MessageEvent;
 import com.hyc.helper.bean.StatementBean;
@@ -49,12 +51,16 @@ public class StatementFragment extends
   FloatingActionButton floatingActionButton;
   @BindView(R.id.fm_menu)
   FloatingActionsMenu floatingActionsMenu;
+  @BindView(R.id.fb_type)
+  FloatingActionButton fbType;
   Unbinder unbinder;
   @InitialParam(key = Constant.USER_ID)
   private String userId;
   private int position;
+  private boolean isFire = false;
   private UserModel userModel = new UserModel();
   private StatementModel statementModel = new StatementModel();
+  private Drawable mDrawable;
 
   public static StatementFragment newInstance(String userId) {
     StatementFragment statementFragment = new StatementFragment();
@@ -88,7 +94,11 @@ public class StatementFragment extends
   @Override
   protected void requestListData(int page) {
     if (TextUtils.isEmpty(userId)) {
-      statementModel.getStatementByPage(page, userModel.getStudentId(), this);
+      if (isFire) {
+        statementModel.fetchFireStatement(userModel.getStudentId(), page).subscribe(this);
+      } else {
+        statementModel.getStatementByPage(page, userModel.getStudentId(), this);
+      }
     } else if (!userId.equals(Constant.TYPE_RELATED)) {
       statementModel.getPersonalStatement(userModel.getStudentId(), page, userId, this);
     } else {
@@ -127,7 +137,7 @@ public class StatementFragment extends
         }
       }
     });
-    if (!TextUtils.isEmpty(userId)){
+    if (!TextUtils.isEmpty(userId)) {
       floatingActionsMenu.setVisibility(View.GONE);
     }
   }
@@ -193,7 +203,7 @@ public class StatementFragment extends
     }
   }
 
-  @OnClick({ R.id.btn_send_comment, R.id.fb_publish_statement })
+  @OnClick({ R.id.btn_send_comment, R.id.fb_publish_statement, R.id.fb_type })
   public void onViewClicked(View view) {
     switch (view.getId()) {
       case R.id.btn_send_comment:
@@ -201,6 +211,18 @@ public class StatementFragment extends
         break;
       case R.id.fb_publish_statement:
         startActivityForResult(new Intent(getActivity(), PublishStatementActivity.class), 2010);
+        floatingActionsMenu.collapse();
+        break;
+      case R.id.fb_type:
+        isFire = !isFire;
+        if (mDrawable == null) {
+          mDrawable = getResources().getDrawable(R.drawable.ic_fire, null);
+        }
+        Drawable drawable = UiHelper.tintDrawable(mDrawable,
+            UiHelper.getColor(isFire ? R.color.hot : R.color.white));
+        fbType.setIconDrawable(drawable);
+        refresh();
+        floatingActionsMenu.collapse();
         break;
     }
   }

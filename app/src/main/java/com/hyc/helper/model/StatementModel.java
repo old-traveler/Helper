@@ -119,4 +119,12 @@ public class StatementModel {
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread());
   }
+
+  public Observable<StatementBean> fetchFireStatement(String number,int page){
+    return RequestHelper.getRequestApi()
+        .fetchFireStatement(number, page)
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread());
+  }
+
 }

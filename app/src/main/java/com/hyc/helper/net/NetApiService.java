@@ -280,6 +280,7 @@ public interface NetApiService {
 
   /**
    * 查询与当前用户相关的说说
+   *
    * @param number 当前用户学号
    * @param code 当前用户登录口令
    * @param page 当前页数
@@ -291,8 +292,9 @@ public interface NetApiService {
 
   /**
    * 通过关键字搜索说说信息
+   *
    * @param number 当前用户学号
-   * @param code   当前用户登录口令
+   * @param code 当前用户登录口令
    * @param keyWord 搜索关键词
    * @param page 当前页数
    * @return 包含此关键字的说说信息
@@ -300,4 +302,7 @@ public interface NetApiService {
   @GET("statement/search/{number}/{code}/{key_word}/{page}")
   Observable<StatementBean> searchStatement(@Path("number") String number,
       @Path("code") String code, @Path("key_word") String keyWord, @Path("page") int page);
+
+  @GET("statement/fire/{number}/7/{page}")
+  Observable<StatementBean> fetchFireStatement(@Path("number") String number, @Path("page") int page);
 }

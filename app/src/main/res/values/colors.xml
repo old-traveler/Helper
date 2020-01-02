@@ -10,6 +10,7 @@
   <color name="front_black">#2e3032</color>
   <color name="font_cancel">#777575</color>
   <color name="font_blue">#c95cc7fc</color>
+  <color name="hot">#C9FB1F3E</color>
   <color name="font_blue_selected">#b06c69</color>
   <color name="bg_common_select">#d5e7e7e7</color>
   <color name="bg_common_selected">#c1c8c8c8</color>
