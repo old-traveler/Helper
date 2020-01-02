@@ -23,7 +23,8 @@ ext {
       HeadZoomLayout: 'v1.0.5',
       runner: "1.0.2",
       espresso: "3.0.2",
-      junit: "4.12"
+      junit: "4.12",
+      floatbutton: "1.10.1"
   ]
   depsLibs = [
       support: "com.android.support:appcompat-v7:${depsVersion.support}",
@@ -54,7 +55,8 @@ ext {
       kotlin: "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version",
       runner: "com.android.support.test:runner:${depsVersion.runner}",
       espresso: "com.android.support.test.espresso:espresso-core:${depsVersion.espresso}",
-      junit: "junit:junit:${depsVersion.junit}"
+      junit: "junit:junit:${depsVersion.junit}",
+      floatbutton: "com.getbase:floatingactionbutton:${depsVersion.floatbutton}"
 
   ]
 }

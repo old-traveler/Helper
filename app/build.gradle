@@ -109,6 +109,7 @@ dependencies {
   implementation depsLibs.HeadZoomLayout
   implementation depsLibs.kotlin
   annotationProcessor depsLibs.butterknife_compiler
+  implementation depsLibs.floatbutton
   implementation project(path: ':cuckoo-lib')
   implementation project(':flutter')
 }

@@ -3,7 +3,6 @@ package com.hyc.helper.activity.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -15,6 +14,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
+import com.getbase.floatingactionbutton.FloatingActionButton;
+import com.getbase.floatingactionbutton.FloatingActionsMenu;
 import com.hyc.helper.R;
 import com.hyc.helper.activity.PublishStatementActivity;
 import com.hyc.helper.adapter.StatementAdapter;
@@ -46,6 +47,8 @@ public class StatementFragment extends
   CardView cvComment;
   @BindView(R.id.fb_publish_statement)
   FloatingActionButton floatingActionButton;
+  @BindView(R.id.fm_menu)
+  FloatingActionsMenu floatingActionsMenu;
   Unbinder unbinder;
   @InitialParam(key = Constant.USER_ID)
   private String userId;
@@ -125,7 +128,7 @@ public class StatementFragment extends
       }
     });
     if (!TextUtils.isEmpty(userId)){
-      floatingActionButton.hide();
+      floatingActionsMenu.setVisibility(View.GONE);
     }
   }
 
