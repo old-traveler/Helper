@@ -240,6 +240,7 @@ public class StatementFragment extends
         floatingActionsMenu.collapse();
         break;
       case R.id.fb_search:
+        floatingActionsMenu.collapse();
         SearchActivity.startForSearch(getActivity(), SearchActivity.statement);
         break;
     }
