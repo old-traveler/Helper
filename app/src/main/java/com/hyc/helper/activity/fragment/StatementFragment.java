@@ -150,6 +150,9 @@ public class StatementFragment extends
         if (dy != 0 && cvComment.getVisibility() == View.VISIBLE) {
           closeCommentInput();
         }
+        if (floatingActionsMenu.isExpanded()) {
+          floatingActionsMenu.collapse();
+        }
       }
     });
     if (!TextUtils.isEmpty(userId) || !TextUtils.isEmpty(mKeyWord)) {
