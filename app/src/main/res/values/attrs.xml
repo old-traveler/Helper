@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <declare-styleable name="imageLayout">
-    <attr name="maxWidth" format="dimension"/>
-    <attr name="maxHeight" format="dimension"/>
-    <attr name="maxCount" format="integer"/>
+    <attr name="maxWidth" format="dimension" />
+    <attr name="maxHeight" format="dimension" />
+    <attr name="maxCount" format="integer" />
   </declare-styleable>
 
   <declare-styleable name="ExpandableLayout">
@@ -29,6 +29,12 @@
       <flag name="bold" value="1" />
       <flag name="italic" value="2" />
     </attr>
+  </declare-styleable>
+
+  <declare-styleable name="TabLayout">
+    <attr name="horizontalSpacing" format="dimension" />
+    <attr name="verticalSpacing" format="dimension" />
+    <attr name="max_line_count" format="integer" />
   </declare-styleable>
 
 </resources>

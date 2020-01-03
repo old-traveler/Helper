@@ -20,7 +20,7 @@ import com.hyc.helper.bean.LostBean;
 import com.hyc.helper.helper.Constant;
 import com.hyc.helper.model.LostGoodsModel;
 import com.hyc.helper.model.UserModel;
-import com.hyc.helper.util.parrot.InitialParam;
+import com.hyc.helper.util.parrot.InitParam;
 import java.util.List;
 
 import static android.app.Activity.RESULT_OK;
@@ -30,7 +30,7 @@ public class LostFindFragment
 
   private LostGoodsModel lostGoodsModel = new LostGoodsModel();
   private UserModel userModel = new UserModel();
-  @InitialParam(key = Constant.USER_ID)
+  @InitParam(Constant.USER_ID)
   private String userId;
 
   @Override

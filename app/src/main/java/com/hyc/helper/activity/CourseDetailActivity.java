@@ -15,7 +15,7 @@ import com.hyc.helper.base.activity.BaseActivity;
 import com.hyc.helper.base.adapter.BaseRecycleAdapter;
 import com.hyc.helper.bean.CourseInfoBean;
 import com.hyc.helper.bean.InfoEntity;
-import com.hyc.helper.util.parrot.InitialParam;
+import com.hyc.helper.util.parrot.InitParam;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,7 +25,7 @@ public class CourseDetailActivity extends BaseActivity {
   RecyclerView rvDate;
   @BindView(R.id.rv_course_info)
   RecyclerView rvCourseInfo;
-  @InitialParam
+  @InitParam
   private CourseInfoBean courseInfoBean;
 
   @Override

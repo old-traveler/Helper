@@ -21,7 +21,7 @@ import com.hyc.helper.helper.Constant;
 import com.hyc.helper.model.UserModel;
 import com.hyc.helper.util.DensityUtil;
 import com.hyc.helper.model.SecondGoodsModel;
-import com.hyc.helper.util.parrot.InitialParam;
+import com.hyc.helper.util.parrot.InitParam;
 import com.hyc.helper.view.SpacesItemDecoration;
 import java.util.List;
 
@@ -32,7 +32,7 @@ public class SecondHandFragment
 
   private SecondGoodsModel model = new SecondGoodsModel();
   private UserModel userModel = new UserModel();
-  @InitialParam(key = Constant.USER_ID)
+  @InitParam(Constant.USER_ID)
   private String userId;
 
   @Override

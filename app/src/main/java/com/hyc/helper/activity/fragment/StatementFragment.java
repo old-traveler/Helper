@@ -19,6 +19,7 @@ import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.getbase.floatingactionbutton.FloatingActionsMenu;
 import com.hyc.helper.R;
 import com.hyc.helper.activity.PublishStatementActivity;
+import com.hyc.helper.activity.SearchActivity;
 import com.hyc.helper.adapter.StatementAdapter;
 import com.hyc.helper.adapter.viewholder.StatementViewHolder;
 import com.hyc.helper.annotation.Subscribe;
@@ -36,7 +37,8 @@ import com.hyc.helper.model.StatementModel;
 import com.hyc.helper.model.UserModel;
 import com.hyc.helper.util.RxBus;
 import com.hyc.helper.util.ThreadMode;
-import com.hyc.helper.util.parrot.InitialParam;
+import com.hyc.helper.util.parrot.InitParam;
+import com.hyc.helper.util.parrot.Parrot;
 import java.util.List;
 
 import static android.app.Activity.RESULT_OK;
@@ -54,18 +56,28 @@ public class StatementFragment extends
   @BindView(R.id.fb_type)
   FloatingActionButton fbType;
   Unbinder unbinder;
-  @InitialParam(key = Constant.USER_ID)
+  @InitParam(Constant.USER_ID)
   private String userId;
   private int position;
   private boolean isFire = false;
   private UserModel userModel = new UserModel();
   private StatementModel statementModel = new StatementModel();
   private Drawable mDrawable;
+  @InitParam("keyWord")
+  private String mKeyWord;
 
   public static StatementFragment newInstance(String userId) {
     StatementFragment statementFragment = new StatementFragment();
     Bundle bundle = new Bundle();
     bundle.putString(Constant.USER_ID, userId);
+    statementFragment.setArguments(bundle);
+    return statementFragment;
+  }
+
+  public static StatementFragment newSearchInstance(String keyWord) {
+    StatementFragment statementFragment = new StatementFragment();
+    Bundle bundle = new Bundle();
+    bundle.putString("keyWord", keyWord);
     statementFragment.setArguments(bundle);
     return statementFragment;
   }
@@ -93,7 +105,10 @@ public class StatementFragment extends
 
   @Override
   protected void requestListData(int page) {
-    if (TextUtils.isEmpty(userId)) {
+    if (!TextUtils.isEmpty(mKeyWord)) {
+      statementModel.searchStatementByKeyword(userModel.getStudentId(),
+          userModel.getCurUserInfo().getRemember_code_app(), mKeyWord, page).subscribe(this);
+    } else if (TextUtils.isEmpty(userId)) {
       if (isFire) {
         statementModel.fetchFireStatement(userModel.getStudentId(), page).subscribe(this);
       } else {
@@ -137,7 +152,7 @@ public class StatementFragment extends
         }
       }
     });
-    if (!TextUtils.isEmpty(userId)) {
+    if (!TextUtils.isEmpty(userId) || !TextUtils.isEmpty(mKeyWord)) {
       floatingActionsMenu.setVisibility(View.GONE);
     }
   }
@@ -203,7 +218,7 @@ public class StatementFragment extends
     }
   }
 
-  @OnClick({ R.id.btn_send_comment, R.id.fb_publish_statement, R.id.fb_type })
+  @OnClick({ R.id.btn_send_comment, R.id.fb_publish_statement, R.id.fb_type, R.id.fb_search })
   public void onViewClicked(View view) {
     switch (view.getId()) {
       case R.id.btn_send_comment:
@@ -224,6 +239,9 @@ public class StatementFragment extends
         refresh();
         floatingActionsMenu.collapse();
         break;
+      case R.id.fb_search:
+        SearchActivity.startForSearch(getActivity(), SearchActivity.statement);
+        break;
     }
   }
 
@@ -231,6 +249,11 @@ public class StatementFragment extends
   public void onActivityResult(int requestCode, int resultCode, Intent data) {
     super.onActivityResult(requestCode, resultCode, data);
     if (requestCode == 2010 && resultCode == RESULT_OK) {
+      refresh();
+    } else if (requestCode == SearchActivity.searchCode
+        && resultCode == RESULT_OK
+        && data.getExtras() != null) {
+      Parrot.initParam(data.getExtras(), this);
       refresh();
     }
   }

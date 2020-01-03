@@ -204,12 +204,6 @@ public interface NetApiService {
       @Path("code") String code, @Field("bio") String bio);
 
   /**
-   * 获取排名信息
-   */
-  @GET("Get/rank/{number}/{code}")
-  Observable<BaseRequestBean> getRankInfo(@Path("number") String number, @Path("code") String code);
-
-  /**
    * 获取所有成绩
    */
   @GET("Get/score/{number}/{code}")
@@ -304,5 +298,6 @@ public interface NetApiService {
       @Path("code") String code, @Path("key_word") String keyWord, @Path("page") int page);
 
   @GET("statement/fire/{number}/7/{page}")
-  Observable<StatementBean> fetchFireStatement(@Path("number") String number, @Path("page") int page);
+  Observable<StatementBean> fetchFireStatement(@Path("number") String number,
+      @Path("page") int page);
 }

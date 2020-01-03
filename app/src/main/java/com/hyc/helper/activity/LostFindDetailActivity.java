@@ -26,7 +26,7 @@ import com.hyc.helper.bean.LostBean;
 import com.hyc.helper.helper.DisposableManager;
 import com.hyc.helper.helper.ImageRequestHelper;
 import com.hyc.helper.util.DensityUtil;
-import com.hyc.helper.util.parrot.InitialParam;
+import com.hyc.helper.util.parrot.InitParam;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,7 +50,7 @@ public class LostFindDetailActivity extends BaseActivity {
   FrameLayout flHead;
   @BindView(R.id.hzl_detail)
   HeadZoomLayout hzlDetail;
-  @InitialParam(key = "lost")
+  @InitParam("lost")
   private LostBean.GoodsBean goodsBean;
 
   @Override

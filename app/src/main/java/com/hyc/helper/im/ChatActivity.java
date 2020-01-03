@@ -49,7 +49,7 @@ import com.hyc.helper.model.UserModel;
 import com.hyc.helper.util.DensityUtil;
 import com.hyc.helper.util.RxBus;
 import com.hyc.helper.util.ThreadMode;
-import com.hyc.helper.util.parrot.InitialParam;
+import com.hyc.helper.util.parrot.InitParam;
 import com.hyc.helper.view.ChatLinearLayoutManager;
 import com.hyc.helper.view.ChatSpacesItemDecoration;
 import com.hyc.helper.view.EmojiItemDecoration;
@@ -91,7 +91,7 @@ public class ChatActivity extends BaseActivity
   LinearLayout rootView;
   @BindView(R.id.voiceView)
   VoiceRecordView voiceRecordView;
-  @InitialParam(key = Constant.CHAT_INTENT_KEY)
+  @InitParam(Constant.CHAT_INTENT_KEY)
   private BmobIMConversation conversation;
   private ChatAdapter adapter;
   private Disposable disposable;

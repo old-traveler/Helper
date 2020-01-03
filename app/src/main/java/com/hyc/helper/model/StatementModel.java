@@ -47,8 +47,9 @@ public class StatementModel {
         .subscribe(consumer);
   }
 
-  public void getPersonalStatement(String number,int page,String userId,Observer<StatementBean> observer){
-    RequestHelper.getRequestApi().getUserStatement(number,page,userId)
+  public void getPersonalStatement(String number, int page, String userId,
+      Observer<StatementBean> observer) {
+    RequestHelper.getRequestApi().getUserStatement(number, page, userId)
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(observer);
@@ -113,18 +114,25 @@ public class StatementModel {
         .observeOn(AndroidSchedulers.mainThread());
   }
 
-  public Observable<StatementBean> fetchInteractiveStatement(String number,String code ,int page){
+  public Observable<StatementBean> fetchInteractiveStatement(String number, String code, int page) {
     return RequestHelper.getRequestApi()
-        .fetchInteractiveStatement(number,code,page)
+        .fetchInteractiveStatement(number, code, page)
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread());
   }
 
-  public Observable<StatementBean> fetchFireStatement(String number,int page){
+  public Observable<StatementBean> fetchFireStatement(String number, int page) {
     return RequestHelper.getRequestApi()
         .fetchFireStatement(number, page)
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread());
   }
 
+  public Observable<StatementBean> searchStatementByKeyword(String number, String code,
+      String keyWord, int page) {
+    return RequestHelper.getRequestApi()
+        .searchStatement(number, code, keyWord, page)
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread());
+  }
 }

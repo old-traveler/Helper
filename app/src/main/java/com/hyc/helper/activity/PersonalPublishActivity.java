@@ -13,12 +13,12 @@ import com.hyc.helper.base.activity.BaseActivity;
 import com.hyc.helper.base.fragment.BaseFragment;
 import com.hyc.helper.helper.Constant;
 import com.hyc.helper.model.UserModel;
-import com.hyc.helper.util.parrot.InitialParam;
+import com.hyc.helper.util.parrot.InitParam;
 
 public class PersonalPublishActivity extends BaseActivity {
-  @InitialParam(key = Constant.USER_ID)
+  @InitParam(Constant.USER_ID)
   private String userId;
-  @InitialParam
+  @InitParam
   private String type;
 
   @Override

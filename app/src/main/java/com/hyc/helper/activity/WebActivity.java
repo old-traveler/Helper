@@ -28,7 +28,7 @@ import com.hyc.helper.base.activity.BaseActivity;
 import com.hyc.helper.base.util.ToastHelper;
 import com.hyc.helper.base.util.UiHelper;
 import com.hyc.helper.helper.DbInsertHelper;
-import com.hyc.helper.util.parrot.InitialParam;
+import com.hyc.helper.util.parrot.InitParam;
 
 public class WebActivity extends BaseActivity {
 
@@ -37,9 +37,9 @@ public class WebActivity extends BaseActivity {
   @BindView(R.id.web_view)
   WebView webView;
   private BottomSheetDialog sheetDialog;
-  @InitialParam(key = "url")
+  @InitParam("url")
   private String mainUrl;
-  @InitialParam(key = "title")
+  @InitParam("title")
   public String toolBarTitle;
 
   @Override

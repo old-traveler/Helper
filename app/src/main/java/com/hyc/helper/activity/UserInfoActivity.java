@@ -27,7 +27,7 @@ import com.hyc.helper.helper.ImageRequestHelper;
 import com.hyc.helper.im.ChatActivity;
 import com.hyc.helper.im.ConnectManager;
 import com.hyc.helper.model.UserModel;
-import com.hyc.helper.util.parrot.InitialParam;
+import com.hyc.helper.util.parrot.InitParam;
 import org.greenrobot.greendao.annotation.NotNull;
 
 public class UserInfoActivity extends BaseRequestActivity<UserInfoBean> {
@@ -40,15 +40,15 @@ public class UserInfoActivity extends BaseRequestActivity<UserInfoBean> {
   TextView tvInfoDesc;
   @BindView(R.id.cv_info_portrait)
   ImageView cvInfoPortrait;
-  @InitialParam(key = Constant.USER_HEAD_URL)
+  @InitParam(Constant.USER_HEAD_URL)
   private String headUrl;
-  @InitialParam(key = Constant.USER_ID)
+  @InitParam(Constant.USER_ID)
   private String userId;
   private UserModel userModel = new UserModel();
   private BmobIMUserInfo info;
-  @InitialParam(key = Constant.USER_NAME)
+  @InitParam(Constant.USER_NAME)
   private String userName;
-  @InitialParam(key = Constant.USER_BIO)
+  @InitParam(Constant.USER_BIO)
   private String userBio;
 
   @Override
