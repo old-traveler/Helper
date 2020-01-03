@@ -98,6 +98,9 @@ class SearchActivity : BaseActivity() {
     Log.d("backSearchKeyWord", forResult.toString())
     mSearchHistory.remove(keyWord)
     mSearchHistory.add(0, keyWord)
+    if (mSearchHistory.size > 30) {
+      mSearchHistory = mSearchHistory.subList(0, 30)
+    }
     SpCacheHelper.putString("search_history$mType", Gson().toJson(mSearchHistory))
     val bundle = Bundle()
     bundle.putString("keyWord", keyWord)
