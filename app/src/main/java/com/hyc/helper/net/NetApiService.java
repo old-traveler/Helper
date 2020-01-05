@@ -300,4 +300,31 @@ public interface NetApiService {
   @GET("statement/fire/{number}/7/{page}")
   Observable<StatementBean> fetchFireStatement(@Path("number") String number,
       @Path("page") int page);
+
+  /**
+   * 查询失物招领
+   * @param number 学号
+   * @param code  token
+   * @param page  页数
+   * @param like  关键词
+   * @return 包含此关键词的失物招领信息
+   */
+  @FormUrlEncoded
+  @POST("Loses/search/{number}/{code}/{page}")
+  Observable<LostBean> searchLostAndFind(@Path("number") String number, @Path("code") String code,
+      @Path("page") int page, @Field("like") String like);
+
+  /**
+   * 查询二手市场商品
+   * @param number 学号
+   * @param code token
+   * @param page 页数
+   * @param like 关键词
+   * @return 包含此关键词的二手商品信息
+   */
+  @FormUrlEncoded
+  @POST("trade/search/{number}/{code}/{page}")
+  Observable<SecondHandBean> searchSecordGoods(@Path("number") String number,
+      @Path("code") String code,
+      @Path("page") int page, @Field("like") String like);
 }
