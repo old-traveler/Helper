@@ -82,7 +82,7 @@ public class SecondGoodsModel {
 
   private void publishMarketGoods(UserBean userBean, Map<String, String> map, String hidden,
       Observer<BaseRequestBean> observer) {
-    map.put("hidden",hidden);
+    map.put("hidden", hidden);
     RequestHelper.getRequestApi()
         .createTrade(userBean.getData().getStudentKH(), userBean.getRemember_code_app(), map)
         .subscribeOn(Schedulers.io())
@@ -90,10 +90,17 @@ public class SecondGoodsModel {
         .subscribe(observer);
   }
 
-  public Observable<BaseRequestBean> deleteGoods(UserBean userBean,String tradeId){
-    return RequestHelper.getRequestApi().deleteTrade(userBean.getData().getStudentKH(),userBean.getRemember_code_app(),tradeId)
+  public Observable<BaseRequestBean> deleteGoods(UserBean userBean, String tradeId) {
+    return RequestHelper.getRequestApi()
+        .deleteTrade(userBean.getData().getStudentKH(), userBean.getRemember_code_app(), tradeId)
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread());
   }
 
+  public Observable<SecondHandBean> searchSecondHand(String number, String code, String keyWord,
+      int page) {
+    return RequestHelper.getRequestApi().searchSecordGoods(number, code, page, keyWord)
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread());
+  }
 }

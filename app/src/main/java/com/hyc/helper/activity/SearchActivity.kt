@@ -5,7 +5,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.SearchView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.View
@@ -38,12 +37,12 @@ class SearchActivity : BaseActivity() {
 
   companion object {
     const val statement = "statement"
+    const val secondHand = "secondHand"
     const val searchCode = 4396
     @JvmOverloads
     @JvmStatic
     fun startForSearch(activity: Any?, type: String, forResult: Boolean = false) {
       activity ?: return
-      Log.d("startForSearch", forResult.toString())
       val bundle = Bundle()
       bundle.putString("search_type", type)
       bundle.putBoolean("forResult", forResult)
@@ -95,7 +94,6 @@ class SearchActivity : BaseActivity() {
   }
 
   private fun backSearchKeyWord(keyWord: String) {
-    Log.d("backSearchKeyWord", forResult.toString())
     mSearchHistory.remove(keyWord)
     mSearchHistory.add(0, keyWord)
     if (mSearchHistory.size > 30) {

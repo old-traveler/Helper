@@ -15,6 +15,7 @@
     </list>
     <writeAnnotations>
       <writeAnnotation name="com.hyc.helper.util.parrot.InitialParam" />
+      <writeAnnotation name="com.hyc.helper.util.parrot.InitParam" />
     </writeAnnotations>
   </component>
   <component name="Kotlin2JsCompilerArguments">
