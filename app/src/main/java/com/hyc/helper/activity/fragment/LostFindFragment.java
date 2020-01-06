@@ -79,6 +79,9 @@ public class LostFindFragment
         }
       }
     });
+    if (!TextUtils.isEmpty(userId) || !TextUtils.isEmpty(mKeyWord)) {
+      floatingActionsMenu.setVisibility(View.GONE);
+    }
   }
 
   @OnClick({ R.id.fb_publish_lost, R.id.fb_search })

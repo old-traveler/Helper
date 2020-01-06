@@ -82,6 +82,9 @@ public class SecondHandFragment
         }
       }
     });
+    if (!TextUtils.isEmpty(userId) || !TextUtils.isEmpty(mKeyWord)) {
+      floatingActionsMenu.setVisibility(View.GONE);
+    }
   }
 
   @OnClick({ R.id.fb_publish_second, R.id.fb_search })
