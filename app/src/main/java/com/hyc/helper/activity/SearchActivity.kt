@@ -38,6 +38,7 @@ class SearchActivity : BaseActivity() {
   companion object {
     const val statement = "statement"
     const val secondHand = "secondHand"
+    const val lostAndFind = "lostAndFind"
     const val searchCode = 4396
     @JvmOverloads
     @JvmStatic

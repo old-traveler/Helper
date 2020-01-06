@@ -90,4 +90,12 @@ public class LostGoodsModel {
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread());
   }
+
+  public Observable<LostBean> searchLostAndFind(String number, String code, String keyWord,
+      int page) {
+    return RequestHelper.getRequestApi()
+        .searchLostAndFind(number, code, page, keyWord)
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread());
+  }
 }

@@ -3,15 +3,21 @@ package com.hyc.helper.activity.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+import butterknife.Unbinder;
+import com.getbase.floatingactionbutton.FloatingActionsMenu;
 import com.hyc.helper.R;
 import com.hyc.helper.activity.LosePublishActivity;
 import com.hyc.helper.activity.LostFindDetailActivity;
+import com.hyc.helper.activity.SearchActivity;
 import com.hyc.helper.adapter.viewholder.LostFindViewHolder;
 import com.hyc.helper.base.adapter.BaseRecycleAdapter;
 import com.hyc.helper.base.fragment.BaseListFragment;
@@ -21,6 +27,7 @@ import com.hyc.helper.helper.Constant;
 import com.hyc.helper.model.LostGoodsModel;
 import com.hyc.helper.model.UserModel;
 import com.hyc.helper.util.parrot.InitParam;
+import com.hyc.helper.util.parrot.Parrot;
 import java.util.List;
 
 import static android.app.Activity.RESULT_OK;
@@ -28,10 +35,15 @@ import static android.app.Activity.RESULT_OK;
 public class LostFindFragment
     extends BaseListFragment<LostBean.GoodsBean, LostBean, LostFindViewHolder> {
 
+  @BindView(R.id.fm_menu)
+  FloatingActionsMenu floatingActionsMenu;
   private LostGoodsModel lostGoodsModel = new LostGoodsModel();
   private UserModel userModel = new UserModel();
   @InitParam(Constant.USER_ID)
   private String userId;
+  @InitParam("keyWord")
+  private String mKeyWord;
+  private Unbinder unbinder;
 
   @Override
   protected BaseRecycleAdapter<LostBean.GoodsBean, LostFindViewHolder> setRecycleAdapter() {
@@ -46,12 +58,42 @@ public class LostFindFragment
     return lostFindFragment;
   }
 
+  public static LostFindFragment newSearchInstance(String keyWord) {
+    LostFindFragment lostFindFragment = new LostFindFragment();
+    Bundle bundle = new Bundle();
+    bundle.putString("keyWord", keyWord);
+    lostFindFragment.setArguments(bundle);
+    return lostFindFragment;
+  }
+
   @Override
   protected void initLayoutView(View view) {
     super.initLayoutView(view);
-    FloatingActionButton floatingActionButton = view.findViewById(R.id.fb_publish);
-    floatingActionButton.setOnClickListener(view1 -> startActivityForResult(
-        new Intent(getActivity(), LosePublishActivity.class), 2010));
+    unbinder = ButterKnife.bind(this, view);
+    getRecyclerView().addOnScrollListener(new RecyclerView.OnScrollListener() {
+      @Override
+      public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+        super.onScrollStateChanged(recyclerView, newState);
+        if (newState == RecyclerView.SCROLL_STATE_DRAGGING && floatingActionsMenu.isExpanded()) {
+          floatingActionsMenu.collapse();
+        }
+      }
+    });
+  }
+
+  @OnClick({ R.id.fb_publish_lost, R.id.fb_search })
+  public void onViewClicked(View view) {
+    switch (view.getId()) {
+      case R.id.fb_publish_lost:
+        startActivityForResult(
+            new Intent(getActivity(), LosePublishActivity.class), 2010);
+        floatingActionsMenu.collapse();
+        break;
+      case R.id.fb_search:
+        SearchActivity.startForSearch(getActivity(), SearchActivity.lostAndFind);
+        floatingActionsMenu.collapse();
+        break;
+    }
   }
 
   @Override
@@ -79,7 +121,10 @@ public class LostFindFragment
 
   @Override
   protected void requestListData(int page) {
-    if (TextUtils.isEmpty(userId)) {
+    if (!TextUtils.isEmpty(mKeyWord)) {
+      lostGoodsModel.searchLostAndFind(userModel.getStudentId(),
+          userModel.getCurUserInfo().getRemember_code_app(), mKeyWord, page).subscribe(this);
+    } else if (TextUtils.isEmpty(userId)) {
       lostGoodsModel.getAllLostGoods(page, this);
     } else {
       lostGoodsModel.getPersonalLost(userModel.getStudentId(),
@@ -129,6 +174,17 @@ public class LostFindFragment
     super.onActivityResult(requestCode, resultCode, data);
     if (requestCode == 2010 && resultCode == RESULT_OK) {
       refresh();
+    } else if (requestCode == SearchActivity.searchCode
+        && resultCode == RESULT_OK
+        && data.getExtras() != null) {
+      Parrot.initParam(data.getExtras(), this);
+      refresh();
     }
+  }
+
+  @Override
+  public void onDestroy() {
+    super.onDestroy();
+    unbinder.unbind();
   }
 }

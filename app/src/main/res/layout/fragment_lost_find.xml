@@ -17,14 +17,34 @@
       android:layout_height="match_parent"/>
   </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 
-  <android.support.design.widget.FloatingActionButton
-    android:id="@+id/fb_publish"
-    app:backgroundTint="@color/colorPrimary"
-    android:layout_marginEnd="20dp"
-    android:layout_marginBottom="20dp"
-    android:src="@drawable/add"
-    android:layout_gravity="end|bottom"
+  <com.getbase.floatingactionbutton.FloatingActionsMenu
+    android:id="@+id/fm_menu"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content" />
+    android:layout_height="wrap_content"
+    android:layout_gravity="end|bottom"
+    android:layout_marginEnd="17dp"
+    android:layout_marginBottom="17dp"
+    app:fab_addButtonColorNormal="@color/colorPrimary"
+    app:fab_addButtonColorPressed="@color/colorPrimaryPress">
+
+    <com.getbase.floatingactionbutton.FloatingActionButton
+      android:id="@+id/fb_search"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      app:fab_colorNormal="@color/colorPrimary"
+      app:fab_colorPressed="@color/colorPrimaryPress"
+      app:fab_icon="@drawable/ic_small_search"
+      app:fab_size="mini" />
+
+    <com.getbase.floatingactionbutton.FloatingActionButton
+      android:id="@+id/fb_publish_lost"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      app:fab_colorNormal="@color/colorPrimary"
+      app:fab_colorPressed="@color/colorPrimaryPress"
+      app:fab_icon="@drawable/add"
+      app:fab_size="mini" />
+
+  </com.getbase.floatingactionbutton.FloatingActionsMenu>
 
 </FrameLayout>
