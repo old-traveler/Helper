@@ -1,17 +1,21 @@
 package com.hyc.helper.base.fragment;
 
 import android.os.Bundle;
+import android.os.IBinder;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import com.hyc.helper.base.activity.BaseActivity;
 import com.hyc.helper.base.interfaces.IBaseFragment;
 import com.hyc.helper.helper.DisposableManager;
 import com.hyc.helper.util.parrot.Parrot;
 import io.reactivex.disposables.Disposable;
+
+import static android.content.Context.INPUT_METHOD_SERVICE;
 
 public abstract class BaseFragment extends Fragment implements View.OnClickListener, IBaseFragment {
 
@@ -98,7 +102,15 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
 
   @Override
   public void hideInputWindow() {
-    mBaseActivity.hideInputWindow();
+    View focus = getView() == null ? null : getView().findFocus();
+    if (focus != null && getActivity() != null) {
+      IBinder focusBinder = focus.getWindowToken();
+      InputMethodManager manager =
+          (InputMethodManager) getActivity().getSystemService(INPUT_METHOD_SERVICE);
+      if (focusBinder != null && manager != null) {
+        manager.hideSoftInputFromWindow(focusBinder, InputMethodManager.HIDE_NOT_ALWAYS);
+      }
+    }
   }
 
   @Override

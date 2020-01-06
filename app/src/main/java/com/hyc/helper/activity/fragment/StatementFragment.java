@@ -145,13 +145,15 @@ public class StatementFragment extends
     unbinder = ButterKnife.bind(this, view);
     getRecyclerView().addOnScrollListener(new RecyclerView.OnScrollListener() {
       @Override
-      public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
-        super.onScrolled(recyclerView, dx, dy);
-        if (dy != 0 && cvComment.getVisibility() == View.VISIBLE) {
-          closeCommentInput();
-        }
-        if (floatingActionsMenu.isExpanded()) {
-          floatingActionsMenu.collapse();
+      public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+        super.onScrollStateChanged(recyclerView, newState);
+        if (newState == RecyclerView.SCROLL_STATE_DRAGGING) {
+          if (cvComment.getVisibility() == View.VISIBLE) {
+            closeCommentInput();
+          }
+          if (floatingActionsMenu.isExpanded()) {
+            floatingActionsMenu.collapse();
+          }
         }
       }
     });
@@ -161,8 +163,9 @@ public class StatementFragment extends
   }
 
   private void closeCommentInput() {
-    cvComment.setVisibility(View.GONE);
     hideInputWindow();
+    cvComment.clearFocus();
+    cvComment.setVisibility(View.GONE);
   }
 
   private void showCommentInput() {
