@@ -110,7 +110,7 @@ dependencies {
   implementation depsLibs.kotlin
   annotationProcessor depsLibs.butterknife_compiler
   implementation depsLibs.floatbutton
-  implementation project(path: ':cuckoo-lib')
+  implementation depsLibs.cuckoo
   implementation project(':flutter')
 }
 repositories {

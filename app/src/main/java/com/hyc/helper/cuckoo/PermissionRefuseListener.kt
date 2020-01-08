@@ -1,7 +1,7 @@
 package com.hyc.helper.cuckoo
 
 import android.Manifest
-import android.support.v4.app.FragmentActivity
+import android.app.Activity
 import com.hyc.cuckoo_lib.OnPermissionRefuseListener
 import com.hyc.helper.HelperApplication
 import com.hyc.helper.R
@@ -15,7 +15,7 @@ import java.lang.StringBuilder
  */
 class PermissionRefuseListener : OnPermissionRefuseListener {
   override fun onPermissionRefuse(
-    activity: FragmentActivity?,
+    activity: Activity,
     methodName: String,
     grant: List<String>,
     refuse: List<String>?
