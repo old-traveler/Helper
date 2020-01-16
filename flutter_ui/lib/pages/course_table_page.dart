@@ -66,32 +66,34 @@ class _CourseTablePageState<CourseTablePage> extends BaseInteractiveState {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        // This is the theme of your application.
+          // This is the theme of your application.
           primaryColor: Color(0xffe4837f),
           primaryColorDark: Color(0xffe4837f),
           accentColor: Color(0xff5b97a4)),
       home: Material(
           child: Stack(
-            children: <Widget>[
-              CachedNetworkImage(
-                imageUrl: YStrings.courseBackgroundUrl,
-                fit: BoxFit.fitWidth,
-                width: window.physicalSize.width,
-              ),
-              _courseData.length < 5
-                  ? Text("")
-                  : Column(
-                children: <Widget>[
-                  _getBottomDateTip(),
-                  _getItemWidget(context, 0),
-                  _getItemWidget(context, 1),
-                  _getItemWidget(context, 2),
-                  _getItemWidget(context, 3),
-                  _getItemWidget(context, 4),
-                ],
-              ),
-            ],
-          )),
+        children: <Widget>[
+          CachedNetworkImage(
+            imageUrl: YStrings.courseBackgroundUrl,
+            fit: BoxFit.fitWidth,
+            width: window.physicalSize.width,
+          ),
+          _courseData.length < 5
+              ? Text("")
+              : SingleChildScrollView(
+                  child: Column(
+                    children: <Widget>[
+                      _getBottomDateTip(),
+                      _getItemWidget(context, 0),
+                      _getItemWidget(context, 1),
+                      _getItemWidget(context, 2),
+                      _getItemWidget(context, 3),
+                      _getItemWidget(context, 4),
+                    ],
+                  ),
+                )
+        ],
+      )),
     );
   }
 
@@ -128,7 +130,7 @@ class _CourseTablePageState<CourseTablePage> extends BaseInteractiveState {
             margin: EdgeInsets.all(2),
             elevation: 3,
             shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(3)),
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(3)),
             color: courseItem.qsz == "1"
                 ? YColors.courseBgColor[Random().nextInt(6)]
                 : Color(0x98A9A9A9),
@@ -165,7 +167,7 @@ class _CourseTablePageState<CourseTablePage> extends BaseInteractiveState {
     List<String> date = CourseUtil.getCurDayOfWeek(week);
     List<Widget> widget = List(date.length);
     int curDayIndex =
-    curWeek == week ? CourseUtil.getCurDayInCurWeekIndex() : -1;
+        curWeek == week ? CourseUtil.getCurDayInCurWeekIndex() : -1;
     for (int i = 0; i < date.length; i++) {
       widget[i] = Expanded(
         flex: 1,
@@ -174,10 +176,10 @@ class _CourseTablePageState<CourseTablePage> extends BaseInteractiveState {
             height: 35,
             decoration: i == curDayIndex
                 ? BoxDecoration(
-                color: Color(0xFF96B8DE),
-                borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(1),
-                    bottomRight: Radius.circular(1)))
+                    color: Color(0xFF96B8DE),
+                    borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(1),
+                        bottomRight: Radius.circular(1)))
                 : null,
             child: Text(
               date[i],
