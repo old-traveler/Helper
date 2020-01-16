@@ -117,33 +117,7 @@
     <img src="https://raw.githubusercontent.com/old-traveler/Helper/master/img/screener_exam.png" width = "400" height = "720"><img src = "https://raw.githubusercontent.com/old-traveler/Helper/master/img/screener_grade.png" width = "400" height = "720">
 </div>
 
-## 版本更新
 
-### 1.1.1
-
-* 新增课表日期提示
-* 使用队列管理Disposable防止内存泄漏
-* 优化体验，如已下载原图优先加载原图
-
-
-### 1.2.0
-
-* 新增实验课表与正常课表同时查看
-* 重要日期提醒
-* 优化体验
-
-### 1.3.0
-
-* 新增私信功能
-* 考试日期跑马灯首页显示
-* 优化升级体验
-
-### 1.4.2
-
-* 添加快速点击拦截插件
-* 升级到Gradle5.4.1
-* 替换ExpandTextView
-* 优化体验
 
 
 
