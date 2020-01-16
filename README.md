@@ -5,7 +5,7 @@
  flutter 版本可查看[flutter_helper](https://github.com/old-traveler/flutter_helper)
  
  [![AppVeyor](https://img.shields.io/badge/build-passing-green.svg)](https://github.com/old-traveler/Helper)&nbsp;&nbsp;
- [![Packagist](https://img.shields.io/badge/MixedApk-13.7M-red.svg)](https://raw.githubusercontent.com/old-traveler/Helper/master/app/release/app-release.apk)&nbsp;&nbsp;
+ [![Packagist](https://img.shields.io/badge/MixedApk-14.6M-red.svg)](https://raw.githubusercontent.com/old-traveler/Helper/master/app/release/app-release.apk)&nbsp;&nbsp;
  [![Packagist](https://img.shields.io/badge/androidApk-3.47M-red.svg)](https://raw.githubusercontent.com/old-traveler/Helper/product-android/app/release/app-release.apk)&nbsp;&nbsp;
  [![Packagist](https://img.shields.io/badge/API-28+-blue.svg)](https://github.com/old-traveler/Helper)&nbsp;&nbsp;
  [![Packagist](https://img.shields.io/badge/Version-1.4.2-green.svg)](https://github.com/old-traveler/Helper)&nbsp;&nbsp;
