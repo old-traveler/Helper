@@ -29,7 +29,7 @@
 * 图片加载： [Glide](https://github.com/bumptech/glide)
 * 存数据库： [GreenDao](https://github.com/greenrobot/greenDAO)
 * 大图加载： [Subsampling Scale Image View](https://github.com/davemorrissey/subsampling-scale-image-view)
-* 权限处理： [RxPermissions](https://github.com/tbruyelle/RxPermissions)
+* 权限处理： [Cuckoo](https://github.com/old-traveler/Cuckoo) and [RxPermissions](https://github.com/tbruyelle/RxPermissions)
 * 图片选择： [Matisse](https://github.com/zhihu/Matisse)
 * 图片压缩： [Luban](https://github.com/Curzibn/Luban)
 * 头像剪裁： [Ucrop](https://github.com/Yalantis/uCrop)
