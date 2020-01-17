@@ -35,6 +35,7 @@ import com.hyc.helper.annotation.Subscribe;
 import com.hyc.helper.base.activity.BaseActivity;
 import com.hyc.helper.base.fragment.BaseFragment;
 import com.hyc.helper.base.fragment.BaseListFragment;
+import com.hyc.helper.base.util.ToastHelper;
 import com.hyc.helper.base.util.UiHelper;
 import com.hyc.helper.bean.CalendarBean;
 import com.hyc.helper.bean.MessageEvent;
@@ -361,5 +362,17 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
     if (updateAppHelper != null) {
       updateAppHelper.clear();
     }
+  }
+
+  private long mLastClickTime = 0L;
+
+  @Override
+  public void onBackPressed() {
+    if (System.currentTimeMillis() - mLastClickTime < 1000){
+      super.onBackPressed();
+      return;
+    }
+    ToastHelper.toast("再按一次退出应用");
+    mLastClickTime = System.currentTimeMillis();
   }
 }
