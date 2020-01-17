@@ -72,6 +72,12 @@ object Parrot {
   }
 
   @JvmStatic
+  fun initCacheParam(any: Any){
+    logD("initCacheParam")
+    cacheAdapter.initCacheParam(any, any::class.java.declaredFields)
+  }
+
+  @JvmStatic
   fun initParam(any: Any) {
     var bundle: Bundle? = null
     if (any is Activity) {
@@ -152,10 +158,10 @@ object Parrot {
           )
         }
       }
-
-      if (initCacheParam) {
-        cacheAdapter.initCacheParam(any, fields)
-      }
+    }
+    if (initCacheParam) {
+      logD("initCacheParam")
+      cacheAdapter.initCacheParam(any, fields)
     }
   }
 

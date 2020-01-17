@@ -287,7 +287,7 @@ class CacheAdapter(private val dataConvert: DataConvert) {
   private fun saveDataByClass(
     clazz: Class<*>,
     key: String,
-    value: Any,
+    value: Any?,
     editor: Editor
   ) {
     logD("save $key   value $value")
@@ -299,7 +299,11 @@ class CacheAdapter(private val dataConvert: DataConvert) {
       String::class.java -> editor.putString(key, value.castToString())
       MutableSet::class.java -> editor.putStringSet(key, value.castToStringSet())
       else -> {
-        editor.putString(key, dataConvert.jsonConvert?.toJson(value))
+        value?.let {
+          editor.putString(key, dataConvert.jsonConvert?.toJson(it))
+          return
+        }
+        editor.remove(key)
       }
     }
   }

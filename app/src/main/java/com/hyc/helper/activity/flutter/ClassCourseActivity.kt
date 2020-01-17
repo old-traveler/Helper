@@ -16,10 +16,11 @@ import com.hyc.helper.base.util.ToastHelper
 import com.hyc.helper.base.util.UiHelper
 import com.hyc.helper.bean.CourseBean
 import com.hyc.helper.helper.DateHelper
-import com.hyc.helper.helper.SpCacheHelper
 import com.hyc.helper.model.CourseModel
 import com.hyc.helper.model.UserModel
 import com.hyc.helper.util.DensityUtil
+import com.hyc.helper.util.parrot.InitCache
+import com.hyc.helper.util.parrot.Parrot
 import io.flutter.plugin.common.BasicMessageChannel.Reply
 import java.util.ArrayList
 
@@ -32,7 +33,8 @@ class ClassCourseActivity : BaseFlutterActivity() {
   private val mUserModel = UserModel()
   private val mCourseModel = CourseModel()
   private val REQUEST_SELECT_CLASS = 1001
-  private var mClassName: String? = SpCacheHelper.getString("className")
+  @InitCache("className")
+  private var mClassName: String? = null
   private var mCourseBean: CourseBean? = null
   private val mGson = Gson()
   private var weekListPopWindow: ListPopupWindow? = null
@@ -43,6 +45,11 @@ class ClassCourseActivity : BaseFlutterActivity() {
       ClassSelectActivity::class.java,
       REQUEST_SELECT_CLASS
     )
+  }
+
+  override fun onPause() {
+    super.onPause()
+    Parrot.saveCacheParam(this)
   }
 
   override fun getFlutterRouter(): String {
@@ -71,6 +78,7 @@ class ClassCourseActivity : BaseFlutterActivity() {
   }
 
   override fun onCreate(savedInstanceState: Bundle?) {
+    Parrot.initCacheParam(this)
     super.onCreate(savedInstanceState)
     setToolBarTitle("课表查询")
     if (mClassName.isNullOrEmpty()) {
@@ -149,7 +157,6 @@ class ClassCourseActivity : BaseFlutterActivity() {
     if (requestCode == REQUEST_SELECT_CLASS && resultCode == Activity.RESULT_OK) {
       data?.extras?.getString("className")?.let {
         mClassName = it
-        SpCacheHelper.putString("className", it)
         mCourseBean = null
         channel.send("refresh")
       }
