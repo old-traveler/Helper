@@ -8,7 +8,7 @@
  [![Packagist](https://img.shields.io/badge/MixedApk-14.6M-red.svg)](https://raw.githubusercontent.com/old-traveler/Helper/master/app/release/app-release.apk)&nbsp;&nbsp;
  [![Packagist](https://img.shields.io/badge/androidApk-3.47M-red.svg)](https://raw.githubusercontent.com/old-traveler/Helper/product-android/app/release/app-release.apk)&nbsp;&nbsp;
  [![Packagist](https://img.shields.io/badge/API-28+-blue.svg)](https://github.com/old-traveler/Helper)&nbsp;&nbsp;
- [![Packagist](https://img.shields.io/badge/Version-1.4.2-green.svg)](https://github.com/old-traveler/Helper)&nbsp;&nbsp;
+ [![Packagist](https://img.shields.io/badge/Version-1.5.0-green.svg)](https://github.com/old-traveler/Helper)&nbsp;&nbsp;
  [![Packagist](https://img.shields.io/badge/flutter-building-yellow.svg)](https://github.com/old-traveler/flutter_helper)
  
  
