@@ -47,7 +47,7 @@ public class VoicePlayer implements MediaPlayer.OnCompletionListener {
   }
 
   public void setOnCompletionListener(MediaPlayer.OnCompletionListener listener) {
-    if (onCompletionListener != null && onCompletionListener != listener){
+    if (onCompletionListener != null && onCompletionListener != listener) {
       onCompletionListener.onCompletion(mediaPlayer);
     }
     if (mediaPlayer != null) {
@@ -72,7 +72,8 @@ public class VoicePlayer implements MediaPlayer.OnCompletionListener {
       url = urls[1];
     }
     final String finalUrl = url;
-    imageModel.getBigImageLoadRecord(finalUrl, bean -> play(new File(bean.getFilePath()), finalUrl), throwable -> downTheVoice(finalUrl));
+    imageModel.getBigImageLoadRecord(finalUrl, bean -> play(new File(bean.getFilePath()), finalUrl),
+        throwable -> downTheVoice(finalUrl));
   }
 
   public boolean isPlaying() {
@@ -84,7 +85,7 @@ public class VoicePlayer implements MediaPlayer.OnCompletionListener {
       mediaPlayer.stop();
       mediaPlayer.release();
     }
-    if (onCompletionListener != null){
+    if (onCompletionListener != null) {
       onCompletionListener.onCompletion(null);
     }
   }
@@ -123,7 +124,7 @@ public class VoicePlayer implements MediaPlayer.OnCompletionListener {
       }
 
       @Override
-      public void onResponse( okhttp3.Call call
+      public void onResponse(okhttp3.Call call
           , okhttp3.Response response) throws IOException {
         deal(response, url);
       }

@@ -18,7 +18,7 @@ public class ConnectManager extends ConnectStatusChangeListener {
 
   private boolean isConnecting = false;
 
-  private ConnectManager(){
+  private ConnectManager() {
     BmobIM.getInstance().setOnConnectStatusChangeListener(this);
   }
 
@@ -43,9 +43,9 @@ public class ConnectManager extends ConnectStatusChangeListener {
             public void done(String s, BmobException e) {
               BmobIMUserInfo info = new UserModel().getIMUserInfo();
               isConnecting = false;
-              if (e != null){
+              if (e != null) {
                 LogHelper.log(e.getMessage());
-              }else if (info != null){
+              } else if (info != null) {
                 BmobIM.getInstance().updateUserInfo(info);
               }
             }
@@ -56,11 +56,11 @@ public class ConnectManager extends ConnectStatusChangeListener {
   @Override
   public void onChange(ConnectionStatus connectionStatus) {
     LogHelper.log(connectionStatus.getMsg());
-    RxBus.getDefault().post(new MessageEvent<>(Constant.EventType.CHANGE_CONNECT,connectionStatus));
+    RxBus.getDefault()
+        .post(new MessageEvent<>(Constant.EventType.CHANGE_CONNECT, connectionStatus));
   }
 
-  public ConnectionStatus getCurrentStatus(){
+  public ConnectionStatus getCurrentStatus() {
     return BmobIM.getInstance().getCurrentStatus();
   }
-
 }

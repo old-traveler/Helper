@@ -303,10 +303,11 @@ public interface NetApiService {
 
   /**
    * 查询失物招领
+   *
    * @param number 学号
-   * @param code  token
-   * @param page  页数
-   * @param like  关键词
+   * @param code token
+   * @param page 页数
+   * @param like 关键词
    * @return 包含此关键词的失物招领信息
    */
   @FormUrlEncoded
@@ -316,6 +317,7 @@ public interface NetApiService {
 
   /**
    * 查询二手市场商品
+   *
    * @param number 学号
    * @param code token
    * @param page 页数

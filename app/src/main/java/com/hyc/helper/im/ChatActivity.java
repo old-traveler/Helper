@@ -247,9 +247,11 @@ public class ChatActivity extends BaseActivity
     getLocalImages();
   }
 
-  @CuckooNeed({Manifest.permission.CAMERA,
-      Manifest.permission.WRITE_EXTERNAL_STORAGE})
-  private void getLocalImages(){
+  @CuckooNeed({
+      Manifest.permission.CAMERA,
+      Manifest.permission.WRITE_EXTERNAL_STORAGE
+  })
+  private void getLocalImages() {
     if (disposable == null) {
       FileHelper.getLocalImages()
           .subscribeOn(Schedulers.io())

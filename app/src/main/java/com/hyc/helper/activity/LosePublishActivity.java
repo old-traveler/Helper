@@ -134,9 +134,7 @@ public class LosePublishActivity extends BaseRequestActivity<BaseRequestBean> {
     return R.layout.activity_lose_publish;
   }
 
-
-
-  @CuckooNeed({Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE})
+  @CuckooNeed({ Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE })
   private void startSelectImage() {
     int size = 5 - baseRecycleAdapter.getItemCount();
     if (size <= 0) {

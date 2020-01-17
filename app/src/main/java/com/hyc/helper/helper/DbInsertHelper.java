@@ -68,7 +68,7 @@ public class DbInsertHelper {
             .getWebUrlBeanDao()
             .insertInTx(new WebUrlBean(title, url, System.currentTimeMillis()));
         emitter.onNext(true);
-      }catch (Exception e){
+      } catch (Exception e) {
         emitter.onNext(false);
       }
 

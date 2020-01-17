@@ -82,8 +82,8 @@ public class ConversationActivity extends BaseActivity implements OnRefreshListe
     sflConversation.autoRefresh();
     adapter.setOnItemClickListener((itemData, view, position) -> {
       Bundle bundle1 = new Bundle();
-      bundle1.putSerializable(Constant.CHAT_INTENT_KEY,itemData);
-      goToOtherActivity(ChatActivity.class,bundle1,false);
+      bundle1.putSerializable(Constant.CHAT_INTENT_KEY, itemData);
+      goToOtherActivity(ChatActivity.class, bundle1, false);
     });
   }
 
@@ -96,7 +96,8 @@ public class ConversationActivity extends BaseActivity implements OnRefreshListe
   }
 
   @Subscribe(threadMode = ThreadMode.MAIN, eventType = {
-      Constant.EventType.CHANGE_CONNECT, Constant.EventType.NET_AVAILABLE,Constant.EventType.IM_MESSAGE
+      Constant.EventType.CHANGE_CONNECT, Constant.EventType.NET_AVAILABLE,
+      Constant.EventType.IM_MESSAGE
   })
   public void onEvent(MessageEvent<ConnectionStatus> event) {
     switch (event.getType()) {

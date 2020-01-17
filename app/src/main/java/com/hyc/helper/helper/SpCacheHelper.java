@@ -24,7 +24,7 @@ public class SpCacheHelper {
     }).subscribeOn(Schedulers.io()).subscribe();
   }
 
-  public static void deleteClassFromSp(){
+  public static void deleteClassFromSp() {
     getEditor().clear().apply();
   }
 
@@ -37,7 +37,7 @@ public class SpCacheHelper {
     }
   }
 
-  public static void removeKey(String key){
+  public static void removeKey(String key) {
     getEditor().remove(key).apply();
   }
 
@@ -49,16 +49,16 @@ public class SpCacheHelper {
     getEditor().putString(key, data).apply();
   }
 
-  public static void putLong(String key, long data){
-    getEditor().putLong(key,data).apply();
+  public static void putLong(String key, long data) {
+    getEditor().putLong(key, data).apply();
   }
 
-  public static long getLong(String key){
-    return getSharedPreferences().getLong(key,0);
+  public static long getLong(String key) {
+    return getSharedPreferences().getLong(key, 0);
   }
 
-  public static String getString(String key){
-    return getSharedPreferences().getString(key,null);
+  public static String getString(String key) {
+    return getSharedPreferences().getString(key, null);
   }
 
   public static boolean getBoolean(String key) {

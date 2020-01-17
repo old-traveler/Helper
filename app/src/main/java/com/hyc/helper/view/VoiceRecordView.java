@@ -1,5 +1,6 @@
 package com.hyc.helper.view;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -19,7 +20,8 @@ import com.hyc.helper.helper.LogHelper;
 import com.hyc.helper.util.AudioRecordManager;
 import com.hyc.helper.util.DensityUtil;
 
-public class VoiceRecordView extends View implements AudioRecordManager.OnAudioStatusUpdateListener {
+public class VoiceRecordView extends View
+    implements AudioRecordManager.OnAudioStatusUpdateListener {
 
   private AudioRecordManager recordManager;
   private int[] volumes;
@@ -38,19 +40,18 @@ public class VoiceRecordView extends View implements AudioRecordManager.OnAudioS
 
   @Override
   public void onUpdate(int volume, int time) {
-    if (time >= BmobRecordManager.MAX_RECORD_TIME){
+    if (time >= BmobRecordManager.MAX_RECORD_TIME) {
       recordManager.stopRecord();
     }
     if (volumes.length - 1 >= 0) System.arraycopy(volumes, 1, volumes, 0, volumes.length - 1);
     recordTime = time;
     volumes[volumes.length - 1] = volume;
     invalidate();
-
   }
 
   @Override
-  public void onStop(String filePath,int time) {
-    sendAudioMessage(time,filePath);
+  public void onStop(String filePath, int time) {
+    sendAudioMessage(time, filePath);
     recordTime = 0;
   }
 
@@ -88,12 +89,12 @@ public class VoiceRecordView extends View implements AudioRecordManager.OnAudioS
   private void drawTopTip(Canvas canvas) {
     paint.setColor(UiHelper.getColor(R.color.colorPrimaryPress));
     int top = getHeight() / 4 - DensityUtil.dip2px(10f);
-    if (isCanCancel){
+    if (isCanCancel) {
       String title = "松手取消";
       paint.setColor(Color.parseColor("#fe3131"));
       float textWidth = paint.measureText(title);
       canvas.drawText(title, (getWidth() - textWidth) / 2, top, paint);
-    }else if (isPress) {
+    } else if (isPress) {
       paint.setStrokeWidth(5f);
       String title =
           String.format(getContext().getString(R.string.voice_record_tip), recordTime / 60,
@@ -117,7 +118,7 @@ public class VoiceRecordView extends View implements AudioRecordManager.OnAudioS
         canvas.drawLine(start, height - 2 * volume, start, height + 2 * volume, paint);
         start -= distance;
       }
-    } else  {
+    } else {
       String title = "按住说话";
       float textWidth = paint.measureText(title);
       canvas.drawText(title, (getWidth() - textWidth) / 2, top, paint);
@@ -135,6 +136,7 @@ public class VoiceRecordView extends View implements AudioRecordManager.OnAudioS
         (getHeight() - bitmap.getHeight()) / 2, paint);
   }
 
+  @SuppressLint("ClickableViewAccessibility")
   @Override
   public boolean onTouchEvent(MotionEvent event) {
     switch (event.getAction()) {
@@ -165,8 +167,7 @@ public class VoiceRecordView extends View implements AudioRecordManager.OnAudioS
     recordManager.cancelRecord();
   }
 
-
-  private void sendAudioMessage(int recordTime,String filePath) {
+  private void sendAudioMessage(int recordTime, String filePath) {
     if (recordTime < BmobRecordManager.MIN_RECORD_TIME) {
       ToastHelper.toast("按键时间太短");
     } else if (listener != null) {

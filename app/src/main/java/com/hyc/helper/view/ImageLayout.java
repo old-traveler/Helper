@@ -94,8 +94,8 @@ public class ImageLayout extends ViewGroup implements View.OnClickListener {
     }
   }
 
-  public void clear(){
-    if (disposableManager != null){
+  public void clear() {
+    if (disposableManager != null) {
       disposableManager.cancelAllDisposable();
     }
     removeAllViews();

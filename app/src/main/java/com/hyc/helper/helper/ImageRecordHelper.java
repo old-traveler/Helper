@@ -7,14 +7,14 @@ import io.reactivex.schedulers.Schedulers;
 
 public class ImageRecordHelper {
 
-  public static void saveCompressRecord(String path,String compressPath){
+  public static void saveCompressRecord(String path, String compressPath) {
     ImageMessageRecord record = new ImageMessageRecord();
     record.setOriginalPath(path);
     record.setCompressPath(compressPath);
     DbInsertHelper.insertImageRecord(record);
   }
 
-  public static Disposable saveCloudRecord(String compressPath,String couldPath){
+  public static Disposable saveCloudRecord(String compressPath, String couldPath) {
     return DbSearchHelper.getOriginalPath(compressPath)
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
@@ -22,11 +22,9 @@ public class ImageRecordHelper {
           record.setCloudPath(couldPath);
           try {
             DbUpdateHelper.updateImageRecord(record);
-          }catch (Exception e){
+          } catch (Exception e) {
             LogHelper.log(e.getMessage());
           }
-
         });
   }
-
 }

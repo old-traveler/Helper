@@ -145,8 +145,7 @@ public class PersonalActivity extends BaseActivity {
     }
   }
 
-
-  @CuckooNeed({Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE})
+  @CuckooNeed({ Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE })
   private void startSelectImage() {
     Matisse.from(this)
         .choose(MimeType.ofAll(), false)

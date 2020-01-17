@@ -45,5 +45,4 @@ public class InputActivity extends BaseActivity {
     ButterKnife.bind(this);
     setToolBar();
   }
-
 }

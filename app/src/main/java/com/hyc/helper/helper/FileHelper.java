@@ -152,11 +152,12 @@ public class FileHelper {
     return new File(path).exists();
   }
 
-  public static void copy(Context context,File source,String name) {
+  @SuppressWarnings("ResultOfMethodCallIgnored")
+  public static void copy(Context context, File source, String name) {
     File target =
-        new File(String.format(UiHelper.getString(R.string.save_image_name),name));
+        new File(String.format(UiHelper.getString(R.string.save_image_name), name));
     boolean isCreateSuccess;
-    if (!target.exists()){
+    if (!target.exists()) {
       try {
         target.getParentFile().mkdirs();
         isCreateSuccess = target.createNewFile();
@@ -164,11 +165,11 @@ public class FileHelper {
         isCreateSuccess = false;
         e.printStackTrace();
       }
-    }else {
-      ToastHelper.toast("已保存到"+target.getAbsolutePath());
+    } else {
+      ToastHelper.toast("已保存到" + target.getAbsolutePath());
       return;
     }
-    if (!isCreateSuccess){
+    if (!isCreateSuccess) {
       ToastHelper.toast("创建文件失败");
       return;
     }
@@ -181,7 +182,7 @@ public class FileHelper {
       while (fileInputStream.read(buffer) > 0) {
         fileOutputStream.write(buffer);
       }
-      ToastHelper.toast("已保存到"+target.getAbsolutePath());
+      ToastHelper.toast("已保存到" + target.getAbsolutePath());
       Intent intent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
       Uri uri = Uri.fromFile(target);
       intent.setData(uri);

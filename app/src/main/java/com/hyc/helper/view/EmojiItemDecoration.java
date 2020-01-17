@@ -9,7 +9,7 @@ public class EmojiItemDecoration extends RecyclerView.ItemDecoration {
   private int space;
   private int spanCount;
 
-  public EmojiItemDecoration(int space,int spanCount) {
+  public EmojiItemDecoration(int space, int spanCount) {
     this.space = space;
     this.spanCount = spanCount;
   }
@@ -20,11 +20,11 @@ public class EmojiItemDecoration extends RecyclerView.ItemDecoration {
     outRect.top = space;
     outRect.left = space;
     int index = parent.getChildAdapterPosition(view);
-    if ((index+1)%spanCount == 0){
+    if ((index + 1) % spanCount == 0) {
       outRect.right = space;
     }
     if (parent.getAdapter() != null
-        && parent.getAdapter().getItemCount()-index <= spanCount){
+        && parent.getAdapter().getItemCount() - index <= spanCount) {
       outRect.bottom = space;
     }
   }

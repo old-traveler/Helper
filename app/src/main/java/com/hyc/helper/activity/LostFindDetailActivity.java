@@ -84,7 +84,7 @@ public class LostFindDetailActivity extends BaseActivity {
     rvInfo.setAdapter(
         new BaseRecycleAdapter<>(data, R.layout.layout_bottom_info, ShowInfoViewHolder.class));
     FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) toolbar.getLayoutParams();
-    params.setMargins(0,getStatusHeight(), 0, 0);
+    params.setMargins(0, getStatusHeight(), 0, 0);
   }
 
   private void initImageBrowsing(List<String> pic) {
@@ -95,7 +95,7 @@ public class LostFindDetailActivity extends BaseActivity {
       flHead.setVisibility(View.GONE);
       setStatusBarColor(R.color.colorPrimary);
       FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) hzlDetail.getLayoutParams();
-      params.setMargins(0,DensityUtil.dip2px(50), 0, 0);
+      params.setMargins(0, DensityUtil.dip2px(50), 0, 0);
       llInfo.setLayoutParams(params);
       return;
     }

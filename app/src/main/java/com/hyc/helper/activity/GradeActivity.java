@@ -12,7 +12,7 @@ import com.hyc.helper.model.UserModel;
 import java.util.Collections;
 import java.util.List;
 
-public class GradeActivity extends BaseListActivity<GradeInfoBean,GradeBean,GradeViewHolder> {
+public class GradeActivity extends BaseListActivity<GradeInfoBean, GradeBean, GradeViewHolder> {
 
   private GradeModel gradeModel = new GradeModel();
   private UserModel userModel = new UserModel();
@@ -21,7 +21,7 @@ public class GradeActivity extends BaseListActivity<GradeInfoBean,GradeBean,Grad
 
   @Override
   protected BaseRecycleAdapter<GradeInfoBean, GradeViewHolder> setRecycleAdapter() {
-    return new BaseRecycleAdapter<>(R.layout.item_grade,GradeViewHolder.class);
+    return new BaseRecycleAdapter<>(R.layout.item_grade, GradeViewHolder.class);
   }
 
   @Override
@@ -36,18 +36,18 @@ public class GradeActivity extends BaseListActivity<GradeInfoBean,GradeBean,Grad
 
   @Override
   protected void requestListData(int page) {
-    if (isFirst){
+    if (isFirst) {
       isFirst = false;
       gradeModel.getGradeInfoFromCache(this);
-    }else {
+    } else {
       isNeedFresh = true;
-      gradeModel.getGradeFromApi(userModel.getCurUserInfo(),this);
+      gradeModel.getGradeFromApi(userModel.getCurUserInfo(), this);
     }
   }
 
   @Override
   protected List<GradeInfoBean> getData(GradeBean gradeBean) {
-    if (isNeedFresh){
+    if (isNeedFresh) {
       gradeModel.refreshLocalDb(gradeBean.getData());
     }
     System.setProperty("java.util.Arrays.useLegacyMergeSort", "true");

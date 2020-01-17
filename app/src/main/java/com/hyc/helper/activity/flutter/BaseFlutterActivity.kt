@@ -37,7 +37,6 @@ abstract class BaseFlutterActivity : BaseActivity(),
     return R.layout.activity_base_flutter
   }
 
-
   override fun setToolBarTitle(title: String?) {
     super.setToolBarTitle(title)
     (mToolbar.layoutParams as MarginLayoutParams).topMargin = statusHeight

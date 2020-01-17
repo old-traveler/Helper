@@ -119,11 +119,11 @@ public class UserModel {
     new GradeModel().deleteGradeInfoFromCache();
   }
 
-  public BmobIMUserInfo getIMUserInfo(){
+  public BmobIMUserInfo getIMUserInfo() {
     UserBean userBean = getCurUserInfo();
     BmobIMUserInfo info = BmobIM.getInstance().getUserInfo(
         String.valueOf(userBean.getData().getUser_id()));
-    if (info == null){
+    if (info == null) {
       info = new BmobIMUserInfo();
     }
     info.setAvatar(userBean.getData().getHead_pic_thumb());

@@ -16,13 +16,12 @@ public class ImageModel {
         .subscribe();
   }
 
-  public Disposable getBigImageLoadRecord(String originUrl, Consumer<BigImageLoadRecordBean> consumer,
+  public Disposable getBigImageLoadRecord(String originUrl,
+      Consumer<BigImageLoadRecordBean> consumer,
       Consumer<Throwable> throwableConsumer) {
     return DbSearchHelper.searchBigImageLoadRecord(originUrl)
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(consumer, throwableConsumer);
   }
-
-
 }

@@ -26,7 +26,7 @@ public abstract class BaseRequestActivity<T extends BaseRequestBean> extends Bas
     super.onCreate(savedInstanceState);
     atCreateRequest = isOnCreateRequest();
     tvLoadFail = findViewById(R.id.tv_fail_tip);
-    if (tvLoadFail != null){
+    if (tvLoadFail != null) {
       tvLoadFail.setVisibility(View.GONE);
       tvLoadFail.setOnClickListener(view -> startRequest());
     }
@@ -65,7 +65,7 @@ public abstract class BaseRequestActivity<T extends BaseRequestBean> extends Bas
   protected abstract void onSuccessGetData(T t);
 
   protected void onFailGetData(Throwable e) {
-    if (atCreateRequest){
+    if (atCreateRequest) {
       tvLoadFail.setVisibility(View.VISIBLE);
     }
     ToastHelper.toast(e.getMessage());
@@ -93,7 +93,7 @@ public abstract class BaseRequestActivity<T extends BaseRequestBean> extends Bas
     if (t == null) {
       LogHelper.log("数据为空");
     } else if (t.getCode() == Constant.REQUEST_SUCCESS) {
-      if (tvLoadFail != null){
+      if (tvLoadFail != null) {
         tvLoadFail.setVisibility(View.GONE);
       }
       onSuccessGetData(t);

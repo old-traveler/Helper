@@ -58,7 +58,7 @@ public class UserInfoActivity extends BaseRequestActivity<UserInfoBean> {
 
   @Override
   public int getMenuId() {
-    if (!userId.equals(String.valueOf(userModel.getCurUserInfo().getData().getUser_id()))){
+    if (!userId.equals(String.valueOf(userModel.getCurUserInfo().getData().getUser_id()))) {
       return R.menu.menu_user_info;
     }
     return super.getMenuId();

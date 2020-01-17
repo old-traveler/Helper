@@ -138,7 +138,7 @@ public class CourseModel {
 
   public List<Pair<String, List<String>>> jsonToList(ClassCourseBean classCourseBean)
       throws JSONException {
-    SpCacheHelper.putClassIntoSp("ClassCourseBean",classCourseBean);
+    SpCacheHelper.putClassIntoSp("ClassCourseBean", classCourseBean);
     List<Pair<String, List<String>>> list = new ArrayList<>();
     if (classCourseBean.getCode() != 200 || classCourseBean.getData() == null) return list;
     JSONObject jsonObject = new JSONObject(classCourseBean.getData().toString());

@@ -19,5 +19,4 @@ public class ChatLinearLayoutManager extends LinearLayoutManager {
   public boolean canScrollVertically() {
     return isScrollEnabled && super.canScrollVertically();
   }
-
 }

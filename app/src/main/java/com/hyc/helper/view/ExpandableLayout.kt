@@ -142,7 +142,7 @@ class ExpandableLayout @JvmOverloads constructor(
     if (mTargetView is TextView) {
       mTargetView.layoutParams.height = ViewGroup.LayoutParams.WRAP_CONTENT
     }
-    if (isAnimation){
+    if (isAnimation) {
       isAnimation = false
     }
   }

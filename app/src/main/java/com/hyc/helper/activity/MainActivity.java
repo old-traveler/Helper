@@ -277,7 +277,7 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
           });
     } else if (item.getItemId() == R.id.item_message) {
       goToOtherActivity(ConversationActivity.class, false);
-    } else if (item.getItemId() == R.id.item_class_course){
+    } else if (item.getItemId() == R.id.item_class_course) {
       goToOtherActivity(ClassCourseActivity.class, false);
     }
     return false;
@@ -368,7 +368,7 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
 
   @Override
   public void onBackPressed() {
-    if (System.currentTimeMillis() - mLastClickTime < 1000){
+    if (System.currentTimeMillis() - mLastClickTime < 1000) {
       super.onBackPressed();
       return;
     }

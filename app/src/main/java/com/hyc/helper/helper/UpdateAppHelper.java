@@ -28,7 +28,7 @@ public class UpdateAppHelper {
       file.delete();
     }
     this.context = context;
-    if(downloadManager == null){
+    if (downloadManager == null) {
       ToastHelper.toast("下载失败，系统不支持");
       return;
     }
@@ -38,7 +38,7 @@ public class UpdateAppHelper {
             .setTitle("helper")
             .setNotificationVisibility(
                 DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED));
-    registerDownApkListener(downloadId,path);
+    registerDownApkListener(downloadId, path);
   }
 
   public void registerDownApkListener(final long downloadId, final String path) {
@@ -75,11 +75,10 @@ public class UpdateAppHelper {
     clear();
   }
 
-  public void clear(){
-    if (context != null){
+  public void clear() {
+    if (context != null) {
       context.unregisterReceiver(receiver);
       context = null;
     }
   }
-
 }

@@ -44,7 +44,7 @@ public class Constant {
 
   public static final String CHAT_INTENT_KEY = "conversation";
 
-  public class EventType{
+  public class EventType {
 
     public static final String ORIGINAL_DOWNLOAD = "ORIGINAL_DOWNLOAD";
 
@@ -53,7 +53,5 @@ public class Constant {
     public static final String NET_AVAILABLE = "NET_AVAILABLE";
 
     public static final String IM_MESSAGE = "im_message";
-
   }
-
 }

@@ -15,7 +15,7 @@ public class DbDeleteHelper {
     });
   }
 
-  public static Observable<Boolean> deleteUserExamInfo(){
+  public static Observable<Boolean> deleteUserExamInfo() {
     return Observable.create(emitter -> {
       DaoHelper.getDefault()
           .getDaoSession()
@@ -26,7 +26,7 @@ public class DbDeleteHelper {
     });
   }
 
-  public static Observable<Boolean> deleteUserGradeInfo(){
+  public static Observable<Boolean> deleteUserGradeInfo() {
     return Observable.create(emitter -> {
       DaoHelper.getDefault()
           .getDaoSession()
@@ -36,6 +36,4 @@ public class DbDeleteHelper {
       emitter.onComplete();
     });
   }
-
-
 }

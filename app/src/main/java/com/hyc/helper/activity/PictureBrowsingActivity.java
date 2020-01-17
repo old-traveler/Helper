@@ -1,5 +1,6 @@
 package com.hyc.helper.activity;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ActivityOptions;
 import android.content.ClipboardManager;
@@ -225,7 +226,7 @@ public class PictureBrowsingActivity extends AppCompatActivity implements View.O
   private boolean showMoreSelect(int position) {
     if (sheetDialog == null) {
       sheetDialog = new BottomSheetDialog(this);
-      View contentView = LayoutInflater.from(this).inflate(R.layout.dialog_image_browse, null);
+      @SuppressLint("InflateParams") View contentView = LayoutInflater.from(this).inflate(R.layout.dialog_image_browse, null);
       contentView.findViewById(R.id.tv_save).setOnClickListener(v -> {
         ImageRequestHelper.loadImageAsFile(PictureBrowsingActivity.this,
             imagesUrl.get(position).replace("_thumb", ""), new SimpleTarget<File>() {

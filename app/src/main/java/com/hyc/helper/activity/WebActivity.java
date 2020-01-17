@@ -100,7 +100,7 @@ public class WebActivity extends BaseActivity {
       return;
     }
     sheetDialog = new BottomSheetDialog(this);
-    View dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_bottom_browse, null);
+    @SuppressLint("InflateParams") View dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_bottom_browse, null);
     dialogView.findViewById(R.id.fl_collect).setOnClickListener(this);
     dialogView.findViewById(R.id.fl_copy).setOnClickListener(this);
     dialogView.findViewById(R.id.fl_refresh).setOnClickListener(this);
@@ -122,8 +122,10 @@ public class WebActivity extends BaseActivity {
       case R.id.fl_copy:
         ClipboardManager copy =
             (ClipboardManager) this.getSystemService(Context.CLIPBOARD_SERVICE);
-        copy.setText(mainUrl);
-        ToastHelper.toast("已复制到剪切板");
+        if (copy != null){
+          copy.setText(mainUrl);
+          ToastHelper.toast("已复制到剪切板");
+        }
         sheetDialog.dismiss();
         break;
       case R.id.fl_refresh:

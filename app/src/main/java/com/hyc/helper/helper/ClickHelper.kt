@@ -28,8 +28,8 @@ object ClickHelper {
   @JvmStatic
   fun isFastClick(view: View?, className: String?): Boolean {
     val isFastClick = !noFastClickImp.canClick(view, className)
-    if (isFastClick){
-      Log.d("ClickHelper","intercept fast click in $className")
+    if (isFastClick) {
+      Log.d("ClickHelper", "intercept fast click in $className")
     }
     return isFastClick
   }

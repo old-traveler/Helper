@@ -62,7 +62,7 @@ public class AudioRecordManager {
       return;
     }
     long endTime = System.currentTimeMillis();
-    audioStatusUpdateListener.onStop(filePath, (int) ((endTime - startTime)/1000));
+    audioStatusUpdateListener.onStop(filePath, (int) ((endTime - startTime) / 1000));
     try {
       mMediaRecorder.stop();
       mMediaRecorder.reset();
@@ -77,7 +77,7 @@ public class AudioRecordManager {
       }
       File file = new File(filePath);
       if (file.exists() && file.delete()) {
-        LogHelper.log("stop file delete   "+e.getMessage());
+        LogHelper.log("stop file delete   " + e.getMessage());
       }
       filePath = "";
     }
@@ -125,10 +125,10 @@ public class AudioRecordManager {
       double ratio = (double) mMediaRecorder.getMaxAmplitude() / BASE;
       double db;// 分贝
       if (ratio > 1) {
-        db =  2 * Math.log10(ratio);
+        db = 2 * Math.log10(ratio);
         if (null != audioStatusUpdateListener) {
-          audioStatusUpdateListener.onUpdate((int)db,
-              (int) ((System.currentTimeMillis() - startTime)/1000));
+          audioStatusUpdateListener.onUpdate((int) db,
+              (int) ((System.currentTimeMillis() - startTime) / 1000));
         }
       }
       // 间隔取样时间
@@ -151,7 +151,7 @@ public class AudioRecordManager {
      *
      * @param filePath 保存路径
      */
-    void onStop(String filePath , int time);
+    void onStop(String filePath, int time);
   }
 }
 

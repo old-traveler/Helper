@@ -77,7 +77,7 @@ class ClassSelectActivity : BaseFlutterActivity() {
     if (item?.itemId == android.R.id.home) {
       onBackPressed()
       return true
-    } else if (item?.itemId == R.id.item_refresh){
+    } else if (item?.itemId == R.id.item_refresh) {
       mData = null
       classLevel = false
       setToolBarTitle("班级选择")

@@ -106,7 +106,6 @@ public class PublishStatementActivity extends BaseRequestActivity<BaseRequestBea
     });
   }
 
-
   @Override
   public boolean onOptionsItemSelected(MenuItem item) {
     if (item.getItemId() == R.id.action_publish) {
@@ -116,7 +115,7 @@ public class PublishStatementActivity extends BaseRequestActivity<BaseRequestBea
     return super.onOptionsItemSelected(item);
   }
 
-  @CuckooNeed({Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE})
+  @CuckooNeed({ Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE })
   private void startSelectImage() {
     int size = 5 - baseRecycleAdapter.getItemCount();
     if (size <= 0) {

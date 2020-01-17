@@ -9,7 +9,7 @@ import android.view.View;
  * 时间: 2019-06-11
  * 描述:
  */
-public class ItemDecoration extends RecyclerView.ItemDecoration{
+public class ItemDecoration extends RecyclerView.ItemDecoration {
   private int space;
 
   public ItemDecoration(int space) {
@@ -20,7 +20,7 @@ public class ItemDecoration extends RecyclerView.ItemDecoration{
   public void getItemOffsets(Rect outRect, View view,
       RecyclerView parent, RecyclerView.State state) {
     int index = parent.getChildAdapterPosition(view);
-    if (index != 0){
+    if (index != 0) {
       outRect.top = space;
     }
   }

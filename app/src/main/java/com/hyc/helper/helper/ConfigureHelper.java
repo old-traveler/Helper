@@ -7,19 +7,19 @@ import com.hyc.helper.bean.ConfigureDateBean;
 public class ConfigureHelper {
 
   public static void init(ConfigureDateBean configureDateBean) {
-    if (configureDateBean != null){
-      SpCacheHelper.putString("school_date",configureDateBean.getDate());
+    if (configureDateBean != null) {
+      SpCacheHelper.putString("school_date", configureDateBean.getDate());
     }
     initSchoolDate();
   }
 
-  public static String getDateOfSchool(){
+  public static String getDateOfSchool() {
     return SpCacheHelper.getString("school_date");
   }
 
-  public static void initSchoolDate(){
+  public static void initSchoolDate() {
     String date = getDateOfSchool();
-    if (!TextUtils.isEmpty(date)){
+    if (!TextUtils.isEmpty(date)) {
       DateHelper.DATE_OF_SCHOOL = getDateOfSchool();
     }
   }

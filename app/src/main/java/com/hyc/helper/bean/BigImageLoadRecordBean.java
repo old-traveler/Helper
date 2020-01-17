@@ -8,13 +8,13 @@ import org.greenrobot.greendao.annotation.Generated;
 public class BigImageLoadRecordBean {
   @Id
   private String originUrl;
-  
+
   private String filePath;
 
   @Generated(hash = 1177118743)
   public BigImageLoadRecordBean(String originUrl, String filePath) {
-      this.originUrl = originUrl;
-      this.filePath = filePath;
+    this.originUrl = originUrl;
+    this.filePath = filePath;
   }
 
   @Generated(hash = 949636533)
@@ -22,19 +22,18 @@ public class BigImageLoadRecordBean {
   }
 
   public String getOriginUrl() {
-      return this.originUrl;
+    return this.originUrl;
   }
 
   public void setOriginUrl(String originUrl) {
-      this.originUrl = originUrl;
+    this.originUrl = originUrl;
   }
 
   public String getFilePath() {
-      return this.filePath;
+    return this.filePath;
   }
 
   public void setFilePath(String filePath) {
-      this.filePath = filePath;
+    this.filePath = filePath;
   }
-
 }

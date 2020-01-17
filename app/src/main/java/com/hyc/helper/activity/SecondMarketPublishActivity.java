@@ -91,7 +91,7 @@ public class SecondMarketPublishActivity extends BaseRequestActivity<BaseRequest
   @Override
   protected void onSuccessGetData(BaseRequestBean baseRequestBean) {
     ToastHelper.toast("发布成功");
-    backForResult(SecondHandFragment.class,RESULT_OK);
+    backForResult(SecondHandFragment.class, RESULT_OK);
   }
 
   private Map<String, String> getRequestParams() {
@@ -151,7 +151,7 @@ public class SecondMarketPublishActivity extends BaseRequestActivity<BaseRequest
     });
   }
 
-  @CuckooNeed({Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE})
+  @CuckooNeed({ Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE })
   private void startSelectImage() {
     int size = 5 - baseRecycleAdapter.getItemCount();
     if (size <= 0) {

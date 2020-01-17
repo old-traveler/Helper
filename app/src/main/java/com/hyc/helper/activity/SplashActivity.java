@@ -46,20 +46,20 @@ public class SplashActivity extends BaseRequestActivity<ConfigureDateBean> {
   @Override
   protected void requestDataFromApi() {
     String date = ConfigureHelper.getDateOfSchool();
-    if (TextUtils.isEmpty(date) || needUpdateDate()){
+    if (TextUtils.isEmpty(date) || needUpdateDate()) {
       RequestHelper.getRequestApi().getConfigure()
           .subscribeOn(Schedulers.io())
           .observeOn(AndroidSchedulers.mainThread())
           .subscribe(this);
-      if (!TextUtils.isEmpty(date)){
+      if (!TextUtils.isEmpty(date)) {
         handler.sendMessageDelayed(message, 1500);
       }
-    }else {
+    } else {
       goToNextActivity(null);
     }
   }
 
-  private boolean needUpdateDate(){
+  private boolean needUpdateDate() {
     ConfigureHelper.initSchoolDate();
     return DateHelper.getCurWeek() > 20;
   }
@@ -94,7 +94,6 @@ public class SplashActivity extends BaseRequestActivity<ConfigureDateBean> {
   public void closeLoadingView() {
 
   }
-
 
   public void goToNextActivity(ConfigureDateBean configureBean) {
     ConfigureHelper.init(configureBean);

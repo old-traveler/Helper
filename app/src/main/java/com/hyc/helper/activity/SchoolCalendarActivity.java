@@ -61,6 +61,4 @@ public class SchoolCalendarActivity extends BaseActivity {
       ivCalendar.setDoubleTapZoomStyle(ZOOM_FOCUS_CENTER_IMMEDIATE);
     }
   }
-
-
 }

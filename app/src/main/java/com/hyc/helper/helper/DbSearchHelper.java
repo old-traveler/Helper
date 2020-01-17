@@ -38,35 +38,37 @@ public class DbSearchHelper {
     });
   }
 
-  public static Observable<ImageMessageRecord> getOriginalPath(String compressPath){
+  public static Observable<ImageMessageRecord> getOriginalPath(String compressPath) {
     return Observable.create(emitter -> {
       emitter.onNext(
           DaoHelper.getDefault()
               .getDaoSession()
               .getImageMessageRecordDao()
               .queryBuilder()
-              .where(ImageMessageRecordDao.Properties.CompressPath.eq(compressPath)).build().unique());
+              .where(ImageMessageRecordDao.Properties.CompressPath.eq(compressPath))
+              .build()
+              .unique());
       emitter.onComplete();
     });
   }
 
-  public static Observable<ImageMessageRecord> getCloudPath(String originalPath){
+  public static Observable<ImageMessageRecord> getCloudPath(String originalPath) {
     return Observable.create(emitter -> {
-      ImageMessageRecord record =  DaoHelper.getDefault()
+      ImageMessageRecord record = DaoHelper.getDefault()
           .getDaoSession()
           .getImageMessageRecordDao()
           .queryBuilder()
           .where(ImageMessageRecordDao.Properties.OriginalPath.eq(originalPath)).build().unique();
-      if (record != null){
+      if (record != null) {
         emitter.onNext(record);
-      }else {
+      } else {
         emitter.onNext(new ImageMessageRecord());
       }
       emitter.onComplete();
     });
   }
 
-  public static Observable<BigImageLoadRecordBean> searchBigImageLoadRecord(String originUrl){
+  public static Observable<BigImageLoadRecordBean> searchBigImageLoadRecord(String originUrl) {
     return Observable.create(emitter -> {
       BigImageLoadRecordBean bean = DaoHelper.getDefault()
           .getDaoSession()
@@ -79,7 +81,7 @@ public class DbSearchHelper {
     });
   }
 
-  public static Observable<ExamBean> searchExamInfo(){
+  public static Observable<ExamBean> searchExamInfo() {
     return Observable.create(emitter -> {
       List<ExamInfoBean> examInfoBeans = DaoHelper.getDefault()
           .getDaoSession()
@@ -87,12 +89,12 @@ public class DbSearchHelper {
           .queryBuilder()
           .list();
       ExamBean examBean = new ExamBean();
-      if (examInfoBeans.size()>0){
+      if (examInfoBeans.size() > 0) {
         examBean.setStatus("success");
-      }else {
+      } else {
         examBean.setStatus("need_api");
       }
-      ExamBean.ResBean resBean =new ExamBean.ResBean();
+      ExamBean.ResBean resBean = new ExamBean.ResBean();
       resBean.setExam(examInfoBeans);
       examBean.setRes(resBean);
       emitter.onNext(examBean);
@@ -100,7 +102,7 @@ public class DbSearchHelper {
     });
   }
 
-  public static Observable<GradeBean> searchGradeInfo(){
+  public static Observable<GradeBean> searchGradeInfo() {
     return Observable.create(emitter -> {
       List<GradeInfoBean> gradeInfoBeans = DaoHelper.getDefault()
           .getDaoSession()
@@ -108,9 +110,9 @@ public class DbSearchHelper {
           .queryBuilder()
           .list();
       GradeBean gradeBean = new GradeBean();
-      if (gradeInfoBeans.size()>0){
+      if (gradeInfoBeans.size() > 0) {
         gradeBean.setCode(Constant.REQUEST_SUCCESS);
-      }else {
+      } else {
         gradeBean.setCode(Constant.NEED_API_DATA);
       }
       gradeBean.setData(gradeInfoBeans);
@@ -119,7 +121,7 @@ public class DbSearchHelper {
     });
   }
 
-  public static Observable<List<WebUrlBean>> searchAllCollectUrl(){
+  public static Observable<List<WebUrlBean>> searchAllCollectUrl() {
     return Observable.create(emitter -> {
       List<WebUrlBean> webUrlBeans = DaoHelper.getDefault()
           .getDaoSession()
@@ -131,7 +133,7 @@ public class DbSearchHelper {
     });
   }
 
-  public static Observable<List<StatementInfoBean>> searchStatementInfo(int offset,int limit){
+  public static Observable<List<StatementInfoBean>> searchStatementInfo(int offset, int limit) {
     return Observable.create(emitter -> {
       List<StatementInfoBean> statementInfoBeans = DaoHelper.getDefault()
           .getDaoSession()
@@ -144,5 +146,4 @@ public class DbSearchHelper {
       emitter.onComplete();
     });
   }
-
 }

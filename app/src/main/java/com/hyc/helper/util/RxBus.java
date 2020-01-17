@@ -45,16 +45,16 @@ public class RxBus {
       ArrayList<Object> arrayList = subscribeMap.get(s);
       if (arrayList == null) {
         arrayList = new ArrayList<>();
-      }else if (arrayList.contains(object)){
+      } else if (arrayList.contains(object)) {
         throw new RuntimeException("the object have subscribed");
       }
       arrayList.add(object);
       subscribeMap.put(s, arrayList);
     }
-    LogHelper.log("register "+ object.getClass().getSimpleName());
+    LogHelper.log("register " + object.getClass().getSimpleName());
   }
 
-  public boolean isRegister(Object object){
+  public boolean isRegister(Object object) {
     Subscribe subscribe = getSubscribe(object);
     if (subscribe == null) {
       throw new RuntimeException("you must defined a onEvent()");
@@ -62,10 +62,10 @@ public class RxBus {
     if (subscribeMap == null) {
       return false;
     }
-    if (subscribe.eventType().length > 0){
+    if (subscribe.eventType().length > 0) {
       ArrayList<Object> arrayList = subscribeMap.get(subscribe.eventType()[0]);
       return arrayList != null && arrayList.contains(object);
-    }else {
+    } else {
       return false;
     }
   }
@@ -85,13 +85,13 @@ public class RxBus {
     } catch (Exception e) {
       LogHelper.log(e.getMessage());
     }
-    LogHelper.log("unregister "+ object.getClass().getSimpleName());
+    LogHelper.log("unregister " + object.getClass().getSimpleName());
   }
 
   public void post(MessageEvent messageEvent) {
     if (subscribeMap != null && subscribeMap.get(messageEvent.getType()) != null) {
       for (Object o : subscribeMap.get(messageEvent.getType())) {
-        dispathMessage(o,messageEvent);
+        dispathMessage(o, messageEvent);
       }
     }
   }

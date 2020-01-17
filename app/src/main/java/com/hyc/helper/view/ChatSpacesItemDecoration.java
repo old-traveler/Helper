@@ -15,10 +15,9 @@ public class ChatSpacesItemDecoration extends RecyclerView.ItemDecoration {
   @Override
   public void getItemOffsets(Rect outRect, View view,
       RecyclerView parent, RecyclerView.State state) {
-    if (parent.getChildAdapterPosition(view) == 0){
-      outRect.top = space/2;
+    if (parent.getChildAdapterPosition(view) == 0) {
+      outRect.top = space / 2;
     }
     outRect.bottom = space;
   }
-
 }

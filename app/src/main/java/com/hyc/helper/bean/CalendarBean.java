@@ -2,7 +2,7 @@ package com.hyc.helper.bean;
 
 import android.support.annotation.NonNull;
 
-public class CalendarBean extends BaseRequestBean implements Comparable<CalendarBean>{
+public class CalendarBean extends BaseRequestBean implements Comparable<CalendarBean> {
 
   /**
    * name : CFA

@@ -9,13 +9,13 @@ public class ResendMessageListener extends MessageSendListener {
 
   private ChatAdapter chatAdapter;
 
-  public ResendMessageListener(ChatAdapter chatAdapter){
+  public ResendMessageListener(ChatAdapter chatAdapter) {
     this.chatAdapter = chatAdapter;
   }
 
   @Override
   public void done(BmobIMMessage bmobIMMessage, BmobException e) {
-    if (chatAdapter != null){
+    if (chatAdapter != null) {
       chatAdapter.updateMessage(bmobIMMessage);
     }
   }

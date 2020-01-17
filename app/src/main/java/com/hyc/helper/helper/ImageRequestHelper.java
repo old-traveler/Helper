@@ -30,7 +30,7 @@ public class ImageRequestHelper {
                 .apply(new RequestOptions().placeholder(R.drawable.bg_placeholder))
                 .into(imageView);
           }
-        }, throwable ->{
+        }, throwable -> {
 
         });
   }
@@ -64,10 +64,10 @@ public class ImageRequestHelper {
   }
 
   public static void loadOtherImage(Context context, String url, ImageView imageView) {
-    if (url.equals(imageView.getTag(R.id.data))){
+    if (url.equals(imageView.getTag(R.id.data))) {
       return;
     }
-    imageView.setTag(R.id.data,url);
+    imageView.setTag(R.id.data, url);
     Glide.with(context)
         .load(url)
         .apply(new RequestOptions().placeholder(R.drawable.bg_placeholder))
@@ -92,10 +92,10 @@ public class ImageRequestHelper {
     if (TextUtils.isEmpty(url)) {
       return;
     }
-    if (url.equals(imageView.getTag(R.id.data))){
+    if (url.equals(imageView.getTag(R.id.data))) {
       return;
     }
-    imageView.setTag(R.id.data,url);
+    imageView.setTag(R.id.data, url);
     Glide.with(context)
         .load(Constant.BASE_IMAGE_URL + url)
         .apply(new RequestOptions().circleCrop().placeholder(R.drawable.bg_chat_placeholder))

@@ -9,7 +9,7 @@ import kotlin.reflect.KProperty
  * @date: 2019-11-23 12:44
  * @desc:
  */
-class NoFastClickViewImp(private val timeDuration : Long): NoFastClick {
+class NoFastClickViewImp(private val timeDuration: Long) : NoFastClick {
 
   private val viewMaps = mutableListOf<ClickView>()
 

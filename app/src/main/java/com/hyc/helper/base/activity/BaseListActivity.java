@@ -57,8 +57,8 @@ public abstract class BaseListActivity<T, B extends BaseRequestBean, VH extends 
     }
   }
 
-  public void backToTop(){
-    if (recyclerView!=null){
+  public void backToTop() {
+    if (recyclerView != null) {
       recyclerView.scrollToPosition(0);
     }
   }
@@ -87,7 +87,6 @@ public abstract class BaseListActivity<T, B extends BaseRequestBean, VH extends 
 
   protected abstract int getRecycleViewId();
 
-
   public void setEnableLoadMore(boolean enableLoadMore) {
     if (mRefreshLayout != null) {
       mRefreshLayout.setEnableLoadMore(enableLoadMore);
@@ -100,7 +99,6 @@ public abstract class BaseListActivity<T, B extends BaseRequestBean, VH extends 
       mRefreshLayout.setEnableRefresh(enableRefresh);
     }
   }
-
 
   @Override
   public void onRefresh(@NonNull RefreshLayout refreshLayout) {
@@ -125,11 +123,9 @@ public abstract class BaseListActivity<T, B extends BaseRequestBean, VH extends 
     requestListData(page);
   }
 
-
   public RecyclerView.LayoutManager getLayoutManager() {
     return new LinearLayoutManager(this);
   }
-
 
   public void loadMoreFinish(List<T> data) {
     if (page == pageStart) {
@@ -178,7 +174,7 @@ public abstract class BaseListActivity<T, B extends BaseRequestBean, VH extends 
   public void onNext(B ts) {
     if (ts.getCode() == Constant.REQUEST_SUCCESS) {
       loadMoreFinish(getData(ts));
-    } else if (ts.getCode() == Constant.NEED_API_DATA){
+    } else if (ts.getCode() == Constant.NEED_API_DATA) {
       disposable.dispose();
       requestListData(page);
     } else if (!TextUtils.isEmpty(ts.getMsg())) {
@@ -188,8 +184,8 @@ public abstract class BaseListActivity<T, B extends BaseRequestBean, VH extends 
     }
   }
 
-  public void dispose(){
-    if (disposable != null && !disposable.isDisposed()){
+  public void dispose() {
+    if (disposable != null && !disposable.isDisposed()) {
       disposable.dispose();
     }
   }

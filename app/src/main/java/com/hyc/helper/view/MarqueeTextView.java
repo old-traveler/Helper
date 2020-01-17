@@ -16,7 +16,7 @@ public class MarqueeTextView extends TextView {
     super(context);
   }
 
-  public MarqueeTextView(Context context,  AttributeSet attrs) {
+  public MarqueeTextView(Context context, AttributeSet attrs) {
     super(context, attrs);
   }
 

@@ -46,7 +46,7 @@ public class CourseDetailActivity extends BaseActivity {
     ButterKnife.bind(this);
     setToolBarTitle(R.string.course_detail);
     initCourseDateInfo(courseInfoBean);
-    if (courseInfoBean != null){
+    if (courseInfoBean != null) {
       initCourseInfo(courseInfoBean);
     }
   }

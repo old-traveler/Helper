@@ -13,7 +13,7 @@ import com.hyc.helper.model.ExamModel;
 import com.hyc.helper.model.UserModel;
 import java.util.List;
 
-public class ExamActivity extends BaseListActivity<ExamInfoBean,ExamBean,ExamViewHolder> {
+public class ExamActivity extends BaseListActivity<ExamInfoBean, ExamBean, ExamViewHolder> {
 
   private ExamModel examModel = new ExamModel();
   private UserModel userModel = new UserModel();
@@ -22,7 +22,7 @@ public class ExamActivity extends BaseListActivity<ExamInfoBean,ExamBean,ExamVie
 
   @Override
   protected BaseRecycleAdapter<ExamInfoBean, ExamViewHolder> setRecycleAdapter() {
-    return new BaseRecycleAdapter<>(R.layout.item_examtion_info,ExamViewHolder.class);
+    return new BaseRecycleAdapter<>(R.layout.item_examtion_info, ExamViewHolder.class);
   }
 
   @Override
@@ -35,25 +35,24 @@ public class ExamActivity extends BaseListActivity<ExamInfoBean,ExamBean,ExamVie
     return R.id.rv_exam;
   }
 
-
   @Override
   protected void requestListData(int page) {
-    if (isFirst){
+    if (isFirst) {
       isFirst = false;
       examModel.getExamInfoFromCache(this);
-    }else {
+    } else {
       isNeedFresh = true;
-      examModel.getExam(userModel.getCurUserInfo(),this);
+      examModel.getExam(userModel.getCurUserInfo(), this);
     }
   }
 
   @Override
   public void onNext(ExamBean ts) {
-    if (ts.getStatus().equals("need_api")){
+    if (ts.getStatus().equals("need_api")) {
       dispose();
       requestListData(0);
     } else if (ts.getStatus().equals("success")) {
-      if (isNeedFresh){
+      if (isNeedFresh) {
         examModel.refreshLocalDb(ts.getRes().getExam());
       }
       loadMoreFinish(getData(ts));
