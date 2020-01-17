@@ -1,12 +1,12 @@
 package com.hyc.helper.util;
 
+import android.annotation.SuppressLint;
 import com.hyc.helper.annotation.Subscribe;
 import com.hyc.helper.bean.MessageEvent;
 import com.hyc.helper.helper.LogHelper;
 import io.reactivex.Flowable;
 import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -19,7 +19,7 @@ public class RxBus {
   private HashMap<String, ArrayList<Object>> subscribeMap;
 
   private RxBus() {
-
+    throw new IllegalArgumentException("must call getDefault() to get instance");
   }
 
   public static RxBus getDefault() {
@@ -91,19 +91,21 @@ public class RxBus {
   public void post(MessageEvent messageEvent) {
     if (subscribeMap != null && subscribeMap.get(messageEvent.getType()) != null) {
       for (Object o : subscribeMap.get(messageEvent.getType())) {
-        dispathMessage(o, messageEvent);
+        dispatchMessage(o, messageEvent);
       }
     }
   }
 
-  private Disposable dispathMessage(Object o, MessageEvent messageEvent) {
+  @SuppressWarnings("ResultOfMethodCallIgnored")
+  @SuppressLint("CheckResult")
+  private void dispatchMessage(Object o, MessageEvent messageEvent) {
     Subscribe subscribe = getSubscribe(o);
     if (subscribe == null) {
-      return null;
+      return;
     }
     try {
       Method subscribeMethod = o.getClass().getMethod("onEvent", MessageEvent.class);
-      return Flowable.just(subscribeMethod)
+      Flowable.just(subscribeMethod)
           .map(method -> {
             method.invoke(o, messageEvent);
             return o;
@@ -115,7 +117,6 @@ public class RxBus {
     } catch (Exception e) {
       e.printStackTrace();
     }
-    return null;
   }
 
   private Scheduler getScheduler(int threadMode) {
