@@ -124,26 +124,26 @@
   </string-array>
 
   <string-array name="depLists">
-    <item>School of traffic engineering</item>
-    <item>Sports institute</item>
-    <item>College of metallurgy and materials engineering</item>
-    <item>School of packaging and materials engineering</item>
-    <item>School of packaging design and art</item>
-    <item>School of business,</item>
-    <item>International college</item>
-    <item>School of civil engineering</item>
-    <item>School of urban and environmental studies</item>
-    <item>School of foreign languages</item>
-    <item>School of literature and journalism</item>
-    <item>School of mechanical engineering</item>
-    <item>Law school,</item>
-    <item>Faculty of science</item>
-    <item>School of life sciences and chemistry</item>
-    <item>School of electrical and information engineering</item>
-    <item>School of economics and trade</item>
-    <item>School of computer science</item>
-    <item>Liling ceramics college</item>
-    <item>College of music</item>
+    <item>交通工程学院</item>
+    <item>体育学院</item>
+    <item>冶金与材料工程学院</item>
+    <item>包装与材料工程学院</item>
+    <item>包装设计艺术学院</item>
+    <item>商学院</item>
+    <item>国际学院</item>
+    <item>土木工程学院</item>
+    <item>城市与环境学院</item>
+    <item>外国语学院</item>
+    <item>文学与新闻传播学院</item>
+    <item>机械工程学院</item>
+    <item>法学院</item>
+    <item>理学院</item>
+    <item>生命科学与化学学院</item>
+    <item>电气与信息工程学院</item>
+    <item>经济与贸易学院</item>
+    <item>计算机学院</item>
+    <item>醴陵陶瓷学院</item>
+    <item>音乐学院</item>
   </string-array>
 
   <integer-array name="course_color">
