@@ -1,0 +1,160 @@
+<resources>
+  <string name="app_name">helper</string>
+  <string name="loading_tip">In the load</string>
+  <string name="cancel">cancel</string>
+  <string name="confirm">determine</string>
+  <string name="tip">prompt</string>
+  <string name="search">search</string>
+  <string name="login">The login</string>
+  <string name="account">account</string>
+  <string name="password">password</string>
+  <string name="start_register">Began to register</string>
+  <string name="number_not_empty">Student Numbers cannot be empty</string>
+  <string name="password_not_empty">The password cannot be empty</string>
+  <string name="password_error">Account password error</string>
+  <string name="default_bio">No signature</string>
+  <string name="video_tip">"Panpan, I'll show you a video, and when it's ready, click on it."</string>
+  <string name="music_tip">"Panpan, I'll listen to a song for you. When it's ready, click on it."</string>
+  <string name="update_tip">Version update</string>
+  <string name="comment_hint_tip">Say something...</string>
+  <string name="send">send</string>
+  <string name="publish_statement">Published about</string>
+  <string name="add_image_tip">Add images (up to 4)</string>
+  <string name="camera_premission_tip">Please give camera and local memory privileges first</string>
+  <string name="max_count_image_tip">Choose a maximum of four images</string>
+  <string name="delete">delete</string>
+  <string name="show_oral_image">To view the original image</string>
+  <string name="week_tip">The %1$d weeks</string>
+  <string name="course_table">The curriculum</string>
+  <string name="school_statement">The campus talk</string>
+  <string name="second_market">The secondary market</string>
+  <string name="lost_find">The lost and found</string>
+  <string name="apk_name">helper.apk</string>
+  <string name="input_name">Enter the name</string>
+
+  <string name="default_info_bg">https://raw.githubusercontent.com/old-traveler/Helper/master/img/default_image.png</string>
+  <string name="user_info_desc_default">This guy is too lazy to leave anything</string>
+  <string name="user_info">The user information</string>
+  <string name="my_publish">I release</string>
+  <string name="examination">The test plan</string>
+  <string name="my_achievement">My grades</string>
+  <string name="query_power">Check the electricity</string>
+  <string name="class_course">Check the schedule</string>
+  <string name="query_power_title">Check the electricity</string>
+  <string name="library">The library</string>
+  <string name="school_date">calendar</string>
+  <string name="logout">Cancellation of landing</string>
+  <string name="about">About us</string>
+  <string name="more">More and more</string>
+  <string name="name">Name:</string>
+  <string name="number">Student number:</string>
+  <string name="dep">College:</string>
+  <string name="str_class">Class:</string>
+  <string name="personal">Personal information</string>
+  <string name="personal_publish">I release</string>
+  <string name="complete">complete</string>
+  <string name="input_tip">Please enter the information first</string>
+  <string name="locate_tip">Please enter the pillar number</string>
+  <string name="room_tip">Please enter your dormitory number</string>
+  <string name="west_school">West campus</string>
+  <string name="east_school">East campus</string>
+  <string name="query_tip">Please fill in the dormitory number first</string>
+  <string name="surplus_day">The remaining %d days</string>
+  <string name="surplus_hour">Remaining %d hours</string>
+  <string name="my_grade">My grades</string>
+  <string name="school_calendar">calendar</string>
+  <string name="library_url">http://218.75.197.122:8989/opac/weixin/account/service/index</string>
+  <string name="library_title">The library</string>
+  <string name="about_us">The current version %s\n is for learning communication only</string>
+  <string name="logout_tip">Do you need to log in \n again after logout?</string>
+  <string name="course_detail">Schedule for details</string>
+  <string name="load_fail_tip">Load failed, click retry</string>
+  <string name="page">%d/%d</string>
+  <string name="copy">copy</string>
+  <string name="call">call</string>
+  <string name="month">%d month</string>
+  <string name="title_input_tip">Please enter the title</string>
+  <string name="price_input_tip">Please enter the price</string>
+  <string name="area_input_tip">Please enter area</string>
+  <string name="phone_input_tip">Please enter your contact information</string>
+  <string name="attr_input_tip">Please enter the color</string>
+  <string name="content_input_tip">Please enter details</string>
+  <string name="publish_goods">Release goods</string>
+  <string name="sell">sell</string>
+  <string name="buy">We are looking for</string>
+  <string name="input_thing_name">Please enter the item name</string>
+  <string name="locate_input_tip">Please enter location</string>
+  <string name="lost_time">%d-%s-%s%s:00</string>
+  <string name="calendar_tip">%s %d days</string>
+  <string name="calendar_tip_exam">The %s test is still %s away</string>
+  <string name="date_tip">%s\n%d</string>
+  <string name="message">The message</string>
+  <string name="private_message">Direct messages</string>
+  <string name="app_key">e8c7f8ed34bb48dd4c5ab6b54d8cf11d</string>
+  <string name="default_content">Send me a personal message</string>
+  <string name="voice_record_tip">%d:%02d</string>
+  <string name="voice_length_tip">[voice] %d\'\'</string>
+  <string name="day_tip">%d day</string>
+  <string name="hour_tip">%d hours</string>
+  <string name="save_image_name">/mnt/sdcard/Pictures/HELPER_%s</string>
+  <string name="register">registered</string>
+  <string name="register_url">https://api.huthelper.cn/auth/register</string>
+  <string name="select_class">Select the class</string>
+  <string name="refresh">The refresh</string>
+  <string name="related_to_me">I related</string>
+  <string name="clear">remove</string>
+  <string name="search_history">Search history</string>
+
+  <string-array name="weeks">
+    <item>Monday</item>
+    <item>Tuesday</item>
+    <item>Wednesday</item>
+    <item>Thursday</item>
+    <item>Friday</item>
+    <item>Saturday</item>
+    <item>Sunday</item>
+  </string-array>
+
+  <string-array name="section">
+    <item>1 \n 2 \n knots</item>
+    <item>3 \n 4 \n knots</item>
+    <item>5 \n 6 \n knots</item>
+    <item>7 \n 8 \n knots</item>
+    <item>9 \n 10 \n knots</item>
+  </string-array>
+
+  <string-array name="depLists">
+    <item>School of traffic engineering</item>
+    <item>Sports institute</item>
+    <item>College of metallurgy and materials engineering</item>
+    <item>School of packaging and materials engineering</item>
+    <item>School of packaging design and art</item>
+    <item>School of business,</item>
+    <item>International college</item>
+    <item>School of civil engineering</item>
+    <item>School of urban and environmental studies</item>
+    <item>School of foreign languages</item>
+    <item>School of literature and journalism</item>
+    <item>School of mechanical engineering</item>
+    <item>Law school,</item>
+    <item>Faculty of science</item>
+    <item>School of life sciences and chemistry</item>
+    <item>School of electrical and information engineering</item>
+    <item>School of economics and trade</item>
+    <item>School of computer science</item>
+    <item>Liling ceramics college</item>
+    <item>College of music</item>
+  </string-array>
+
+  <integer-array name="course_color">
+    <item>@color/colorPrimary</item>
+    <item>@color/bg_12</item>
+    <item>@color/bg_13</item>
+    <item>@color/bg_14</item>
+    <item>@color/bg_15</item>
+    <item>@color/bg_16</item>
+    <item>@color/bg_17</item>
+    <item>@color/colorMore</item>
+  </integer-array>
+
+</resources>
