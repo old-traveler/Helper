@@ -1,14 +1,14 @@
 <resources>
   <string name="app_name">helper</string>
-  <string name="loading_tip">Loading</string>
+  <string name="loading_tip">加载中</string>
   <string name="cancel">取消</string>
   <string name="confirm">确定</string>
   <string name="tip">提示</string>
-  <string name="search">Search</string>
-  <string name="login">Login</string>
-  <string name="account">Account</string>
-  <string name="password">Password</string>
-  <string name="start_register">start register</string>
+  <string name="search">搜索</string>
+  <string name="login">登录</string>
+  <string name="account">账号</string>
+  <string name="password">密码</string>
+  <string name="start_register">开始注册</string>
   <string name="number_not_empty">学号不能为空</string>
   <string name="password_not_empty">密码不能为空</string>
   <string name="password_error">账号密码错误</string>
@@ -18,7 +18,7 @@
   <string name="update_tip">版本更新</string>
   <string name="comment_hint_tip">说点什么吧…</string>
   <string name="send">发送</string>
-  <string name="publish_statement">Publish Statement</string>
+  <string name="publish_statement">发布说说</string>
   <string name="add_image_tip">添加图片（最多四张）</string>
   <string name="camera_premission_tip">请先给予相机和本地内存权限</string>
   <string name="max_count_image_tip">最多选择四张图片</string>
@@ -34,13 +34,13 @@
 
   <string name="default_info_bg">https://raw.githubusercontent.com/old-traveler/Helper/master/img/default_image.png</string>
   <string name="user_info_desc_default">这家伙太懒了，什么也没留下</string>
-  <string name="user_info">User Info</string>
-  <string name="my_publish">My Publish</string>
+  <string name="user_info">用户信息</string>
+  <string name="my_publish">我的发布</string>
   <string name="examination">考试计划</string>
   <string name="my_achievement">我的成绩</string>
   <string name="query_power">查电费</string>
   <string name="class_course">查课表</string>
-  <string name="query_power_title">Query Power</string>
+  <string name="query_power_title">查电费</string>
   <string name="library">图书馆</string>
   <string name="school_date">校历</string>
   <string name="logout">注销登陆</string>
@@ -50,7 +50,7 @@
   <string name="number">学号：</string>
   <string name="dep">学院：</string>
   <string name="str_class">班级：</string>
-  <string name="personal">Personal</string>
+  <string name="personal">个人信息</string>
   <string name="personal_publish">我的发布</string>
   <string name="complete">完成</string>
   <string name="input_tip">请先输入信息</string>
@@ -61,13 +61,13 @@
   <string name="query_tip">清先填写寝室号</string>
   <string name="surplus_day">剩余%d天</string>
   <string name="surplus_hour">剩余%d小时</string>
-  <string name="my_grade">My Grade</string>
-  <string name="school_calendar">School Calendar</string>
+  <string name="my_grade">我的成绩</string>
+  <string name="school_calendar">校历</string>
   <string name="library_url">http://218.75.197.122:8989/opac/weixin/account/service/index</string>
-  <string name="library_title">Library</string>
+  <string name="library_title">图书馆</string>
   <string name="about_us">当前版本%s\n仅供学习交流使用</string>
   <string name="logout_tip">注销后需要重新登陆\n是否继续?</string>
-  <string name="course_detail">Course Detail</string>
+  <string name="course_detail">课表详情</string>
   <string name="load_fail_tip">加载失败,点击重试</string>
   <string name="page">%d/%d</string>
   <string name="copy">复制</string>
@@ -79,7 +79,7 @@
   <string name="phone_input_tip">请输入联系方式</string>
   <string name="attr_input_tip">请输入成色</string>
   <string name="content_input_tip">请输入详情</string>
-  <string name="publish_goods">Publish Goods</string>
+  <string name="publish_goods">发布商品</string>
   <string name="sell">出售</string>
   <string name="buy">求购</string>
   <string name="input_thing_name">请输入物品名</string>
@@ -88,7 +88,7 @@
   <string name="calendar_tip">距离 %s 还有 %d 天</string>
   <string name="calendar_tip_exam">距离 %s考试 还有 %s </string>
   <string name="date_tip">%s\n%d</string>
-  <string name="message">Message</string>
+  <string name="message">消息</string>
   <string name="private_message">私信</string>
   <string name="app_key">e8c7f8ed34bb48dd4c5ab6b54d8cf11d</string>
   <string name="default_content">快来私信我吧～</string>

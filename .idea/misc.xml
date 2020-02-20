@@ -9,15 +9,6 @@
       <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" />
     </configurations>
   </component>
-  <component name="EntryPointsManager">
-    <list size="1">
-      <item index="0" class="java.lang.String" itemvalue="com.hyc.helper.annotation.Subscribe" />
-    </list>
-    <writeAnnotations>
-      <writeAnnotation name="com.hyc.helper.util.parrot.InitialParam" />
-      <writeAnnotation name="com.hyc.helper.util.parrot.InitParam" />
-    </writeAnnotations>
-  </component>
   <component name="Kotlin2JsCompilerArguments">
     <option name="sourceMapEmbedSources" />
     <option name="sourceMapPrefix" />
