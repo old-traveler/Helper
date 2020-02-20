@@ -19,7 +19,6 @@ public class RxBus {
   private HashMap<String, ArrayList<Object>> subscribeMap;
 
   private RxBus() {
-    throw new IllegalArgumentException("must call getDefault() to get instance");
   }
 
   public static RxBus getDefault() {

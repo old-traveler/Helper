@@ -54,7 +54,7 @@ class PersonalActivity : BaseFlutterActivity() {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    setToolBarTitle(R.string.personal)
+    setToolBarTitle(UiHelper.getString(R.string.personal))
     initMenuPopupWindow()
   }
 
