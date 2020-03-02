@@ -6,6 +6,8 @@ public class InfoEntity {
 
   private String value;
 
+  private String userId;
+
   public InfoEntity(String title, String value) {
     this.title = title;
     this.value = value;
@@ -25,5 +27,14 @@ public class InfoEntity {
 
   public void setValue(String value) {
     this.value = value;
+  }
+
+  public String getUserId() {
+    return userId;
+  }
+
+  public InfoEntity setUserId(String userId) {
+    this.userId = userId;
+    return this;
   }
 }

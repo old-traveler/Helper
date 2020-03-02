@@ -77,7 +77,7 @@ public class SecondGoodsDetailActivity extends BaseRequestActivity<GoodsDetailBe
     data.add(new InfoEntity("商品成色", dataBean.getAttr()));
     data.add(new InfoEntity("联系方式", dataBean.getPhone()));
     data.add(new InfoEntity("发布区域", dataBean.getAddress()));
-    data.add(new InfoEntity("发布用户", dataBean.getUsername()));
+    data.add(new InfoEntity("发布用户", dataBean.getUsername()).setUserId(dataBean.getUser_id()));
     data.add(new InfoEntity("发布时间", dataBean.getCreated_on()));
     rvInfo.setAdapter(
         new BaseRecycleAdapter<>(data, R.layout.layout_bottom_info, ShowInfoViewHolder.class));
