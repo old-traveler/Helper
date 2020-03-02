@@ -79,7 +79,7 @@ public class LostFindDetailActivity extends BaseActivity {
     data.add(new InfoEntity(type.equals("1") ? "拾到时间" : "丢失时间", dataBean.getTime()));
     data.add(new InfoEntity(type.equals("1") ? "拾到地点" : "丢失地点", dataBean.getLocate()));
     data.add(new InfoEntity("联系电话", dataBean.getPhone()));
-    data.add(new InfoEntity("发布用户", dataBean.getUsername()));
+    data.add(new InfoEntity("发布用户", dataBean.getUsername()).setUserId(dataBean.getUser_id()));
     data.add(new InfoEntity("发布时间", dataBean.getCreated_on()));
     rvInfo.setAdapter(
         new BaseRecycleAdapter<>(data, R.layout.layout_bottom_info, ShowInfoViewHolder.class));
