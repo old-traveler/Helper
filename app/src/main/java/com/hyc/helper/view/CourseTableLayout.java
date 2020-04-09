@@ -67,7 +67,8 @@ public class CourseTableLayout extends ViewGroup implements View.OnClickListener
     Random random = new Random();
     Set<Point> pointSet = new HashSet<>();
     for (CourseInfoBean courseInfoBean : courseInfoBeans) {
-      if (courseInfoBean.getZs().contains(curWeek)) {
+      if (courseInfoBean.getZs().contains(curWeek) && !pointSet.contains(
+          getPoint(courseInfoBean))) {
         View itemView = getItemView(courseInfoBean, colorId[random.nextInt(colorId.length)]);
         pointSet.add(((CourseTableItemBean) itemView.getTag()).getPoint());
         addView(itemView);

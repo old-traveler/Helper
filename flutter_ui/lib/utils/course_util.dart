@@ -38,7 +38,7 @@ class CourseUtil {
   }
 
   static DateTime getSchoolOpenDay() {
-    return new DateTime(2019, 9, 2);
+    return new DateTime(2020, 2, 24);
   }
 
   static List<String> getCurDayOfWeek(int week) {
